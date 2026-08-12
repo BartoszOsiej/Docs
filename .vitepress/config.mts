@@ -29,7 +29,7 @@ export default defineConfig({
       { text: 'Cybersec', link: '/projects/cybersec-tools/' },
       { text: 'AURORA OS', link: '/projects/aurora-os/' },
       { text: 'Externum', link: '/projects/externum/' },
-      { text: 'P2P Chat', link: '/chat/' },
+      { text: 'N2 Mesh', link: 'https://bartoszosiej.github.io/N2-Mesh/', target: '_blank' },
       {
         text: 'More',
         items: [
@@ -45,7 +45,7 @@ export default defineConfig({
           text: 'All Projects',
           items: [
             { text: '📁 Projects', link: '/projects/' },
-            { text: '💬 P2P Chat', link: '/chat/' },
+            { text: '💬 N2 Mesh (P2P Chat)', link: 'https://bartoszosiej.github.io/N2-Mesh/' },
             { text: '🔗 LinkShort', link: '/projects/fastapi-url/' },
             { text: '🏭 Novactorio', link: '/projects/factorio-web-game/' },
             { text: '⛏️ NV2 Engine', link: '/projects/nv2-engine/' },

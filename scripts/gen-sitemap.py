@@ -46,7 +46,7 @@ for rel in pages:
     urls.append(f"  <url><loc>{BASE}/{escape(rel)}</loc><changefreq>{freq}</changefreq><priority>{prio}</priority></url>")
 
 # Static files that should also be discoverable.
-for static in ("llms.txt", "llms-full.txt", "chat/"):
+for static in ("llms.txt", "llms-full.txt"):
     urls.append(f'  <url><loc>{BASE}/{static}</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>')
 
 xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

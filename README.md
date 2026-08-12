@@ -15,7 +15,7 @@ published as a static site on GitHub Pages.
 ## Tech
 
 - [VitePress](https://vitepress.dev/) — Vue-powered static site generator
-- [WebTorrent](https://webtorrent.io/) — powers the [P2P chat](https://bartoszosiej.github.io/Docs/chat/)
+- [WebTorrent](https://webtorrent.io/) — powers [N2 Mesh](https://bartoszosiej.github.io/N2-Mesh/), the P2P chat (its own repo: `BartoszOsiej/N2-Mesh`)
 - Deployed via GitHub Actions → GitHub Pages
 
 ## Local development
@@ -47,8 +47,7 @@ Docs/
 │   ├── halcyon-process-monitor/  # Halcyon docs (2 pages)
 │   ├── externum/                 # Externum language docs (5 pages)
 │   └── factory-defense/          # Factory Defense docs (1 page)
-├── public/                       # Static assets (logo, hero, favicon, chat/)
-│   └── chat/                     # P2P chat app (WebTorrent, no build step)
+├── public/                       # Static assets (logo, hero, favicon)
 ├── scripts/                      # Sitemap / llms-full generators
 ├── .vitepress/config.mts         # Site config, nav, sidebar, search
 └── .github/workflows/deploy.yml  # Pages deployment
