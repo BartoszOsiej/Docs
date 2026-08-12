@@ -1,6 +1,6 @@
 # Bartosz Osiej — Docs
 
-> Central documentation hub for LinkShort, Novactorio, NV2 Engine and the Cybersec Toolkit.
+> Central documentation hub for LinkShort, Novactorio, NV2 Engine, AURORA OS and the Cybersec Toolkit.
 
 This site is fully readable by AI agents. For a single-file snapshot of all
 content, fetch `/Docs/llms-full.txt`.
@@ -31,6 +31,9 @@ content, fetch `/Docs/llms-full.txt`.
   - [ShadowScan](https://bartoszosiej.github.io/Docs/projects/cybersec-tools/shadowscan)
   - [HashSleuth](https://bartoszosiej.github.io/Docs/projects/cybersec-tools/hashsleuth)
   - [PacketEye](https://bartoszosiej.github.io/Docs/projects/cybersec-tools/packeteye)
+- [AURORA OS (AURORA-OS)](https://bartoszosiej.github.io/Docs/projects/aurora-os/): A complete operating system in the browser — TypeScript kernel, window manager, virtual filesystem, 37-command shell, 8 apps, themes and procedural audio. Zero runtime dependencies.
+  - [Architecture](https://bartoszosiej.github.io/Docs/projects/aurora-os/architecture)
+  - [User Guide](https://bartoszosiej.github.io/Docs/projects/aurora-os/user-guide)
 ## Meta
 
 - [Update Flow](https://bartoszosiej.github.io/Docs/update-flow): which repositories publish updates to this site.

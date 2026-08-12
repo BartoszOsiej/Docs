@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 // Base path for GitHub Pages: https://BartoszOsiej.github.io/Docs/
 export default defineConfig({
   title: 'Bartosz Osiej — Docs',
-  description: 'Central documentation hub for LinkShort, Novactorio, NV2 Engine and the Cybersec Toolkit.',
+  description: 'Central documentation hub for LinkShort, Novactorio, NV2 Engine, AURORA OS and the Cybersec Toolkit.',
   lang: 'en-US',
   base: '/Docs/',
   cleanUrls: true,
@@ -16,7 +16,7 @@ export default defineConfig({
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/Docs/favicon.svg' }],
     ['meta', { name: 'theme-color', content: '#0f172a' }],
     ['meta', { property: 'og:title', content: 'Bartosz Osiej — Docs' }],
-    ['meta', { property: 'og:description', content: 'Central documentation hub for LinkShort, Novactorio, NV2 Engine and the Cybersec Toolkit.' }],
+    ['meta', { property: 'og:description', content: 'Central documentation hub for LinkShort, Novactorio, NV2 Engine, AURORA OS and the Cybersec Toolkit.' }],
   ],
   themeConfig: {
     logo: '/logo.svg',
@@ -26,6 +26,7 @@ export default defineConfig({
       { text: 'Novactorio', link: '/projects/factorio-web-game/' },
       { text: 'NV2 Engine', link: '/projects/nv2-engine/' },
       { text: 'Cybersec', link: '/projects/cybersec-tools/' },
+      { text: 'AURORA OS', link: '/projects/aurora-os/' },
       { text: 'Update Flow', link: '/update-flow' },
     ],
     sidebar: {
@@ -60,6 +61,16 @@ export default defineConfig({
             { text: 'ShadowScan', link: '/projects/cybersec-tools/shadowscan' },
             { text: 'HashSleuth', link: '/projects/cybersec-tools/hashsleuth' },
             { text: 'PacketEye', link: '/projects/cybersec-tools/packeteye' },
+          ],
+        },
+      ],
+      '/projects/aurora-os/': [
+        {
+          text: 'AURORA OS',
+          items: [
+            { text: 'Overview', link: '/projects/aurora-os/' },
+            { text: 'Architecture', link: '/projects/aurora-os/architecture' },
+            { text: 'User Guide', link: '/projects/aurora-os/user-guide' },
           ],
         },
       ],

@@ -4,14 +4,153 @@ Generated for AI agents and crawlers. All content below is the complete document
 ========================================================================
 
 ## Home
-Source file: index.md
-
-
+Source: https://bartoszosiej.github.io/Docs/index
 
 ---
+layout: home
+title: Bartosz Osiej — Engineering Docs Hub
+
+hero:
+  name: "Bartosz Osiej"
+  text: "Engineering Docs Hub"
+  tagline: >
+    A curated documentation hub for four flagship projects —
+    from a production URL shortener to a native Rust voxel engine,
+    a browser factory-automation game, and a Rust cybersecurity toolkit.
+  image:
+    src: /hero.svg
+    alt: Projects
+  actions:
+    - theme: brand
+      text: 🚀 Explore Projects
+      link: /projects/fastapi-url/
+    - theme: alt
+      text: LinkShort — URL Shortener
+      link: /projects/fastapi-url/
+    - theme: alt
+      text: Novactorio — Factory Game
+      link: /projects/factorio-web-game/
+    - theme: alt
+      text: NV2 Engine — Rust Voxel Game
+      link: /projects/nv2-engine/
+    - theme: alt
+      text: Cybersec Toolkit
+      link: /projects/cybersec-tools/
+    - theme: alt
+      text: AURORA OS — Browser OS
+      link: /projects/aurora-os/
+    - theme: alt
+      text: Update Flow
+      link: /update-flow
+
+features:
+  - icon: 🔗
+    title: LinkShort
+    details: Production-ready URL shortener — FastAPI, JWT auth, click tracking, React 19 SPA, SQLite.
+    link: /projects/fastapi-url/
+  - icon: 🏭
+    title: Novactorio
+    details: Browser factory-automation game with a hand-written Canvas 2D engine, co-op, 23 languages, Stripe premium.
+    link: /projects/factorio-web-game/
+  - icon: ⛏️
+    title: NV2 Engine
+    details: Native Rust voxel engine — 15,800+ lines, wgpu rendering, 97 block types, AI-trained vegetation.
+    link: /projects/nv2-engine/
+  - icon: ◈
+    title: AURORA OS
+    details: A complete operating system in the browser — window manager, virtual filesystem, 37-command shell and 8 apps, all in TypeScript.
+  - icon: 🛡️
+    title: Cybersec Toolkit
+    details: Four focused Rust security tools — port scanning, web vuln checks, hash cracking, pcap analysis.
+    link: /projects/cybersec-tools/
+  - icon: 🔄
+    title: Update Flow
+    details: Which repositories publish updates to this documentation site, and how.
+    link: /update-flow
+---
+
+<AuroraBackground />
+
+<ScrollReveal>
+## ✨ Flagship Projects
+
+<div class="project-grid">
+  <ProjectCard
+    icon="🔗"
+    title="LinkShort"
+    description="Production-ready URL shortener. FastAPI backend with JWT auth, per-user link management, click tracking, and a React 19 single-page app served directly by the API."
+    :tags="['FastAPI', 'JWT', 'React 19', 'SQLite', 'Docker']"
+    tint="#34d399"
+    link="/projects/fastapi-url/"
+  />
+  <ProjectCard
+    icon="🏭"
+    title="Novactorio"
+    description="A Factorio-inspired factory-automation game in the browser. Hand-written Canvas 2D engine, 21,000+ lines of TypeScript, co-op multiplayer, 23 languages, Stripe premium."
+    :tags="['TypeScript', 'Canvas 2D', 'Supabase', 'Stripe', 'Cloudflare']"
+    tint="#fbbf24"
+    link="/projects/factorio-web-game/"
+  />
+  <ProjectCard
+    icon="⛏️"
+    title="NV2 Engine"
+    description="A native Rust voxel engine with AI-driven procedural worlds. wgpu rendering, 97 block types, 9 biomes, water simulation, and a neural network that learns vegetation while you play."
+    :tags="['Rust', 'wgpu', 'OpenSimplex2', 'MLP', 'Vulkan']"
+    tint="#818cf8"
+    link="/projects/nv2-engine/"
+  />
+  <ProjectCard
+    icon="🛡️"
+    title="Cybersec Toolkit"
+    description="Four focused Rust security tools: NetRecon TCP scanner, ShadowScan web vulnerability scanner, HashSleuth hash cracker, and PacketEye pcap analyzer."
+    :tags="['Rust', 'Security', 'pcap', 'openssl', 'CLI']"
+    tint="#f472b6"
+    link="/projects/cybersec-tools/"
+  />
+</div>
+</ScrollReveal>
+
+<ScrollReveal :delay="120">
+## 🎯 What makes this hub special
+
+<div class="grid-3">
+  <GlowCard>
+    <h3>🔍 Deep, code-accurate docs</h3>
+    <p>Every page is written from the actual source — real endpoints, real modules, real numbers. No filler, no guesswork.</p>
+  </GlowCard>
+  <GlowCard>
+    <h3>🤖 AI-readable</h3>
+    <p><code>llms.txt</code> and <code>llms-full.txt</code> make the entire site fully scrapable by AI agents.</p>
+  </GlowCard>
+  <GlowCard>
+    <h3>🔄 Live update flow</h3>
+    <p>A single GitHub Actions pipeline rebuilds and deploys the site on every push to main.</p>
+  </GlowCard>
+</div>
+</ScrollReveal>
+
+<style scoped>
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.1rem;
+  margin: 1.4rem 0 2.4rem;
+}
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+  margin: 1.4rem 0 2rem;
+}
+.grid-3 h3 { margin-top: 0; }
+.grid-3 p { opacity: 0.8; line-height: 1.6; }
+</style>
+
+
+------------------------------------------------------------------------
 
 ## Update Flow
-Source file: update-flow.md
+Source: https://bartoszosiej.github.io/Docs/update-flow
 
 # Update Flow
 
@@ -25,6 +164,7 @@ how this documentation site stays in sync with the source projects.
 | [BartoszOsiej/FastAPI-url](https://github.com/BartoszOsiej/FastAPI-url) | BartoszOsiej (fork of ghost0development) | Source: LinkShort URL shortener |
 | [BartoszOsiej/Factorio-web-game](https://github.com/BartoszOsiej/Factorio-web-game) | BartoszOsiej | Source: Novactorio browser game |
 | [BartoszOsiej/NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE) | BartoszOsiej | Source: NV2 Engine — native Rust voxel game |
+| [BartoszOsiej/AURORA-OS](https://github.com/BartoszOsiej/AURORA-OS) | BartoszOsiej | Source: AURORA OS — browser operating system in TypeScript |
 | [BartoszOsiej/cybersec-tools](https://github.com/BartoszOsiej/cybersec-tools) | BartoszOsiej | Source: Cybersec Toolkit — 4 Rust security tools |
 | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | BartoszOsiej | **This site** — GitHub Pages docs hub |
 
@@ -98,7 +238,7 @@ with this site as the rendered output.
 | Static site generator | VitePress (Node.js) |
 | Build | `npm run docs:build` |
 | Publish | GitHub Actions → `actions/deploy-pages` |
-| URL |  |
+| URL | <https://bartoszosiej.github.io/Docs/> |
 
 ## GitHub account note
 
@@ -107,10 +247,11 @@ with this site as the rendered output.
 - Local clones of `FastAPI-url` track `origin` = `BartoszOsiej` and
   `upstream` = `ghost0development` (for pulling upstream fixes).
 
----
+
+------------------------------------------------------------------------
 
 ## LinkShort - Overview
-Source file: projects/fastapi-url/index.md
+Source: https://bartoszosiej.github.io/Docs/projects/fastapi-url/index
 
 # LinkShort
 
@@ -201,10 +342,11 @@ are checked and retried against the database.
 - [API Reference](api-reference) — every endpoint with requests/responses
 - [Deployment](deployment) — Docker, environments, production notes
 
----
+
+------------------------------------------------------------------------
 
 ## LinkShort - Getting Started
-Source file: projects/fastapi-url/getting-started.md
+Source: https://bartoszosiej.github.io/Docs/projects/fastapi-url/getting-started
 
 # Getting Started
 
@@ -243,8 +385,8 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 
 Open:
 
-- **App + Swagger UI:** 
-- **Interactive API docs:** 
+- **App + Swagger UI:** <http://localhost:8000>
+- **Interactive API docs:** <http://localhost:8000/docs>
 
 The SQLite database is created automatically on startup
 (`Base.metadata.create_all`).
@@ -281,16 +423,16 @@ curl -s -X POST http://localhost:8000/auth/register \
   -H 'Content-Type: application/json' \
   -d '{"email": "you@example.com", "password": "hunter2"}'
 
-# Shorten a URL (target_url is a query parameter; Authorization: Bearer )
+# Shorten a URL (target_url is a query parameter; Authorization: Bearer <token>)
 curl -s -X POST 'http://localhost:8000/urls/shorten?target_url=https://example.com/very/long/path' \
-  -H 'Authorization: Bearer '
+  -H 'Authorization: Bearer <token>'
 
 # Redirect (public)
-curl -sI http://localhost:8000/urls/r/
+curl -sI http://localhost:8000/urls/r/<short_code>
 # → HTTP/2 302, Location: https://example.com/very/long/path
 
 # Stats (public)
-curl -s http://localhost:8000/urls//stats
+curl -s http://localhost:8000/urls/<short_code>/stats
 ```
 
 ## Project tour
@@ -315,7 +457,7 @@ backend/static/        # compiled React SPA
 ## How authentication works
 
 1. `POST /auth/register` hashes the password and issues a signed JWT.
-2. Every protected route reads `Authorization: Bearer `.
+2. Every protected route reads `Authorization: Bearer <jwt>`.
 3. `get_current_user` (in `app/auth.py`) verifies the token and resolves the
    user for the request.
 
@@ -324,10 +466,11 @@ backend/static/        # compiled React SPA
 - Explore every endpoint in the [API Reference](api-reference)
 - Deploy with [Docker or Fly.io](deployment)
 
----
+
+------------------------------------------------------------------------
 
 ## LinkShort - API Reference
-Source file: projects/fastapi-url/api-reference.md
+Source: https://bartoszosiej.github.io/Docs/projects/fastapi-url/api-reference
 
 # API Reference
 
@@ -357,7 +500,7 @@ Create an account and receive a JWT.
 
 | Status | Body |
 |---|---|
-| 200 | `{ "access_token": "", "token_type": "bearer" }` |
+| 200 | `{ "access_token": "<jwt>", "token_type": "bearer" }` |
 | 400 | `{ "detail": "Email already registered" }` |
 
 ### `POST /auth/login`
@@ -374,7 +517,7 @@ Authenticate and receive a JWT.
 
 | Status | Body |
 |---|---|
-| 200 | `{ "access_token": "", "token_type": "bearer" }` |
+| 200 | `{ "access_token": "<jwt>", "token_type": "bearer" }` |
 | 401 | `{ "detail": "Incorrect email or password" }` |
 
 ### `GET /auth/me`
@@ -384,7 +527,7 @@ Return the authenticated user's profile.
 **Headers**
 
 ```
-Authorization: Bearer 
+Authorization: Bearer <jwt>
 ```
 
 **Responses**
@@ -411,7 +554,7 @@ POST /urls/shorten?target_url=https://example.com/very/long/path
 
 ```bash
 curl -s -X POST 'http://localhost:8000/urls/shorten?target_url=https://example.com/very/long/path' \
-  -H 'Authorization: Bearer '
+  -H 'Authorization: Bearer <jwt>'
 ```
 
 **Response 200**
@@ -511,10 +654,11 @@ FastAPI errors follow the standard shape:
 { "detail": "Human-readable message" }
 ```
 
----
+
+------------------------------------------------------------------------
 
 ## LinkShort - Deployment
-Source file: projects/fastapi-url/deployment.md
+Source: https://bartoszosiej.github.io/Docs/projects/fastapi-url/deployment
 
 # Deployment
 
@@ -588,10 +732,11 @@ SQLite (volume-mounted /app/data)
 - [ ] Back up the SQLite file regularly (single-file backups are trivial)
 - [ ] Monitor `/health` with your uptime checker
 
----
+
+------------------------------------------------------------------------
 
 ## Novactorio - Overview
-Source file: projects/factorio-web-game/index.md
+Source: https://bartoszosiej.github.io/Docs/projects/factorio-web-game/index
 
 # Novactorio
 
@@ -661,10 +806,11 @@ Factorio-web-game/
 - [Gameplay Systems](gameplay) — supply chains, belts, pipes, enemies, pollution
 - [Backend & Monetization](backend) — Supabase, Stripe, edge functions
 
----
+
+------------------------------------------------------------------------
 
 ## Novactorio - Architecture
-Source file: projects/factorio-web-game/architecture.md
+Source: https://bartoszosiej.github.io/Docs/projects/factorio-web-game/architecture
 
 # Architecture
 
@@ -783,10 +929,11 @@ State flows from the engine into React through a shared game-state bridge.
 The game builds with Vite and deploys to **Cloudflare** via Wrangler
 (`wrangler.jsonc`), with Supabase as the backend.
 
----
+
+------------------------------------------------------------------------
 
 ## Novactorio - Gameplay Systems
-Source file: projects/factorio-web-game/gameplay.md
+Source: https://bartoszosiej.github.io/Docs/projects/factorio-web-game/gameplay
 
 # Gameplay Systems
 
@@ -878,10 +1025,11 @@ A premium tier (Stripe) unlocks additional content. See
 - Responsive UI works on desktop and mobile (touch input).
 - 23 languages via runtime i18n switching.
 
----
+
+------------------------------------------------------------------------
 
 ## Novactorio - Backend & Monetization
-Source file: projects/factorio-web-game/backend.md
+Source: https://bartoszosiej.github.io/Docs/projects/factorio-web-game/backend
 
 # Backend & Monetization
 
@@ -987,10 +1135,11 @@ npm run deploy   # = npm run build && wrangler deploy
 Configuration lives in `wrangler.jsonc`; Supabase CLI handles function
 deployments with per-function secrets.
 
----
+
+------------------------------------------------------------------------
 
 ## NV2 Engine - Overview
-Source file: projects/nv2-engine/index.md
+Source: https://bartoszosiej.github.io/Docs/projects/nv2-engine/index
 
 # NV2 Engine
 
@@ -1000,7 +1149,95 @@ NV2 Engine (repository: `NV2_ENGINE`) is not a terrain prototype — it is a
 **complete, playable voxel game and engine** written in Rust (15,800+ lines of
 source across 30+ modules). It combines procedural terrain generation,
 realistic climate-driven biomes, a neural-network vegetation system that
-trains in the background with  **Note:** `cargo run` in dev mode already builds third-party crates at
+trains in the background with <1% CPU overhead, animated water simulation, a
+full block breaking/placing interaction layer with tool tiers and durability,
+inventory and hotbar management, recipe-driven crafting (2×2 and 3×3),
+save/load persistence, an in-game command system, and a complete GUI stack —
+all rendered with GPU-efficient techniques.
+
+**Stack:** Rust 2021 · wgpu 0.20 · winit 0.30 · cgmath 0.18 · OpenSimplex2 ·
+rayon · ndarray · serde/serde_json · fontdue · image 0.25 · bytemuck ·
+env_logger · C#/.NET 8 (content tools) · Python/Pillow (texture tools)
+
+---
+
+## Feature matrix
+
+### World & terrain
+| Feature | Detail |
+|---|---|
+| **Procedural generation** | OpenSimplex2 heightmaps, caves, ores, water-aware column sampling |
+| **Chunk dimensions** | 16×512×16 — double-height chunks (raised from 256) for tall mountains & deep caves |
+| **Biomes** | 9 climate-driven biomes: Ocean, Coast, Plains, Forest, Dark Forest, Swamp, Taiga, Desert, Mountains |
+| **Climate model** | Temperature + humidity drive block distribution, vegetation density, fog and ambient color |
+| **Generation channels** | Dedicated OpenSimplex channels + seeds for continent shape, temperature, humidity, erosion, peaks/relief, height/detail, warp, caves, ores, water |
+| **Async generation** | Bounded work queue, in-flight dedup, rayon parallel generation, mpsc delivery to main thread |
+
+### AI-driven vegetation
+| Feature | Detail |
+|---|---|
+| **Embedded neural network** | 8→16→4 MLP, 320 parameters, ~1.2 KB total memory |
+| **Input features** | 8 terrain features: height, slope, temperature, humidity, water distance, plant density, light, noise seed |
+| **Output classes** | 4 vegetation classes: flowers, ferns/water plants, sticks/decorations, pebbles/rocks |
+| **Background training** | Continuous thread, 100 samples/epoch, ~5–10 ms/epoch, <1% CPU overhead |
+| **Training method** | Online stochastic gradient descent, cross-entropy loss, ReLU hidden, Softmax output, adaptive LR decay (0.95×/1000 epochs) |
+| **Vegetation blocks** | 22 new block types: roses, tulips (4 colors), dandelions, cornflower, allium, azalea, ferns, lily pads, seagrass, kelp, moss carpet, vines, sticks, pebbles |
+| **Confidence threshold** | 0.5 — only high-confidence predictions place blocks |
+
+### Rendering (wgpu 0.20)
+| Feature | Detail |
+|---|---|
+| **Per-chunk GPU buffers** | A block edit re-uploads only that chunk (previously ~81 chunks per change) |
+| **Frustum culling** | Gribb–Hartmann plane extraction with safety margin + protected 3×3 area around player |
+| **Packed vertices** | 72-byte CPU vertices → 36-byte GPU format (Snorm8x4/Unorm8x4) |
+| **Incremental water meshing** | Only changed chunks rebuild; interval-based simulation |
+| **Separate pipelines** | Solid world, water, flat UI panels, sprite UI icons, text rendering |
+| **Texture atlas** | Dynamic atlas, switchable texture packs, top/bottom/side variants |
+| **Text rendering** | fontdue rasterization, custom text layers |
+
+### Gameplay
+| Feature | Detail |
+|---|---|
+| **Block interaction** | DDA raycast targeting, held-break mining, right-click placement |
+| **Tool tiers** | Hand → Flint → Stone → Iron → Diamond → Netherite, with power values and durability |
+| **Inventory** | 36-slot inventory + 9-slot hotbar, stack merging, drag-and-drop |
+| **Crafting** | 2×2 player grid + 3×3 NVCrafter station, shaped & shapeless recipes |
+| **Recipes** | 18 recipes: planks, sticks, NVCrafter, wooden pickaxe/axe/shovel/hoe, torches, chest, door, trapdoor, ladder, fence, fence gate, workbench upgrade, flint/stone/iron pickaxes |
+| **Movement** | Walk, sprint (FOV kick), jump, flight, water gravity/sinking, AABB collision, foliage movement modifiers |
+| **Commands** | `/locate <biome> [--tp]`, `/tp <x> <y> <z>` |
+| **Persistence** | JSON world saves (seed, chunk blocks, water metadata, NVCrafter states) |
+
+### Special gameplay logic
+| Feature | Detail |
+|---|---|
+| **Flint drops** | Gravel can drop flint via deterministic seeded logic |
+| **Tree harvesting** | Destroying a trunk harvests the connected trunk/leaves cluster |
+| **Leaf drops** | Leaves drop saplings and sticks with deterministic odds |
+| **Crafter flush** | Breaking an NVCrafter flushes stored contents into world drops |
+| **Placement guard** | Blocks cannot be placed inside the player AABB |
+
+---
+
+## Quick start
+
+Requires a Rust toolchain (stable is enough) and a GPU with
+Vulkan/Metal/DX12/GL support.
+
+```bash
+cd Core
+cargo run --release
+```
+
+The game opens a window with the main menu:
+
+| Menu item | Action |
+|---|---|
+| **New Game** | Start a new procedurally generated world |
+| **Load/Save** | Load the saved world |
+| **Low-End-PC** | Toggle the low-end performance profile |
+| **Quit** | Exit |
+
+> **Note:** `cargo run` in dev mode already builds third-party crates at
 > `opt-level 3`, so even a debug build plays smoothly.
 
 **First minutes in-game:** spawn near a forest → punch trees with your bare
@@ -1010,8 +1247,25 @@ mine iron → eventually craft an NVCrafter for 3×3 recipes.
 
 ---
 
+## Documentation index
+
+| Page | Contents |
+|---|---|
+| [Architecture](architecture) | Full runtime, renderer, world, UI layering — module by module |
+| [Gameplay](gameplay) | Controls, interaction, inventory, crafting, commands, persistence |
+| [Blocks & Biomes](blocks) | Complete 97-block registry, tool tiers, 9 biome definitions, ores |
+| [Crafting Reference](crafting) | Every recipe with exact patterns |
+| [Water Simulation](water) | Liquid encoding, solver, and rendering internals |
+| [AI Vegetation System](ai) | Network math, training loop, hyperparameters, integration |
+| [Performance](performance) | GPU bandwidth, culling, meshing budgets, profiles |
+| [Development](development) | Build, module map, testing, extending the engine |
+| [Roadmap & Changelog](roadmap) | History, Phase 2 plans, known limitations |
+
+
+------------------------------------------------------------------------
+
 ## NV2 Engine - Architecture
-Source file: projects/nv2-engine/architecture.md
+Source: https://bartoszosiej.github.io/Docs/projects/nv2-engine/architecture
 
 # Architecture
 
@@ -1080,7 +1334,7 @@ layer in detail, module by module, based on the actual source.
                └───────────┬───────────┘
                            ▼
           InteractionController (interaction.rs)
-          bridges gameplay  GUI slot transactions
+          bridges gameplay <-> GUI slot transactions
 ```
 
 ## 1. Application shell (`main.rs`)
@@ -1257,10 +1511,11 @@ inputs, player crafting output, NVCrafter inputs, NVCrafter output.
 - In-engine content editor
 - Formal ECS-style gameplay architecture
 
----
+
+------------------------------------------------------------------------
 
 ## NV2 Engine - Gameplay
-Source file: projects/nv2-engine/gameplay.md
+Source: https://bartoszosiej.github.io/Docs/projects/nv2-engine/gameplay
 
 # Gameplay
 
@@ -1287,6 +1542,36 @@ furniture, and explore climate-driven biomes where an AI places vegetation.
 **In menus:** `↑` / `↓` (or `W` / `S`) navigate, `Enter` / `Space` confirm,
 `N` starts a new game, `L` loads from the main menu.
 
+---
+
+## Block interaction (`interaction.rs`)
+
+### Targeting
+DDA (Digital Differential Analyzer) voxel raycasting via `world/raycast.rs`
+projects from the camera through the crosshair to find the targeted block.
+
+### Mining
+- **Left mouse** starts breaking; **holding** continues with persistent
+  break-progress state.
+- Harvesting is **tool-gated**: each block has a hardness value and a required
+  tool tier; the held tool's power must meet or exceed the requirement.
+- Successful harvests consume **tool durability**.
+
+### Placement
+- **Right mouse** places the block from the active inventory stack.
+- Placement is blocked **inside the player AABB** (you cannot build inside
+  yourself).
+
+### Special drop logic
+| Case | Behavior |
+|---|---|
+| Gravel | Can drop **flint** via deterministic seeded drop logic |
+| Tree trunk | Destroying a trunk harvests the **connected trunk/leaves cluster**, not just one block |
+| Leaves | Can additionally drop **saplings and sticks** with deterministic odds |
+| NVCrafter | Breaking it **flushes stored contents** into world drops before removal |
+
+---
+
 ## Tool tiers & durability
 
 | Tier | Power | Tools |
@@ -1302,6 +1587,23 @@ Every tool tracks `max_durability`; mining valid targets consumes durability.
 Tool power gates which blocks can be broken — a wooden tier cannot harvest
 stone-tier blocks.
 
+---
+
+## Inventory & hotbar (`inventory.rs`)
+
+- **36-slot player inventory**
+- **9-slot hotbar** mapped to the tail of the inventory
+- Active hotbar selection with mouse-wheel scrolling
+- **Stack merging and overflow handling**
+- Tool durability tracking
+- Separation between placeable items and inventory-only items
+- Built-in **2×2 player crafting grid** with output slot
+
+Drag-and-drop stack management works across all GUI slot types (inventory,
+crafting inputs/output, NVCrafter).
+
+---
+
 ## Crafting (`crafting.rs`)
 
 Two crafting surfaces:
@@ -1316,18 +1618,51 @@ support) and **shapeless recipes** (multiset matching). Recipes are also
 loadable from JSON (`assets.rs`). See the [Crafting Reference](crafting) for
 every recipe with exact patterns.
 
+---
+
+## Movement & physics (`renderer/camera.rs`)
+
+- Walking, **sprinting with FOV kick**, jumping
+- Gravity with fall-speed limiting
+- **Flight mode** (`F`) — disables gravity, `Space` ascends
+- **Water physics** — water-specific gravity and sinking behavior
+- AABB collision against solid blocks
+- **Movement mediums** — standing in foliage applies a 0.55× movement speed
+  multiplier (0.65× sprint, 0.35× fall), with sound dampening tracked for
+  future audio
+
+---
+
 ## Commands (`commands.rs`)
 
 Open the prompt with `/`:
 
 | Command | Description |
 |---|---|
-| `/locate  [--tp]` | Find the nearest biome by sampling chunk rings outward from the player; `--tp` teleports there |
-| `/tp   ` | Teleport to absolute coordinates (resolved safely) |
+| `/locate <biome> [--tp]` | Find the nearest biome by sampling chunk rings outward from the player; `--tp` teleports there |
+| `/tp <x> <y> <z>` | Teleport to absolute coordinates (resolved safely) |
 
 Responses and errors appear both on stdout and in-engine as subtitle/command
 prompt messages. Teleports use `World::safe_teleport_position(...)` to avoid
 placing the player inside solid blocks.
+
+---
+
+## Persistence
+
+The world serializes to **JSON** at `saves/world.json` (next to the
+executable). Saved data:
+
+- World seed
+- Flattened chunk block data
+- Chunk water metadata
+- Persisted NVCrafter states
+
+The pause menu offers **Save** and **Save & Exit**; the main menu offers
+**Load/Save**. Old saves remain fully compatible — AI vegetation only kicks in
+for newly generated chunks.
+
+---
 
 ## Day/night & atmosphere
 
@@ -1336,10 +1671,11 @@ water animation timing, and climate/biome-driven fog and ambient color
 uniforms — each biome tints the scene (e.g. forest `[0.50, 0.86, 0.42]`,
 dark forest `[0.38, 0.72, 0.34]`).
 
----
+
+------------------------------------------------------------------------
 
 ## NV2 Engine - Blocks & Biomes
-Source file: projects/nv2-engine/blocks.md
+Source: https://bartoszosiej.github.io/Docs/projects/nv2-engine/blocks
 
 # Blocks & Biomes
 
@@ -1470,8 +1806,67 @@ these hooks (audio consumption is a future feature).
 
 ---
 
+# Biomes
+
+Nine climate-driven biomes. Sea level is `46`. All values are exact from
+`world/biomes.rs`.
+
+| Biome | Temp | Humidity | Tree density | Grass density | Surface block | Vegetation tint |
+|---|---|---|---|---|---|---|
+| Ocean | 0.48 | 0.88 | 0.00 | 0.00 | Sand | `[0.58, 0.82, 0.74]` |
+| Coast | 0.62 | 0.54 | 0.02 | 0.10 | Sand | `[0.78, 0.82, 0.48]` |
+| Plains | 0.58 | 0.46 | 0.05 | 0.72 | Grass | `[0.72, 0.92, 0.54]` |
+| Forest | 0.54 | 0.62 | 0.46 | 0.46 | Grass | `[0.50, 0.86, 0.42]` |
+| Dark Forest | 0.50 | 0.74 | 0.74 | 0.18 | Forest Floor | `[0.38, 0.72, 0.34]` |
+| Swamp | 0.66 | 0.90 | 0.28 | 0.26 | Mud | — |
+| Taiga | 0.24 | 0.52 | 0.58 | 0.18 | Grass | — |
+| Desert | 0.92 | 0.10 | 0.00 | 0.00 | Sand | — |
+| Mountains | 0.28 | 0.34 | 0.12 | 0.10 | Grass | — |
+
+### Biome observations
+
+- **Desert** is the hottest (0.92) and driest (0.10) biome — no trees, no grass.
+- **Swamp** is the most humid (0.90) with a **Mud** surface.
+- **Taiga** and **Mountains** are the coldest (0.24 / 0.28); taiga has the
+  highest tree density after dark forest (0.58).
+- **Dark Forest** has the highest tree density overall (0.74) on a
+  Forest Floor surface.
+
+## Tree kinds
+
+```rust
+pub enum TreeKind { Oak, Birch, Pine, DarkOak, DeadTree }
+```
+
+Biomes select tree types from constants (e.g. `PLAINS_TREES`,
+`FOREST_TREES`, `DARK_FOREST_TREES`, `NO_TREES`).
+
+## Generation channels
+
+Terrain combines multiple OpenSimplex2 channels, each with a dedicated seed:
+
+| Channel | Drives |
+|---|---|
+| Continent shape | Biome placement |
+| Temperature | Climate |
+| Humidity | Climate |
+| Erosion | Relief |
+| Peaks / relief | Mountain shapes |
+| Height / detail | Surface elevation |
+| Warp | Surface variation |
+| Caves | Cave carving |
+| Ores | Ore placement |
+| Water | Water-aware column sampling |
+
+The generator exposes **climate data** to the renderer: ambient color, fog
+color, fog density, scene grade, vegetation tint, warmth, moisture, and
+lushness.
+
+
+------------------------------------------------------------------------
+
 ## NV2 Engine - Crafting Reference
-Source file: projects/nv2-engine/crafting.md
+Source: https://bartoszosiej.github.io/Docs/projects/nv2-engine/crafting
 
 # Crafting Reference
 
@@ -1637,10 +2032,11 @@ its contents into world drops.
 `assets.rs` also loads and validates recipes from JSON, with utilities for
 shaped/shapeless recipe parsing alongside block-model loading.
 
----
+
+------------------------------------------------------------------------
 
 ## NV2 Engine - Water Simulation
-Source file: projects/nv2-engine/water.md
+Source: https://bartoszosiej.github.io/Docs/projects/nv2-engine/water
 
 # Water Simulation
 
@@ -1712,16 +2108,34 @@ Key details:
 - Water-aware column sampling in the biome generator positions water bodies
   relative to sea level.
 
----
+
+------------------------------------------------------------------------
 
 ## NV2 Engine - AI Vegetation System
-Source file: projects/nv2-engine/ai.md
+Source: https://bartoszosiej.github.io/Docs/projects/nv2-engine/ai
 
 # AI Vegetation System
 
 NV2 Engine embeds a small neural network that decides where vegetation
 belongs, and trains it **in the background while you play** — with zero FPS
-impact ()
+impact (<1% CPU overhead). This is a complete, production-ready MLP
+implementation in `world/ai_generator.rs` (410 lines) using `ndarray`.
+
+## Architecture overview
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    Main Game Thread                          │
+│  World Generation                                           │
+│   ├─ Chunk generation (BiomeGenerator)                      │
+│   ├─ Tree placement (VegetationGenerator)                   │
+│   ├─ Grass/flowers (traditional)                            │
+│   └─ AI Vegetation (place_ai_vegetation) ◄──────┐           │
+│                                                  │          │
+└──────────────────────────────────────────────────┬──────────┘
+                                                   │
+                Queries AI for predictions (non-blocking
+                via Arc<Mutex>)
                                                    │
 ┌──────────────────────────────────────────────────▼──────────┐
 │              Background AI Thread (continuous)              │
@@ -1831,17 +2245,37 @@ Loop (background thread):
 ### Target heuristic (synthetic training)
 
 ```
-if humidity > 0.6 and light  0.5:              flowers (output 0)
-else if height  },
+if humidity > 0.6 and light < 0.5:   ferns (output 1)
+else if humidity > 0.5:              flowers (output 0)
+else if height < 0.3:                pebbles (output 3)
+else:                                sticks (output 2)
+```
+
+### Hyperparameters
+
+| Parameter | Value | Notes |
+|---|---|---|
+| Learning rate | 0.01 | Sweet spot; 0.1 oscillates, 0.001 too slow |
+| Decay | 0.95× / 1000 epochs | Prevents overfitting, fine-tunes weights |
+| Samples/epoch | 100 | ~5–10 ms per epoch |
+| Confidence threshold | 0.5 | Only high-confidence predictions place blocks |
+| Cell size | 3×3 blocks | Procedural variety |
+
+## Public API (`ai_generator.rs`)
+
+```rust
+pub enum AIMessage {
+    TrainingProgress { epoch: u32, loss: f32 },
+    TextureGenerated { seed: u64, texture_data: Vec<u8> },
     VegetationDecision { wx: i32, wy: i32, wz: i32, block: BlockType, confidence: f32 },
 }
 
 pub struct TerrainAI { /* w1, b1, w2, b2, learning_rate, training_samples */ }
 
 pub struct AISystem {
-    ai: Arc>,
-    tx: Sender,
-    training_thread: JoinHandle,
+    ai: Arc<Mutex<TerrainAI>>,
+    tx: Sender<AIMessage>,
+    training_thread: JoinHandle<()>,
 }
 ```
 
@@ -1850,7 +2284,7 @@ pub struct AISystem {
 | `forward` | `(&self, features: &[f32; 8]) -> [f32; 4]` | Inference: ReLU hidden + softmax output |
 | `backward` | `(&mut self, features: &[f32; 8], target: [f32; 4]) -> f32` | One training step, returns loss |
 | `predict_vegetation` | `(&self, features: &[f32; 8]) -> (BlockType, f32)` | Thread-safe prediction (locks Arc&lt;Mutex&gt;) |
-| `generate_texture` | `(seed, w, h) -> Vec` | AI-assisted texture generation |
+| `generate_texture` | `(seed, w, h) -> Vec<u8>` | AI-assisted texture generation |
 
 ## Integration points
 
@@ -1909,10 +2343,11 @@ See the [Roadmap](roadmap) page for: internet dataset integration, real-time
 AI texture generation, player-preference learning, cloud model sharing,
 seasonal vegetation, multi-biome coordination, and GPU-accelerated training.
 
----
+
+------------------------------------------------------------------------
 
 ## NV2 Engine - Performance
-Source file: projects/nv2-engine/performance.md
+Source: https://bartoszosiej.github.io/Docs/projects/nv2-engine/performance
 
 # Performance
 
@@ -1992,7 +2427,7 @@ All tunables below are centralized in `settings.rs` and switched by the
 
 `AppSettings` is serialized with serde (pretty JSON), loaded with graceful
 fallbacks on parse/read errors, and exposed through `SharedSettings`
-(an `Arc>`) for safe concurrent access.
+(an `Arc<RwLock<AppSettings>>`) for safe concurrent access.
 
 ## AI implementation impact (measured)
 
@@ -2003,10 +2438,11 @@ fallbacks on parse/read errors, and exposed through `SharedSettings`
 | Gameplay CPU | 0% AI overhead | 0.8% |
 | Memory | baseline | +1.2 KB model + 256 KB stack |
 
----
+
+------------------------------------------------------------------------
 
 ## NV2 Engine - Development
-Source file: projects/nv2-engine/development.md
+Source: https://bartoszosiej.github.io/Docs/projects/nv2-engine/development
 
 # Development
 
@@ -2117,10 +2553,11 @@ Settings persist to `settings.json` (pretty JSON via serde).
 - **Public APIs are stable** — `ai_system` is `pub` but non-blocking to
   existing systems; new block types don't conflict.
 
----
+
+------------------------------------------------------------------------
 
 ## NV2 Engine - Roadmap & Changelog
-Source file: projects/nv2-engine/roadmap.md
+Source: https://bartoszosiej.github.io/Docs/projects/nv2-engine/roadmap
 
 # Roadmap & Changelog
 
@@ -2208,10 +2645,11 @@ Source file: projects/nv2-engine/roadmap.md
 4. No model persistence across sessions
 5. Basic texture generation
 
----
+
+------------------------------------------------------------------------
 
 ## Cybersec Toolkit - Overview
-Source file: projects/cybersec-tools/index.md
+Source: https://bartoszosiej.github.io/Docs/projects/cybersec-tools/index
 
 # Cybersec Toolkit
 
@@ -2284,10 +2722,11 @@ cybersec-tools/
     └── src/main.rs       # pcap analyzer
 ```
 
----
+
+------------------------------------------------------------------------
 
 ## Cybersec Toolkit - NetRecon
-Source file: projects/cybersec-tools/netrecon.md
+Source: https://bartoszosiej.github.io/Docs/projects/cybersec-tools/netrecon
 
 # NetRecon
 
@@ -2303,7 +2742,7 @@ JSON-lines for pipeline integration.
 
 **Key design points:**
 
-- Fixed worker pool (default 128 threads) with a shared `Mutex`
+- Fixed worker pool (default 128 threads) with a shared `Mutex<VecDeque>`
   work queue
 - `TcpStream::connect_timeout` — no OS-level connect hangs
 - Deterministic service-name mapping for 50+ well-known ports
@@ -2313,7 +2752,7 @@ JSON-lines for pipeline integration.
 ## Usage
 
 ```
-netrecon  [ports] [--threads N] [--timeout MS] [--json]
+netrecon <target> [ports] [--threads N] [--timeout MS] [--json]
 
 ARGUMENTS:
   target   IP address, hostname, or CIDR (e.g. 10.0.0.0/24)
@@ -2398,10 +2837,11 @@ After a successful connect, NetRecon:
 - Results are sorted by (address, port) before printing
 - The banner field escapes `"` for safe JSON embedding
 
----
+
+------------------------------------------------------------------------
 
 ## Cybersec Toolkit - ShadowScan
-Source file: projects/cybersec-tools/shadowscan.md
+Source: https://bartoszosiej.github.io/Docs/projects/cybersec-tools/shadowscan
 
 # ShadowScan
 
@@ -2420,7 +2860,7 @@ ShadowScan performs **four checks** against a target URL:
 ## Usage
 
 ```
-shadowscan  [--timeout SECS]
+shadowscan <url> [--timeout SECS]
 
 EXAMPLES:
   shadowscan https://example.com
@@ -2457,11 +2897,11 @@ verification disabled (assessment, not trust validation):
 
 ## Phase 3: Injection probes
 
-**Reflected XSS** — 4 payloads sent as `/?q=` with URL encoding;
+**Reflected XSS** — 4 payloads sent as `/?q=<payload>` with URL encoding;
 if the response body contains the raw payload, a potential reflected XSS is
 reported.
 
-**Error-based SQLi** — 5 payloads sent as `/?id=`; the response is
+**Error-based SQLi** — 5 payloads sent as `/?id=<payload>`; the response is
 scanned for 13 SQL error signatures:
 
 ```
@@ -2510,10 +2950,11 @@ responses are flagged as *exists, protected*.
 - Header matching is case-insensitive
 - First XSS/SQLi hit stops further probes (break on detection)
 
----
+
+------------------------------------------------------------------------
 
 ## Cybersec Toolkit - HashSleuth
-Source file: projects/cybersec-tools/hashsleuth.md
+Source: https://bartoszosiej.github.io/Docs/projects/cybersec-tools/hashsleuth
 
 # HashSleuth
 
@@ -2528,9 +2969,9 @@ MD5, SHA1, and SHA256 digest cracking with auto-detection from hash length.
 ## Usage
 
 ```
-hashsleuth identify 
-hashsleuth dict   [--algo md5|sha1|sha256]
-hashsleuth brute    [--algo md5|sha1|sha256]
+hashsleuth identify <hash>
+hashsleuth dict <hash> <wordlist> [--algo md5|sha1|sha256]
+hashsleuth brute <hash> <charset> <maxlen> [--algo md5|sha1|sha256]
 
 EXAMPLES:
   hashsleuth identify 5f4dcc3b5aa765d61d8327deb882cf99
@@ -2635,10 +3076,11 @@ When `--algo` is omitted, the hash length selects the algorithm:
 - Brute force uses `checked_pow` to avoid integer overflow
 - All workers share an `AtomicBool` for early termination
 
----
+
+------------------------------------------------------------------------
 
 ## Cybersec Toolkit - PacketEye
-Source file: projects/cybersec-tools/packeteye.md
+Source: https://bartoszosiej.github.io/Docs/projects/cybersec-tools/packeteye
 
 # PacketEye
 
@@ -2656,8 +3098,8 @@ heavy dependencies.
 ## Usage
 
 ```
-packeteye live  [count]   capture live (count=0 for infinite)
-packeteye file        parse offline capture
+packeteye live <iface> [count]   capture live (count=0 for infinite)
+packeteye file <dump.pcap>       parse offline capture
 
 EXAMPLES:
   sudo packeteye live eth0
@@ -2726,10 +3168,394 @@ packeteye file capture.pcap
 - `pcap::Capture::from_device` with promiscuous mode, 65535 snaplen,
   200 ms timeout
 - Live loop treats `TimeoutExpired` as "keep waiting"
-- Statistics use `HashMap` and `HashMap`, sorted
+- Statistics use `HashMap<Ipv4Addr, u64>` and `HashMap<u16, u64>`, sorted
   descending before printing
 - Graceful error messages for missing interfaces or unreadable files
 
+
+------------------------------------------------------------------------
+
+## AURORA OS - Overview
+Source: https://bartoszosiej.github.io/Docs/projects/aurora-os/index
+
+# ◈ AURORA OS
+
+**A complete operating system running in your browser.**
+
+AURORA OS is a from-scratch desktop environment — window manager, virtual
+file system, shell, and eight applications — written entirely in TypeScript
+with **zero runtime dependencies**. No frameworks, no server, no build
+artifacts at runtime: the kernel boots, renders, and persists entirely in
+your browser tab.
+
+> *"Your browser is now your computer."*
+
 ---
 
-END OF DOCUMENTATION
+## 🎯 What is AURORA OS?
+
+Most "web OS" demos are a single window with buttons. AURORA OS is an actual
+system: it boots through an animated kernel sequence, owns a process table,
+multiplexes windows with full drag/resize/minimize/maximize semantics, hosts
+a POSIX-flavored virtual filesystem with persistence, and ships an
+interactive shell with **35+ commands** — all implemented from scratch.
+
+The entire project is **~4,500 lines** of hand-written TypeScript + CSS
+(3,118 lines of TS across 16 modules, 1,376 lines of CSS), with **no
+external runtime dependencies**.
+
+## ✨ Feature matrix
+
+| Layer | Capabilities |
+|---|---|
+| 🧠 **Kernel** | Animated boot sequence with progress ring · typed EventBus (pub/sub, once, history, error isolation) · PID process table with telemetry · settings subsystem · localStorage persistence |
+| 🪟 **Window manager** | Drag by titlebar · 8-direction resize handles · minimize / maximize / focus · cascading placement · z-order management · glassmorphism chrome · open/close animations · taskbar integration |
+| 📂 **Virtual filesystem** | POSIX-inspired tree · absolute + relative paths with `.` / `..` resolution · `mkdir -p`, recursive `rm -r`, `cp`, `mv` · proper error codes (`ENOENT`, `EISDIR`, `EEXIST`, `EPERM`, `ENOTDIR`) · human-readable sizes · localStorage persistence |
+| ⌨️ **Terminal & shell** | 35+ commands · command history (↑/↓) · Tab path completion · output redirection (`>` / `>>`) · ANSI color rendering · `neofetch`, `fortune`, `sudo` (you are root) · pure interpreter, fully unit-tested |
+| 📱 **Applications** | Files · Terminal · Editor (Ctrl+S) · Calculator · Paint (PNG export) · System Monitor (live CPU/memory graphs) · Settings · About |
+| 🎨 **Theming** | 5 themes: Aurora, Midnight, Ember, Forest, Daylight · 5 animated wallpapers: Aurora, Grid, Mountains, Waves, Dots |
+| 🔊 **Audio** | Fully procedural WebAudio — boot chime, UI clicks, window swooshes, error buzzes, unlock notification. Zero audio files |
+| 🔒 **Security theater** | Lock screen (Ctrl+Alt+L) · single-user model · filesystem permission boundaries |
+
+## 🚀 Quick start
+
+```bash
+git clone https://github.com/BartoszOsiej/AURORA-OS.git
+cd AURORA-OS
+npm install
+npm run build      # bundles to dist/ (esbuild, dev-only tool)
+npm run serve      # http://localhost:8080
+```
+
+| Command | Purpose |
+|---|---|
+| `npm run build` | esbuild bundle → `dist/main.js` + copy `dist/style.css` |
+| `npm run typecheck` | strict `tsc` type checking |
+| `npm test` | runs 34 core-logic tests (EventBus, FileSystem, shell) |
+| `npm run serve` | static file server for the OS |
+
+## 🖱️ First steps inside the OS
+
+1. Double-click **Terminal** on the desktop (or open the ◈ Start menu).
+2. Type `help` to list all commands, `neofetch` for the system banner.
+3. Create a file: `echo hello > hello.txt`, then `cat hello.txt`.
+4. Open it graphically: `open editor hello.txt`.
+5. Right-click the desktop: new folder, new file, wallpaper, lock screen.
+6. `ps` + `kill 101` to manage processes.
+7. Press **Ctrl+Alt+L** to lock the system.
+
+## 🔗 Links
+
+| Resource | URL |
+|---|---|
+| Source code | https://github.com/BartoszOsiej/AURORA-OS |
+| Architecture | [Deep dive into every subsystem](architecture) |
+| User guide | [Terminal reference, shortcuts, apps](user-guide) |
+
+---
+
+*Related documentation: [NV2 Engine](/projects/nv2-engine/) · [Cybersec Toolkit](/projects/cybersec-tools/) · [LinkShort](/projects/fastapi-url/) · [Novactorio](/projects/factorio-web-game/)*
+
+
+------------------------------------------------------------------------
+
+## AURORA OS - Architecture
+Source: https://bartoszosiej.github.io/Docs/projects/aurora-os/architecture
+
+# AURORA OS — Architecture
+
+An in-depth look at every subsystem of the ~4,500-line AURORA OS codebase
+(3,118 lines of TypeScript across 16 modules + 1,376 lines of CSS).
+
+## System overview
+
+```
+┌───────────────────────────── Browser tab ─────────────────────────────┐
+│                                                                       │
+│  boot() ──► boot screen (progress ring) ──► desktop shell             │
+│                                                                       │
+│  ┌──────────────┐   ┌────────────────┐   ┌────────────────────┐       │
+│  │ WindowManager│   │ ProcessManager │   │   AppRegistry      │       │
+│  │ drag · resize│   │ pid · ps · kill│   │ 8 apps registered  │       │
+│  │ focus · z    │   │ telemetry tick │   │ single-instance    │       │
+│  └──────┬───────┘   └───────┬────────┘   └────────┬───────────┘       │
+│         └───────────────────┼─────────────────────┘                   │
+│                      ┌──────▼───────┐                          ┌──────▼──────┐
+│                      │   EventBus   │◄── every module talks     │ FileSystem  │
+│                      │ typed pub/sub│     only through events   │ POSIX-lite  │
+│                      └──────┬───────┘                          │ +persistence│
+│                             │                                  └─────────────┘
+│                       ┌─────▼────────┐                              ▲
+│                       │  shell layer │  Terminal ⇄ commands.ts ⇄ ───┘
+│                       │ 35+ commands │  (pure interpreter, no DOM)
+│                       └──────────────┘
+│                                                                       │
+│  SoundSystem (WebAudio) · Settings (themes/wallpapers) · Lock screen │
+└───────────────────────────────────────────────────────────────────────┘
+```
+
+## Module map (measured)
+
+| Module | Lines | Responsibility |
+|---|---|---|
+| `src/main.ts` | 486 | Kernel entry — boot sequence, desktop shell, taskbar, start menu, context menu, lock screen |
+| `src/term/commands.ts` | 670 | The shell interpreter — 35+ commands, redirection, quoting, ANSI output (pure) |
+| `src/fs/FileSystem.ts` | 385 | Virtual filesystem — paths, CRUD, recursive ops, error codes, persistence |
+| `src/core/WindowManager.ts` | 267 | Window lifecycle — drag, 8-way resize, focus, z-order, maximize/minimize |
+| `src/term/Terminal.ts` | 195 | Terminal UI — history, Tab completion, click-to-focus, paste |
+| `src/apps/SettingsApp.ts` | 122 | Theme / wallpaper / sound / clock settings + persistence |
+| `src/apps/MonitorApp.ts` | 111 | Live CPU + memory graphs, process table, canvas rendering |
+| `src/sound/SoundSystem.ts` | 110 | Procedural WebAudio — oscillators + gain envelopes |
+| `src/core/EventBus.ts` | 102 | Typed pub/sub backbone with history and error isolation |
+| `src/apps/PaintApp.ts` | 102 | Canvas drawing with palette, brush size, eraser, PNG export |
+| `src/core/AppRegistry.ts` | 84 | Declarative app catalogue + launcher |
+| `src/core/ProcessManager.ts` | 84 | PID allocation, process table, fake telemetry walk |
+| `src/apps/AboutApp.ts` | 82 | System info window with live uptime |
+| `src/apps/CalculatorApp.ts` | 81 | Expression evaluator with sanitized input |
+| `src/apps/EditorApp.ts` | 75 | Text editor with open/save + Ctrl+S |
+| `src/apps/FilesApp.ts` | 128 | Graphical file manager with breadcrumbs |
+| `src/apps/TerminalApp.ts` | 34 | Terminal-as-app adapter |
+| `src/style.css` | 1,376 | Entire OS stylesheet — glass UI, wallpapers, animations |
+
+## Boot sequence
+
+1. `main.ts` renders the boot screen with a progress ring (SVG
+   `stroke-dashoffset` animated from 326 → 0) and a status line.
+2. Five staged steps run with randomized pacing: kernel → filesystem mount →
+   window manager → applications → shell services.
+3. Subsystems are constructed: `FileSystem` (hydrated from localStorage or
+   seeded), `ProcessManager`, `WindowManager` (bound to `#windows-layer`),
+   `AppRegistry` (8 apps registered).
+4. The desktop shell is built (icons, taskbar, start menu, context menu,
+   lock screen, clock), the boot screen fades out, and the login chime plays.
+
+## EventBus — the communication backbone
+
+Every subsystem communicates exclusively through named events; modules never
+import each other directly. The bus provides:
+
+- **Typed `on` / `once`** subscriptions with unsubscribe handles
+- **Error isolation** — a throwing handler never breaks other listeners
+- **History** — the last 200 emissions are kept for telemetry/debugging
+- **`emitAsync`** — microtask-queued emission
+
+Well-known events: `boot:*`, `window:*`, `process:*`, `fs:changed`,
+`theme:changed`, `audio:volume`, `app:*`.
+
+## ProcessManager
+
+Every window is backed by a `Process` record (PID, name, icon, state,
+started-at, CPU/mem telemetry). PIDs start at 100. `ps` and `kill` operate
+on this table; the System Monitor and taskbar read from it. A `tick()`
+random-walk updates telemetry so the monitor looks alive.
+
+## WindowManager
+
+Windows are DOM elements with chrome built by the manager — apps never touch
+the titlebar or controls. Features:
+
+- Drag via titlebar (`mousedown` + window-level `mousemove`/`mouseup`)
+- 8 resize handles (`n`, `s`, `e`, `w` + corners), 320×220 minimum size
+- Focus raises z-index; the focused window gets an accent glow
+- Maximize toggles to full-layer geometry; minimize animates out
+- Cascading default placement; `singleInstance` apps reuse their window
+
+## FileSystem — POSIX-lite
+
+- Path resolution supports absolute and relative paths with `.` and `..`
+  (rejecting escapes above root with `EPERM`).
+- `resolve(path, cwd)` normalizes; every operation throws typed `FSError`s:
+  `ENOENT`, `EISDIR`, `ENOTDIR`, `EEXIST`, `EPERM`, `EINVAL`.
+- Recursive ops: `mkdirp`, `removeRecursive`, `copy`, `move`, `tree`.
+- Persistence: the tree serializes to `localStorage` (`aurora.fs.v1`) on
+  every mutation and rehydrates at boot; `wipe()` restores the seed image.
+- The default image ships a `/home/user` with Desktop, Documents, Pictures,
+  Media and Projects plus system dirs (`/bin`, `/etc`, `/tmp`, `/var`).
+
+## Shell interpreter (pure)
+
+`commands.ts` is fully DOM-free: `runCommand(line, shell, fs, ctx)` takes a
+`Shell` (print callbacks + cwd) and works in Node. Highlights:
+
+- **Redirection** — `>` and `>>` captured through a proxy shell
+- **Quoting** — `tokenize()` honors double quotes
+- **Command context** — `ps`/`kill`/`open`/`apps`/`history`/`shutdown` bind
+  to the live process table and app registry
+- **35+ commands** — full reference in the [user guide](user-guide)
+
+## Audio — no files, all synthesis
+
+`SoundSystem.ts` lazily creates a single `AudioContext` on the first user
+gesture (autoplay policy). Every effect is an oscillator + gain envelope:
+boot chime (three rising notes), UI click, window open/close sweeps, error
+buzz, unlock notification. The Settings app can disable it entirely.
+
+## Theming & persistence
+
+- Settings live in `localStorage` (`aurora.settings.v1`).
+- Themes map to CSS custom properties (`--acc`, `--acc2`, `--bg`) applied on
+  `<html data-theme>`; the light theme flips text/border tokens.
+- Five wallpapers are pure CSS — the default "Aurora" animates two blurred
+  gradient blobs with a 18s/22s drift loop (respects `prefers-reduced-motion`).
+
+## Testing strategy
+
+The core is DOM-free and unit-tested: `npm test` bundles the pure modules
+with esbuild and runs **34 assertions** covering the EventBus (emit, once,
+unsubscribe, error isolation), FileSystem (paths, CRUD, error codes,
+recursive ops) and shell (echo, cd/pwd, ls, redirection, cat, mkdir, touch,
+wc, unknown-command handling).
+
+---
+
+*Next: [User guide — commands, shortcuts, apps](user-guide) · [Overview](index)*
+
+
+------------------------------------------------------------------------
+
+## AURORA OS - User Guide
+Source: https://bartoszosiej.github.io/Docs/projects/aurora-os/user-guide
+
+# AURORA OS — User Guide
+
+Everything you need to live inside the OS: desktop navigation, shortcuts,
+the eight applications, and the complete shell command reference.
+
+## Desktop navigation
+
+| Element | How to use it |
+|---|---|
+| **Desktop icons** | Single click selects, double click launches |
+| **Start menu (◈)** | Click the start button; grid of all apps; Lock and Restart in the footer |
+| **Taskbar** | One button per running app; click toggles minimize/restore; active app is highlighted |
+| **Right-click desktop** | Context menu: Open Terminal, New Folder…, New File…, Change Wallpaper, Lock Screen, Restart |
+| **Double-click wallpaper** | Opens a Terminal |
+| **📶 tray icon** | Virtual network status popup (AuroraNet) |
+| **Ctrl+Alt+L** | Lock the system; click or press any key to unlock |
+
+## Keyboard shortcuts
+
+| Keys | Action |
+|---|---|
+| `Ctrl+Alt+L` | Lock screen |
+| `Escape` | Close start menu / context menu |
+| `Ctrl+S` (in Editor) | Save the current file |
+| `Ctrl+L` (in Terminal) | Clear the terminal screen |
+| `Ctrl+C` (in Terminal) | Cancel the current input line |
+| `↑` / `↓` (in Terminal) | Command history |
+| `Tab` (in Terminal) | Path completion |
+
+## Applications
+
+| App | Icon | What it does |
+|---|---|---|
+| **Files** | 📁 | Graphical file manager — breadcrumbs, path input, new file/folder, refresh, up-navigation; double-click files to open them in Editor |
+| **Terminal** | ⌨️ | The shell — full command reference below |
+| **Editor** | 📝 | Plain-text editor with Open / Save and Ctrl+S; accepts a file path as a launch argument (`open editor /path/file.txt`) |
+| **Calculator** | 🧮 | Expression calculator — operators `+ − × ÷`, parentheses, 30-char limit, error handling |
+| **Paint** | 🎨 | Canvas drawing — 12-color palette, brush size 1–24 px, eraser, Clear, PNG export |
+| **System Monitor** | 📊 | Live CPU and memory graphs, process table with per-process CPU/mem, session stats |
+| **Settings** | ⚙️ | 5 themes, 5 wallpapers, sound toggle, 12/24-hour clock |
+| **About** | ◈ | Version, live session uptime, subsystem statistics, feature grid |
+
+## Shell — complete command reference
+
+The AURORA shell (`aurora-sh`) ships **37 commands**. Type `help` in the
+terminal for the same list, or `man <command>` for the manual entry.
+
+### Files & directories
+
+| Command | Usage | Description |
+|---|---|---|
+| `ls` | `ls [path]` | List directory contents (directories in cyan) |
+| `ll` | `ll [path]` | Long listing with type and human-readable sizes |
+| `cd` | `cd <path>` | Change directory (default: home) |
+| `pwd` | `pwd` | Print the working directory |
+| `tree` | `tree [path] [depth]` | Recursive directory tree |
+| `mkdir` | `mkdir [-p] <dir>` | Create a directory (`-p` creates parents) |
+| `rm` | `rm [-r] <path>` | Remove a file (`-r` for directories) |
+| `cp` | `cp <src> <dst>` | Copy file or directory (recursive) |
+| `mv` | `mv <src> <dst>` | Move or rename |
+
+### Reading & writing
+
+| Command | Usage | Description |
+|---|---|---|
+| `cat` | `cat <file>...` | Concatenate files to stdout |
+| `echo` | `echo <text>` | Print text (supports `"quoted"` arguments) |
+| `touch` | `touch <file>` | Create an empty file |
+| `head` | `head [-n N] <file>` | First N lines (default 10) |
+| `tail` | `tail [-n N] <file>` | Last N lines (default 10) |
+| `wc` | `wc <file>` | Count lines, words and characters |
+| `grep` | `grep <pattern> <file>` | Search a file for a pattern |
+
+### Redirection
+
+| Example | Effect |
+|---|---|
+| `echo hello > out.txt` | Write output to a file (overwrite) |
+| `ls > listing.txt` | Redirect any command output |
+| `echo more >> out.txt` | Append output to a file |
+
+### System information
+
+| Command | Usage | Description |
+|---|---|---|
+| `date` | `date` | Current date and time |
+| `whoami` | `whoami` | Print the current user (`user`) |
+| `hostname` | `hostname` | Print the machine name (`aurora`) |
+| `uname` | `uname [-a]` | Kernel / system information |
+| `uptime` | `uptime` | Time since boot |
+| `neofetch` | `neofetch` | System banner with logo |
+| `df` | `df` | Filesystem usage across the virtual disk |
+| `du` | `du <path>` | Disk usage of a path |
+| `version` | `version` | OS, kernel, shell and window-manager versions |
+
+### Processes & apps
+
+| Command | Usage | Description |
+|---|---|---|
+| `ps` | `ps` | Table of running processes (PID, CPU, memory) |
+| `kill` | `kill <pid>` | Terminate a process by PID |
+| `open` | `open <app> [args]` | Launch an application (e.g. `open editor file.txt`) |
+| `apps` | `apps` | List installed applications with categories |
+
+### Shell conveniences
+
+| Command | Usage | Description |
+|---|---|---|
+| `help` | `help [command]` | List commands or show help for one |
+| `man` | `man <command>` | Manual entry for a command |
+| `history` | `history` | Show command history |
+| `clear` | `clear` | Clear the screen |
+| `exit` | `exit` | Close the terminal |
+| `sudo` | `sudo <command>` | Execute as root — you already are root |
+| `shutdown` | `shutdown` | Reboot AURORA OS |
+| `fortune` | `fortune` | Random quote |
+
+## Tips
+
+- **Tab** completes paths; type a prefix and press Tab. Multiple matches are
+  listed inline.
+- **↑/↓** cycle through command history; `history` shows the numbered list.
+- **Redirection** works with any command, not just `echo`.
+- Files created in the terminal appear instantly in the **Files** app — the
+  filesystem broadcasts `fs:changed` over the EventBus.
+- The filesystem persists across page reloads (localStorage). Use
+  `rm -r` carefully — `EPERM` protects the root directory.
+
+## Troubleshooting
+
+| Symptom | Fix |
+|---|---|
+| No sound | Sound requires a first user interaction (autoplay policy) — click anywhere, then check Settings → Behavior → Sound |
+| Files missing after reload | Open Settings → theme change reloads cleanly; if storage was cleared, the seed image is restored automatically |
+| Terminal not focused | Click inside the terminal; the app focuses itself on open |
+| Windows off-screen | Windows cascade and clamp to the viewport; maximize (□) resets geometry |
+
+---
+
+*Back to [Overview](index) · [Architecture](architecture)*
+
+
+------------------------------------------------------------------------

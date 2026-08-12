@@ -29,6 +29,9 @@ hero:
       text: Cybersec Toolkit
       link: /projects/cybersec-tools/
     - theme: alt
+      text: AURORA OS — Browser OS
+      link: /projects/aurora-os/
+    - theme: alt
       text: Update Flow
       link: /update-flow
 
@@ -45,6 +48,9 @@ features:
     title: NV2 Engine
     details: Native Rust voxel engine — 15,800+ lines, wgpu rendering, 97 block types, AI-trained vegetation.
     link: /projects/nv2-engine/
+  - icon: ◈
+    title: AURORA OS
+    details: A complete operating system in the browser — window manager, virtual filesystem, 37-command shell and 8 apps, all in TypeScript.
   - icon: 🛡️
     title: Cybersec Toolkit
     details: Four focused Rust security tools — port scanning, web vuln checks, hash cracking, pcap analysis.
