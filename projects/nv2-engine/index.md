@@ -59,7 +59,7 @@ env_logger · C#/.NET 8 (content tools) · Python/Pillow (texture tools)
 | **Tool tiers** | Hand → Flint → Stone → Iron → Diamond → Netherite, with power values and durability |
 | **Inventory** | 36-slot inventory + 9-slot hotbar, stack merging, drag-and-drop |
 | **Crafting** | 2×2 player grid + 3×3 NVCrafter station, shaped & shapeless recipes |
-| **Recipes** | 20+ recipes: planks, sticks, NVCrafter, 4 wooden tools, torches, chest, door, trapdoor, ladder, fence, fence gate, workbench upgrade, flint/stone/iron pickaxes |
+| **Recipes** | 18 recipes: planks, sticks, NVCrafter, wooden pickaxe/axe/shovel/hoe, torches, chest, door, trapdoor, ladder, fence, fence gate, workbench upgrade, flint/stone/iron pickaxes |
 | **Movement** | Walk, sprint (FOV kick), jump, flight, water gravity/sinking, AABB collision, foliage movement modifiers |
 | **Commands** | `/locate <biome> [--tp]`, `/tp <x> <y> <z>` |
 | **Persistence** | JSON world saves (seed, chunk blocks, water metadata, NVCrafter states) |
