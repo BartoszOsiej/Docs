@@ -6,8 +6,8 @@ Central documentation hub for all projects — [FastAPI-url](https://github.com/
 [AURORA-OS](https://github.com/BartoszOsiej/AURORA-OS),
 [cybersec-tools](https://github.com/BartoszOsiej/cybersec-tools),
 [halcyon-process-monitor](https://github.com/BartoszOsiej/halcyon-process-monitor),
-[Externum](https://github.com/BartoszOsiej/Externum) and
-[factory_defense](https://github.com/BartoszOsiej/factory_defense) —
+[Externum](https://github.com/BartoszOsiej/externum) and
+[N2-Mesh](https://github.com/BartoszOsiej/n2-mesh) —
 published as a static site on GitHub Pages.
 
 **Live site:** <https://bartoszosiej.github.io/Docs/>
@@ -15,7 +15,7 @@ published as a static site on GitHub Pages.
 ## Tech
 
 - [VitePress](https://vitepress.dev/) — Vue-powered static site generator
-- [WebTorrent](https://webtorrent.io/) — powers [N2 Mesh](https://bartoszosiej.github.io/N2-Mesh/), the P2P chat (its own repo: `BartoszOsiej/N2-Mesh`)
+- [WebTorrent](https://webtorrent.io/) — powers [N2 Mesh](https://bartoszosiej.github.io/n2-mesh/), the P2P chat (its own repo: `BartoszOsiej/n2-mesh`)
 - Deployed via GitHub Actions → GitHub Pages
 
 ## Local development
@@ -46,7 +46,7 @@ Docs/
 │   ├── aurora-os/                # AURORA OS docs (3 pages)
 │   ├── halcyon-process-monitor/  # Halcyon docs (2 pages)
 │   ├── externum/                 # Externum language docs (5 pages)
-│   └── factory-defense/          # Factory Defense docs (1 page)
+│   └── n2-mesh/                  # N2 Mesh P2P chat docs (2 pages)
 ├── public/                       # Static assets (logo, hero, favicon)
 ├── scripts/                      # Sitemap / llms-full generators
 ├── .vitepress/config.mts         # Site config, nav, sidebar, search

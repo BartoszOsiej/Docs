@@ -27,7 +27,7 @@ wprost. Dostępny jest też **REPL**, **system modułów** z własną
 ## 🚀 Szybki start
 
 ```bash
-git clone https://github.com/BartoszOsiej/Externum.git
+git clone https://github.com/BartoszOsiej/externum.git
 cd Externum
 pip install -e .            # Python 3.10+
 

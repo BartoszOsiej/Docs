@@ -99,5 +99,5 @@ receiver:  handlePayload(bytes) ──► addMessage(nick, text)
 
 ## Repo
 
-[BartoszOsiej/N2-Mesh](https://github.com/BartoszOsiej/N2-Mesh) ·
-[Live](https://bartoszosiej.github.io/N2-Mesh/)
+[BartoszOsiej/n2-mesh](https://github.com/BartoszOsiej/n2-mesh) ·
+[Live](https://bartoszosiej.github.io/n2-mesh/)

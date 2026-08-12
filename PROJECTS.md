@@ -14,15 +14,14 @@ on this site, and maintained in the working copy at `~/`.
 | # | Project | Repo | Stack | Docs page |
 |---|---------|------|-------|-----------|
 | 1 | **Docs Hub** | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | VitePress | [docs](/) |
-| 2 | **N2 Mesh** (P2P chat) | [BartoszOsiej/N2-Mesh](https://github.com/BartoszOsiej/N2-Mesh) | WebTorrent, static | [docs](/projects/n2-mesh/) · [live](https://bartoszosiej.github.io/N2-Mesh/) |
+| 2 | **N2 Mesh** (P2P chat) | [BartoszOsiej/n2-mesh](https://github.com/BartoszOsiej/n2-mesh) | WebTorrent, static | [docs](/projects/n2-mesh/) · [live](https://bartoszosiej.github.io/n2-mesh/) |
 | 3 | **LinkShort** (URL shortener) | [BartoszOsiej/FastAPI-url](https://github.com/BartoszOsiej/FastAPI-url) | FastAPI, React 19, SQLite | [docs](/projects/fastapi-url/) |
 | 4 | **Novactorio** (factory game) | [BartoszOsiej/Factorio-web-game](https://github.com/BartoszOsiej/Factorio-web-game) | TypeScript, Canvas 2D, Supabase | [docs](/projects/factorio-web-game/) |
 | 5 | **NV2 Engine** (Rust voxel) | [BartoszOsiej/NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE) | Rust, wgpu, AI vegetation | [docs](/projects/nv2-engine/) |
 | 6 | **AURORA OS** (browser OS) | [BartoszOsiej/AURORA-OS](https://github.com/BartoszOsiej/AURORA-OS) | TypeScript, zero deps | [docs](/projects/aurora-os/) |
 | 7 | **Cybersec Toolkit** | [BartoszOsiej/cybersec-tools](https://github.com/BartoszOsiej/cybersec-tools) | Rust, pcap, openssl | [docs](/projects/cybersec-tools/) |
 | 8 | **Halcyon Process Monitor** | [BartoszOsiej/halcyon-process-monitor](https://github.com/BartoszOsiej/halcyon-process-monitor) | Rust, eBPF, Aya, ratatui | [docs](/projects/halcyon-process-monitor/) |
-| 9 | **Externum** (programming language) | [BartoszOsiej/Externum](https://github.com/BartoszOsiej/Externum) | Python, own lexer/parser/compiler | [docs](/projects/externum/) |
-| 10 | **Factory Defense** (Rust game) | [BartoszOsiej/factory_defense](https://github.com/BartoszOsiej/factory_defense) | Rust, macroquad | [docs](/projects/factory-defense/) |
+| 9 | **Externum** (programming language) | [BartoszOsiej/externum](https://github.com/BartoszOsiej/externum) | Python, own lexer/parser/compiler | [docs](/projects/externum/) |
 
 ---
 
@@ -36,7 +35,7 @@ on this site, and maintained in the working copy at `~/`.
 | **Live** | https://bartoszosiej.github.io/Docs/ |
 | **Notes** | `llms.txt` / `llms-full.txt` / `sitemap.xml` generated from the page tree. Update flow documented in `update-flow.md`. |
 
-## 2. N2 Mesh (P2P Chat) — `BartoszOsiej/N2-Mesh`
+## 2. N2 Mesh (P2P Chat) — `BartoszOsiej/n2-mesh`
 
 | | |
 |---|---|
@@ -44,7 +43,7 @@ on this site, and maintained in the working copy at `~/`.
 | **Stack** | WebTorrent (vendored, no CDN), vanilla JS |
 | **Local path** | `~/N2-Mesh` |
 | **Docs** | [/projects/n2-mesh/](/projects/n2-mesh/) — Overview + Architecture |
-| **Live** | https://bartoszosiej.github.io/N2-Mesh/ |
+| **Live** | https://bartoszosiej.github.io/n2-mesh/ |
 
 ## 3. LinkShort — `BartoszOsiej/FastAPI-url`
 
@@ -100,7 +99,7 @@ on this site, and maintained in the working copy at `~/`.
 | **Local path** | `~/halcyon-process-monitor` |
 | **Docs** | [/projects/halcyon-process-monitor/](/projects/halcyon-process-monitor/) — Overview + Architecture |
 
-## 9. Externum — `BartoszOsiej/Externum`
+## 9. Externum — `BartoszOsiej/externum`
 
 | | |
 |---|---|
@@ -110,15 +109,6 @@ on this site, and maintained in the working copy at `~/`.
 | **Local path** | `~/Externum` |
 | **Docs** | [/projects/externum/](/projects/externum/) — Overview, Syntax, Examples, Compiler & CLI, Architecture |
 | **Tests** | 118 unit tests, all green |
-
-## 10. Factory Defense — `BartoszOsiej/factory_defense`
-
-| | |
-|---|---|
-| **What** | Rust factory-building + tower-defense game on macroquad: build factories, manage a city economy, defend against waves. |
-| **Stack** | Rust, macroquad |
-| **Local path** | `~/factory_defense` |
-| **Docs** | [/projects/factory-defense/](/projects/factory-defense/) |
 
 ---
 

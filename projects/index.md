@@ -83,14 +83,6 @@ title: Projects — Bartosz Osiej
     tint="#f59e0b"
     link="/projects/externum/"
   />
-  <ProjectCard
-    icon="🏭"
-    title="Factory Defense"
-    description="Rust factory-building + tower-defense game on macroquad: build factories, manage a city economy, defend against waves."
-    :tags="['Rust', 'macroquad', 'Game']"
-    tint="#34d399"
-    link="/projects/factory-defense/"
-  />
 </div>
 
 ## 🗺️ Repo map
@@ -98,15 +90,14 @@ title: Projects — Bartosz Osiej
 | Project | Repository | Docs |
 |---|---|---|
 | Docs Hub | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | [here](/) |
-| N2 Mesh (P2P Chat) | [BartoszOsiej/N2-Mesh](https://github.com/BartoszOsiej/N2-Mesh) | [docs](/projects/n2-mesh/) · [live](https://bartoszosiej.github.io/N2-Mesh/) |
+| N2 Mesh (P2P Chat) | [BartoszOsiej/n2-mesh](https://github.com/BartoszOsiej/n2-mesh) | [docs](/projects/n2-mesh/) · [live](https://bartoszosiej.github.io/n2-mesh/) |
 | LinkShort | [BartoszOsiej/FastAPI-url](https://github.com/BartoszOsiej/FastAPI-url) | [docs](/projects/fastapi-url/) |
 | Novactorio | [BartoszOsiej/Factorio-web-game](https://github.com/BartoszOsiej/Factorio-web-game) | [docs](/projects/factorio-web-game/) |
 | NV2 Engine | [BartoszOsiej/NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE) | [docs](/projects/nv2-engine/) |
 | AURORA OS | [BartoszOsiej/AURORA-OS](https://github.com/BartoszOsiej/AURORA-OS) | [docs](/projects/aurora-os/) |
 | Cybersec Toolkit | [BartoszOsiej/cybersec-tools](https://github.com/BartoszOsiej/cybersec-tools) | [docs](/projects/cybersec-tools/) |
 | Halcyon Process Monitor | [BartoszOsiej/halcyon-process-monitor](https://github.com/BartoszOsiej/halcyon-process-monitor) | [docs](/projects/halcyon-process-monitor/) |
-| Externum | [BartoszOsiej/Externum](https://github.com/BartoszOsiej/Externum) | [docs](/projects/externum/) |
-| Factory Defense | [BartoszOsiej/factory_defense](https://github.com/BartoszOsiej/factory_defense) | [docs](/projects/factory-defense/) |
+| Externum | [BartoszOsiej/externum](https://github.com/BartoszOsiej/externum) | [docs](/projects/externum/) |
 
 ## 📌 Not listed
 

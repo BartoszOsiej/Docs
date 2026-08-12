@@ -127,14 +127,6 @@ features:
     tint="#f59e0b"
     link="/projects/externum/"
   />
-  <ProjectCard
-    icon="🏭"
-    title="Factory Defense"
-    description="A Rust factory-building + tower-defense game on macroquad: build factories, manage a city economy, defend against waves."
-    :tags="['Rust', 'macroquad', 'Game']"
-    tint="#34d399"
-    link="/projects/factory-defense/"
-  />
 </div>
 </ScrollReveal>
 
