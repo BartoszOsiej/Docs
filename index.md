@@ -8,8 +8,8 @@ hero:
   tagline: >
     A curated documentation hub for every project — a production URL
     shortener, browser games, a native Rust voxel engine, a Rust
-    cybersecurity toolkit, a browser OS, an eBPF security monitor, a
-    programming language, AI models, launchers and client work.
+    cybersecurity toolkit, a browser OS, an eBPF security monitor and a
+    programming language of our own.
   image:
     src: /hero.svg
     alt: Projects
@@ -68,7 +68,7 @@ features:
 <AuroraBackground />
 
 <ScrollReveal>
-## ✨ Flagship Projects
+## ✨ Projekty
 
 <div class="project-grid">
   <ProjectCard
@@ -119,36 +119,13 @@ features:
     tint="#a3e635"
     link="/projects/halcyon-process-monitor/"
   />
-</div>
-</ScrollReveal>
-
-<ScrollReveal :delay="120">
-## 🧩 More Projects
-
-<div class="project-grid">
   <ProjectCard
     icon="📜"
     title="Externum"
-    description="A programming language fusing Python readability, binary performance and Bash control into a unified paradigm — Python 3.10+, stdlib only."
-    :tags="['Language', 'Python', 'Compiler']"
+    description="A programming language of our own — Python readability, binary performance and Bash control from a single source, compiled to three targets or run directly."
+    :tags="['Language', 'Compiler', 'Python', 'Bash']"
     tint="#f59e0b"
     link="/projects/externum/"
-  />
-  <ProjectCard
-    icon="🇵🇱"
-    title="PolishAI"
-    description="A self-developing Polish-language transformer with dynamic qint8 quantization and AVX2 acceleration."
-    :tags="['Python', 'PyTorch', 'NLP', 'Quantization']"
-    tint="#fb7185"
-    link="/projects/polish-ai/"
-  />
-  <ProjectCard
-    icon="🎬"
-    title="Video MoE"
-    description="A ~60M-parameter Mixture-of-Experts transformer for video generation on resource-constrained hardware — CPU-first, quantized."
-    :tags="['Python', 'PyTorch', 'MoE', 'Video']"
-    tint="#c084fc"
-    link="/projects/video-moe/"
   />
   <ProjectCard
     icon="🏭"
@@ -157,46 +134,6 @@ features:
     :tags="['Rust', 'macroquad', 'Game']"
     tint="#34d399"
     link="/projects/factory-defense/"
-  />
-  <ProjectCard
-    icon="👻"
-    title="GhostLauncher"
-    description="A full-featured Electron Minecraft launcher for the LandOfGhost server — autologin, Minehut status, RAM config, shop — plus a React rewrite."
-    :tags="['Electron', 'React', 'Minecraft']"
-    tint="#f97316"
-    link="/projects/ghost-launcher/"
-  />
-  <ProjectCard
-    icon="🗺️"
-    title="Minecraft Tooling"
-    description="A native Minecraft map launcher (C++/AppImage, Prismlauncher) and the EvoTech Forge 1.20.1 mod development tree."
-    :tags="['C++', 'CMake', 'Forge', 'AppImage']"
-    tint="#22d3ee"
-    link="/projects/minecraft-tools/"
-  />
-  <ProjectCard
-    icon="🚛"
-    title="Transport Game"
-    description="A vanilla-JS browser sandbox with procedural terrain, vehicle physics, building, fluids, missions, and multiplayer hooks."
-    :tags="['JavaScript', 'Canvas', 'Game']"
-    tint="#a3e635"
-    link="/projects/game/"
-  />
-  <ProjectCard
-    icon="💼"
-    title="Ghost Developments"
-    description="A Next.js marketing site for an IT services business — portfolio, pricing, contact, and booking pages."
-    :tags="['Next.js', 'React', 'TypeScript']"
-    tint="#e879f9"
-    link="/projects/ghostdev/"
-  />
-  <ProjectCard
-    icon="🗂️"
-    title="Client Projects"
-    description="A catalog of commissioned and hobby work: Netlify SPAs, PyInstaller desktop apps, launchers, game servers and business sites."
-    :tags="['Vite', 'Python', 'Electron', 'Netlify']"
-    tint="#94a3b8"
-    link="/projects/client-projects/"
   />
 </div>
 </ScrollReveal>
