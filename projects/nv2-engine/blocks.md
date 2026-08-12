@@ -67,7 +67,7 @@ numeric IDs to names and textures.
 | 62 | Chest | 74 | Workbench Upgrade |
 | 63 | NVCrafter | | |
 
-### Extended vegetation — AI class 0: flowers (75–83)
+### Flowers — AI output class 0 (75–83)
 | ID | Block | ID | Block |
 |---|---|---|---|
 | 75 | Rose | 80 | Tulip (Orange) |
@@ -76,20 +76,24 @@ numeric IDs to names and textures.
 | 78 | Tulip (Pink) | 83 | Azalea Flower |
 | 79 | Tulip (White) | | |
 
-### Extended vegetation — AI class 1: ferns & water plants (84–89)
+### Ferns & water plants — AI output class 1 (84–89)
 | ID | Block | ID | Block |
 |---|---|---|---|
 | 84 | Lily Pad | 87 | Seagrass |
 | 85 | Fern | 88 | Tall Seagrass |
 | 86 | Fern Plant | 89 | Kelp |
 
-### Extended vegetation — AI classes 2–3: decorations (90–96)
+### Sticks, pebbles & decorations — AI output classes 2–3 (90–96)
 | ID | Block | ID | Block |
 |---|---|---|---|
 | 90 | Small Stick | 94 | Mossy Cobble |
 | 91 | Pebble 1 | 95 | Vine |
 | 92 | Pebble 2 | 96 | Moss Carpet |
 | 93 | Pebble 3 | | |
+
+> **Note:** the AI output classes above describe the neural network's
+> decision categories (flowers / ferns & water plants / sticks /
+> pebbles). The ID ranges in the tables are for reference only.
 
 ## Tool tiers
 
@@ -125,7 +129,8 @@ these hooks (audio consumption is a future feature).
 
 # Biomes
 
-Nine climate-driven biomes. Sea level is `46`.
+Nine climate-driven biomes. Sea level is `46`. All values are exact from
+`world/biomes.rs`.
 
 | Biome | Temp | Humidity | Tree density | Grass density | Surface block | Vegetation tint |
 |---|---|---|---|---|---|---|
@@ -134,10 +139,19 @@ Nine climate-driven biomes. Sea level is `46`.
 | Plains | 0.58 | 0.46 | 0.05 | 0.72 | Grass | `[0.72, 0.92, 0.54]` |
 | Forest | 0.54 | 0.62 | 0.46 | 0.46 | Grass | `[0.50, 0.86, 0.42]` |
 | Dark Forest | 0.50 | 0.74 | 0.74 | 0.18 | Forest Floor | `[0.38, 0.72, 0.34]` |
-| Swamp | — | — | — | — | — | — |
-| Taiga | — | — | — | — | — | — |
-| Desert | — | — | — | — | — | — |
-| Mountains | — | — | — | — | — | — |
+| Swamp | 0.66 | 0.90 | 0.28 | 0.26 | Mud | — |
+| Taiga | 0.24 | 0.52 | 0.58 | 0.18 | Grass | — |
+| Desert | 0.92 | 0.10 | 0.00 | 0.00 | Sand | — |
+| Mountains | 0.28 | 0.34 | 0.12 | 0.10 | Grass | — |
+
+### Biome observations
+
+- **Desert** is the hottest (0.92) and driest (0.10) biome — no trees, no grass.
+- **Swamp** is the most humid (0.90) with a **Mud** surface.
+- **Taiga** and **Mountains** are the coldest (0.24 / 0.28); taiga has the
+  highest tree density after dark forest (0.58).
+- **Dark Forest** has the highest tree density overall (0.74) on a
+  Forest Floor surface.
 
 ## Tree kinds
 
