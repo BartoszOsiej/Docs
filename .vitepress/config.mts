@@ -29,7 +29,7 @@ export default defineConfig({
       { text: 'Cybersec', link: '/projects/cybersec-tools/' },
       { text: 'AURORA OS', link: '/projects/aurora-os/' },
       { text: 'Externum', link: '/projects/externum/' },
-      { text: 'N2 Mesh', link: 'https://bartoszosiej.github.io/N2-Mesh/', target: '_blank' },
+      { text: 'N2 Mesh', link: '/projects/n2-mesh/' },
       {
         text: 'More',
         items: [
@@ -45,7 +45,7 @@ export default defineConfig({
           text: 'All Projects',
           items: [
             { text: '📁 Projects', link: '/projects/' },
-            { text: '💬 N2 Mesh (P2P Chat)', link: 'https://bartoszosiej.github.io/N2-Mesh/' },
+            { text: '💬 N2 Mesh (P2P Chat)', link: '/projects/n2-mesh/' },
             { text: '🔗 LinkShort', link: '/projects/fastapi-url/' },
             { text: '🏭 Novactorio', link: '/projects/factorio-web-game/' },
             { text: '⛏️ NV2 Engine', link: '/projects/nv2-engine/' },
@@ -136,6 +136,16 @@ export default defineConfig({
             { text: 'Examples', link: '/projects/externum/examples' },
             { text: 'Compiler & CLI', link: '/projects/externum/compiler' },
             { text: 'Architecture', link: '/projects/externum/architecture' },
+          ],
+        },
+      ],
+      '/projects/n2-mesh/': [
+        {
+          text: 'N2 Mesh (P2P Chat)',
+          items: [
+            { text: 'Overview', link: '/projects/n2-mesh/' },
+            { text: 'Architecture', link: '/projects/n2-mesh/architecture' },
+            { text: '🚀 Open Live Chat', link: 'https://bartoszosiej.github.io/N2-Mesh/' },
           ],
         },
       ],

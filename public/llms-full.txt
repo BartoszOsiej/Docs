@@ -27,7 +27,7 @@ hero:
       link: /projects/fastapi-url/
     - theme: alt
       text: 💬 N2 Mesh (P2P chat)
-      link: https://bartoszosiej.github.io/N2-Mesh/
+      link: /projects/n2-mesh/
     - theme: alt
       text: LinkShort — URL Shortener
       link: /projects/fastapi-url/
@@ -65,8 +65,8 @@ features:
     link: /projects/halcyon-process-monitor/
   - icon: 💬
     title: N2 Mesh — P2P Chat
-    details: A serverless, torrent-principle chat that works on static hosting — peers connect via WebTorrent swarms. Its own repo and GitHub Pages site.
-    link: https://bartoszosiej.github.io/N2-Mesh/
+    details: A serverless, torrent-principle chat that works on static hosting — peers connect via WebTorrent swarms. Its own repo, docs pages and GitHub Pages site.
+    link: /projects/n2-mesh/
   - icon: 🔄
     title: Update Flow
     details: Which repositories publish updates to this documentation site, and how.
@@ -3816,8 +3816,8 @@ wprost. Dostępny jest też **REPL**, **system modułów** z własną
 ## 🚀 Szybki start
 
 ```bash
-git clone https://github.com/externum/externum.git
-cd externum
+git clone https://github.com/BartoszOsiej/Externum.git
+cd Externum
 pip install -e .            # Python 3.10+
 
 externum --version          # Externum 3.0.0
@@ -3828,6 +3828,14 @@ externum run examples/pokedex.ext
 # Interaktywna powłoka
 externum repl
 ```
+
+## 🕹️ Wypróbuj na żywo
+
+Poniższy playground wykonuje Externum **w całości w Twojej przeglądarce** —
+transpilator (napisany w Pythonie) działa przez WebAssembly (Pyodide),
+bez żadnego serwera. Kliknij **▶ Run** i patrz, jak program się wykonuje:
+
+<ExternumPlayground />
 
 ## 📚 Standardowa biblioteka (w Externum)
 
@@ -3918,7 +3926,7 @@ on this site, and maintained in the working copy at `~/`.
 | # | Project | Repo | Stack | Docs page |
 |---|---------|------|-------|-----------|
 | 1 | **Docs Hub** | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | VitePress | [docs](/) |
-| 2 | **N2 Mesh** (P2P chat) | [BartoszOsiej/N2-Mesh](https://github.com/BartoszOsiej/N2-Mesh) | WebTorrent, static | [live](https://bartoszosiej.github.io/N2-Mesh/) |
+| 2 | **N2 Mesh** (P2P chat) | [BartoszOsiej/N2-Mesh](https://github.com/BartoszOsiej/N2-Mesh) | WebTorrent, static | [docs](/projects/n2-mesh/) · [live](https://bartoszosiej.github.io/N2-Mesh/) |
 | 3 | **LinkShort** (URL shortener) | [BartoszOsiej/FastAPI-url](https://github.com/BartoszOsiej/FastAPI-url) | FastAPI, React 19, SQLite | [docs](/projects/fastapi-url/) |
 | 4 | **Novactorio** (factory game) | [BartoszOsiej/Factorio-web-game](https://github.com/BartoszOsiej/Factorio-web-game) | TypeScript, Canvas 2D, Supabase | [docs](/projects/factorio-web-game/) |
 | 5 | **NV2 Engine** (Rust voxel) | [BartoszOsiej/NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE) | Rust, wgpu, AI vegetation | [docs](/projects/nv2-engine/) |
@@ -3944,9 +3952,10 @@ on this site, and maintained in the working copy at `~/`.
 
 | | |
 |---|---|
-| **What** | Torrent-principle messenger that works on **static hosting** — no server, no database. Room = torrent **infohash**; every peer seeds the same blob and joins a WebTorrent swarm. Messages travel over the **BitTorrent extended protocol** (custom `NV2` extension) with a send queue until the extended handshake completes — nothing is lost. |
+| **What** | Torrent-principle messenger that works on **static hosting** — no server, no database. Room = torrent **infohash**; every peer seeds the same blob and joins a WebTorrent swarm. Messages travel over the **BitTorrent extended protocol** (custom `N2` extension, registered via `wire.use()`) with a send queue until the extended handshake completes — nothing is lost. Same-browser tabs connect via a `BroadcastChannel` local bridge. |
 | **Stack** | WebTorrent (vendored, no CDN), vanilla JS |
 | **Local path** | `~/N2-Mesh` |
+| **Docs** | [/projects/n2-mesh/](/projects/n2-mesh/) — Overview + Architecture |
 | **Live** | https://bartoszosiej.github.io/N2-Mesh/ |
 
 ## 3. LinkShort — `BartoszOsiej/FastAPI-url`
@@ -4132,10 +4141,10 @@ title: Projects — Bartosz Osiej
   <ProjectCard
     icon="💬"
     title="N2 Mesh — P2P Chat"
-    description="Torrent-principle messenger that works on static hosting. Room = torrent infohash, peers join a WebTorrent swarm, messages travel over the BitTorrent extended protocol — no server, no database. Lives in its own repo (BartoszOsiej/N2-Mesh)."
+    description="Torrent-principle messenger that works on static hosting. Room = torrent infohash, peers join a WebTorrent swarm, messages travel over the BitTorrent extended protocol — no server, no database. Fully documented in its own docs pages."
     :tags="['WebTorrent', 'P2P', 'BitTorrent', 'Serverless']"
     tint="#a78bfa"
-    link="https://bartoszosiej.github.io/N2-Mesh/"
+    link="/projects/n2-mesh/"
   />
   <ProjectCard
     icon="🔗"
@@ -4208,7 +4217,7 @@ title: Projects — Bartosz Osiej
 | Project | Repository | Docs |
 |---|---|---|
 | Docs Hub | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | [here](/) |
-| N2 Mesh (P2P Chat) | [BartoszOsiej/N2-Mesh](https://github.com/BartoszOsiej/N2-Mesh) | [live site](https://bartoszosiej.github.io/N2-Mesh/) |
+| N2 Mesh (P2P Chat) | [BartoszOsiej/N2-Mesh](https://github.com/BartoszOsiej/N2-Mesh) | [docs](/projects/n2-mesh/) · [live](https://bartoszosiej.github.io/N2-Mesh/) |
 | LinkShort | [BartoszOsiej/FastAPI-url](https://github.com/BartoszOsiej/FastAPI-url) | [docs](/projects/fastapi-url/) |
 | Novactorio | [BartoszOsiej/Factorio-web-game](https://github.com/BartoszOsiej/Factorio-web-game) | [docs](/projects/factorio-web-game/) |
 | NV2 Engine | [BartoszOsiej/NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE) | [docs](/projects/nv2-engine/) |
@@ -4231,6 +4240,201 @@ sites) are deliberately **not** part of this registry.
   margin: 1.4rem 0 2.4rem;
 }
 </style>
+
+
+## projects/n2-mesh/architecture
+Source: https://bartoszosiej.github.io/Docs/projects/n2-mesh/architecture
+------------------------------------------------------------------------
+---
+title: N2 Mesh — Architecture
+---
+
+# 🧱 N2 Mesh — Architektura
+
+## Warstwy
+
+| Warstwa | Technologia | Rola |
+|---|---|---|
+| **Transport** | WebTorrent (WebRTC) | Swarm peer-to-peer, połączenia WebRTC |
+| **Sygnalizacja** | Publiczne WebSocket trackery | Znajdowanie peerów (jak w torrentach) |
+| **Kanał wiadomości** | Protokół rozszerzony BitTorrenta (`N2` ext) | Wysyłka wiadomości po połączeniu torrentowym |
+| **Local bridge** | `BroadcastChannel` | Karty tej samej przeglądarki (WebRTC loopback zablokowany) |
+
+## Kluczowe decyzje techniczne
+
+### 1. Pokój = infohash torrencika
+
+```js
+const content = new Blob([ROOM_PREFIX + state.room]);
+state.client.seed(content, { name: `n2mesh-${state.room}.txt`, announce: TRACKERS }, ...);
+```
+
+Każdy peer seeduje blob o identycznej treści → SHA-1 infohash identyczny →
+wszyscy w tym samym swarmie. Zmiana pokoju = nowy infohash = nowy swarm.
+
+### 2. Extended protocol z poprawną rejestracją
+
+Wiadomości jadą jako rozszerzenie `N2` protokołu rozszerzonego BitTorrenta.
+**Krytyczne:** rozszerzenie MUSI być zarejestrowane na każdym wire przez
+`wire.use()` PRZED wymianą extended handshake:
+
+```js
+function N2MeshExtension(wire) { this._wire = wire; }
+N2MeshExtension.prototype.name = 'N2';
+// ...
+torrent.on('wire', (wire) => {
+  wire.use(N2MeshExtension); // <- bez tego wire.extended('N2', ...) rzuca błąd
+});
+```
+
+Mapa `m` extended handshake budowana jest **z zarejestrowanych rozszerzeń**.
+Bez `wire.use()` wysyłka rzuca `Unrecognized extension: N2` i żadna
+wiadomość nigdy nie opuszcza karty — to był główny bug, naprawiony
+i zweryfikowany testem wire-to-wire.
+
+### 3. Kolejka do extended handshake
+
+```js
+function trySend(wire, payload) {
+  try { wire.extended(EXT, payload); return true; }
+  catch (_) { return false; }
+}
+```
+
+Jeśli peer nie ukończył jeszcze extended handshake, payload trafia do
+kolejki (`__n2pending`) i jest wysyłany ponownie co 600 ms — żadna
+wiadomość się nie gubi.
+
+### 4. Local bridge (BroadcastChannel)
+
+Dwie karty **tej samej przeglądarki** nie mogą połączyć się przez WebRTC
+(przeglądarki blokują loopback WebRTC). Most `BroadcastChannel` łączy je
+lokalnie: karty tej samej przeglądarki wymieniają `hello`/`msg` bezpośrednio,
+a różne przeglądarki/urządzenia — przez swarm WebTorrent.
+
+### 5. WebTorrent vendored
+
+`webtorrent.min.js` (220 KB) jest **wgrany do repo** — zero zależności od
+CDN (wcześniej zła ścieżka CDN zwracała 404 i chat nie działał wcale).
+
+## Pliki
+
+| Plik | Zawartość |
+|---|---|
+| `index.html` | Powłoka single-page |
+| `app.js` | Networking: swarm + extended protocol + local bridge |
+| `style.css` | Ciemny motyw aurora |
+| `webtorrent.min.js` | Vendored WebTorrent |
+| `.github/workflows/deploy.yml` | Deploy na GitHub Pages |
+
+## Przepływ danych
+
+```
+sender:  JSON({u: nick, t: text, ts}) ──► wire.extended('N2', bytes)
+                                              │
+                       peer's wire 'extended' event
+                                              ▼
+receiver:  handlePayload(bytes) ──► addMessage(nick, text)
+```
+
+## Ograniczenia
+
+- **Brak historii** — po wyjściu z pokoju swarm znika (cena braku serwera).
+- **Oba peery muszą być online jednocześnie**.
+- WebRTC może nie przejść przy symetrycznym NAT (brak TURN serwera) —
+  wtedy przydaje się local bridge lub sieć lokalna.
+
+## Repo
+
+[BartoszOsiej/N2-Mesh](https://github.com/BartoszOsiej/N2-Mesh) ·
+[Live](https://bartoszosiej.github.io/N2-Mesh/)
+
+
+## projects/n2-mesh/
+Source: https://bartoszosiej.github.io/Docs/projects/n2-mesh/
+------------------------------------------------------------------------
+---
+title: N2 Mesh — P2P Chat
+---
+
+# 💬 N2 Mesh — P2P Chat
+
+**Serverless peer-to-peer chat na zasadzie torrentów.** Działa na statycznym
+hostingu (GitHub Pages) — zero serwera, zero bazy danych, zero kont.
+
+> **Wypróbuj teraz:** [🚀 Otwórz N2 Mesh](https://bartoszosiej.github.io/N2-Mesh/)
+> (otwiera się w nowej karcie)
+
+## Zasada działania (torrent principle)
+
+```
+  ┌─────────────┐   room = infohash   ┌─────────────┐
+  │  Peer A     │◄───────────────────►│  Peer B     │
+  │ (twoja karta)│   WebTorrent swarm  │ (ich karta) │
+  └──────┬──────┘                     └──────┬──────┘
+         │   WebRTC signaling via public     │
+         │   WebSocket tracker (tylko)       │
+         ▼                                   ▼
+   ┌────────────────────────────────────────────┐
+   │   Public WebSocket trackers (announce)     │
+   └────────────────────────────────────────────┘
+```
+
+1. **Każdy peer w pokoju seeduje TEN SAM mały blob.** Identyczna treść →
+   identyczny **infohash** → wszyscy trafiają do tego samego swarmu
+   WebTorrent (dokładnie jak w torrentach).
+2. Publiczny WebSocket tracker wykonuje **sygnalizację WebRTC** między
+   członkami swarmu — tracker jest tylko *punktem spotkań*, nigdy nie widzi
+   wiadomości.
+3. Gdy dwóch peerów się połączy, wiadomości czatu jadą po ustanowionym
+   połączeniu jako **wiadomości protokołu rozszerzonego BitTorrenta** — czyli
+   wiadomości dosłownie podróżują po połączeniach peer-to-peer torrentów.
+
+Przez tracker przechodzi **tylko sygnalizacja**; payload wiadomości nigdy.
+
+## Funkcje
+
+- 🔗 **Pokoje jako torrenciki** — ta sama nazwa pokoju = ten sam infohash =
+  ten sam swarm
+- 💬 **Prawdziwe wiadomości P2P** — protokół rozszerzony BitTorrenta,
+  z kolejką do momentu extended handshake (nic nie ginie)
+- 🏷️ Nicki, licznik peerów, status połączenia
+- 🔗 Linki do pokojów (`#/nazwa-pokoju`)
+- 🌙 Ciemny, dostępny z klawiatury interfejs
+- 🖥️ **Local bridge** — karty tej samej przeglądarki nie mogą łączyć się
+  przez WebRTC (browser blokuje loopback WebRTC), więc most `BroadcastChannel`
+  łączy je lokalnie. Różne przeglądarki/urządzenia rozmawiają przez swarm.
+
+## Jak używać
+
+1. Otwórz [N2 Mesh](https://bartoszosiej.github.io/N2-Mesh/) w dwóch
+   przeglądarkach / na dwóch urządzeniach (albo w dwóch kartach jednej).
+2. Ustaw **ten sam pokój** po obu stronach (domyślnie `lobby`).
+3. Napisz nick i wysyłaj wiadomości — lecą peer-to-peer.
+
+> ⚠️ To jest mesh demo-grade: peery muszą być online jednocześnie. Nie ma
+> historii — po wyjściu swarm znika. To cena braku serwera.
+
+## Uruchom lokalnie
+
+```bash
+git clone https://github.com/BartoszOsiej/N2-Mesh.git
+cd N2-Mesh
+python3 -m http.server 8080
+# otwórz http://localhost:8080
+```
+
+## Bezpieczeństwo
+
+- Wiadomości podróżują **wyłącznie peer-to-peer**; tracker wykonuje
+  sygnalizację i nigdy nie odbiera treści wiadomości.
+- Całość to czysty JavaScript (WebTorrent vendored lokalnie — bez CDN),
+  bez śledzenia, bez zapisu danych.
+
+## Więcej
+
+- [Architektura i szczegóły techniczne](/projects/n2-mesh/architecture)
+- [Repo: BartoszOsiej/N2-Mesh](https://github.com/BartoszOsiej/N2-Mesh)
 
 
 ## projects/externum/architecture

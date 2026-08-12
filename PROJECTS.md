@@ -14,7 +14,7 @@ on this site, and maintained in the working copy at `~/`.
 | # | Project | Repo | Stack | Docs page |
 |---|---------|------|-------|-----------|
 | 1 | **Docs Hub** | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | VitePress | [docs](/) |
-| 2 | **N2 Mesh** (P2P chat) | [BartoszOsiej/N2-Mesh](https://github.com/BartoszOsiej/N2-Mesh) | WebTorrent, static | [live](https://bartoszosiej.github.io/N2-Mesh/) |
+| 2 | **N2 Mesh** (P2P chat) | [BartoszOsiej/N2-Mesh](https://github.com/BartoszOsiej/N2-Mesh) | WebTorrent, static | [docs](/projects/n2-mesh/) · [live](https://bartoszosiej.github.io/N2-Mesh/) |
 | 3 | **LinkShort** (URL shortener) | [BartoszOsiej/FastAPI-url](https://github.com/BartoszOsiej/FastAPI-url) | FastAPI, React 19, SQLite | [docs](/projects/fastapi-url/) |
 | 4 | **Novactorio** (factory game) | [BartoszOsiej/Factorio-web-game](https://github.com/BartoszOsiej/Factorio-web-game) | TypeScript, Canvas 2D, Supabase | [docs](/projects/factorio-web-game/) |
 | 5 | **NV2 Engine** (Rust voxel) | [BartoszOsiej/NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE) | Rust, wgpu, AI vegetation | [docs](/projects/nv2-engine/) |
@@ -40,9 +40,10 @@ on this site, and maintained in the working copy at `~/`.
 
 | | |
 |---|---|
-| **What** | Torrent-principle messenger that works on **static hosting** — no server, no database. Room = torrent **infohash**; every peer seeds the same blob and joins a WebTorrent swarm. Messages travel over the **BitTorrent extended protocol** (custom `NV2` extension) with a send queue until the extended handshake completes — nothing is lost. |
+| **What** | Torrent-principle messenger that works on **static hosting** — no server, no database. Room = torrent **infohash**; every peer seeds the same blob and joins a WebTorrent swarm. Messages travel over the **BitTorrent extended protocol** (custom `N2` extension, registered via `wire.use()`) with a send queue until the extended handshake completes — nothing is lost. Same-browser tabs connect via a `BroadcastChannel` local bridge. |
 | **Stack** | WebTorrent (vendored, no CDN), vanilla JS |
 | **Local path** | `~/N2-Mesh` |
+| **Docs** | [/projects/n2-mesh/](/projects/n2-mesh/) — Overview + Architecture |
 | **Live** | https://bartoszosiej.github.io/N2-Mesh/ |
 
 ## 3. LinkShort — `BartoszOsiej/FastAPI-url`

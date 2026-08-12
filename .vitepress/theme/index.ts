@@ -6,6 +6,7 @@ import AnimatedTitle from './components/AnimatedTitle.vue'
 import ProjectCard from './components/ProjectCard.vue'
 import GlowCard from './components/GlowCard.vue'
 import ScrollReveal from './components/ScrollReveal.vue'
+import ExternumPlayground from './components/ExternumPlayground.vue'
 
 export default {
   extends: DefaultTheme,
@@ -15,5 +16,6 @@ export default {
     app.component('ProjectCard', ProjectCard)
     app.component('GlowCard', GlowCard)
     app.component('ScrollReveal', ScrollReveal)
+    app.component('ExternumPlayground', ExternumPlayground)
   },
 } satisfies Theme
