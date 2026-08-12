@@ -10,6 +10,9 @@ export default defineConfig({
   ignoreDeadLinks: [/^http:\/\/localhost/],
   lastUpdated: true,
   head: [
+    ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
+    ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
+    ['link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap' }],
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/Docs/favicon.svg' }],
     ['meta', { name: 'theme-color', content: '#0f172a' }],
     ['meta', { property: 'og:title', content: 'Bartosz Osiej — Docs' }],
