@@ -3788,38 +3788,29 @@ Source: https://bartoszosiej.github.io/Docs/projects/externum/
 ------------------------------------------------------------------------
 # 📜 Externum
 
-**Externum v2.0 "Sentient"** — własny język programowania, który łączy
-czytelność Pythona, wydajność kodu binarnego i kontrolę systemu Basha w
-jednym paradygmacie.
+**Externum v3.0 "Sentient"** — własny, w pełni funkcjonalny język
+programowania, który łączy czytelność Pythona, wydajność kodu binarnego i
+kontrolę systemu Basha w jednym paradygmacie.
 
 > `Externum = Python_readability ⊕ Binary_performance ⊕ Bash_control`
 
 Jedno źródło (`.ext`) kompiluje się **jednocześnie do trzech targetów**:
 Python, Bash i reprezentacja binarna — a tryb `run` wykonuje program
-wprost.
+wprost. Dostępny jest też **REPL**, **system modułów** z własną
+**biblioteką standardową** napisaną w Externum.
 
-## ✨ Filozofia
+## ✨ Co potrafi
 
-- **Jeden zapis, trzy światy** — kod wygląda jak Python, operuje na
-  liczbach binarnych jak assembler i wykonuje polecenia powłoki jak skrypt.
-- **Zero zależności** — czysty standardowy Python (3.10+), bez jednej
-  biblioteki zewnętrznej.
-- **Transpilacja zamiast interpretacji** — kompilator produkuje czytelny,
-  wykonywalny kod docelowy; runtime to cienka warstwa nad tym kodem.
-
-## ✨ Funkcje (działające, pokryte testami)
-
-| Funkcja | Opis |
+| Obszar | Wsparcie |
 |---|---|
-| **3 targety** | `python`, `bash`, `binary` (lub `all`) z jednego źródła |
-| **Tryb wykonania** | `externum run program.ext` — natychmiastowe uruchomienie |
-| **Liczby binarne** | literały `0b1010`, operacje `&`-style, wariant binarny w target `binary` |
-| **Wyrażenia z priorytetem** | `**`, `* / %`, `+ -`, porównania `== != < > <= >=`, logika `and or not` |
-| **Pełny przepływ sterowania** | `if / elif / else`, `while`, `for ... in`, `break`, `continue` |
-| **Funkcje** | parametry (adnotacje typów opcjonalne), `return`, rekurencja |
-| **Hybrydowa składnia przypisań** | `x = ...` oraz `x += 1` |
-| **Shell-first** | bash inline `` `ls -la` `` i bloki `%% ... %%` |
-| **f-stringi** | `` print(f"value: {x}") `` |
+| **Typy danych** | listy, słowniki, krotki, zbiory (w tym wielolinijkowe), f-stringi, `0b`/`0x` |
+| **Przepływ** | `if/elif/else`, `while`, `for ... in` (wielozmienne), `break/continue`, `try/except/else/finally`, `with`, `assert` |
+| **Funkcje** | domyślne parametry, `*args`/`**kwargs`, rekurencja, **lambdy**, domknięcia, **generatory** (`yield`) |
+| **OOP** | klasy, **dziedziczenie**, metody, `self` |
+| **Moduły** | `import`, własne moduły `.ext`, biblioteka standardowa |
+| **Wyrażenia** | pełny priorytet operatorów, bitowe `& \| ^ ~ << >>`, **ternary**, **comprehensions** |
+| **Shell** | bash inline `` `cmd` `` i bloki `%% ... %%` |
+| **Narzędzia** | REPL, 3 targety kompilacji, `argv` |
 
 ## 🚀 Szybki start
 
@@ -3828,21 +3819,30 @@ git clone https://github.com/externum/externum.git
 cd externum
 pip install -e .            # Python 3.10+
 
-externum --version          # Externum 2.0.0
+externum --version          # Externum 3.0.0
 
 # Uruchom program
-externum run examples/hello.ext
+externum run examples/pokedex.ext
 
-# Skompiluj do wszystkich targetów
-externum examples/hello.ext
+# Interaktywna powłoka
+externum repl
 ```
+
+## 📚 Standardowa biblioteka (w Externum)
+
+| Moduł | Zawartość |
+|---|---|
+| `structs` | `Stack`, `Queue`, `Counter` |
+| `strings` | `reverse`, `is_palindrome`, `slugify`, `word_count`, `capitalize`, `truncate` |
+| `mathx` | `clamp`, `is_even`, `gcd`, `fib`, `factorial`, `sum_of_digits` |
+| `fs` | `read_file`, `write_file`, `append_file`, `file_exists`, `list_dir` |
 
 ## 🗺️ Dokumentacja
 
 - [Składnia](/projects/externum/syntax) — pełny przewodnik po języku
 - [Przykłady](/projects/externum/examples) — działające programy z wyjściem
 - [Kompilator i CLI](/projects/externum/compiler) — targety i opcje
-- [Architektura](/projects/externum/architecture) — pipeline i roadmapa
+- [Architektura](/projects/externum/architecture) — pipeline, moduły, roadmapa
 
 
 ## projects/factory-defense/
@@ -3970,42 +3970,41 @@ Source: https://bartoszosiej.github.io/Docs/projects/externum/architecture
 ------------------------------------------------------------------------
 # Architektura
 
-## Pipeline kompilacji
+## Pipeline
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                    Externum Compiler                     │
-├─────────────────────────────────────────────────────────┤
-│  Source (.ext)  →  Tokens  →  AST  →  Target Code       │
-└────────┬───────────────────┬──────────────────┬─────────┘
-         │                   │                  │
-         ▼                   ▼                  ▼
-    ┌─────────┐        ┌──────────┐       ┌──────────┐
-    │ Lexer   │  →     │ Parser   │  →    │ Compiler │
-    │ lexer.py│        │ parser.py│       │compiler. │
-    └─────────┘        └──────────┘       │py        │
-                                          └─────┬────┘
-                                       ┌────────┼────────┐
-                                       ▼        ▼        ▼
-                                 ┌────────┐ ┌────────┐ ┌────────┐
-                                 │ Python │ │  Bash  │ │ Binary │
-                                 └────────┘ └────────┘ └────────┘
+source (.ext) → Lexer → tokens → Parser → AST → Compiler → python/bash/binary
+                                                  ↘ Runtime (exec) / REPL
+                                                     ↘ .ext module loader
 ```
 
 ## Etapy
 
-1. **Lexer** (`lexer.py`) — tokenizacja: wcięcia (INDENT/DEDENT), literały
-   (`0b...`, liczby, stringi + f-stringi), operatory, słowa kluczowe,
-   bash inline (`` `...` ``) i bloki (`%% ... %%`).
-2. **Parser** (`parser.py`) — rekurencyjne zejście z priorytetem
-   operatorów: wyrażenia `or` → `and` → porównania → `+ -` → `* / %` →
-   `**`, plus `if/elif/else`, `while`, `for ... in`, funkcje z parametrami,
-   przypisania i `x += 1`.
+1. **Lexer** (`lexer.py`) — tokenizacja: INDENT/DEDENT **świadoma nawiasów**
+   (wcięcia wewnątrz `()[]{}` są ignorowane, puste linie nie łamią bloków),
+   literały `0b`/`0x`, stringi + f-stringi + triple-quoted, pełny zestaw
+   operatorów, bash inline (`` `...` ``) i bloki (`%% ... %%`).
+2. **Parser** (`parser.py`) — rekurencyjne zejście z priorytetem operatorów
+   (zgodnym z Pythonem), unarne operatory, ternary, lambdy, literały
+   (listy/słowniki/krotki/zbiory — także wielolinijkowe), indeksowanie i
+   slice'y, dostęp do atrybutów, wywołania z kwargs/`*args`/`**args`,
+   comprehensions, rozpakowywanie krotek oraz pełna gramatyka instrukcji:
+   funkcje, klasy z dziedziczeniem, `if/elif/else`, `while`, `for-in`,
+   `try/except/else/finally`, `with`, `import`, `raise`, `assert`, `del`,
+   `yield`, `global`, `nonlocal`.
 3. **Kompilator** (`compiler.py`) — generacja kodu: do `python` (z
    `subprocess.run` dla bash), `bash` (wyodrębnione polecenia) i `binary`
    (literały bitowe).
-4. **Runtime** (`runtime/`) — transpilacja do Pythona i wykonanie
-   w procesie (`externum run`).
+4. **Runtime** (`runtime/`) — wykonanie w procesie przez `exec` wygenerowanego
+   Pythona; **meta-path finder** kompiluje moduły `.ext` przy `import`;
+   REPL z wykrywaniem kompletności bloków.
+
+## System modułów
+
+`externum/runtime/__init__.py` rejestruje `_ExtFinder` w `sys.meta_path`.
+`import mod` znajduje `mod.ext` (lub `pkg.mod.ext`) w ścieżce wyszukiwania,
+kompiluje do Pythona i ładuje jako moduł — biblioteka standardowa w `lib/`
+jest napisana w samym Externum.
 
 ## Struktura projektu
 
@@ -4013,18 +4012,23 @@ Source: https://bartoszosiej.github.io/Docs/projects/externum/architecture
 Externum/
 ├── externum/
 │   ├── lexer.py          # Tokenizacja
-│   ├── parser.py         # AST + wyrażenia
-│   ├── compiler.py       # Generacja kodu (python/bash/binary)
-│   ├── runtime/          # Runtime — wykonanie .ext
-│   │   ├── llm/          # (roadmap) LLM-native
-│   │   ├── neural/       # (roadmap) tensory, autodiff
-│   │   └── distributed/  # (roadmap) aktory, strumienie
-│   └── __main__.py       # CLI (run / compile)
-├── examples/             # hello.ext, calc.ext
-├── tests/                # 25 testów jednostkowych
+│   ├── parser.py         # Pełna gramatyka → AST
+│   ├── compiler.py       # Codegen (python/bash/binary)
+│   ├── runtime/          # Runtime, import .ext, REPL
+│   │   ├── llm/          # (roadmap)
+│   │   ├── neural/       # (roadmap)
+│   │   └── distributed/  # (roadmap)
+│   └── __main__.py       # CLI (run / repl / compile)
+├── lib/                  # Biblioteka standardowa (.ext)
+│   ├── structs.ext       # Stack, Queue, Counter
+│   ├── strings.ext       # reverse, slugify, is_palindrome, ...
+│   ├── mathx.ext         # gcd, factorial, fib, ...
+│   └── fs.ext            # read_file, write_file, ...
+├── examples/             # hello.ext, calc.ext, pokedex.ext
+├── tests/                # 118 testów jednostkowych
 ├── bin/externum          # Entry point CLI
 ├── setup.py              # pip install -e .
-└── WIKI.md               # Specyfikacja języka (wizja)
+└── WIKI.md               # Specyfikacja języka
 ```
 
 ## Kontrakt API
@@ -4039,10 +4043,11 @@ zabezpieczone — pakiet działa bez tych modułów.
 
 ## Roadmapa
 
-- [ ] Moduł `neural` — tensory, autograd, warstwy (kontrakt już w API)
+- [x] Pełny język: klasy, wyjątki, moduły, lambdy, comprehensions, generatory
+- [x] REPL, system modułów, biblioteka standardowa, 118 testów
+- [ ] Moduł `neural` — tensory, autograd, warstwy (kontrakt w API)
 - [ ] Moduł `llm` — integracja z modelami (function calling)
 - [ ] Moduł `distributed` — aktory i strumienie między procesami
-- [ ] `match`-statementy i klasy
 - [ ] Pełny target `binary` (assembler)
 
 
@@ -4051,14 +4056,12 @@ Source: https://bartoszosiej.github.io/Docs/projects/externum/compiler
 ------------------------------------------------------------------------
 # Kompilator i CLI
 
-## Użycie
+## Komendy
 
 ```bash
-externum <komenda> [opcje]
-
-Komendy:
-  run       Wykonaj program .ext
-  compile   Skompiluj program .ext (domyślna)
+externum run <plik.ext> [args...]   # wykonaj program
+externum repl                       # interaktywna powłoka
+externum compile <plik.ext>         # skompiluj (domyślna komenda)
 ```
 
 ## Kompilacja
@@ -4075,7 +4078,7 @@ externum program.ext -o output.py         # zapisz do pliku
 
 | Target | Opis |
 |---|---|
-| `python` | Wykonywalny kod Pythona — instrukcje, funkcje, pętle, `subprocess.run` dla bash |
+| `python` | Wykonywalny kod Pythona — instrukcje, klasy, funkcje, `subprocess.run` dla bash |
 | `bash` | Wyodrębnione polecenia i bloki powłoki |
 | `binary` | Literały binarne (`0b...`) jako ciągi bitów |
 | `all` | Wszystkie trzy, sklejone w jeden raport |
@@ -4083,35 +4086,39 @@ externum program.ext -o output.py         # zapisz do pliku
 ## Wykonanie
 
 ```bash
-externum run program.ext
+externum run program.ext arg1 arg2
 ```
 
-Runtime transpiluje źródło do Pythona i wykonuje je w procesie — bez
-pośrednich plików.
+Runtime transpiluje źródło do Pythona i wykonuje je w procesie. Argumenty
+trafiają do `sys.argv` programu (`argv[0]` = ścieżka skryptu).
+
+## REPL
+
+```bash
+externum repl
+```
+
+- Interaktywna powłoka z auto-printem wyników wyrażeń
+- Wielolinijkowe bloki (po `:` kontynuujesz, pusta linia kończy)
+- Dostępne `import` i cała biblioteka standardowa
+- Wyjście: `exit()` lub `Ctrl+D`
 
 ## Pozostałe opcje
 
 | Opcja | Opis |
 |---|---|
-| `--version` | `Externum 2.0.0` |
+| `--version` | `Externum 3.0.0` |
 | `-h, --help` | Pomoc |
 | `-o, --output <plik>` | Zapis wyniku do pliku |
 
-## Przykłady
+## Ścieżka wyszukiwania modułów
 
-```bash
-# Uruchom
-externum run examples/hello.ext
+`import module` szuka `module.ext` kolejno w:
 
-# Kompilacja do Pythona
-externum examples/hello.ext --target python -o hello.py && python3 hello.py
-
-# Kompilacja wszystkich targetów do pliku
-externum examples/calc.ext --target all -o calc.out
-
-# Wersja
-externum --version
-```
+1. katalogu skryptu,
+2. bieżącym katalogu,
+3. `lib/` repozytorium Externum,
+4. ścieżkach z `EXTERNUM_PATH` (rozdzielonych `:`).
 
 ## Kody błędów
 
@@ -4127,48 +4134,86 @@ Source: https://bartoszosiej.github.io/Docs/projects/externum/examples
 ------------------------------------------------------------------------
 # Examples
 
-Wszystkie przykłady poniżej działają na aktualnej wersji — są pokryte
-testami (`python3 -m unittest discover -s tests`).
+Wszystkie przykłady działają na aktualnej wersji — pokryte są 118 testami
+(`python3 -m unittest discover -s tests`).
+
+## Pokedex — pełne demo języka
+
+`examples/pokedex.ext` pokazuje klasy z dziedziczeniem, comprehensions,
+lambdy, wyjątki, generatory, f-stringi i bibliotekę standardową:
+
+```python
+import mathx
+import strings
+
+class Fire(Pokemon):
+    def __init__(self, name, hp=50):
+        Pokemon.__init__(self, name, ["fire"], hp)
+
+# comprehensions
+fire_team = [p.name for p in squad if p.is_type("fire")]
+
+# lambda + kwargs
+weakest = min(squad, key=lambda p: p.hp)
+
+# try/except/finally
+try:
+    raise ValueError("psyduck is confused")
+except ValueError as e:
+    print("caught:", e)
+
+# generator
+nums = [f for f in fibonacci(10) if f % 2 == 0]
+
+# stdlib
+print(mathx.gcd(48, 36))        # 12
+print(strings.slugify("Hello World!"))   # hello-world
+```
+
+Uruchomienie i fragment wyjścia:
+
+```bash
+externum run examples/pokedex.ext
+```
+
+```
+=== Squad ===
+Charmander (fire) — 39 HP
+...
+=== Fire types (comprehension) ===
+['Charmander', 'Vulpix']
+=== Weakest member (lambda) ===
+Vulpix has only 38 HP!
+=== Fib numbers (generator + ternary) ===
+[0, 2, 8, 34]
+=== Standard library ===
+gcd(48, 36) = 12
+slug: hello-world
+palindrome: True
+=== Counter (structs lib) ===
+most common: ('a', 3)
+```
 
 ## Hello world z liczbami binarnymi
 
-`examples/hello.ext` (z repozytorium):
+`examples/hello.ext`:
 
-```externum
-# Externum example
-
+```python
 x = 0b1010
 y = 42
 print("Hello from Externum!")
-print(x + y)
+print(x + y)      # 52
 `ls -la`
 %%
 echo "Bash block"
 %%
 ```
 
-Uruchomienie:
-
-```bash
-externum run examples/hello.ext
-```
-
-Wyjście:
-
-```
-Hello from Externum!
-52
-<wynik ls -la>
-Bash block
-```
-
 ## Kalkulator
 
 `examples/calc.ext`:
 
-```externum
-# Simple calculator in Externum
-
+```python
 running = 1
 print("Calculator")
 
@@ -4179,18 +4224,9 @@ while running:
     print(a * b)
 ```
 
-```bash
-externum run examples/calc.ext
-# Calculator
-# a: 6
-# b: 7
-# 13
-# 42
-```
-
 ## Silnia — rekurencja
 
-```externum
+```python
 def factorial(n):
     if n <= 1:
         return 1
@@ -4199,39 +4235,43 @@ def factorial(n):
 print(factorial(10))      # 3628800
 ```
 
-## Przepływ sterowania
+## Klasy z dziedziczeniem
 
-```externum
-x = 42
-if x > 100:
-    print("large")
-elif x > 0:
-    print("small")
-else:
-    print("zero")
+```python
+class Animal:
+    def __init__(self, name):
+        self.name = name
 
-i = 0
-while i < 3:
-    print(i)
-    i += 1
+class Dog(Animal):
+    def speak(self):
+        print("woof " + self.name)
 
-for i in range(3):
-    print(i)
+Dog("Burek").speak()      # woof Burek
 ```
 
-Wyjście: `small`, `0 1 2`, `0 1 2`.
+## Wyjątki i `with`
 
-## Skrypt powłoki
+```python
+try:
+    with open("/tmp/demo.txt", "w") as f:
+        f.write("hello")
+    data = open("/tmp/demo.txt", "r").read()
+    print(data)
+except IOError as e:
+    print("io error", e)
+```
 
-```externum
-def main():
-    `echo "Hello from shell"`
-    %%
-    ls -la
-    df -h
-    %%
+## Moduły
 
-main()
+```python
+import structs
+import mathx
+
+s = structs.Stack()
+s.push(10)
+s.push(20)
+print(s.pop())            # 20
+print(mathx.factorial(5)) # 120
 ```
 
 ## Kompilacja do Pythona
@@ -4241,18 +4281,6 @@ externum examples/hello.ext --target python -o hello.py
 python3 hello.py
 ```
 
-Wygenerowany Python dla `hello.ext` (uproszczony):
-
-```python
-import subprocess
-x = int("1010", 2)
-y = 42
-print('Hello from Externum!')
-print(x + y)
-subprocess.run("ls -la", shell=True)
-subprocess.run("echo \"Bash block\"", shell=True)
-```
-
 
 ## projects/externum/syntax
 Source: https://bartoszosiej.github.io/Docs/projects/externum/syntax
@@ -4260,37 +4288,60 @@ Source: https://bartoszosiej.github.io/Docs/projects/externum/syntax
 # Syntax Reference
 
 Składnia Externum jest oparta na wcięciach (jak Python). Program to ciąg
-instrukcji; komentarze zaczynają się od `#`.
+instrukcji; komentarze zaczynają się od `#`. Puste linie i linie z
+komentarzami nie wpływają na wcięcia; wcięcia wewnątrz nawiasów są
+ignorowane (jak w Pythonie).
 
-## Zmienne i typy
+## Typy i literały
 
-```externum
+```python
 name = "Externum"        # string
 count = 42               # int
 ratio = 3.14             # float
 flag = True              # bool (True / False / None)
 
-# Literały binarne (prefix 0b)
-mask = 0b1010            # = 10
-header = 0b11110000
+mask = 0b1010            # binarny (= 10)
+header = 0xFF            # hex (= 255)
+
+s = """wielolinijkowy
+string"""
+
+data = [1, 2, 3]                     # lista
+d = {"a": 1, "b": 2}                 # słownik
+t = (1, 2)                           # krotka
+st = {1, 2, 3}                       # zbiór
+matrix = [                           # wielolinijkowe literały działają
+    [1, 2],
+    [3, 4],
+]
 ```
 
-Typowanie jest dynamiczne (jak w Pythonie); deklaracje typów w
-parametrach funkcji są opcjonalne i ignorowane przez kompilator.
+## Przypisania
+
+```python
+x = 42
+x += 1
+x *= 2
+a, b = 1, 2              # rozpakowywanie krotek
+d["k"] = "v"             # przypisanie przez indeks
+obj.attr = 5             # przypisanie atrybutu
+```
 
 ## Operatory
 
 | Kategoria | Operatory |
 |---|---|
-| Arytmetyka | `+` `-` `*` `/` `%` `**` |
-| Porównania | `==` `!=` `<` `>` `<=` `>=` |
-| Logiczne | `and` `or` `not` (działają też `&&` `||`) |
-| Przypisania | `=` `+=` `-=` `*=` `/=` |
+| Arytmetyka | `+ - * / % // **` |
+| Porównania | `== != < > <= >=` oraz `is`, `in` |
+| Logiczne | `and or not` (działają też `&& ||`) |
+| Bitowe | `& \| ^ ~ << >>` |
+| Przypisania | `= += -= *= /= //= **= &= \|= ^= <<= >>=` |
+| Inne | ternary `a if cond else b` |
 
-Priorytet jest standardowy: `**` > `* / %` > `+ -` > porównania >
-`and` > `or`. Nawiasy `( )` działają normalnie.
+Priorytet zgodny z Pythonem. Porównania łańcuchowe działają:
+`0 < x < 10`.
 
-```externum
+```python
 x = 10 + 5 * 2            # 20
 y = (10 + 5) * 2          # 30
 z = 2 ** 8                # 256
@@ -4299,7 +4350,7 @@ ok = x > 5 and y < 100    # True
 
 ## Instrukcje warunkowe
 
-```externum
+```python
 if x > 100:
     print("large")
 elif x > 0:
@@ -4310,68 +4361,120 @@ else:
 
 ## Pętle
 
-```externum
-# while
+```python
 i = 0
 while i < 10:
     print(i)
     i += 1
 
-# for ... in
 for i in range(3):
     print(i)
 
-# break / continue działają standardowo
+for i, v in enumerate(["a", "b"]):   # wiele zmiennych
+    print(i, v)
 ```
 
 ## Funkcje
 
-```externum
+```python
 def add(a, b):
     return a + b
 
-# Adnotacje typów są opcjonalne i usuwane przy kompilacji:
-def factorial(n: Int) -> Int:
+def greet(name, greeting="hi", *args, **kwargs):
+    print(greeting, name)
+
+def factorial(n: Int) -> Int:        # adnotacje typów są opcjonalne
     if n <= 1:
         return 1
     return n * factorial(n - 1)
 
-print(factorial(5))       # 120
+# lambdy
+square = lambda x: x * x
+
+# domknięcia
+def make_adder(n):
+    def adder(x):
+        return x + n
+    return adder
+
+# generatory
+def fibonacci(n):
+    a, b = 0, 1
+    for _ in range(n):
+        yield a
+        a, b = b, a + b
 ```
 
-## Wywołania wbudowane
+## Klasy
 
-Dostępne jak w Pythonie: `print`, `input`, `len`, `str`, `int`, `float`,
-`bool`, `list`, `dict`, `range`, `open`, `type`, `sum`, `min`, `max`.
+```python
+class Animal:
+    def __init__(self, name):
+        self.name = name
 
-```externum
-a = int(input("a: "))     # konwersja wejścia
-b = len("Externum")       # 8
+    def speak(self):
+        print("... from " + self.name)
+
+class Dog(Animal):                   # dziedziczenie
+    def speak(self):
+        print("woof " + self.name)
+```
+
+## Wyjątki
+
+```python
+try:
+    x = 1 / 0
+except ZeroDivisionError as e:
+    print("caught", e)
+except:
+    print("other")
+else:
+    print("no error")
+finally:
+    print("done")
+
+raise ValueError("boom")
+assert x > 0
+```
+
+## Moduły i biblioteka standardowa
+
+```python
+import mathx
+import strings
+from structs import Stack
+
+import os                            # stdlib Pythona też działa
+```
+
+## Comprehensions
+
+```python
+evens = [i for i in range(10) if i % 2 == 0]
+caps = {n: n.upper() for n in names}
 ```
 
 ## Stringi i f-stringi
 
-```externum
+```python
 msg = "Hello, " + "world!"
 print(f"value: {msg}")
+print("ab" * 3)
+print(s.strip().replace("a", "x").split(","))   # łańcuch metod
 ```
 
-## Integracja z Bashi
+## Integracja z Bashem
 
 ### Bash inline (backticks)
 
-Wykonuje polecenie i (przy kompilacji) trafia też do targetu `bash`:
-
-```externum
-output = `ls -la | grep ".py"`
-print(output)
+```python
+`ls -la | grep ".py"`
 ```
 
 ### Bloki bash (`%% ... %%`)
 
-Wielolinijkowe fragmenty powłoki:
-
-```externum
+```python
 %%
 #!/bin/bash
 for file in *.py; do
@@ -4380,8 +4483,9 @@ done
 %%
 ```
 
-## Ograniczenia (aktualna wersja)
+## Wywołania wbudowane
 
-- Brak klas i `match`-statementów (na roadmapie).
-- Binarne wyjście `--target binary` gromadzi literały binarne
-  (`0b...`) — nie jest jeszcze pełnym assemblerem.
+`print`, `input`, `len`, `str`, `int`, `float`, `bool`, `list`, `dict`,
+`tuple`, `set`, `range`, `open`, `type`, `sum`, `min`, `max`, `abs`,
+`round`, `enumerate`, `zip`, `sorted`, `reversed`, `chr`, `ord`, `hex`,
+`oct`, `bin`, `isinstance`, `repr`, `format`.
