@@ -1,8 +1,8 @@
 # Gameplay
 
-NV2 Engine is a full survival-sandbox loop: generate a procedural world,
-break and place blocks with tool gating, gather resources, craft, and
-explore biomes with AI-placed vegetation.
+NV2 Engine is a survival-sandbox loop: generate a procedural world, break and
+place blocks with tool-gated harvesting, gather resources, craft tools and
+furniture, and explore climate-driven biomes where an AI places vegetation.
 
 ## Controls
 
@@ -15,56 +15,139 @@ explore biomes with AI-placed vegetation.
 | `E` | Open / close inventory |
 | `Esc` | Pause menu (or close inventory) |
 | `/` | Open the command prompt |
-| Left mouse | Break block (held to keep breaking; tool-gated) |
+| Left mouse | Break block (hold to keep mining; tool-gated) |
 | Right mouse | Place block / use item |
 | Mouse wheel | Switch hotbar slot |
 | Mouse | Look around (captured while playing) |
 
-In menus, `↑` / `↓` (or `W` / `S`) navigate and `Enter` / `Space` confirm;
-`N` starts a new game and `L` loads from the main menu.
+**In menus:** `↑` / `↓` (or `W` / `S`) navigate, `Enter` / `Space` confirm,
+`N` starts a new game, `L` loads from the main menu.
 
-## Block interaction
+---
 
-- **Breaking** — left mouse; the held tool's tier gates which blocks can be
-  broken (a wooden tier cannot break stone-tier blocks).
-- **Placing** — right mouse places the selected hotbar block.
-- Interaction is driven by block raycasting in `interaction.rs`, bridged to
-  gameplay and GUI state through the renderer's `InteractionController`.
+## Block interaction (`interaction.rs`)
 
-## Inventory, hotbar & crafting
+### Targeting
+DDA (Digital Differential Analyzer) voxel raycasting via `world/raycast.rs`
+projects from the camera through the crosshair to find the targeted block.
 
-- **Hotbar** — scroll to switch the active stack.
-- **Inventory** — `E` opens the full overlay; drag-and-drop stack management.
-- **Crafting** — recipe-driven; a 2×2 player crafting overlay and the 3×3
-  NVCrafter overlay. Recipes are parsed from JSON and matched against
-  inventory contents in `crafting.rs`.
+### Mining
+- **Left mouse** starts breaking; **holding** continues with persistent
+  break-progress state.
+- Harvesting is **tool-gated**: each block has a hardness value and a required
+  tool tier; the held tool's power must meet or exceed the requirement.
+- Successful harvests consume **tool durability**.
 
-## Movement & physics
+### Placement
+- **Right mouse** places the block from the active inventory stack.
+- Placement is blocked **inside the player AABB** (you cannot build inside
+  yourself).
 
-Walking, sprinting (with an FOV kick), jumping, gravity, fall-speed
-limiting, and water-specific sinking. Flight mode (`F`) disables gravity.
-Collision is AABB-based against solid blocks; movement modifiers are sampled
-from the block medium the player stands in.
+### Special drop logic
+| Case | Behavior |
+|---|---|
+| Gravel | Can drop **flint** via deterministic seeded drop logic |
+| Tree trunk | Destroying a trunk harvests the **connected trunk/leaves cluster**, not just one block |
+| Leaves | Can additionally drop **saplings and sticks** with deterministic odds |
+| NVCrafter | Breaking it **flushes stored contents** into world drops before removal |
 
-## Commands
+---
 
-Open the prompt with `/` and type a command:
+## Tool tiers & durability
 
-```
-/locate forest       Find the nearest forest biome
-/tp 100 80 -50       Teleport to absolute coordinates
-```
+| Tier | Power | Tools |
+|---|---|---|
+| Hand | 1 | Bare hands |
+| Flint | 2 | Flint pickaxe |
+| Stone | 3 | Stone pickaxe |
+| Iron | 5 | Iron pickaxe |
+| Diamond | 7 | Diamond pickaxe |
+| Netherite | 8 | Netherite pickaxe |
 
-Commands are dispatched by `commands::execute(...)` in `commands.rs`.
+Every tool tracks `max_durability`; mining valid targets consumes durability.
+Tool power gates which blocks can be broken — a wooden tier cannot harvest
+stone-tier blocks.
 
-## World persistence
+---
 
-The world serializes to JSON (`saves/world.json`) via `world/storage.rs`
-using serde/serde_json. The pause menu offers **Save** and **Save & Exit**;
-the main menu **Load/Save** restores a saved world.
+## Inventory & hotbar (`inventory.rs`)
+
+- **36-slot player inventory**
+- **9-slot hotbar** mapped to the tail of the inventory
+- Active hotbar selection with mouse-wheel scrolling
+- **Stack merging and overflow handling**
+- Tool durability tracking
+- Separation between placeable items and inventory-only items
+- Built-in **2×2 player crafting grid** with output slot
+
+Drag-and-drop stack management works across all GUI slot types (inventory,
+crafting inputs/output, NVCrafter).
+
+---
+
+## Crafting (`crafting.rs`)
+
+Two crafting surfaces:
+
+| Surface | Grid | Where |
+|---|---|---|
+| Player crafting | 2×2 | Always available in the inventory screen |
+| NVCrafter | 3×3 | World-placed crafting station (has persistent state) |
+
+`RecipeRegistry` supports **shaped recipes** (pattern matching with offset
+support) and **shapeless recipes** (multiset matching). Recipes are also
+loadable from JSON (`assets.rs`). See the [Crafting Reference](crafting) for
+every recipe with exact patterns.
+
+---
+
+## Movement & physics (`renderer/camera.rs`)
+
+- Walking, **sprinting with FOV kick**, jumping
+- Gravity with fall-speed limiting
+- **Flight mode** (`F`) — disables gravity, `Space` ascends
+- **Water physics** — water-specific gravity and sinking behavior
+- AABB collision against solid blocks
+- **Movement mediums** — standing in foliage applies a 0.55× movement speed
+  multiplier (0.65× sprint, 0.35× fall), with sound dampening tracked for
+  future audio
+
+---
+
+## Commands (`commands.rs`)
+
+Open the prompt with `/`:
+
+| Command | Description |
+|---|---|
+| `/locate <biome> [--tp]` | Find the nearest biome by sampling chunk rings outward from the player; `--tp` teleports there |
+| `/tp <x> <y> <z>` | Teleport to absolute coordinates (resolved safely) |
+
+Responses and errors appear both on stdout and in-engine as subtitle/command
+prompt messages. Teleports use `World::safe_teleport_position(...)` to avoid
+placing the player inside solid blocks.
+
+---
+
+## Persistence
+
+The world serializes to **JSON** at `saves/world.json` (next to the
+executable). Saved data:
+
+- World seed
+- Flattened chunk block data
+- Chunk water metadata
+- Persisted NVCrafter states
+
+The pause menu offers **Save** and **Save & Exit**; the main menu offers
+**Load/Save**. Old saves remain fully compatible — AI vegetation only kicks in
+for newly generated chunks.
+
+---
 
 ## Day/night & atmosphere
 
 The renderer drives day/night phase progression through `elapsed_time`,
-water animation timing, climate/biome-driven fog and ambient color uniforms,
-a crosshair, subtitle overlays, and the command prompt overlay.
+water animation timing, and climate/biome-driven fog and ambient color
+uniforms — each biome tints the scene (e.g. forest `[0.50, 0.86, 0.42]`,
+dark forest `[0.38, 0.72, 0.34]`).
