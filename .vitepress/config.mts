@@ -13,7 +13,7 @@ export default defineConfig({
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/Docs/favicon.svg' }],
     ['meta', { name: 'theme-color', content: '#0f172a' }],
     ['meta', { property: 'og:title', content: 'Bartosz Osiej — Docs' }],
-    ['meta', { property: 'og:description', content: 'Central documentation hub for FastAPI-url and Factorio-web-game.' }],
+    ['meta', { property: 'og:description', content: 'Central documentation hub for FastAPI-url, Factorio-web-game and NV2 Engine.' }],
   ],
   themeConfig: {
     logo: '/logo.svg',
