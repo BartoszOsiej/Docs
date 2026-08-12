@@ -6,7 +6,7 @@ hero:
   text: "Engineering Docs Hub"
   tagline: Central documentation for FastAPI-url (LinkShort) and Factorio-web-game (Novactorio).
   image:
-    src: /Docs/hero.svg
+    src: /hero.svg
     alt: Projects
   actions:
     - theme: brand

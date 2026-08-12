@@ -38,5 +38,5 @@ Docs/
 
 Push to `main` — GitHub Actions builds the site and deploys it automatically.
 
-See [Update Flow](https://bartoszosiej.github.io/Docs/update-flow.html) for
+See [Update Flow](https://bartoszosiej.github.io/Docs/update-flow) for
 the full update map between source repositories and this site.
