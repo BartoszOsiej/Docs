@@ -1,0 +1,24 @@
+# Bartosz Osiej — Docs
+
+> Central documentation hub for FastAPI-url (LinkShort) and Factorio-web-game (Novactorio).
+
+This site is fully readable by AI agents. For a single-file snapshot of all
+content, fetch `/Docs/llms-full.txt`.
+
+## Projects
+
+- [LinkShort (FastAPI-url)](https://bartoszosiej.github.io/Docs/projects/fastapi-url/): Production-ready URL shortener — FastAPI, JWT auth, click tracking, React 19 SPA, SQLite.
+  - [Getting Started](https://bartoszosiej.github.io/Docs/projects/fastapi-url/getting-started)
+  - [API Reference](https://bartoszosiej.github.io/Docs/projects/fastapi-url/api-reference)
+  - [Deployment](https://bartoszosiej.github.io/Docs/projects/fastapi-url/deployment)
+- [Novactorio (Factorio-web-game)](https://bartoszosiej.github.io/Docs/projects/factorio-web-game/): Browser factory-automation game — hand-written Canvas 2D engine, TypeScript, Supabase co-op, Stripe premium.
+  - [Architecture](https://bartoszosiej.github.io/Docs/projects/factorio-web-game/architecture)
+  - [Gameplay Systems](https://bartoszosiej.github.io/Docs/projects/factorio-web-game/gameplay)
+  - [Backend & Monetization](https://bartoszosiej.github.io/Docs/projects/factorio-web-game/backend)
+
+## Meta
+
+- [Update Flow](https://bartoszosiej.github.io/Docs/update-flow): which repositories publish updates to this site.
+- [Repository](https://github.com/BartoszOsiej/Docs)
+- [Sitemap](https://bartoszosiej.github.io/Docs/sitemap.xml)
+- [robots.txt](https://bartoszosiej.github.io/Docs/robots.txt)

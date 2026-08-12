@@ -1,0 +1,10 @@
+# Allow all crawlers (including AI agents) to index the full site.
+User-agent: *
+Allow: /
+
+# Sitemap for search engines and AI crawlers.
+Sitemap: https://bartoszosiej.github.io/Docs/sitemap.xml
+
+# AI-specific discovery files.
+# - https://bartoszosiej.github.io/Docs/llms.txt      (index of content)
+# - https://bartoszosiej.github.io/Docs/llms-full.txt (full single-file snapshot)
