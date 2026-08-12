@@ -4,7 +4,7 @@ layout: home
 hero:
   name: "Bartosz Osiej"
   text: "Engineering Docs Hub"
-  tagline: Central documentation for FastAPI-url (LinkShort), Factorio-web-game (Novactorio) and NV2 Engine.
+  tagline: Central documentation for LinkShort, Novactorio, NV2 Engine and the Cybersec Toolkit.
   image:
     src: /hero.svg
     alt: Projects
@@ -19,6 +19,9 @@ hero:
       text: NV2 Engine — Rust Voxel Game
       link: /projects/nv2-engine/
     - theme: alt
+      text: Cybersec Toolkit
+      link: /projects/cybersec-tools/
+    - theme: alt
       text: Update Flow
       link: /update-flow
 
@@ -31,6 +34,10 @@ features:
     title: Novactorio
     details: Browser factory-automation game with a hand-written Canvas 2D engine, co-op, 23 languages, Stripe premium.
     link: /projects/factorio-web-game/
+  - icon: 🛡️
+    title: Cybersec Toolkit
+    details: Four focused Rust security tools — port scanning, web vuln checks, hash cracking, pcap analysis.
+    link: /projects/cybersec-tools/
   - icon: ⛏️
     title: NV2 Engine
     details: Native Rust voxel engine — wgpu rendering, procedural biomes, AI-trained vegetation, full gameplay loop.

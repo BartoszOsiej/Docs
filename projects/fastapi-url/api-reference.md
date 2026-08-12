@@ -44,59 +44,62 @@ Authenticate and receive a JWT.
 | Status | Body |
 |---|---|
 | 200 | `{ "access_token": "<jwt>", "token_type": "bearer" }` |
-| 401 | `{ "detail": "Invalid credentials" }` |
+| 401 | `{ "detail": "Incorrect email or password" }` |
 
 ### `GET /auth/me`
 
-Return the currently authenticated user. Requires `Authorization: Bearer <token>`.
+Return the authenticated user's profile.
 
-**Response**
+**Headers**
 
-```json
-{ "id": "a1b2c3d4", "email": "you@example.com" }
 ```
+Authorization: Bearer <jwt>
+```
+
+**Responses**
+
+| Status | Body |
+|---|---|
+| 200 | `{ "id": 1, "email": "you@example.com" }` |
+| 401 | `{ "detail": "Not authenticated" }` |
 
 ## URLs
 
-All `/urls/*` routes except the redirect require `Authorization: Bearer <token>`.
+All `/urls` routes except stats and redirect require a JWT bearer header.
 
 ### `POST /urls/shorten`
 
-Shorten a URL. The body is a **plain JSON string** (the target URL), not an
-object.
+Create a short URL.
 
-**Request body**
+**Request** — query parameter or JSON body with `target_url`:
 
 ```json
-"https://example.com/very/long/path"
+{ "target_url": "https://example.com/very/long/path" }
 ```
 
-**Response**
+**Response 200**
 
 ```json
 {
-  "id": "e5f6a7b8",
-  "short_code": "Kx9mQz",
+  "id": 12,
+  "short_code": "Ab3xY9",
   "target_url": "https://example.com/very/long/path",
   "clicks": 0,
   "is_active": true
 }
 ```
 
-Short codes are 6 characters from `[a-zA-Z0-9]`, generated with Python's
-`secrets` module and retried on collision.
-
 ### `GET /urls/my`
 
 List the authenticated user's URLs, newest first.
 
-**Response**
+**Response 200**
 
 ```json
 [
   {
-    "id": "e5f6a7b8",
-    "short_code": "Kx9mQz",
+    "id": 12,
+    "short_code": "Ab3xY9",
     "target_url": "https://example.com/very/long/path",
     "clicks": 3,
     "is_active": true
@@ -106,51 +109,67 @@ List the authenticated user's URLs, newest first.
 
 ### `GET /urls/{short_code}/stats`
 
-Public stats for any short code. **No auth required.**
+Public click statistics for any short code.
 
-**Response**
+**Response 200**
 
 ```json
-{ "short_code": "Kx9mQz", "target_url": "https://example.com/...", "clicks": 3, "total": 3 }
+{
+  "short_code": "Ab3xY9",
+  "target_url": "https://example.com/very/long/path",
+  "clicks": 3,
+  "total": 3
+}
 ```
+
+| Status | Body |
+|---|---|
+| 404 | `{ "detail": "Not Found" }` |
 
 ### `DELETE /urls/{short_code}`
 
-Delete one of the authenticated user's URLs (scoped to the owner).
+Delete a URL. **Owner-scoped** — only the user who created the URL can
+delete it. Returns `204 No Content` on success.
 
-| Status | Meaning |
+| Status | Detail |
 |---|---|
 | 204 | Deleted |
-| 404 | Not found or not owned by the caller |
+| 404 | URL not found or not owned by you |
 
 ### `GET /urls/r/{short_code}`
 
-**Public redirect.** Increments the click counter and issues a `302 Found`
-redirect to the target URL. Returns `404` if the short code does not exist or
-is inactive.
+Redirect to the target URL and increment the click counter.
 
-## Health
+**Responses**
+
+| Status | Detail |
+|---|---|
+| 302 | Redirect to `target_url` |
+| 404 | `{ "detail": "URL not found" }` (inactive URLs are ignored) |
+
+Only **active** URLs redirect — `is_active = true` is required.
+
+## System
 
 ### `GET /health`
+
+Liveness probe.
 
 ```json
 { "status": "ok" }
 ```
 
-## Static SPA
+## Data model
 
-When the frontend build exists in `backend/static`, FastAPI serves:
+**User** — `id`, `email` (unique), `password_hash`
 
-- `/assets/*` — hashed build assets
-- `/{full_path:path}` — the SPA entry `index.html` (client-side routing)
+**URL** — `id`, `short_code` (unique), `target_url`, `owner_id` (FK → User),
+`clicks` (int, default 0), `is_active` (bool), `created_at`
 
 ## Error format
 
-Errors are FastAPI's standard shape:
+FastAPI errors follow the standard shape:
 
 ```json
-{ "detail": "URL not found" }
+{ "detail": "Human-readable message" }
 ```
-
-Status codes: `400` validation/business error · `401` bad credentials ·
-`404` missing resource.

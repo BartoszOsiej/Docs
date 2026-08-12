@@ -25,17 +25,18 @@ how this documentation site stays in sync with the source projects.
 | [BartoszOsiej/FastAPI-url](https://github.com/BartoszOsiej/FastAPI-url) | BartoszOsiej (fork of ghost0development) | Source: LinkShort URL shortener |
 | [BartoszOsiej/Factorio-web-game](https://github.com/BartoszOsiej/Factorio-web-game) | BartoszOsiej | Source: Novactorio browser game |
 | [BartoszOsiej/NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE) | BartoszOsiej | Source: NV2 Engine — native Rust voxel game |
+| [BartoszOsiej/cybersec-tools](https://github.com/BartoszOsiej/cybersec-tools) | BartoszOsiej | Source: Cybersec Toolkit — 4 Rust security tools |
 | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | BartoszOsiej | **This site** — GitHub Pages docs hub |
 
 ## Update flow diagram
 
 ```
-┌──────────────┐   ┌──────────────┐   ┌──────────────┐
-│ FastAPI-url  │   │ Factorio-    │   │ NV2_ENGINE   │
-│ (LinkShort)  │   │ web-game     │   │ (NV2 Engine) │
-└──────┬───────┘   └──────┬───────┘   └──────┬───────┘
-       │ docs updates     │ docs updates     │ docs updates
-       ▼                  ▼                  ▼
+┌────────────┐   ┌────────────┐   ┌────────────┐   ┌──────────────┐
+│ FastAPI-url│   │ Factorio-  │   │ NV2_ENGINE │   │ cybersec-    │
+│ (LinkShort)│   │ web-game   │   │ (NV2 Eng)  │   │ tools        │
+└─────┬──────┘   └─────┬──────┘   └─────┬──────┘   └──────┬───────┘
+      │ docs updates  │ docs updates   │ docs updates   │ docs updates
+      ▼               ▼                ▼                ▼
 ┌──────────────────────────────────────────────────────────────┐
 │                      BartoszOsiej/Docs                       │
 │                    (this GitHub Pages site)                  │
@@ -56,7 +57,8 @@ how this documentation site stays in sync with the source projects.
 | 1 | `FastAPI-url` | API changes, new endpoints, feature updates | When the API or SPA changes |
 | 2 | `Factorio-web-game` | Engine/systems/backend documentation changes | When gameplay or backend changes |
 | 3 | `NV2_ENGINE` | Engine, AI, gameplay and performance documentation | When the engine changes |
-| 4 | `Docs` (this repo) | Final rendered site | On every push to `main` |
+| 4 | `cybersec-tools` | Tool docs, usage, CLI reference | When a tool changes |
+| 5 | `Docs` (this repo) | Final rendered site | On every push to `main` |
 
 ### Publishing a docs update (source repos)
 
@@ -64,6 +66,7 @@ how this documentation site stays in sync with the source projects.
    - `projects/fastapi-url/` — LinkShort
    - `projects/factorio-web-game/` — Novactorio
    - `projects/nv2-engine/` — NV2 Engine
+   - `projects/cybersec-tools/` — Cybersec Toolkit
 2. Commit to the `Docs` repository and push to `main`.
 3. GitHub Actions builds the VitePress site and deploys it to GitHub Pages
    automatically — no manual steps.
@@ -111,62 +114,92 @@ Source file: projects/fastapi-url/index.md
 
 # LinkShort
 
-> **A production-ready URL shortener with JWT authentication, click tracking, and a dark React SPA.**
+> **A production-ready URL shortener — FastAPI backend, JWT auth, click tracking, React 19 SPA, SQLite.**
 
-LinkShort (repository: `FastAPI-url`) is a full-stack URL shortening service. A
-FastAPI + SQLAlchemy backend serves a JSON REST API and the compiled React 19
-frontend as static assets; SQLite provides zero-configuration persistence.
+LinkShort (repository: `FastAPI-url`) is a complete URL-shortening service
+with a Python/FastAPI API, JWT-based authentication, per-user link
+management, click statistics, and a served single-page application frontend.
 
-| | | |
-|---|---|---|
-| ![Login](/screenshots/fastapi-url/login.png) | ![Dashboard](/screenshots/fastapi-url/dashboard.png) | ![List](/screenshots/fastapi-url/list.png) |
+**Stack:** FastAPI (Python) · SQLAlchemy · SQLite · JWT (python-jose) ·
+React 19 SPA (static files served by FastAPI) · pytest
 
 ## Highlights
 
-- **JWT authentication** — register, login, and token-based API access (`python-jose`, SHA-256 password hashing).
-- **One-click shortening** — paste a URL, get a 6-character short code.
-- **Click tracking** — every redirect increments the click counter.
-- **Dashboard** — manage URLs: copy, delete, view stats.
-- **Dark, responsive UI** — React 19 + Vite + TailwindCSS 4.
-- **REST API** — interactive Swagger docs at `/docs`.
-- **SQLite** — zero-config persistence with SQLAlchemy ORM.
+- **Full auth flow** — register → login → JWT bearer tokens; `/auth/me`
+  returns the current user
+- **6-character short codes** — cryptographically random (`secrets`), with
+  collision retry
+- **Click tracking** — every redirect increments the click counter
+- **Per-user URLs** — `/urls/my` lists your links; deletes are owner-scoped
+- **302 redirects** — `/urls/r/{code}` redirects to the target with a click
+  recorded
+- **Public stats** — `/urls/{code}/stats` returns target + click count
+- **SPA serving** — FastAPI mounts the built React app and falls back to
+  `index.html` for client-side routing
+- **CORS open** — `allow_origins=["*"]` for development
 
 ## Tech stack
 
 | Layer | Technology |
 |---|---|
-| Backend | Python 3.12, FastAPI, SQLAlchemy 2, SQLite |
-| Auth | JWT (`python-jose`), SHA-256 password hashing |
-| Frontend | React 19, Vite, TailwindCSS 4 |
-| Testing | pytest, httpx (CI on every push) |
-| Deployment | Docker / docker-compose, Fly.io (`fly.toml`) |
+| API | FastAPI (`app = FastAPI(title="URL Shortener", version="1.0.0")`) |
+| ORM | SQLAlchemy (`Base.metadata.create_all` on startup) |
+| Database | SQLite |
+| Auth | JWT bearer tokens (python-jose) |
+| Password hashing | `app/auth.py` (hashed, never stored plaintext) |
+| Frontend | React 19 SPA in `backend/static/` |
+| Tests | pytest (`tests/test_api.py`) |
+
+## API surface
+
+| Method | Path | Auth | Description |
+|---|---|---|---|
+| `POST` | `/auth/register` | — | Create account, receive JWT |
+| `POST` | `/auth/login` | — | Authenticate, receive JWT |
+| `GET` | `/auth/me` | Bearer | Current user profile |
+| `POST` | `/urls/shorten` | Bearer | Shorten a URL |
+| `GET` | `/urls/my` | Bearer | List your URLs (newest first) |
+| `GET` | `/urls/{code}/stats` | — | Public click stats |
+| `DELETE` | `/urls/{code}` | Bearer | Delete your URL (owner-scoped) |
+| `GET` | `/urls/r/{code}` | — | 302 redirect + click count |
+| `GET` | `/health` | — | Liveness probe |
 
 ## Repository layout
 
 ```
 FastAPI-url/
 ├── app/
-│   ├── main.py            # FastAPI app, CORS, SPA static serving
-│   ├── auth.py            # password hashing, JWT create/verify
-│   ├── database.py        # engine + session
-│   ├── models.py          # User, URL (SQLAlchemy)
-│   ├── schemas.py         # Pydantic request/response models
+│   ├── main.py            # FastAPI app, CORS, SPA serving
+│   ├── auth.py            # JWT creation/verification, password hashing
+│   ├── database.py        # SQLAlchemy engine + session
+│   ├── models.py          # User, URL models
+│   ├── schemas.py         # Pydantic schemas (UserCreate, Token, URLOut, URLStats)
+│   ├── config.py          # Settings
 │   └── routers/
-│       ├── auth_router.py # /auth/register, /auth/login, /auth/me
-│       └── urls.py        # /urls/shorten, /urls/my, /urls/r/{code}, ...
-├── frontend/              # React 19 SPA (Vite)
-├── backend/static/        # Compiled SPA output, served by FastAPI
-├── tests/test_api.py      # API tests (pytest)
-├── .github/workflows/ci.yml
-├── Dockerfile / docker-compose.yml
-└── fly.toml
+│       ├── auth_router.py # /auth/* endpoints
+│       └── urls.py        # /urls/* endpoints
+├── backend/static/        # Built React SPA (served by FastAPI)
+├── tests/
+│   └── test_api.py        # API integration tests
+└── ...
 ```
+
+## Short-code generation
+
+```python
+def gen_short() -> str:
+    chars = string.ascii_letters + string.digits
+    return ''.join(secrets.choice(chars) for _ in range(6))
+```
+
+6 characters from a 62-char alphabet ≈ **5.7×10¹⁰ combinations**; collisions
+are checked and retried against the database.
 
 ## Related pages
 
-- [Getting Started](getting-started) — run it locally in minutes
-- [API Reference](api-reference) — every endpoint, request, and response
-- [Deployment](deployment) — Docker and Fly.io
+- [Getting Started](getting-started) — local setup and first run
+- [API Reference](api-reference) — every endpoint with requests/responses
+- [Deployment](deployment) — Docker, environments, production notes
 
 ---
 
@@ -253,7 +286,40 @@ curl -s -X POST http://localhost:8000/urls/shorten \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer ' \
   -d '"https://example.com/very/long/path"'
+
+# Redirect (public)
+curl -sI http://localhost:8000/urls/r/
+# → HTTP/2 302, Location: https://example.com/very/long/path
+
+# Stats (public)
+curl -s http://localhost:8000/urls//stats
 ```
+
+## Project tour
+
+```
+app/
+├── main.py            # FastAPI app, CORS, health, SPA serving
+├── auth.py            # JWT create/verify + password hashing
+├── database.py        # SQLAlchemy engine, session, Base
+├── models.py          # User + URL SQLAlchemy models
+├── schemas.py         # Pydantic request/response schemas
+├── config.py          # Settings (secret key, DB URL)
+└── routers/
+    ├── auth_router.py # POST /auth/register|login, GET /auth/me
+    └── urls.py        # POST /urls/shorten, GET /urls/my|{code}/stats,
+                       # DELETE /urls/{code}, GET /urls/r/{code}
+tests/
+└── test_api.py        # pytest integration tests
+backend/static/        # compiled React SPA
+```
+
+## How authentication works
+
+1. `POST /auth/register` hashes the password and issues a signed JWT.
+2. Every protected route reads `Authorization: Bearer `.
+3. `get_current_user` (in `app/auth.py`) verifies the token and resolves the
+   user for the request.
 
 ## Next steps
 
@@ -311,59 +377,62 @@ Authenticate and receive a JWT.
 | Status | Body |
 |---|---|
 | 200 | `{ "access_token": "", "token_type": "bearer" }` |
-| 401 | `{ "detail": "Invalid credentials" }` |
+| 401 | `{ "detail": "Incorrect email or password" }` |
 
 ### `GET /auth/me`
 
-Return the currently authenticated user. Requires `Authorization: Bearer `.
+Return the authenticated user's profile.
 
-**Response**
+**Headers**
 
-```json
-{ "id": "a1b2c3d4", "email": "you@example.com" }
 ```
+Authorization: Bearer 
+```
+
+**Responses**
+
+| Status | Body |
+|---|---|
+| 200 | `{ "id": 1, "email": "you@example.com" }` |
+| 401 | `{ "detail": "Not authenticated" }` |
 
 ## URLs
 
-All `/urls/*` routes except the redirect require `Authorization: Bearer `.
+All `/urls` routes except stats and redirect require a JWT bearer header.
 
 ### `POST /urls/shorten`
 
-Shorten a URL. The body is a **plain JSON string** (the target URL), not an
-object.
+Create a short URL.
 
-**Request body**
+**Request** — query parameter or JSON body with `target_url`:
 
 ```json
-"https://example.com/very/long/path"
+{ "target_url": "https://example.com/very/long/path" }
 ```
 
-**Response**
+**Response 200**
 
 ```json
 {
-  "id": "e5f6a7b8",
-  "short_code": "Kx9mQz",
+  "id": 12,
+  "short_code": "Ab3xY9",
   "target_url": "https://example.com/very/long/path",
   "clicks": 0,
   "is_active": true
 }
 ```
 
-Short codes are 6 characters from `[a-zA-Z0-9]`, generated with Python's
-`secrets` module and retried on collision.
-
 ### `GET /urls/my`
 
 List the authenticated user's URLs, newest first.
 
-**Response**
+**Response 200**
 
 ```json
 [
   {
-    "id": "e5f6a7b8",
-    "short_code": "Kx9mQz",
+    "id": 12,
+    "short_code": "Ab3xY9",
     "target_url": "https://example.com/very/long/path",
     "clicks": 3,
     "is_active": true
@@ -373,54 +442,70 @@ List the authenticated user's URLs, newest first.
 
 ### `GET /urls/{short_code}/stats`
 
-Public stats for any short code. **No auth required.**
+Public click statistics for any short code.
 
-**Response**
+**Response 200**
 
 ```json
-{ "short_code": "Kx9mQz", "target_url": "https://example.com/...", "clicks": 3, "total": 3 }
+{
+  "short_code": "Ab3xY9",
+  "target_url": "https://example.com/very/long/path",
+  "clicks": 3,
+  "total": 3
+}
 ```
+
+| Status | Body |
+|---|---|
+| 404 | `{ "detail": "Not Found" }` |
 
 ### `DELETE /urls/{short_code}`
 
-Delete one of the authenticated user's URLs (scoped to the owner).
+Delete a URL. **Owner-scoped** — only the user who created the URL can
+delete it. Returns `204 No Content` on success.
 
-| Status | Meaning |
+| Status | Detail |
 |---|---|
 | 204 | Deleted |
-| 404 | Not found or not owned by the caller |
+| 404 | URL not found or not owned by you |
 
 ### `GET /urls/r/{short_code}`
 
-**Public redirect.** Increments the click counter and issues a `302 Found`
-redirect to the target URL. Returns `404` if the short code does not exist or
-is inactive.
+Redirect to the target URL and increment the click counter.
 
-## Health
+**Responses**
+
+| Status | Detail |
+|---|---|
+| 302 | Redirect to `target_url` |
+| 404 | `{ "detail": "URL not found" }` (inactive URLs are ignored) |
+
+Only **active** URLs redirect — `is_active = true` is required.
+
+## System
 
 ### `GET /health`
+
+Liveness probe.
 
 ```json
 { "status": "ok" }
 ```
 
-## Static SPA
+## Data model
 
-When the frontend build exists in `backend/static`, FastAPI serves:
+**User** — `id`, `email` (unique), `password_hash`
 
-- `/assets/*` — hashed build assets
-- `/{full_path:path}` — the SPA entry `index.html` (client-side routing)
+**URL** — `id`, `short_code` (unique), `target_url`, `owner_id` (FK → User),
+`clicks` (int, default 0), `is_active` (bool), `created_at`
 
 ## Error format
 
-Errors are FastAPI's standard shape:
+FastAPI errors follow the standard shape:
 
 ```json
-{ "detail": "URL not found" }
+{ "detail": "Human-readable message" }
 ```
-
-Status codes: `400` validation/business error · `401` bad credentials ·
-`404` missing resource.
 
 ---
 
@@ -472,6 +557,23 @@ fly launch   # first time only
 fly deploy
 ```
 
+## Deployment architecture
+
+```
+Browser
+   │  HTTPS
+   ▼
+Fly.io / Docker host
+   │  uvicorn: app.main:app
+   ├── /auth/*        → JWT auth
+   ├── /urls/*        → shorten, my, stats, delete, redirect
+   ├── /health        → liveness
+   └── /* (SPA)       → static files / index.html fallback
+   │
+   ▼
+SQLite (volume-mounted /app/data)
+```
+
 ## Production checklist
 
 - [ ] Set a long, random `SECRET_KEY` (never commit it)
@@ -479,6 +581,8 @@ fly deploy
 - [ ] Run behind TLS (Fly.io provides it automatically)
 - [ ] Confirm `backend/static` contains a fresh frontend build
 - [ ] Restrict CORS origins instead of the dev `*` wildcard if needed
+- [ ] Back up the SQLite file regularly (single-file backups are trivial)
+- [ ] Monitor `/health` with your uptime checker
 
 ---
 
@@ -560,15 +664,16 @@ Source file: projects/factorio-web-game/architecture.md
 
 # Architecture
 
-Novactorio is deliberately framework-free on the rendering side. The game loop,
-simulation, and drawing are hand-written on the Canvas 2D API; React is used
-only for UI overlays.
+Novactorio is deliberately framework-free on the rendering side. The game
+loop, simulation, and drawing are hand-written on the Canvas 2D API; React is
+used only for UI overlays. The codebase spans **21,000+ lines of TypeScript**
+(21,257 LOC across `src/`).
 
 ## Layer overview
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│  React overlay (src/components/)                        │
+│  React overlay (src/components/, src/ui/)               │
 │  Auth → Start → Game routing, HUD, menus, chat, shop    │
 └─────────────────────────┬───────────────────────────────┘
                           │ game state / events
@@ -579,19 +684,37 @@ only for UI overlays.
 │  world.ts    — chunk storage, infinite scrolling        │
 │  noise.ts    — Perlin noise terrain generation          │
 │  renderer.ts — 10 dedicated draw methods                │
+│  constants.ts, types.ts, audio.ts, postproc.ts          │
 └─────────────────────────┬───────────────────────────────┘
                           │
 ┌─────────────────────────▼───────────────────────────────┐
-│  Canvas 2D API + post-processing (postproc.ts)          │
+│  Render pipeline (src/render/)                          │
+│  AmbientAtmosphere · ParticleEffects · PollutionOverlay │
+│  ScreenEffects · SpriteManager · WeatherSystem · utils  │
 └─────────────────────────────────────────────────────────┘
 ```
+
+## Source map (`src/`)
+
+| Directory | Files | Responsibility |
+|---|---|---|
+| `game/` | 9 | Engine core: loop, systems, world, noise, renderer, audio, postprocessing |
+| `core/` | engine, systems, types | Shared engine/system/type definitions |
+| `render/` | 7 | Visual effects: atmosphere, particles, pollution, weather, sprites, screen FX |
+| `components/` | — | React UI: AuthScreen, BuildMenu, ChatPanel, shop, HUD |
+| `services/` | auth, coop, trade | Supabase-backed services |
+| `config/` | — | Environment-driven configuration |
+| `ui/` | — | Additional UI primitives |
+| `easter/` | — | Easter-egg content |
+| `shaders/` | — | Shader definitions |
+| `lib/` | — | Shared utilities |
 
 ## Game engine (`src/game/`)
 
 | Module | Responsibility |
 |---|---|
 | `engine.ts` | Game loop (`update`/`render`), entity lifecycle, building logic, inventory, combat, particles |
-| `renderer.ts` | 10 extracted render passes: sky, ground, entities, damage numbers, etc. |
+| `renderer.ts` | Extracted render passes: sky, ground, entities, damage numbers, etc. |
 | `systems.ts` | Supply chains, conveyor belts, pipe networks, enemy AI, pollution |
 | `world.ts` | Chunk-based world, block storage, infinite scrolling |
 | `noise.ts` | Perlin noise for terrain generation |
@@ -600,49 +723,61 @@ only for UI overlays.
 | `audio.ts` | Sound effects |
 | `postproc.ts` | Post-processing effects |
 
+## Render pipeline (`src/render/`)
+
+| Module | Responsibility |
+|---|---|
+| `AmbientAtmosphere.ts` | Sky/atmosphere rendering |
+| `ParticleEffects.ts` | Particles (smoke, sparks, damage) |
+| `PollutionOverlay.ts` | Pollution visualization |
+| `ScreenEffects.ts` | Screen-space effects |
+| `SpriteManager.ts` | Sprite atlas management |
+| `WeatherSystem.ts` | Weather simulation |
+| `utils.ts` | Render helpers |
+
+## Services (`src/services/`)
+
+| Service | Responsibility |
+|---|---|
+| `auth` | Supabase authentication integration |
+| `coop` | Co-op multiplayer via Supabase Realtime |
+| `trade` | Player trading (Stripe-fee checkout for trades) |
+
 ## Rendering approach
 
 The renderer is organized as discrete draw methods (sky, ground, entities,
 particles, damage numbers, …) rather than a monolithic draw call, keeping each
 pass cheap and debuggable. World chunks are culled to the visible area while
-scrolling.
+scrolling. The render pipeline is further split into dedicated modules
+(atmosphere, particles, pollution, weather) layered over the base canvas.
 
-## UI overlay (`src/components/`)
+## UI overlay
 
 React 18 renders the interface on top of the canvas: full screen routing
 (Auth → Start → Game), build menu, chat panel, shop, stats, and settings.
 State flows from the engine into React through a shared game-state bridge.
 
-## i18n (`src/i18n.ts`)
+## TypeScript strictness
 
-Runtime-switchable localization with 23 languages. Polish and English are the
-fully translated reference locales; the language can be switched live without
-a reload.
+`tsconfig.app.json` runs with `strict` typing; the project validates with
+`tsc --noEmit` (`npm run typecheck`) and lints with ESLint (`npm run lint`).
 
-## Config & environment (`src/config/`)
+## Scripts
 
-Environment-driven configuration via `import.meta.env`:
-
-| Variable | Purpose |
+| Script | Purpose |
 |---|---|
-| `VITE_SUPABASE_URL` | Supabase project URL |
-| `VITE_SUPABASE_ANON_KEY` | Supabase anon (publishable) key |
-| `VITE_ADMIN_USERS` | Comma-separated admin usernames |
+| `npm run dev` | Vite dev server |
+| `npm run build` | Production build |
+| `npm run typecheck` | TypeScript validation |
+| `npm run lint` | ESLint |
+| `npm run preview` | Build + local Wrangler preview |
+| `npm run deploy` | Build + `wrangler deploy` (Cloudflare) |
+| `npm run easter-egg` | Easter-egg generator script |
 
 ## Deployment target
 
-The game builds with Vite and deploys to Cloudflare (Wrangler):
-
-```bash
-npm run build
-wrangler deploy
-```
-
-## TypeScript strictness
-
-`tsconfig` runs with `strict: true` and the project validates with
-`tsc --noEmit` (`npm run typecheck`), keeping the codebase type-safe across
-~4,800 lines of game logic.
+The game builds with Vite and deploys to **Cloudflare** via Wrangler
+(`wrangler.jsonc`), with Supabase as the backend.
 
 ---
 
@@ -683,12 +818,34 @@ resources, build machines, route materials, research, and survive.
 - **Enemy AI** — enemies spawn, path toward your pollution/factory, and attack.
 - **Pollution** — production emits pollution; higher pollution drives faster
   enemy evolution (bigger, tougher enemies over time).
+- Pollution is visualized in-game via the `PollutionOverlay` render module.
 
 ## Combat & interactions
 
 - **Build / remove** blocks and machines with a build menu.
 - **Inventory** per player with hotbar-style access.
 - **Particles & damage numbers** for juicy feedback (`renderer.ts`).
+
+## Visual & ambient systems (`src/render/`)
+
+| Module | In-game effect |
+|---|---|
+| `AmbientAtmosphere.ts` | Sky and atmosphere grading |
+| `ParticleEffects.ts` | Smoke, sparks, explosion particles |
+| `PollutionOverlay.ts` | Pollution haze over polluted areas |
+| `ScreenEffects.ts` | Screen-space feedback (flash, vignette) |
+| `SpriteManager.ts` | Efficient sprite atlas rendering |
+| `WeatherSystem.ts` | Dynamic weather conditions |
+
+## Audio
+
+`audio.ts` provides procedural sound effects tied to gameplay events —
+builds, mining, combat, and ambient feedback.
+
+## Post-processing
+
+`postproc.ts` layers post-processing effects over the base canvas render for
+visual polish.
 
 ## Co-op multiplayer
 
@@ -700,6 +857,12 @@ Supabase Realtime broadcasts:
 
 Each client runs the deterministic simulation locally; realtime events keep
 shared state consistent across players.
+
+## Trading
+
+Players can trade with each other; trades are secured with a fee checkout
+handled by `trade-fee-checkout` and settled by `trade-webhook` Edge
+Functions.
 
 ## Premium features
 
@@ -718,72 +881,107 @@ Source file: projects/factorio-web-game/backend.md
 
 # Backend & Monetization
 
-Novactorio's backend is **Supabase** (Postgres + Auth + Realtime + Storage)
-with **Stripe** payments handled by **Deno Edge Functions**.
+Novactorio's backend is **Supabase** (auth, realtime, Postgres, storage)
+with **Stripe** payments handled by four **Deno Edge Functions**.
 
-## Supabase services
+## Services
 
-| Service | Usage |
+| Service | Role |
 |---|---|
-| **Auth** | Email/password registration and login |
-| **Postgres** | `profiles`, `world_snapshots`, shop/trade state (RLS-protected) |
-| **Realtime** | Co-op broadcast: player positions, build place/remove, chat |
-| **Storage** | Cloud save backups |
+| **Supabase Auth** | Accounts, sessions (`@supabase/supabase-js` ^2.57) |
+| **Supabase Realtime** | Co-op multiplayer: player positions + build actions |
+| **Supabase Postgres** | World snapshots, profiles, trades |
+| **Supabase Storage** | Save data / snapshot storage |
+| **Stripe** | Checkout subscriptions (Starter/Premium) + trade fees |
+| **Deno Edge Functions** | Payment orchestration + webhooks |
 
-### Cloud saves
+## Database (supabase-schema.sql)
 
-World snapshots are persisted to `world_snapshots.save_data`, giving players
-both local storage and a cloud backup.
+Key tables:
 
-### Row-Level Security (RLS)
+| Table | Purpose |
+|---|---|
+| `profiles` | User profiles; `premium_tier` updated by webhooks |
+| `world_snapshots` | Cloud saves (`save_data` payload) |
+| trades / trade state | Player-to-player trading |
 
-Tables are protected with RLS so players can only read/write their own data.
-
-## Stripe integration
-
-Payment flow is implemented with four Deno Edge Functions under
-`supabase/functions/`:
+## Edge functions (`supabase/functions/`)
 
 | Function | Purpose |
 |---|---|
-| `stripe-checkout` | Create a Stripe Checkout session for Starter/Premium |
-| `stripe-webhook` | Verify the Stripe signature and update `profiles.premium_tier` |
-| `trade-fee-checkout` | Checkout for marketplace/trade fees |
-| `trade-webhook` | Update trade balances after payment |
+| `stripe-checkout` | Creates a Stripe Checkout session for premium subscriptions (Starter/Premium) |
+| `stripe-webhook` | Verifies Stripe webhooks; updates `profiles.premium_tier` |
+| `trade-fee-checkout` | Checkout for trade fee payments |
+| `trade-webhook` | Confirms trade fees and settles trades |
 
-### Flow
+### Flow: premium subscription
 
 ```
-Player clicks "Upgrade"  →  stripe-checkout (Deno)  →  Stripe Checkout page
-                                                          │
-                    Stripe redirect back (success)         │
-                          │                                │
-                          ▼                                ▼
-        Frontend refreshes premiumTier      stripe-webhook verifies & updates
-        after login / redirect              profiles.premium_tier in Supabase
+Player clicks "Go Premium"
+      │
+      ▼
+stripe-checkout (Edge Function)
+      │  creates Checkout Session
+      ▼
+Stripe Checkout page (hosted)
+      │  payment success
+      ▼
+stripe-webhook (Edge Function, signature-verified)
+      │  updates profiles.premium_tier
+      ▼
+Player has premium benefits
 ```
 
-### Local development
+### Flow: player trading
 
-```bash
-# requires Stripe keys in .env.local
-supabase functions serve stripe-checkout --env-file .env.local
-supabase functions serve stripe-webhook --env-file .env.local
 ```
+Player A initiates trade with Player B
+      │
+      ▼
+trade-fee-checkout (Edge Function)
+      │  fee payment processed
+      ▼
+trade-webhook (Edge Function)
+      │  settles trade, transfers assets
+      ▼
+Both players receive items
+```
+
+## Co-op multiplayer
+
+Supabase Realtime broadcasts:
+
+- **Player positions** — live movement of other players
+- **Build actions** — place/remove events replicated to all clients
+
+## Cloud saves
+
+World snapshots are backed up to Supabase:
+
+- `world_snapshots.save_data` holds serialized world state
+- Restorable from the game's save/load UI
 
 ## Environment variables
 
 | Variable | Purpose |
 |---|---|
 | `VITE_SUPABASE_URL` | Supabase project URL |
-| `VITE_SUPABASE_ANON_KEY` | Publishable anon key |
-| `VITE_ADMIN_USERS` | Admin usernames (comma-separated) |
-| Stripe keys | Secret keys used by the Deno edge functions |
+| `VITE_SUPABASE_ANON_KEY` | Supabase anon (publishable) key |
+| `VITE_ADMIN_USERS` | Comma-separated admin usernames |
+| Stripe secret keys | Edge function secrets (Stripe API + webhook signing) |
 
 ## Deployment
 
-- Frontend + game: Cloudflare via Wrangler (`wrangler deploy`).
-- Edge functions: Supabase (`supabase functions deploy`).
+```bash
+# Deploy edge functions
+supabase functions deploy
+
+# Deploy the game to Cloudflare
+npm run deploy   # = npm run build && wrangler deploy
+```
+
+Configuration lives in `wrangler.jsonc`; Supabase CLI handles function
+deployments with per-function secrets.
 
 ---
 
@@ -2005,6 +2203,526 @@ Source file: projects/nv2-engine/roadmap.md
 3. Single-scale learning
 4. No model persistence across sessions
 5. Basic texture generation
+
+---
+
+## Cybersec Toolkit - Overview
+Source file: projects/cybersec-tools/index.md
+
+# Cybersec Toolkit
+
+> **A Rust cybersecurity toolkit — four focused offensive-security tools built as a Cargo workspace, with zero external services and clean stdlib-heavy implementations.**
+
+The Cybersec Toolkit (repository: `BartoszOsiej/cybersec-tools`) contains four
+standalone CLI tools written in Rust. Each tool is deliberately focused,
+single-purpose, and built to run anywhere Rust compiles — no daemons, no
+databases, no cloud dependencies.
+
+**Language:** Rust (2021 edition) · **Workspace:** Cargo workspace with 4
+members · **Release profile:** `lto = true`, `opt-level = 3`, stripped symbols
+
+## The four tools
+
+| Tool | Purpose | Key capabilities |
+|---|---|---|
+| [NetRecon](netrecon) | Concurrent TCP port scanner | CIDR expansion, hostname resolution, banner grabbing, JSON output, worker pool |
+| [ShadowScan](shadowscan) | Web vulnerability scanner | Security header audit, TLS/cert inspection, reflected XSS/SQLi probes, path discovery |
+| [HashSleuth](hashsleuth) | Hash identification & cracking | Fingerprinting of 15+ formats, parallel dictionary attack, masked brute force |
+| [PacketEye](packeteye) | pcap traffic analyzer | Live + offline capture, protocol mix, top talkers, TCP handshake stats |
+
+## Why Rust
+
+- **Memory safety** — no buffer overflows or use-after-free in security tools
+- **Zero-runtime** — single static binaries, no interpreter required
+- **Speed** — release builds with `lto` + `opt-level 3`
+- **Portability** — the same binary runs on any Linux/macOS/Windows host
+
+## Build
+
+```bash
+# Build all four tools (release)
+cargo build --release
+
+# Individual tools
+cargo build --release -p netrecon
+cargo build --release -p shadowscan
+cargo build --release -p hashsleuth
+cargo build --release -p packeteye
+
+# Binaries land in target/release/
+ls target/release/{netrecon,shadowscan,hashsleuth,packeteye}
+```
+
+**Dependencies:** `ureq` (HTTP client, ShadowScan), `openssl` (TLS,
+ShadowScan), `md-5`/`sha1`/`sha2` (hashing, HashSleuth), `pcap` (capture,
+PacketEye), `num_cpus` (parallelism). Everything else is stdlib.
+
+## Legal & ethical use
+
+These tools are intended for **authorized security testing only** — your own
+systems, lab environments, or targets you have explicit written permission
+to test. Unauthorized scanning, probing, or password cracking may violate
+local laws and the terms of service of the systems involved. The author
+accepts no responsibility for misuse.
+
+## Repository layout
+
+```
+cybersec-tools/
+├── Cargo.toml            # workspace definition + release profile
+├── netrecon/
+│   └── src/main.rs       # TCP scanner + banner grabber
+├── shadowscan/
+│   └── src/main.rs       # web vulnerability scanner
+├── hashsleuth/
+│   └── src/main.rs       # hash identify/dict/brute
+└── packeteye/
+    └── src/main.rs       # pcap analyzer
+```
+
+---
+
+## Cybersec Toolkit - NetRecon
+Source file: projects/cybersec-tools/netrecon.md
+
+# NetRecon
+
+Concurrent TCP port scanner with banner grabbing — the network discovery
+workhorse of the toolkit.
+
+## Overview
+
+NetRecon probes TCP ports across a target using a **fixed worker pool with
+atomic work-stealing**. Each probe performs a timed connect plus an optional
+banner read. Results are printed as they are found and can be emitted as
+JSON-lines for pipeline integration.
+
+**Key design points:**
+
+- Fixed worker pool (default 128 threads) with a shared `Mutex`
+  work queue
+- `TcpStream::connect_timeout` — no OS-level connect hangs
+- Deterministic service-name mapping for 50+ well-known ports
+- Best-effort banner grab: sends a bare `\r\n`, reads up to 200 bytes of the
+  reply (works for HTTP, SMTP, FTP, SSH, and more)
+
+## Usage
+
+```
+netrecon  [ports] [--threads N] [--timeout MS] [--json]
+
+ARGUMENTS:
+  target   IP address, hostname, or CIDR (e.g. 10.0.0.0/24)
+  ports    comma list and/or ranges (default 1-1024)
+
+OPTIONS:
+  --threads N   worker threads (default 128)
+  --timeout MS  connect timeout ms (default 1000)
+  --json        JSON-lines output
+```
+
+### Examples
+
+```bash
+# Scan localhost for common services
+netrecon 127.0.0.1 22,80,443
+
+# Scan a /24 subnet's top ports with 64 threads
+netrecon 192.168.1.0/24 1-1024 --threads 64
+
+# Hostname resolution
+netrecon example.com 80,443
+
+# JSON output for jq pipelines
+netrecon 10.0.0.5 22,80,443,3306 --json | jq .
+```
+
+## Target expansion
+
+| Input | Expansion |
+|---|---|
+| Single IP | `127.0.0.1` → one address |
+| Hostname | `example.com` → resolved via `ToSocketAddrs` (all returned addresses) |
+| CIDR | `10.0.0.0/24` → 256 addresses |
+| CIDR guard | `/0`–`/7` refused (more than 16M hosts is impractical) |
+| IPv6 | Not supported for CIDR (explicit error) |
+
+## Port parsing
+
+Ports accept comma-separated lists and `lo-hi` ranges:
+
+```
+22,80,443          → 22, 80, 443
+1-1024             → 1..=1024
+22,80,8000-8100    → mixed list and range
+```
+
+## Banner grabbing
+
+After a successful connect, NetRecon:
+
+1. Sets read timeout (1.5 s) and write timeout (500 ms)
+2. Sends a generic `\r\n` probe
+3. Reads up to 512 bytes, keeps the first 200 as UTF-8 (lossy), trims
+4. Reports the banner alongside the service name
+
+## Output
+
+**Human-readable:**
+```
+10.0.0.5:22     ssh              OpenSSH_9.2p1 Debian-2+deb12u1
+10.0.0.5:80     http
+10.0.0.5:443    https
+```
+
+**JSON-lines** (`--json`):
+```json
+{"addr":"10.0.0.5","port":22,"service":"ssh","banner":"OpenSSH_9.2p1"}
+```
+
+## Service map (selection)
+
+`ftp` (20/21) · `ssh` (22) · `smtp` (25) · `dns` (53) · `http` (80) ·
+`pop3` (110) · `msrpc` (135) · `netbios-ssn` (139) · `imap` (143) ·
+`snmp` (161/162) · `ldap` (389) · `https` (443) · `microsoft-ds` (445) ·
+`mysql` (3306) · `rdp` (3389) · `postgresql` (5432) · `redis` (6379) ·
+`kubernetes` (6443) · `mongodb` (27017) and 40+ more.
+
+## Implementation notes
+
+- `parse_cidr` guards against shift overflow and OOM for huge prefixes
+- Results are sorted by (address, port) before printing
+- The banner field escapes `"` for safe JSON embedding
+
+---
+
+## Cybersec Toolkit - ShadowScan
+Source file: projects/cybersec-tools/shadowscan.md
+
+# ShadowScan
+
+Lightweight web vulnerability scanner — a four-phase assessment of a single
+target.
+
+## Overview
+
+ShadowScan performs **four checks** against a target URL:
+
+1. **Security header audit** — checks 8 security headers (HSTS, CSP, X-Frame-Options, nosniff, Referrer-Policy, Permissions-Policy, COOP, X-XSS-Protection)
+2. **TLS / certificate inspection** — for `https://` targets (subject, issuer, expiry, negotiated version, cipher)
+3. **Injection probes** — reflected XSS payloads + error-based SQLi signatures
+4. **Common path discovery** — 33 paths probed for interesting status codes
+
+## Usage
+
+```
+shadowscan  [--timeout SECS]
+
+EXAMPLES:
+  shadowscan https://example.com
+  shadowscan http://192.168.1.10:8080 --timeout 5
+```
+
+The URL is normalized automatically: missing scheme becomes `http://`,
+trailing slashes are stripped.
+
+## Phase 1: Security headers
+
+| Header | Missing → finding |
+|---|---|
+| `strict-transport-security` | Missing HSTS |
+| `content-security-policy` | Missing CSP |
+| `x-frame-options` | Missing clickjacking protection |
+| `x-content-type-options` | Missing nosniff |
+| `referrer-policy` | Missing Referrer-Policy |
+| `permissions-policy` | Missing Permissions-Policy |
+| `cross-origin-opener-policy` | Missing COOP |
+| `x-xss-protection` | Missing X-XSS-Protection |
+
+Also reports `server` and `x-powered-by` headers and the present/total
+security-header count.
+
+## Phase 2: TLS inspection (https only)
+
+Opens a raw TCP connection and performs an OpenSSL client handshake with
+verification disabled (assessment, not trust validation):
+
+- Certificate **subject** and **issuer**
+- Certificate **expiry** (`not_after`)
+- **Negotiated TLS version** (e.g. TLSv1.3) and **cipher**
+
+## Phase 3: Injection probes
+
+**Reflected XSS** — 4 payloads sent as `/?q=` with URL encoding;
+if the response body contains the raw payload, a potential reflected XSS is
+reported.
+
+**Error-based SQLi** — 5 payloads sent as `/?id=`; the response is
+scanned for 13 SQL error signatures:
+
+```
+SQL syntax · mysql_fetch · You have an error in your SQL syntax ·
+Unclosed quotation mark · ORA- · PostgreSQL · SQLite · syntax error ·
+Microsoft OLE DB · ODBC SQL Server Driver · unknown column ·
+Warning: mysql_ · Division by zero
+```
+
+## Phase 4: Path discovery
+
+33 common paths probed: `/robots.txt`, `/.git/config`, `/.env`,
+`/.gitignore`, `/admin`, `/api`, `/swagger`, `/openapi.json`, `/graphql`,
+`/backup`, `/wp-admin`, `/wp-login.php`, `/server-status`, `/actuator`,
+`/actuator/health`, `/login`, `/register`, `/uploads/`, `/phpinfo.php`,
+`/debug`, `/console`, `/trace`, `/metrics`, `/health`, `/version` and more.
+
+Findings are reported with status code and content size; `401`/`403`/`500`
+responses are flagged as *exists, protected*.
+
+## Output
+
+```
+[*] ShadowScan 1.0.0 | target: http://192.168.1.10:8080
+[*] timeout: 5s
+
+[1/4] security headers
+[2/4] TLS inspection
+[3/4] injection probes (XSS / SQLi)
+[4/4] path discovery
+
+=== findings ===
+  [header] Missing HSTS (HTTP Strict Transport Security)
+  [header] server=nginx, x-powered-by=none (present 3/8 security headers)
+  [xss] potential reflected XSS: http://192.168.1.10:8080/?q=%3Cscript%3Ealert(1)%3C/script%3E
+  [path] 200 /robots.txt (size 1024)
+  [path] 403 /admin (exists, protected)
+
+[*] done: 5 findings
+```
+
+## Implementation notes
+
+- HTTP via `ureq` (Agent with per-request timeout + custom UA)
+- TLS via `openssl` (`SslConnector`, verify disabled for assessment)
+- Header matching is case-insensitive
+- First XSS/SQLi hit stops further probes (break on detection)
+
+---
+
+## Cybersec Toolkit - HashSleuth
+Source file: projects/cybersec-tools/hashsleuth.md
+
+# HashSleuth
+
+Hash identification + password cracking toolkit with three modes.
+
+## Overview
+
+HashSleuth fingerprints hash formats and attacks them with two strategies:
+a parallel **dictionary attack** and a masked **brute force**. It supports
+MD5, SHA1, and SHA256 digest cracking with auto-detection from hash length.
+
+## Usage
+
+```
+hashsleuth identify 
+hashsleuth dict   [--algo md5|sha1|sha256]
+hashsleuth brute    [--algo md5|sha1|sha256]
+
+EXAMPLES:
+  hashsleuth identify 5f4dcc3b5aa765d61d8327deb882cf99
+  hashsleuth dict 5f4dcc3b5aa765d61d8327deb882cf99 rockyou.txt
+  hashsleuth brute 5f4dcc3b5aa765d61d8327deb882cf99 abc123 5 --algo md5
+```
+
+## Mode 1: identify
+
+Fingerprints a hash from its **encoding and length**. Recognized formats:
+
+| Format | Detection |
+|---|---|
+| bcrypt | `$2a$` / `$2b$` / `$2y$` prefix |
+| sha256-crypt | `$5$` prefix |
+| sha512-crypt | `$6$` prefix |
+| md5-crypt | `$1$` prefix |
+| Apache MD5 | `$apr1$` prefix |
+| phpass (WordPress/Drupal) | `$P$` / `$H$` prefix |
+| LDAP SHA1 / SSHA | `{sha1}` / `{ssha}` prefix |
+| Django PBKDF2 | `pbkdf2:sha256:` prefix |
+| Django salted SHA | `sha1$` / `sha256$` prefix |
+
+**Hex digests by length:**
+
+| Length | Candidates |
+|---|---|
+| 8 | CRC16 / FNV (hex) |
+| 16 | CRC32 / NTLM (hex) |
+| 32 | MD5 · NTLM (hex MD4) · MySQL323 |
+| 40 | SHA1 · MySQL5 |
+| 56 | SHA224 |
+| 64 | SHA256 · RIPEMD-160 (hex) |
+| 96 | SHA384 |
+| 128 | SHA512 |
+
+```
+$ hashsleuth identify 5f4dcc3b5aa765d61d8327deb882cf99
+[*] hash: 5f4dcc3b5aa765d61d8327deb882cf99
+[?] possible: MD5
+[?] possible: NTLM (hex MD4)
+[?] possible: MySQL323
+```
+
+## Mode 2: dict (dictionary attack)
+
+Reads a wordlist line-by-line and hashes each candidate across a worker pool
+(`num_cpus`, capped at 32). Early exit: the first match sets an atomic flag
+that stops all workers.
+
+```
+$ hashsleuth dict 482c811da5d5b4bc6d497ffa98491e38 /tmp/wl.txt --algo md5
+[+] FOUND: password123
+[*] cracked in 0.00s
+```
+
+- Auto-detects the algorithm from hash length when `--algo` is omitted
+- Reports total words tried and elapsed time on failure
+
+## Mode 3: brute (masked brute force)
+
+Enumerates every combination of a charset up to `maxlen`:
+
+```
+$ hashsleuth brute 900150983cd24fb0d6963f7d28e17f72 abc 3 --algo md5
+[*] HashSleuth 1.0.0 | brute force | algo=md5 | charset="abc" | maxlen=3
+[*] target: 900150983cd24fb0d6963f7d28e17f72
+[+] FOUND: abc
+```
+
+**Parallelization:** workers split the index space by first-character stride;
+each worker decodes its index into charset digits (base-N counter).
+
+**Search-space guard:** if `charset^len > 100,000,000` the tool aborts that
+length with a clear message instead of exhausting CPU.
+
+```
+$ hashsleuth brute 5f4dcc3b5aa765d61d8327deb882cf99 abcdefghijklmnopqrstuvwxyz 8 --algo md5
+[-] search space too large (26^8 = 208B); aborting
+```
+
+> **Note:** brute force grows exponentially — prefer a good wordlist
+> (dictionary mode) before brute-forcing beyond ~6 characters.
+
+## Algorithm auto-detection
+
+When `--algo` is omitted, the hash length selects the algorithm:
+
+| Length | Algorithm |
+|---|---|
+| 32 | md5 |
+| 40 | sha1 |
+| 64 | sha256 |
+| other | error, `--algo` required |
+
+## Implementation notes
+
+- `identify()` checks prefixes before hex-length classification
+- Dictionary mode uses a sliding window of worker threads (max `num_cpus`)
+- Brute force uses `checked_pow` to avoid integer overflow
+- All workers share an `AtomicBool` for early termination
+
+---
+
+## Cybersec Toolkit - PacketEye
+Source file: projects/cybersec-tools/packeteye.md
+
+# PacketEye
+
+pcap-based traffic analyzer — live capture or offline parsing with
+per-IP/per-port statistics.
+
+## Overview
+
+PacketEye reads packet captures (live or from a `.pcap` file) and produces a
+traffic summary: packet/byte totals, protocol mix, TCP handshake counts,
+top talkers, and top ports. It performs a minimal hand-rolled
+Ethernet → IPv4 → TCP/UDP/ICMP parse — enough for solid statistics without
+heavy dependencies.
+
+## Usage
+
+```
+packeteye live  [count]   capture live (count=0 for infinite)
+packeteye file        parse offline capture
+
+EXAMPLES:
+  sudo packeteye live eth0
+  packeteye file capture.pcap
+  sudo packeteye live wlan0 1000
+```
+
+> **Note:** live capture requires root/CAP_NET_RAW (or the equivalent
+> capabilities for the interface).
+
+## What it reports
+
+| Statistic | Detail |
+|---|---|
+| Packets / bytes | Total volume |
+| Protocol mix | TCP / UDP / ICMP / other counts |
+| TCP handshakes | SYN and SYN-ACK counts |
+| Top talkers | Top 10 IPs by packet count |
+| Top ports | Top 15 ports by packet count |
+
+## Packet parsing
+
+The analyzer understands:
+
+- **Ethernet** — 14-byte header, EtherType dispatch (`0x0800` IPv4;
+  `0x86dd` IPv6 is skipped for detailed parsing)
+- **IPv4** — IHL-based header parsing, protocol field, source/dest addresses
+- **TCP** — source/dest ports, SYN (`0x02`) and ACK (`0x10`) flags
+- **UDP** — source/dest ports
+- **ICMP** — counted only
+
+All parsing is bounds-checked; truncated packets are counted but skipped.
+
+## Example output
+
+```
+[*] PacketEye 1.0.0 | listening on eth0 (promisc)
+[*] Ctrl+C to stop
+
+=== report: live eth0 (1000 pkts) ===
+packets: 1000 | bytes: 742133
+protocols: tcp=812 udp=140 icmp=44 other=4
+tcp handshakes: syn=23 synack=21
+
+top talkers (by packets):
+     192.168.1.10          512
+      10.0.0.1             240
+        ...
+
+top ports (by ports):
+  443        621
+  80         132
+  53          78
+```
+
+## Offline analysis
+
+```bash
+# Capture with tcpdump, analyze offline
+sudo tcpdump -i eth0 -w capture.pcap
+packeteye file capture.pcap
+```
+
+## Implementation notes
+
+- `pcap::Capture::from_device` with promiscuous mode, 65535 snaplen,
+  200 ms timeout
+- Live loop treats `TimeoutExpired` as "keep waiting"
+- Statistics use `HashMap` and `HashMap`, sorted
+  descending before printing
+- Graceful error messages for missing interfaces or unreadable files
 
 ---
 

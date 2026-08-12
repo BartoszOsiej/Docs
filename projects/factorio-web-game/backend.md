@@ -1,68 +1,103 @@
 # Backend & Monetization
 
-Novactorio's backend is **Supabase** (Postgres + Auth + Realtime + Storage)
-with **Stripe** payments handled by **Deno Edge Functions**.
+Novactorio's backend is **Supabase** (auth, realtime, Postgres, storage)
+with **Stripe** payments handled by four **Deno Edge Functions**.
 
-## Supabase services
+## Services
 
-| Service | Usage |
+| Service | Role |
 |---|---|
-| **Auth** | Email/password registration and login |
-| **Postgres** | `profiles`, `world_snapshots`, shop/trade state (RLS-protected) |
-| **Realtime** | Co-op broadcast: player positions, build place/remove, chat |
-| **Storage** | Cloud save backups |
+| **Supabase Auth** | Accounts, sessions (`@supabase/supabase-js` ^2.57) |
+| **Supabase Realtime** | Co-op multiplayer: player positions + build actions |
+| **Supabase Postgres** | World snapshots, profiles, trades |
+| **Supabase Storage** | Save data / snapshot storage |
+| **Stripe** | Checkout subscriptions (Starter/Premium) + trade fees |
+| **Deno Edge Functions** | Payment orchestration + webhooks |
 
-### Cloud saves
+## Database (supabase-schema.sql)
 
-World snapshots are persisted to `world_snapshots.save_data`, giving players
-both local storage and a cloud backup.
+Key tables:
 
-### Row-Level Security (RLS)
+| Table | Purpose |
+|---|---|
+| `profiles` | User profiles; `premium_tier` updated by webhooks |
+| `world_snapshots` | Cloud saves (`save_data` payload) |
+| trades / trade state | Player-to-player trading |
 
-Tables are protected with RLS so players can only read/write their own data.
-
-## Stripe integration
-
-Payment flow is implemented with four Deno Edge Functions under
-`supabase/functions/`:
+## Edge functions (`supabase/functions/`)
 
 | Function | Purpose |
 |---|---|
-| `stripe-checkout` | Create a Stripe Checkout session for Starter/Premium |
-| `stripe-webhook` | Verify the Stripe signature and update `profiles.premium_tier` |
-| `trade-fee-checkout` | Checkout for marketplace/trade fees |
-| `trade-webhook` | Update trade balances after payment |
+| `stripe-checkout` | Creates a Stripe Checkout session for premium subscriptions (Starter/Premium) |
+| `stripe-webhook` | Verifies Stripe webhooks; updates `profiles.premium_tier` |
+| `trade-fee-checkout` | Checkout for trade fee payments |
+| `trade-webhook` | Confirms trade fees and settles trades |
 
-### Flow
+### Flow: premium subscription
 
 ```
-Player clicks "Upgrade"  →  stripe-checkout (Deno)  →  Stripe Checkout page
-                                                          │
-                    Stripe redirect back (success)         │
-                          │                                │
-                          ▼                                ▼
-        Frontend refreshes premiumTier      stripe-webhook verifies & updates
-        after login / redirect              profiles.premium_tier in Supabase
+Player clicks "Go Premium"
+      │
+      ▼
+stripe-checkout (Edge Function)
+      │  creates Checkout Session
+      ▼
+Stripe Checkout page (hosted)
+      │  payment success
+      ▼
+stripe-webhook (Edge Function, signature-verified)
+      │  updates profiles.premium_tier
+      ▼
+Player has premium benefits
 ```
 
-### Local development
+### Flow: player trading
 
-```bash
-# requires Stripe keys in .env.local
-supabase functions serve stripe-checkout --env-file .env.local
-supabase functions serve stripe-webhook --env-file .env.local
 ```
+Player A initiates trade with Player B
+      │
+      ▼
+trade-fee-checkout (Edge Function)
+      │  fee payment processed
+      ▼
+trade-webhook (Edge Function)
+      │  settles trade, transfers assets
+      ▼
+Both players receive items
+```
+
+## Co-op multiplayer
+
+Supabase Realtime broadcasts:
+
+- **Player positions** — live movement of other players
+- **Build actions** — place/remove events replicated to all clients
+
+## Cloud saves
+
+World snapshots are backed up to Supabase:
+
+- `world_snapshots.save_data` holds serialized world state
+- Restorable from the game's save/load UI
 
 ## Environment variables
 
 | Variable | Purpose |
 |---|---|
 | `VITE_SUPABASE_URL` | Supabase project URL |
-| `VITE_SUPABASE_ANON_KEY` | Publishable anon key |
-| `VITE_ADMIN_USERS` | Admin usernames (comma-separated) |
-| Stripe keys | Secret keys used by the Deno edge functions |
+| `VITE_SUPABASE_ANON_KEY` | Supabase anon (publishable) key |
+| `VITE_ADMIN_USERS` | Comma-separated admin usernames |
+| Stripe secret keys | Edge function secrets (Stripe API + webhook signing) |
 
 ## Deployment
 
-- Frontend + game: Cloudflare via Wrangler (`wrangler deploy`).
-- Edge functions: Supabase (`supabase functions deploy`).
+```bash
+# Deploy edge functions
+supabase functions deploy
+
+# Deploy the game to Cloudflare
+npm run deploy   # = npm run build && wrangler deploy
+```
+
+Configuration lives in `wrangler.jsonc`; Supabase CLI handles function
+deployments with per-function secrets.

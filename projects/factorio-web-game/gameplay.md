@@ -32,12 +32,34 @@ resources, build machines, route materials, research, and survive.
 - **Enemy AI** — enemies spawn, path toward your pollution/factory, and attack.
 - **Pollution** — production emits pollution; higher pollution drives faster
   enemy evolution (bigger, tougher enemies over time).
+- Pollution is visualized in-game via the `PollutionOverlay` render module.
 
 ## Combat & interactions
 
 - **Build / remove** blocks and machines with a build menu.
 - **Inventory** per player with hotbar-style access.
 - **Particles & damage numbers** for juicy feedback (`renderer.ts`).
+
+## Visual & ambient systems (`src/render/`)
+
+| Module | In-game effect |
+|---|---|
+| `AmbientAtmosphere.ts` | Sky and atmosphere grading |
+| `ParticleEffects.ts` | Smoke, sparks, explosion particles |
+| `PollutionOverlay.ts` | Pollution haze over polluted areas |
+| `ScreenEffects.ts` | Screen-space feedback (flash, vignette) |
+| `SpriteManager.ts` | Efficient sprite atlas rendering |
+| `WeatherSystem.ts` | Dynamic weather conditions |
+
+## Audio
+
+`audio.ts` provides procedural sound effects tied to gameplay events —
+builds, mining, combat, and ambient feedback.
+
+## Post-processing
+
+`postproc.ts` layers post-processing effects over the base canvas render for
+visual polish.
 
 ## Co-op multiplayer
 
@@ -49,6 +71,12 @@ Supabase Realtime broadcasts:
 
 Each client runs the deterministic simulation locally; realtime events keep
 shared state consistent across players.
+
+## Trading
+
+Players can trade with each other; trades are secured with a fee checkout
+handled by `trade-fee-checkout` and settled by `trade-webhook` Edge
+Functions.
 
 ## Premium features
 

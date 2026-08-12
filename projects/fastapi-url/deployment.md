@@ -43,6 +43,23 @@ fly launch   # first time only
 fly deploy
 ```
 
+## Deployment architecture
+
+```
+Browser
+   │  HTTPS
+   ▼
+Fly.io / Docker host
+   │  uvicorn: app.main:app
+   ├── /auth/*        → JWT auth
+   ├── /urls/*        → shorten, my, stats, delete, redirect
+   ├── /health        → liveness
+   └── /* (SPA)       → static files / index.html fallback
+   │
+   ▼
+SQLite (volume-mounted /app/data)
+```
+
 ## Production checklist
 
 - [ ] Set a long, random `SECRET_KEY` (never commit it)
@@ -50,3 +67,5 @@ fly deploy
 - [ ] Run behind TLS (Fly.io provides it automatically)
 - [ ] Confirm `backend/static` contains a fresh frontend build
 - [ ] Restrict CORS origins instead of the dev `*` wildcard if needed
+- [ ] Back up the SQLite file regularly (single-file backups are trivial)
+- [ ] Monitor `/health` with your uptime checker

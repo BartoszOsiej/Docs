@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 // Base path for GitHub Pages: https://BartoszOsiej.github.io/Docs/
 export default defineConfig({
   title: 'Bartosz Osiej — Docs',
-  description: 'Central documentation hub for FastAPI-url (LinkShort), Factorio-web-game (Novactorio) and NV2 Engine.',
+  description: 'Central documentation hub for LinkShort, Novactorio, NV2 Engine and the Cybersec Toolkit.',
   lang: 'en-US',
   base: '/Docs/',
   cleanUrls: true,
@@ -13,7 +13,7 @@ export default defineConfig({
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/Docs/favicon.svg' }],
     ['meta', { name: 'theme-color', content: '#0f172a' }],
     ['meta', { property: 'og:title', content: 'Bartosz Osiej — Docs' }],
-    ['meta', { property: 'og:description', content: 'Central documentation hub for FastAPI-url, Factorio-web-game and NV2 Engine.' }],
+    ['meta', { property: 'og:description', content: 'Central documentation hub for LinkShort, Novactorio, NV2 Engine and the Cybersec Toolkit.' }],
   ],
   themeConfig: {
     logo: '/logo.svg',
@@ -22,6 +22,7 @@ export default defineConfig({
       { text: 'LinkShort', link: '/projects/fastapi-url/' },
       { text: 'Novactorio', link: '/projects/factorio-web-game/' },
       { text: 'NV2 Engine', link: '/projects/nv2-engine/' },
+      { text: 'Cybersec', link: '/projects/cybersec-tools/' },
       { text: 'Update Flow', link: '/update-flow' },
     ],
     sidebar: {
@@ -44,6 +45,18 @@ export default defineConfig({
             { text: 'Architecture', link: '/projects/factorio-web-game/architecture' },
             { text: 'Gameplay Systems', link: '/projects/factorio-web-game/gameplay' },
             { text: 'Backend & Monetization', link: '/projects/factorio-web-game/backend' },
+          ],
+        },
+      ],
+      '/projects/cybersec-tools/': [
+        {
+          text: 'Cybersec Toolkit',
+          items: [
+            { text: 'Overview', link: '/projects/cybersec-tools/' },
+            { text: 'NetRecon', link: '/projects/cybersec-tools/netrecon' },
+            { text: 'ShadowScan', link: '/projects/cybersec-tools/shadowscan' },
+            { text: 'HashSleuth', link: '/projects/cybersec-tools/hashsleuth' },
+            { text: 'PacketEye', link: '/projects/cybersec-tools/packeteye' },
           ],
         },
       ],
