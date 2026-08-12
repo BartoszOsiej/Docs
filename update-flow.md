@@ -14,6 +14,7 @@ how this documentation site stays in sync with the source projects.
 | [BartoszOsiej/cybersec-tools](https://github.com/BartoszOsiej/cybersec-tools) | BartoszOsiej | Source: Cybersec Toolkit — 4 Rust security tools |
 | [BartoszOsiej/halcyon-process-monitor](https://github.com/BartoszOsiej/halcyon-process-monitor) | BartoszOsiej | Source: Halcyon Process Monitor — eBPF telemetry |
 | [BartoszOsiej/Externum](https://github.com/BartoszOsiej/Externum) | BartoszOsiej | Source: Externum language |
+| [BartoszOsiej/N2-Mesh](https://github.com/BartoszOsiej/N2-Mesh) | BartoszOsiej | Source: N2 Mesh — P2P chat (own GitHub Pages site) |
 | [BartoszOsiej/factory_defense](https://github.com/BartoszOsiej/factory_defense) | BartoszOsiej | Source: Factory Defense (Rust game) |
 | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | BartoszOsiej | **This site** — GitHub Pages docs hub |
 

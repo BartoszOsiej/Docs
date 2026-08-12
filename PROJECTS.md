@@ -13,30 +13,39 @@ on this site, and maintained in the working copy at `~/`.
 
 | # | Project | Repo | Stack | Docs page |
 |---|---------|------|-------|-----------|
-| 1 | **Docs Hub + P2P Chat** | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | VitePress, WebTorrent | [docs](/) · [chat](/chat/) |
-| 2 | **LinkShort** (URL shortener) | [BartoszOsiej/FastAPI-url](https://github.com/BartoszOsiej/FastAPI-url) | FastAPI, React 19, SQLite | [docs](/projects/fastapi-url/) |
-| 3 | **Novactorio** (factory game) | [BartoszOsiej/Factorio-web-game](https://github.com/BartoszOsiej/Factorio-web-game) | TypeScript, Canvas 2D, Supabase | [docs](/projects/factorio-web-game/) |
-| 4 | **NV2 Engine** (Rust voxel) | [BartoszOsiej/NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE) | Rust, wgpu, AI vegetation | [docs](/projects/nv2-engine/) |
-| 5 | **AURORA OS** (browser OS) | [BartoszOsiej/AURORA-OS](https://github.com/BartoszOsiej/AURORA-OS) | TypeScript, zero deps | [docs](/projects/aurora-os/) |
-| 6 | **Cybersec Toolkit** | [BartoszOsiej/cybersec-tools](https://github.com/BartoszOsiej/cybersec-tools) | Rust, pcap, openssl | [docs](/projects/cybersec-tools/) |
-| 7 | **Halcyon Process Monitor** | [BartoszOsiej/halcyon-process-monitor](https://github.com/BartoszOsiej/halcyon-process-monitor) | Rust, eBPF, Aya, ratatui | [docs](/projects/halcyon-process-monitor/) |
-| 8 | **Externum** (programming language) | [BartoszOsiej/Externum](https://github.com/BartoszOsiej/Externum) | Python, own lexer/parser/compiler | [docs](/projects/externum/) |
-| 9 | **Factory Defense** (Rust game) | [BartoszOsiej/factory_defense](https://github.com/BartoszOsiej/factory_defense) | Rust, macroquad | [docs](/projects/factory-defense/) |
+| 1 | **Docs Hub** | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | VitePress | [docs](/) |
+| 2 | **N2 Mesh** (P2P chat) | [BartoszOsiej/N2-Mesh](https://github.com/BartoszOsiej/N2-Mesh) | WebTorrent, static | [live](https://bartoszosiej.github.io/N2-Mesh/) |
+| 3 | **LinkShort** (URL shortener) | [BartoszOsiej/FastAPI-url](https://github.com/BartoszOsiej/FastAPI-url) | FastAPI, React 19, SQLite | [docs](/projects/fastapi-url/) |
+| 4 | **Novactorio** (factory game) | [BartoszOsiej/Factorio-web-game](https://github.com/BartoszOsiej/Factorio-web-game) | TypeScript, Canvas 2D, Supabase | [docs](/projects/factorio-web-game/) |
+| 5 | **NV2 Engine** (Rust voxel) | [BartoszOsiej/NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE) | Rust, wgpu, AI vegetation | [docs](/projects/nv2-engine/) |
+| 6 | **AURORA OS** (browser OS) | [BartoszOsiej/AURORA-OS](https://github.com/BartoszOsiej/AURORA-OS) | TypeScript, zero deps | [docs](/projects/aurora-os/) |
+| 7 | **Cybersec Toolkit** | [BartoszOsiej/cybersec-tools](https://github.com/BartoszOsiej/cybersec-tools) | Rust, pcap, openssl | [docs](/projects/cybersec-tools/) |
+| 8 | **Halcyon Process Monitor** | [BartoszOsiej/halcyon-process-monitor](https://github.com/BartoszOsiej/halcyon-process-monitor) | Rust, eBPF, Aya, ratatui | [docs](/projects/halcyon-process-monitor/) |
+| 9 | **Externum** (programming language) | [BartoszOsiej/Externum](https://github.com/BartoszOsiej/Externum) | Python, own lexer/parser/compiler | [docs](/projects/externum/) |
+| 10 | **Factory Defense** (Rust game) | [BartoszOsiej/factory_defense](https://github.com/BartoszOsiej/factory_defense) | Rust, macroquad | [docs](/projects/factory-defense/) |
 
 ---
 
-## 1. Docs Hub + P2P Chat — `BartoszOsiej/Docs`
+## 1. Docs Hub — `BartoszOsiej/Docs`
 
 | | |
 |---|---|
-| **What** | This documentation site + the serverless P2P chat. Built with VitePress, deployed to GitHub Pages. |
-| **P2P Chat** | Torrent-principle messenger that works on **static hosting** — no server, no database. Room = torrent **infohash**; every peer seeds the same blob and joins a WebTorrent swarm. Messages travel over the **BitTorrent extended protocol** (custom `NV2` extension) with a send queue until the extended handshake completes — nothing is lost. |
-| **Stack** | VitePress, WebTorrent, vanilla JS, GitHub Actions |
+| **What** | This documentation site + project registry. Built with VitePress, deployed to GitHub Pages. |
+| **Stack** | VitePress, GitHub Actions |
 | **Local path** | `~/Docs` |
-| **Live** | https://bartoszosiej.github.io/Docs/ · chat at https://bartoszosiej.github.io/Docs/chat/ |
+| **Live** | https://bartoszosiej.github.io/Docs/ |
 | **Notes** | `llms.txt` / `llms-full.txt` / `sitemap.xml` generated from the page tree. Update flow documented in `update-flow.md`. |
 
-## 2. LinkShort — `BartoszOsiej/FastAPI-url`
+## 2. N2 Mesh (P2P Chat) — `BartoszOsiej/N2-Mesh`
+
+| | |
+|---|---|
+| **What** | Torrent-principle messenger that works on **static hosting** — no server, no database. Room = torrent **infohash**; every peer seeds the same blob and joins a WebTorrent swarm. Messages travel over the **BitTorrent extended protocol** (custom `NV2` extension) with a send queue until the extended handshake completes — nothing is lost. |
+| **Stack** | WebTorrent (vendored, no CDN), vanilla JS |
+| **Local path** | `~/N2-Mesh` |
+| **Live** | https://bartoszosiej.github.io/N2-Mesh/ |
+
+## 3. LinkShort — `BartoszOsiej/FastAPI-url`
 
 | | |
 |---|---|
@@ -45,7 +54,7 @@ on this site, and maintained in the working copy at `~/`.
 | **Local path** | `~/FastAPI-url` |
 | **Docs** | [/projects/fastapi-url/](/projects/fastapi-url/) — Overview, Getting Started, API Reference, Deployment |
 
-## 3. Novactorio — `BartoszOsiej/Factorio-web-game`
+## 4. Novactorio — `BartoszOsiej/Factorio-web-game`
 
 | | |
 |---|---|
@@ -54,7 +63,7 @@ on this site, and maintained in the working copy at `~/`.
 | **Local path** | `~/Factorio-web-game` |
 | **Docs** | [/projects/factorio-web-game/](/projects/factorio-web-game/) — Overview, Architecture, Gameplay, Backend & Monetization |
 
-## 4. NV2 Engine — `BartoszOsiej/NV2_ENGINE`
+## 5. NV2 Engine — `BartoszOsiej/NV2_ENGINE`
 
 | | |
 |---|---|
@@ -63,7 +72,7 @@ on this site, and maintained in the working copy at `~/`.
 | **Local path** | `~/NV2_ENGINE` |
 | **Docs** | [/projects/nv2-engine/](/projects/nv2-engine/) |
 
-## 5. AURORA OS — `BartoszOsiej/AURORA-OS`
+## 6. AURORA OS — `BartoszOsiej/AURORA-OS`
 
 | | |
 |---|---|
@@ -72,7 +81,7 @@ on this site, and maintained in the working copy at `~/`.
 | **Local path** | `~/halcyon-process-monitor/aurora-os` |
 | **Docs** | [/projects/aurora-os/](/projects/aurora-os/) — Overview, Architecture, User Guide |
 
-## 6. Cybersec Toolkit — `BartoszOsiej/cybersec-tools`
+## 7. Cybersec Toolkit — `BartoszOsiej/cybersec-tools`
 
 | | |
 |---|---|
@@ -81,7 +90,7 @@ on this site, and maintained in the working copy at `~/`.
 | **Local path** | `~/cybersec-tools` |
 | **Docs** | [/projects/cybersec-tools/](/projects/cybersec-tools/) |
 
-## 7. Halcyon Process Monitor — `BartoszOsiej/halcyon-process-monitor`
+## 8. Halcyon Process Monitor — `BartoszOsiej/halcyon-process-monitor`
 
 | | |
 |---|---|
@@ -90,7 +99,7 @@ on this site, and maintained in the working copy at `~/`.
 | **Local path** | `~/halcyon-process-monitor` |
 | **Docs** | [/projects/halcyon-process-monitor/](/projects/halcyon-process-monitor/) — Overview + Architecture |
 
-## 8. Externum — `BartoszOsiej/Externum`
+## 9. Externum — `BartoszOsiej/Externum`
 
 | | |
 |---|---|
@@ -101,7 +110,7 @@ on this site, and maintained in the working copy at `~/`.
 | **Docs** | [/projects/externum/](/projects/externum/) — Overview, Syntax, Examples, Compiler & CLI, Architecture |
 | **Tests** | 118 unit tests, all green |
 
-## 9. Factory Defense — `BartoszOsiej/factory_defense`
+## 10. Factory Defense — `BartoszOsiej/factory_defense`
 
 | | |
 |---|---|

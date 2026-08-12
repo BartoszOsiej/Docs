@@ -43,7 +43,7 @@ content, fetch `/Docs/llms-full.txt`.
   - [Compiler & CLI](https://bartoszosiej.github.io/Docs/projects/externum/compiler)
   - [Architecture](https://bartoszosiej.github.io/Docs/projects/externum/architecture)
 - [Factory Defense](https://bartoszosiej.github.io/Docs/projects/factory-defense/): Rust factory-building + tower-defense game on macroquad.
-- [P2P Chat](https://bartoszosiej.github.io/Docs/chat/): Serverless torrent-principle chat that runs on static hosting via WebTorrent swarms.
+- [N2 Mesh](https://bartoszosiej.github.io/N2-Mesh/): Serverless torrent-principle P2P chat that runs on static hosting via WebTorrent swarms (own repo).
 
 ## Meta
 

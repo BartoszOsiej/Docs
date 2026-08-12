@@ -18,8 +18,8 @@ hero:
       text: 🚀 Explore Projects
       link: /projects/fastapi-url/
     - theme: alt
-      text: 💬 P2P Chat (torrent-based)
-      link: /chat/
+      text: 💬 N2 Mesh (P2P chat)
+      link: https://bartoszosiej.github.io/N2-Mesh/
     - theme: alt
       text: LinkShort — URL Shortener
       link: /projects/fastapi-url/
@@ -56,9 +56,9 @@ features:
     details: eBPF-based process & file telemetry for Linux with a ransomware sliding-window heuristic and a live TUI.
     link: /projects/halcyon-process-monitor/
   - icon: 💬
-    title: P2P Chat
-    details: A serverless, torrent-principle chat that works on static hosting — peers connect via WebTorrent swarms.
-    link: /chat/
+    title: N2 Mesh — P2P Chat
+    details: A serverless, torrent-principle chat that works on static hosting — peers connect via WebTorrent swarms. Its own repo and GitHub Pages site.
+    link: https://bartoszosiej.github.io/N2-Mesh/
   - icon: 🔄
     title: Update Flow
     details: Which repositories publish updates to this documentation site, and how.
@@ -156,7 +156,7 @@ features:
   </GlowCard>
   <GlowCard>
     <h3>💬 Serverless chat</h3>
-    <p>The built-in [P2P chat](/chat/) runs on WebTorrent swarms — no server, no database, works on static GitHub Pages.</p>
+    <p>The standalone [N2 Mesh](/projects/) chat runs on WebTorrent swarms — no server, no database, works on static GitHub Pages. It lives in its own repo.</p>
   </GlowCard>
 </div>
 </ScrollReveal>

@@ -14,18 +14,18 @@ title: Projects — Bartosz Osiej
   <ProjectCard
     icon="📚"
     title="Docs Hub"
-    description="This documentation site itself — VitePress on GitHub Pages, AI-readable llms.txt, auto-deploy via GitHub Actions, and a built-in serverless P2P chat."
+    description="This documentation site itself — VitePress on GitHub Pages, AI-readable llms.txt, auto-deploy via GitHub Actions, and the registry of every project."
     :tags="['VitePress', 'GitHub Pages', 'WebTorrent']"
     tint="#38bdf8"
     link="/"
   />
   <ProjectCard
     icon="💬"
-    title="P2P Chat"
-    description="Torrent-principle messenger that works on static hosting. Room = torrent infohash, peers join a WebTorrent swarm, messages travel over the BitTorrent extended protocol — no server, no database."
+    title="N2 Mesh — P2P Chat"
+    description="Torrent-principle messenger that works on static hosting. Room = torrent infohash, peers join a WebTorrent swarm, messages travel over the BitTorrent extended protocol — no server, no database. Lives in its own repo (BartoszOsiej/N2-Mesh)."
     :tags="['WebTorrent', 'P2P', 'BitTorrent', 'Serverless']"
     tint="#a78bfa"
-    link="/chat/"
+    link="https://bartoszosiej.github.io/N2-Mesh/"
   />
   <ProjectCard
     icon="🔗"
@@ -97,7 +97,8 @@ title: Projects — Bartosz Osiej
 
 | Project | Repository | Docs |
 |---|---|---|
-| Docs Hub + P2P Chat | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | [here](/) |
+| Docs Hub | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | [here](/) |
+| N2 Mesh (P2P Chat) | [BartoszOsiej/N2-Mesh](https://github.com/BartoszOsiej/N2-Mesh) | [live site](https://bartoszosiej.github.io/N2-Mesh/) |
 | LinkShort | [BartoszOsiej/FastAPI-url](https://github.com/BartoszOsiej/FastAPI-url) | [docs](/projects/fastapi-url/) |
 | Novactorio | [BartoszOsiej/Factorio-web-game](https://github.com/BartoszOsiej/Factorio-web-game) | [docs](/projects/factorio-web-game/) |
 | NV2 Engine | [BartoszOsiej/NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE) | [docs](/projects/nv2-engine/) |
