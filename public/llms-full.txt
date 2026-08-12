@@ -792,34 +792,19 @@ Source file: projects/nv2-engine/index.md
 
 # NV2 Engine
 
-> **A native Rust voxel engine with AI-driven procedural worlds.**
+> **A native Rust voxel engine with AI-driven procedural worlds — a full desktop voxel game built on wgpu, featuring an embedded neural network that learns vegetation placement while you play.**
 
-NV2 Engine (repository: `NV2_ENGINE`) is a desktop voxel game and engine
-written in Rust with `wgpu` rendering. It combines procedural terrain
-generation (OpenSimplex2 noise), realistic biomes, a neural-network-driven
-vegetation system that trains in the background while you play, animated water
-simulation, a full block breaking/placing interaction layer, inventory and
-crafting, save/load, and an in-game command system.
-
-**Stack:** Rust 2021, wgpu 0.20, winit 0.30, cgmath 0.18, OpenSimplex2,
-rayon, ndarray, serde/serde_json, fontdue.
-
-## Highlights
-
-- **Procedural worlds** — OpenSimplex2 heightmaps, caves, and 7+ biomes
-  (forest, jungle, taiga, swamp, plains, highlands, and more).
-- **512-block-deep chunks** (16×512×16) — tall mountains, deep caves, ready
-  for unlimited-height streaming.
-- **AI vegetation** — an embedded 8→16→4 MLP (~1.2 KB) learns in the
-  background ( **Note:** `cargo run` in dev mode already builds third-party crates at
+NV2 Engine (repository: `NV2_ENGINE`) is not a terrain prototype — it is a
+**complete, playable voxel game and engine** written in Rust (15,800+ lines of
+source across 30+ modules). It combines procedural terrain generation,
+realistic climate-driven biomes, a neural-network vegetation system that
+trains in the background with  **Note:** `cargo run` in dev mode already builds third-party crates at
 > `opt-level 3`, so even a debug build plays smoothly.
 
-## Related pages
-
-- [Architecture](architecture) — runtime, renderer, world, UI layers
-- [Gameplay](gameplay) — controls, interaction, inventory, crafting, commands
-- [AI Vegetation System](ai) — the embedded neural network and training loop
-- [Performance](performance) — GPU bandwidth, culling, meshing budgets
+**First minutes in-game:** spawn near a forest → punch trees with your bare
+hands → gather wood → open the 2×2 crafting grid (`E`) → craft wooden
+planks → sticks → a wooden pickaxe → mine stone → craft a stone pickaxe →
+mine iron → eventually craft an NVCrafter for 3×3 recipes.
 
 ---
 
@@ -828,101 +813,247 @@ Source file: projects/nv2-engine/architecture.md
 
 # Architecture
 
-NV2 Engine is organized as a Rust runtime in `Core/Src` plus auxiliary .NET
-content-pipeline tools in `Bridge/Tools`. The application entry point is
-`Core/Src/main.rs`, which uses `winit::application::ApplicationHandler` and
-manages three explicit runtime modes: `MainMenu`, `Playing`, and `PauseMenu`.
+NV2 Engine is a layered Rust application: a `winit` event-driven shell, a
+`wgpu` renderer, a procedural world simulation, and a GUI stack — plus
+auxiliary .NET and Python content-pipeline tools. This page documents every
+layer in detail, module by module, based on the actual source.
+
+## Source map (Core/Src, 15,800+ lines)
+
+| Module | Lines | Responsibility |
+|---|---|---|
+| `main.rs` | 674 | App shell, winit event loop, 3 runtime modes, save/load, menus |
+| `renderer/mod.rs` | 2,223 | Renderer state, all pipelines, culling, day/night, UI |
+| `interaction.rs` | 1,566 | DDA raycast, mining, placement, tool gating, drops, GUI layer |
+| `world/block.rs` | 1,294 | Block registry (97 types), tool tiers, hardness, movement mediums |
+| `world/biomes.rs` | 999 | 9 biome definitions, climate model, terrain generation |
+| `world/mod.rs` | 961 | World container, chunk streaming, save/load, tree propagation |
+| `crafting.rs` | 899 | Recipe registry, shaped/shapeless matching, NVCrafter states |
+| `world/vegetation.rs` | 868 | Trees, grass, AI vegetation placement |
+| `renderer/camera.rs` | 645 | First-person camera, movement, collision, flight, water |
+| `renderer/text.rs` | 631 | fontdue rasterization, text measurement, layers |
+| `inventory.rs` | 597 | 36-slot inventory, hotbar, stacks, durability |
+| `renderer/mesh.rs` | 551 | Solid + water chunk meshing |
+| `renderer/texture_atlas.rs` | 530 | Dynamic atlas, texture packs, UV lookup |
+| `assets.rs` | 519 | Block models, JSON recipes, texture discovery |
+| `world/ai_generator.rs` | 410 | Neural network, forward/backward pass, training thread |
+| `commands.rs` | 375 | `/locate`, `/tp` with tests |
+| `world/liquid.rs` | 286 | Water simulation (gravity-first solver, flow encoding) |
+| `renderer/texture_registry.rs` | 177 | Texture name normalization, tile functions |
+| `renderer/vertices.rs` | 160 | Vertex + PackedVertex (36 B) definitions |
+| `settings.rs` | 144 | AppSettings, Low-End-PC profile, settings.json persistence |
+| `world/generator.rs` | 139 | Async chunk generation queue |
+| `world/chunk.rs` | 131 | 16×512×16 chunk storage, water_meta |
+| `world/raycast.rs` | 91 | DDA voxel raycasting |
+| `input.rs` | 84 | Keyboard/mouse state |
+| `world/worldgen.rs` | 80 | WorldGenWriter abstraction |
+| `renderer/instance.rs` | 78 | Instance rendering helpers |
+| `world/decorations.rs` | 52 | Decorative block placement |
+| `world/decoration_ai.rs` | 44 | AI-driven decorations |
+| `renderer/menu.rs` | 148 | Main/pause menu rendering |
+| `renderer/texture.rs` | 28 | Texture loading |
+| `world/palette.rs` | 24 | Block palette helpers |
+| `world/online_trainer.rs` | 14 | Optional cloud-assisted training stub |
 
 ## Layer overview
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│  App shell (Core/Src/main.rs)                                │
-│  winit event loop · modes (MainMenu/Playing/PauseMenu)       │
-│  input routing · save/load · slash commands · subtitle UI    │
+│  App shell (main.rs)                                          │
+│  winit::application::ApplicationHandler                       │
+│  Modes: MainMenu · Playing · PauseMenu                        │
+│  input routing · save/load · status messages · slash commands │
 └──────────────┬───────────────────────┬───────────────────────┘
                │                       │
 ┌──────────────▼───────────────┐  ┌────▼───────────────────────┐
 │  Renderer (renderer/)       │  │  World (world/)            │
-│  wgpu pipelines             │  │  chunk map (cx,cz) -> Chunk│
-│  solid + water + UI + text  │  │  Biomes + ChunkGenerator   │
-│  frustum culling            │  │  background generation     │
+│  wgpu surface/device/queue  │  │  (cx,cz) -> Chunk map      │
+│  5 pipeline categories      │  │  BiomeGenerator            │
+│  frustum culling            │  │  ChunkGenerator (async)    │
 │  per-chunk GPU buffers      │  │  water simulation          │
-│  texture atlas + packs      │  │  AI vegetation + training  │
+│  texture atlas + packs      │  │  AI system + training      │
+│  menu/text/inventory UI     │  │  NVCrafter states          │
 └──────────────┬───────────────┘  └────┬───────────────────────┘
                │                       │
                └───────────┬───────────┘
                            ▼
-              Camera::tick_movement (AABB collision,
-              gravity, flight, water sinking)
+          InteractionController (interaction.rs)
+          bridges gameplay  GUI slot transactions
 ```
 
-## App shell (`main.rs`)
+## 1. Application shell (`main.rs`)
 
-The `App` struct owns the renderer state, the `World` instance, input
-accumulation, save/load paths, status/subtitle messaging, slash-command
-input state, and menu selection state. Runtime behaviors handled here:
+The entry point uses `winit::application::ApplicationHandler` and manages
+three explicit runtime modes:
 
-- New game, save and load flows
-- Pause/resume transitions and cursor capture toggling
-- Slash-command prompt (opened with `/`), routed to `commands::execute(...)`
-- On-screen feedback passed to the renderer subtitle/command prompt system
+```rust
+enum AppMode { MainMenu, Playing, PauseMenu }
+```
 
-## Rendering architecture (`renderer/`)
+The `App` struct owns:
 
-`renderer::State` owns the WGPU surface/device/queue, camera and
-material/biome uniforms, a depth texture, the texture atlas and bind groups,
-and separate pipelines for:
+- renderer state
+- the `World` instance
+- input accumulation state
+- save/load path handling (`exe_dir/saves/world.json`)
+- status/subtitle messaging
+- slash-command input state
+- main menu and pause menu selection state
 
-- solid world geometry
-- water geometry
-- flat UI panels
-- sprite-based UI icons
-- text rendering
+**Runtime flows implemented in the shell:**
 
-Chunk meshes and water meshes are cached separately by chunk coordinate.
-Mesh creation is rate-limited (only a small number of chunks per frame),
-GPU uploads are debounced, water mesh recombination is separated from full
-rebuilds, and seam repair rebuilds neighboring chunk borders when new chunks
-arrive.
+- New game flow → `start_new_game()` sets `AppMode::Playing`
+- Save flow → `save_game()` calls `world.save_to_file()` and shows a status message
+- Load flow → `load_game()` calls `World::load_from_file_with_settings()`, falls back to `MainMenu` on error
+- Pause/resume transitions with cursor capture toggling
+- Slash-command prompt opened with `/`, routed through `commands::execute(...)`
+- Low-End-PC toggle with on-screen feedback and persisted settings
 
-## World & chunk streaming (`world/`)
+## 2. Rendering architecture (`renderer/mod.rs`)
 
-`World` stores loaded chunks in a `(cx, cz) -> Chunk` map with a shared
-`BiomeGenerator` and a `ChunkGenerator` for background generation. Chunks
-are 16×512×16 blocks; generation is parallelized with rayon through batched
-async dispatch onto the global thread pool.
+`renderer::State` owns the WGPU surface/device/queue/configuration, camera
+uniforms, material/biome uniforms, a depth texture, the texture atlas and
+bind groups, and **five pipeline categories**:
 
-## Camera, movement & collision (`renderer/camera.rs`)
+| Pipeline | Geometry |
+|---|---|
+| Solid world | Opaque chunk meshes |
+| Water | Translucent water meshes (separate path) |
+| Flat UI panels | Procedural panel quads |
+| Sprite UI icons | Atlas-derived item icons |
+| Text | fontdue rasterized glyph layers |
 
-The authoritative movement path is: event/input capture in `main.rs` →
-`renderer::State::update(...)` → `Camera::tick_movement(...)`. Implemented:
+**Key renderer-side implementation details:**
+
+- Chunk meshes and water meshes cached separately by chunk coordinate
+- Mesh creation rate-limited: only a small number of chunks per frame
+- GPU uploads debounced (not re-uploaded on every single chunk change)
+- Water mesh recombination separated from full water mesh rebuilds
+- Seam repair rebuilds neighboring chunk borders when new chunks arrive
+- Conservative submission near the player
+
+**Gameplay-visible systems driven by the renderer:**
+
+- Day/night phase progression via `elapsed_time`
+- Water animation timing
+- Climate/biome-driven fog + ambient color uniforms
+- Crosshair, subtitle overlays, command prompt overlays
+- Main menu, pause menu, inventory, and crafter panel rendering
+
+## 3. World & chunk streaming (`world/mod.rs`)
+
+`World` stores:
+
+- Loaded chunks in a `(cx, cz) -> Chunk` map
+- A shared `BiomeGenerator`
+- A `ChunkGenerator` for background generation + a receiver for completed chunks
+- Pending chunk tracking and pending cross-chunk world writes
+- Tree-population tracking for already-processed chunks
+- Per-block `NVCrafterState` entries
+- Buffered `WorldItemDrop` entities
+
+**World features:**
+
+- Synchronous near-player chunk materialization
+- Background generation of distant chunks
+- Unloading of far chunks with a buffer radius
+- Cross-chunk world-write buffering
+- Lazy chunk generation when cross-border mutations require a destination chunk
+- Block read/write by world coordinates + numeric block ID helpers
+- Block placement/destruction helpers
+- Runtime item-drop buffering and draining
+- Save/load support (seed, flattened chunk blocks, water metadata, crafter states)
+- Safe teleport position resolution
+- Spawn search based on real block occupancy and runtime clearance
+
+### Async generation (`world/generator.rs`)
+
+- Bounded queue of chunk coordinates
+- In-flight set to deduplicate dispatch
+- Batched flushing from the main thread each frame
+- Parallel generation via `rayon::spawn(...)` + `into_par_iter()`
+- Results delivered via `mpsc`
+
+## 4. Procedural terrain & biomes (`world/biomes.rs`)
+
+Nine biomes, each with temperature, humidity, tree/grass density, tree types,
+surface block, and a vegetation tint:
+
+| Biome | Temp | Humidity | Trees | Grass | Surface |
+|---|---|---|---|---|---|
+| Ocean | 0.48 | 0.88 | 0.00 | 0.00 | Sand |
+| Coast | 0.62 | 0.54 | 0.02 | 0.10 | Sand |
+| Plains | 0.58 | 0.46 | 0.05 | 0.72 | Grass |
+| Forest | 0.54 | 0.62 | 0.46 | 0.46 | Grass |
+| Dark Forest | 0.50 | 0.74 | 0.74 | 0.18 | ForestFloor |
+| Swamp | — | — | — | — | — |
+| Taiga | — | — | — | — | — |
+| Desert | — | — | — | — | — |
+| Mountains | — | — | — | — | — |
+
+Generation combines multiple OpenSimplex-derived channels with dedicated
+seeds: continent shape, temperature, humidity, erosion, peaks/relief,
+height/detail, warp/surface variation, caves, ores, water. The generator
+exposes climate data back to the renderer (ambient color, fog color/density,
+scene grade, vegetation tint, warmth, moisture, lushness).
+
+## 5. Vegetation & tree propagation (`world/vegetation.rs`)
+
+- Terrain can emit **deferred world writes**
+- Once a chunk exists, the explicit world-space tree pass runs
+- `populate_world_trees_for_chunk(...)` applies post-insert vegetation only
+  once per explicitly inserted chunk
+- Cross-chunk canopy writes supported; spillover destination chunks remain
+  terrain-only until explicitly loaded
+- Trunk planning before canopy placement, biome-specific canopy shapes,
+  support checks for terrain/grass/flower/shrub surfaces, deterministic
+  seed-based variation, explicit world-space validation
+
+## 6. Camera, movement & collision (`renderer/camera.rs`)
+
+The authoritative movement path: input capture in `main.rs` →
+`renderer::State::update(...)` → `Camera::tick_movement(...)`.
 
 - First-person camera rotation, walking, sprinting, jumping
 - Flight toggle (F) and gravity with fall-speed limiting
 - Water-specific gravity and sinking behavior
 - AABB-based collision against solid blocks
 - Input-intent capture separated from movement integration
-- Runtime movement modifiers sampled from overlapping block mediums
-  (`BlockType::movement_medium(...)`, with `in_foliage_medium` and
-  `footstep_volume` tracked for future audio hooks)
+- Runtime movement modifiers from overlapping block mediums
+  (`BlockType::movement_medium(...)`, tracking `in_foliage_medium` and
+  `footstep_volume` for future audio hooks)
 
-## UI & text
+## 7. GUI & interaction layer (`interaction.rs`)
 
-UI is a hybrid of procedural flat panel quads, sprite-based item icons
-derived from the atlas, and fontdue-backed text layers. Systems include the
-main menu, pause menu, hotbar, full inventory overlay, 2×2 and 3×3 crafting
-overlays, hovered-slot detection, the command prompt, and subtitle/status
-messaging. Menus live in `renderer/menu.rs`; font rasterization and text
-measurement live in `renderer/text.rs`.
+The `InteractionController` acts as the **GUI transaction layer** between
+the player inventory and the world:
 
-## Content pipeline (`Bridge/Tools`)
+- Open/close inventory GUI
+- Open an NVCrafter GUI when the targeted block supports it
+- Slot hover detection
+- Drag-and-drop between slot types
+- Output-slot click handling
+- Returning crafting inputs when a GUI closes
+- Moving NVCrafter inputs back to inventory, or dropping them into the world
 
-.NET 8 tools (`System.Drawing.Common`) perform atlas slicing and PNG
-extraction. Python (`generate_textures.py`, Pillow) handles rotation,
-flipping, brightness, grayscale/invert, and related texture transforms.
-The repo also includes a custom Vulkan layer (`VkLayer_NV20.json` /
-`VkLayer_NV20.dll`) usable from the VS Code task configuration.
+`UiSlotId` explicitly distinguishes: player inventory slots, player crafting
+inputs, player crafting output, NVCrafter inputs, NVCrafter output.
+
+## 8. Content pipeline tools
+
+| Tool | Tech | Purpose |
+|---|---|---|
+| `Bridge/Tools/Slicer/Program.cs` | .NET 8 | Atlas slicing — scans atlas PNGs, extracts block textures |
+| `generate_textures.py` | Python/Pillow | Rotate, flip, grayscale, invert, darken, brighten textures |
+| `.vscode/tasks.json` | — | Run the engine executable from the workspace |
+| `VulkanLayers/VkLayer_NV20.json` + `.dll` | — | Custom Vulkan layer packaging |
+
+## 9. What is intentionally not yet implemented
+
+- Dedicated gameplay audio system (movement-medium signals are already tracked)
+- Networking / multiplayer
+- In-engine content editor
+- Formal ECS-style gameplay architecture
 
 ---
 
@@ -931,9 +1062,9 @@ Source file: projects/nv2-engine/gameplay.md
 
 # Gameplay
 
-NV2 Engine is a full survival-sandbox loop: generate a procedural world,
-break and place blocks with tool gating, gather resources, craft, and
-explore biomes with AI-placed vegetation.
+NV2 Engine is a survival-sandbox loop: generate a procedural world, break and
+place blocks with tool-gated harvesting, gather resources, craft tools and
+furniture, and explore climate-driven biomes where an AI places vegetation.
 
 ## Controls
 
@@ -946,59 +1077,373 @@ explore biomes with AI-placed vegetation.
 | `E` | Open / close inventory |
 | `Esc` | Pause menu (or close inventory) |
 | `/` | Open the command prompt |
-| Left mouse | Break block (held to keep breaking; tool-gated) |
+| Left mouse | Break block (hold to keep mining; tool-gated) |
 | Right mouse | Place block / use item |
 | Mouse wheel | Switch hotbar slot |
 | Mouse | Look around (captured while playing) |
 
-In menus, `↑` / `↓` (or `W` / `S`) navigate and `Enter` / `Space` confirm;
-`N` starts a new game and `L` loads from the main menu.
+**In menus:** `↑` / `↓` (or `W` / `S`) navigate, `Enter` / `Space` confirm,
+`N` starts a new game, `L` loads from the main menu.
 
-## Block interaction
+## Tool tiers & durability
 
-- **Breaking** — left mouse; the held tool's tier gates which blocks can be
-  broken (a wooden tier cannot break stone-tier blocks).
-- **Placing** — right mouse places the selected hotbar block.
-- Interaction is driven by block raycasting in `interaction.rs`, bridged to
-  gameplay and GUI state through the renderer's `InteractionController`.
+| Tier | Power | Tools |
+|---|---|---|
+| Hand | 1 | Bare hands |
+| Flint | 2 | Flint pickaxe |
+| Stone | 3 | Stone pickaxe |
+| Iron | 5 | Iron pickaxe |
+| Diamond | 7 | Diamond pickaxe |
+| Netherite | 8 | Netherite pickaxe |
 
-## Inventory, hotbar & crafting
+Every tool tracks `max_durability`; mining valid targets consumes durability.
+Tool power gates which blocks can be broken — a wooden tier cannot harvest
+stone-tier blocks.
 
-- **Hotbar** — scroll to switch the active stack.
-- **Inventory** — `E` opens the full overlay; drag-and-drop stack management.
-- **Crafting** — recipe-driven; a 2×2 player crafting overlay and the 3×3
-  NVCrafter overlay. Recipes are parsed from JSON and matched against
-  inventory contents in `crafting.rs`.
+## Crafting (`crafting.rs`)
 
-## Movement & physics
+Two crafting surfaces:
 
-Walking, sprinting (with an FOV kick), jumping, gravity, fall-speed
-limiting, and water-specific sinking. Flight mode (`F`) disables gravity.
-Collision is AABB-based against solid blocks; movement modifiers are sampled
-from the block medium the player stands in.
+| Surface | Grid | Where |
+|---|---|---|
+| Player crafting | 2×2 | Always available in the inventory screen |
+| NVCrafter | 3×3 | World-placed crafting station (has persistent state) |
 
-## Commands
+`RecipeRegistry` supports **shaped recipes** (pattern matching with offset
+support) and **shapeless recipes** (multiset matching). Recipes are also
+loadable from JSON (`assets.rs`). See the [Crafting Reference](crafting) for
+every recipe with exact patterns.
 
-Open the prompt with `/` and type a command:
+## Commands (`commands.rs`)
 
-```
-/locate forest       Find the nearest forest biome
-/tp 100 80 -50       Teleport to absolute coordinates
-```
+Open the prompt with `/`:
 
-Commands are dispatched by `commands::execute(...)` in `commands.rs`.
+| Command | Description |
+|---|---|
+| `/locate  [--tp]` | Find the nearest biome by sampling chunk rings outward from the player; `--tp` teleports there |
+| `/tp   ` | Teleport to absolute coordinates (resolved safely) |
 
-## World persistence
-
-The world serializes to JSON (`saves/world.json`) via `world/storage.rs`
-using serde/serde_json. The pause menu offers **Save** and **Save & Exit**;
-the main menu **Load/Save** restores a saved world.
+Responses and errors appear both on stdout and in-engine as subtitle/command
+prompt messages. Teleports use `World::safe_teleport_position(...)` to avoid
+placing the player inside solid blocks.
 
 ## Day/night & atmosphere
 
 The renderer drives day/night phase progression through `elapsed_time`,
-water animation timing, climate/biome-driven fog and ambient color uniforms,
-a crosshair, subtitle overlays, and the command prompt overlay.
+water animation timing, and climate/biome-driven fog and ambient color
+uniforms — each biome tints the scene (e.g. forest `[0.50, 0.86, 0.42]`,
+dark forest `[0.38, 0.72, 0.34]`).
+
+---
+
+## NV2 Engine - Blocks & Biomes
+Source file: projects/nv2-engine/blocks.md
+
+# Blocks & Biomes
+
+The complete block registry and biome model, extracted from
+`world/block.rs` and `world/biomes.rs`.
+
+## Block registry (97 block types)
+
+Block IDs are `u8` values in a `BlockType` enum; a `BLOCK_REGISTRY` maps
+numeric IDs to names and textures.
+
+### Terrain & surfaces (0–8)
+| ID | Block | ID | Block |
+|---|---|---|---|
+| 0 | Air | 5 | Gravel |
+| 1 | Grass | 6 | Snow |
+| 2 | Dirt | 7 | Cobblestone |
+| 3 | Stone | 8 | Bedrock |
+| 4 | Sand | | |
+
+### Liquids & natural formations (9–24)
+| ID | Block | ID | Block |
+|---|---|---|---|
+| 9 | Water | 17 | Redstone Ore |
+| 10 | Tree Trunk | 18 | Slate Rock |
+| 11 | Tree Leaves | 19 | Slate Coal Ore |
+| 12 | Coal Ore | 20 | Slate Diamond Ore |
+| 13 | Iron Ore | 21 | Tuff |
+| 14 | Gold Ore | 22 | Ember Rock |
+| 15 | Diamond Ore | 23 | Glow Rock |
+| 16 | Emerald Ore | 24 | Obsidian |
+
+### Building blocks (25–44)
+| ID | Block | ID | Block |
+|---|---|---|---|
+| 25 | Stone Bricks | 35 | Packed Mud |
+| 26 | Andesite | 36 | Rooted Soil |
+| 27 | Bush | 37 | Coarse Soil |
+| 28 | Tall Grass | 38 | Forest Floor |
+| 29 | Flower | 39 | Bloom Floor |
+| 30 | Dead Bush | 40 | Root Lattice |
+| 31 | Cactus | 41 | Needle Wood |
+| 32 | Clay | 42 | Warm Wood |
+| 33 | Moss Mat | 43 | Wet Wood |
+| 34 | Mud | 44 | Pale Wood |
+
+### Canopies (45–51)
+| ID | Block | ID | Block |
+|---|---|---|---|
+| 45 | Needle Canopy | 49 | Bloom Canopy |
+| 46 | Warm Canopy | 50 | Dark Wood |
+| 47 | Wet Canopy | 51 | Dark Canopy |
+| 48 | Pale Canopy | | |
+
+### Items & tools (52–74)
+| ID | Block | ID | Block |
+|---|---|---|---|
+| 52 | Sapling | 64 | Wooden Pickaxe |
+| 53 | Stick | 65 | Wooden Axe |
+| 54 | Flint | 66 | Wooden Shovel |
+| 55 | Flint Pickaxe | 67 | Wooden Hoe |
+| 56 | Stone Pickaxe | 68 | Torch |
+| 57 | Iron Pickaxe | 69 | Door |
+| 58 | Diamond Pickaxe | 70 | Trapdoor |
+| 59 | Netherite Pickaxe | 71 | Ladder |
+| 60 | Planks | 72 | Fence |
+| 61 | Iron Ingot | 73 | Fence Gate |
+| 62 | Chest | 74 | Workbench Upgrade |
+| 63 | NVCrafter | | |
+
+### Extended vegetation — AI class 0: flowers (75–83)
+| ID | Block | ID | Block |
+|---|---|---|---|
+| 75 | Rose | 80 | Tulip (Orange) |
+| 76 | Dandelion | 81 | Cornflower |
+| 77 | Tulip (Red) | 82 | Allium |
+| 78 | Tulip (Pink) | 83 | Azalea Flower |
+| 79 | Tulip (White) | | |
+
+### Extended vegetation — AI class 1: ferns & water plants (84–89)
+| ID | Block | ID | Block |
+|---|---|---|---|
+| 84 | Lily Pad | 87 | Seagrass |
+| 85 | Fern | 88 | Tall Seagrass |
+| 86 | Fern Plant | 89 | Kelp |
+
+### Extended vegetation — AI classes 2–3: decorations (90–96)
+| ID | Block | ID | Block |
+|---|---|---|---|
+| 90 | Small Stick | 94 | Mossy Cobble |
+| 91 | Pebble 1 | 95 | Vine |
+| 92 | Pebble 2 | 96 | Moss Carpet |
+| 93 | Pebble 3 | | |
+
+## Tool tiers
+
+```rust
+pub enum ToolTier { Hand = 1, Flint = 2, Stone = 3, Iron = 4, Diamond = 5, Netherite = 6 }
+```
+
+| Tier | Power | | Tier | Power |
+|---|---|---|---|---|
+| Hand | 1 | | Iron | 5 |
+| Flint | 2 | | Diamond | 7 |
+| Stone | 3 | | Netherite | 8 |
+
+`ToolStats` carries tier, `speed_multiplier`, and `max_durability`.
+
+## Movement mediums
+
+`MovementMedium` metadata lets the engine apply physics modifiers per medium:
+
+```rust
+MovementMedium::FOLIAGE {
+    movement_speed_multiplier: 0.55,
+    sprint_speed_multiplier:  0.65,
+    fall_speed_multiplier:    0.35,
+    sound_dampening:          0.6,
+}
+```
+
+The camera tracks `in_foliage_medium` and `footstep_volume` at runtime for
+these hooks (audio consumption is a future feature).
+
+---
+
+## NV2 Engine - Crafting Reference
+Source file: projects/nv2-engine/crafting.md
+
+# Crafting Reference
+
+Every recipe registered in `crafting.rs`, with exact patterns. The engine
+supports **shaped recipes** (fixed patterns with offset matching) and
+**shapeless recipes** (multiset matching).
+
+## Surfaces
+
+| Surface | Grid | Notes |
+|---|---|---|
+| Player crafting | 2×2 | Always available via `E` |
+| NVCrafter | 3×3 | World-placed station; state persists in saves |
+
+## Shapeless recipes
+
+| Output | Input |
+|---|---|
+| Planks ×4 | 1 log (any wood) |
+
+## Shaped recipes
+
+Legend: `P` = Planks, `S` = Stick, `L` = log, `I` = Iron Ingot, `F` = Flint.
+
+### Wood processing
+**Sticks ×4** — `[P][P]`
+
+### NVCrafter
+```
+[P][P][P]
+[P][L][P]    (log in center)
+[P][P][P]
+```
+
+### Wooden tools
+**Wooden Pickaxe**
+```
+[P][P][P]
+[ ][S][ ]
+[ ][S][ ]
+```
+
+**Wooden Axe**
+```
+[P][P][ ]
+[P][S][ ]
+[ ][S][ ]
+```
+
+**Wooden Shovel**
+```
+[P][ ][ ]
+[S][ ][ ]
+[S][ ][ ]
+```
+
+**Wooden Hoe**
+```
+[P][P][ ]
+[ ][S][ ]
+[ ][S][ ]
+```
+
+### Torches
+`[S][L]` → Torch
+
+### Storage & furniture
+**Chest** — 3×3 ring of planks with empty center
+**Door** — 2×3 of planks
+**Trapdoor** — 2×2 of planks
+**Ladder** — stick/plank pattern
+**Fence** — 2×3 plank+stick pattern
+**Fence Gate** — 2×3 pattern
+**Workbench Upgrade** — plank upgrade recipe
+
+### Pickaxe progression
+| Recipe | Pattern |
+|---|---|
+| Flint Pickaxe | Shapeless (flint + sticks) |
+| Stone Pickaxe | Stone head + 2 sticks |
+| Iron Pickaxe | Iron Ingot head + 2 sticks |
+
+## Matching logic
+
+- **Shaped:** `shaped_recipe_matches(grid, recipe)` — pattern is matched with
+  offset support against the grid.
+- **Shapeless:** `shapeless_recipe_matches(grid, recipe)` — multiset matching
+  (order does not matter).
+- `RecipeRegistry::match_grid()` returns the first matching shaped recipe,
+  then falls back to shapeless.
+- Output is an `ItemStack` (`stack_of(block, count)`).
+
+## NVCrafter state
+
+`NVCrafterState` is stored per block in the world (`world/mod.rs`) and is
+persisted in saves. When a GUI closes, inputs return to the player inventory
+(or drop into the world if there is no room). Breaking an NVCrafter flushes
+its contents into world drops.
+
+## JSON recipes
+
+`assets.rs` also loads and validates recipes from JSON, with utilities for
+shaped/shapeless recipe parsing alongside block-model loading.
+
+---
+
+## NV2 Engine - Water Simulation
+Source file: projects/nv2-engine/water.md
+
+# Water Simulation
+
+Dynamic liquid behavior lives in `world/liquid.rs`, with world integration in
+`world/mod.rs` and a dedicated translucent render path in `renderer/mesh.rs`.
+
+## Water metadata encoding
+
+Each chunk stores a per-voxel `water_meta` byte:
+
+| Value | Meaning |
+|---|---|
+| `0` | No dynamic state |
+| `1..=7` | Flowing water (level = height of the flow column) |
+| `8` | Water source (`SOURCE_LEVEL`) |
+
+The raw byte is decoded into a dynamic liquid level and re-encoded with
+`encode_level()` / `decode_level()` helpers.
+
+## Simulation constants
+
+| Constant | Value | Purpose |
+|---|---|---|
+| `SEA_LEVEL` | 46 | World sea level (from biomes) |
+| `SOURCE_LEVEL` | 8 | Source block |
+| `FLOW_MAX` | 7 | Max flow level |
+| `MAX_CHANGES_PER_STEP` | 2048 | Hard cap on block changes per simulation tick |
+
+## Solver algorithm
+
+The solver is **gravity-first**:
+
+```
+For each simulation step:
+  1. Collect candidate sources (level 8) and flow blocks.
+  2. Sort highest-Y first so gravity chains downward in one pass.
+  3. For each candidate:
+     - Downward gravity takes absolute priority:
+       if the block below is empty, flow down (full flow level).
+     - If downward flow is blocked, spread laterally
+       (4 directions: +X, -X, +Z, -Z) with FLOW_MAX as the best incoming.
+  4. Respect MAX_CHANGES_PER_STEP — stop enqueueing changes at 2048.
+  5. Apply changes: set water_meta to 0 (empty) or encode_level(level).
+```
+
+Key details:
+
+- **Gravity beats lateral spread** — a block with an open space below never
+  spreads sideways.
+- **Sorting highest-Y first** lets water fall through multiple blocks in a
+  single pass instead of one step per block.
+- **Hard cap** prevents pathological cascades from stalling the frame.
+
+## Rendering & updates
+
+- Water is a **separate mesh and pipeline path** from solid geometry.
+- `renderer::State::update(...)` drives simulation **on a timer** before
+  triggering throttled mesh updates.
+- Water mesh recombination is separated from full water mesh rebuilds.
+- Only **changed chunks** rebuild water meshes — static water never triggers
+  a rebuild.
+- `water_sim_interval` and `water_rebuild_interval` (settings.rs) control
+  simulation frequency; Low-End-PC mode reduces the update frequency.
+
+## World integration
+
+- `World::set_water_meta(wx, wy, wz, level)` applies simulation writes.
+- Water metadata is **persisted in saves** alongside chunk block data.
+- Water-aware column sampling in the biome generator positions water bodies
+  relative to sea level.
 
 ---
 
@@ -1009,11 +1454,27 @@ Source file: projects/nv2-engine/ai.md
 
 NV2 Engine embeds a small neural network that decides where vegetation
 belongs, and trains it **in the background while you play** — with zero FPS
-impact (<1% overhead).
+impact ()
+                                                   │
+┌──────────────────────────────────────────────────▼──────────┐
+│              Background AI Thread (continuous)              │
+│  TerrainAI Neural Network                                   │
+│   ├─ Forward pass (inference)                               │
+│   ├─ Backward pass (training)                               │
+│   ├─ Weight updates                                         │
+│   └─ Bias updates                                           │
+│                                                             │
+│  Training Loop (100 samples/epoch):                         │
+│   1. Generate synthetic features                            │
+│   2. Make prediction                                        │
+│   3. Calculate target from heuristic                        │
+│   4. Compute cross-entropy loss                             │
+│   5. Backpropagation                                        │
+│   6. Update all weights                                     │
+└─────────────────────────────────────────────────────────────┘
+```
 
 ## Model
-
-A lightweight Multi-Layer Perceptron:
 
 ```
 Input Layer (8 terrain features)
@@ -1023,14 +1484,18 @@ Hidden Layer (16 neurons) + ReLU
 Output Layer (4 vegetation classes) + Softmax
 ```
 
-The whole model is ~1.2 KB, running in-engine with no external AI runtime.
+- **Parameters:** 8×16 + 16×4 = **320 parameters** (w1 `[8×16]`, b1 `[16]`,
+  w2 `[16×4]`, b2 `[4]`)
+- **Total memory:** ~1.2 KB (512 B w1 + 64 B b1 + 256 B w2 + 16 B b2 +
+  ~300 B metadata)
+- **Inference time:** ~10 µs per prediction (O(192) operations)
 
-## Input features
+## Input features (8)
 
 | # | Feature | Range |
 |---|---|---|
-| 1 | Terrain height (normalized elevation) | 0.0–1.0 |
-| 2 | Terrain slope steepness | 0.0–0.5 |
+| 1 | Terrain height (normalized) | 0.0–1.0 |
+| 2 | Terrain slope | 0.0–0.5 |
 | 3 | Biome temperature | 0.0–1.0 |
 | 4 | Biome humidity | 0.0–1.0 |
 | 5 | Distance to nearest water | 0.0–1.0 |
@@ -1038,7 +1503,7 @@ The whole model is ~1.2 KB, running in-engine with no external AI runtime.
 | 7 | Light level | 0.0–1.0 |
 | 8 | Procedural noise seed | 0.0–1.0 |
 
-## Outputs (vegetation classes)
+## Outputs (4 vegetation classes)
 
 | Output | Vegetation |
 |---|---|
@@ -1047,48 +1512,135 @@ The whole model is ~1.2 KB, running in-engine with no external AI runtime.
 | 2 | Small sticks & decorative items |
 | 3 | Pebbles & rocks (3 variants) |
 
-22 new vegetation block types in total, plus moss carpet and vines.
+## Mathematics
+
+### Forward pass
+
+```
+Hidden:  h = ReLU(input @ w1.T + b1)      where ReLU(x) = max(0, x)
+Logits:  logits = h @ w2.T + b2
+Softmax: p_i = exp(logits_i - max(logits)) / sum_j(exp(logits_j - max(logits)))
+```
+
+### Backward pass (cross-entropy)
+
+```
+Loss:         Loss = -sum_i(target_i * log(p_i))
+Output grad:  dL/dz2 = p - target                    (elementwise)
+H→O weights:  dL/dw2[j,i] = dL/dz2[i] * h[j]
+              dL/db2[i]   = dL/dz2[i]
+Hidden grad:  dL/dh[j] = sum_i(dL/dz2[i] * w2[j,i])
+              dL/dz1[j] = dL/dh[j] * relu_derivative(z1[j])
+                           where relu_derivative(x) = 1 if x > 0 else 0
+I→H weights:  dL/dw1[k,j] = dL/dz1[j] * input[k]
+              dL/db1[j]   = dL/dz1[j]
+```
+
+### Gradient descent
+
+```
+w := w - learning_rate * dL/dw
+b := b - learning_rate * dL/db
+```
 
 ## Training loop
 
-A background thread runs continuously during gameplay:
+A background thread runs continuously:
 
 ```
 Loop (background thread):
-  For each of 100 synthetic samples:
-    - Generate synthetic terrain features
-    - Make AI prediction
+  For each of 100 samples:
+    - Generate synthetic terrain features (rand::thread_rng)
+    - Make AI prediction (forward)
     - Compute target vegetation from heuristics
-    - Backpropagation gradient descent
+    - Backpropagation gradient descent (backward)
     - Update weights & biases
 
   Every 1000 epochs:
-    - Decay learning rate (0.95x) to prevent overfitting
+    - Decay learning rate (×0.95) to prevent overfitting
     - Optionally save a model checkpoint
 ```
 
-- **~5–10 ms per epoch**, 100 samples/epoch, cross-entropy loss
-- Adaptive learning-rate decay; training is asynchronous and non-blocking
+### Target heuristic (synthetic training)
 
-## Integration with world generation
+```
+if humidity > 0.6 and light  0.5:              flowers (output 0)
+else if height  },
+    VegetationDecision { wx: i32, wy: i32, wz: i32, block: BlockType, confidence: f32 },
+}
 
-- The AI system is initialized in `World::new()` together with its background
-  thread.
-- `VegetationGenerator::place_ai_vegetation()` consults the network for each
-  terrain cell.
-- Cells are 3×3 blocks for procedural variety.
-- A confidence threshold of **0.5** — only high-confidence predictions place
-  vegetation.
+pub struct TerrainAI { /* w1, b1, w2, b2, learning_rate, training_samples */ }
+
+pub struct AISystem {
+    ai: Arc>,
+    tx: Sender,
+    training_thread: JoinHandle,
+}
+```
+
+| Method | Signature | Purpose |
+|---|---|---|
+| `forward` | `(&self, features: &[f32; 8]) -> [f32; 4]` | Inference: ReLU hidden + softmax output |
+| `backward` | `(&mut self, features: &[f32; 8], target: [f32; 4]) -> f32` | One training step, returns loss |
+| `predict_vegetation` | `(&self, features: &[f32; 8]) -> (BlockType, f32)` | Thread-safe prediction (locks Arc) |
+| `generate_texture` | `(seed, w, h) -> Vec` | AI-assisted texture generation |
+
+## Integration points
+
+1. **World initialization** — `World::new_with_settings()` spawns `AISystem`
+   (background thread) and stores it with the message receiver.
+2. **Feature extraction** — `place_ai_vegetation()` in `vegetation.rs`
+   extracts the 8 terrain features per 3×3 cell.
+3. **Prediction & placement** — `predict_vegetation(&features)` returns the
+   block + confidence; blocks are placed only when `confidence > 0.5`,
+   respecting biome-specific placement probabilities.
+
+## Performance
+
+| Aspect | Value |
+|---|---|
+| Model size | ~1.2 KB |
+| Inference | ~10 µs (O(192) ops) |
+| Epoch | ~5–10 ms (100 samples) |
+| Gameplay overhead | ~0.8% (background thread on idle CPU) |
+| Startup cost | ~+5 ms (thread spawn) |
+
+Why it's fast: small model, single hidden layer, `max(0, x)` ReLU, optimized
+4-way softmax, no convolutions, single-sample online learning.
+
+## Testing
+
+Unit tests in `ai_generator.rs` verify:
+
+- **Forward pass** — output is a valid probability distribution (sum ≈ 1.0)
+- **Training** — loss decreases (or stays within 1.1×) across steps
+
+## Debugging
+
+```rust
+// Log training progress every 100 epochs
+if epoch % 100 == 0 {
+    println!("[AI] Epoch {}: Loss = {:.4}", epoch, avg_loss);
+}
+
+// Watch high-confidence predictions
+let (block, conf) = world.ai_system.predict_vegetation(&features);
+if conf > 0.8 {
+    println!("[AI] High confidence: {} ({}%)", block.name(), (conf * 100.0) as u32);
+}
+```
 
 ## Optional online training
 
-`online_trainer.rs` provides an optional cloud-assisted training mode that
-can refine the model further beyond the in-game background loop.
+`online_trainer.rs` provides an optional cloud-assisted training mode
+(dependencies `reqwest` + `tokio` are already in Cargo.toml for future
+dataset downloads).
 
 ## Roadmap (Phase 2)
 
-Planned next steps for the AI system include model persistence across
-sessions, GPU-accelerated training, and a modding API exposing the network.
+See the [Roadmap](roadmap) page for: internet dataset integration, real-time
+AI texture generation, player-preference learning, cloud model sharing,
+seasonal vegetation, multi-biome coordination, and GPU-accelerated training.
 
 ---
 
@@ -1097,62 +1649,297 @@ Source file: projects/nv2-engine/performance.md
 
 # Performance
 
-NV2 Engine is designed around keeping GPU bandwidth, draw calls, and CPU
-meshing proportional to what actually changed — not the whole world.
+NV2 Engine is engineered so that GPU bandwidth, draw calls, and CPU meshing
+stay proportional to what actually changed — not the whole world.
 
 ## GPU bandwidth: packed vertices
 
-- CPU-side vertices are **72 bytes**; the GPU-resident format packs them to
-  **36 bytes** (Snorm8x4 / Unorm8x4).
-- Vertex bandwidth is halved for every chunk upload.
+- CPU-side vertices are **72 bytes**; the GPU-resident `PackedVertex`
+  (defined in `renderer/vertices.rs`) packs them to **36 bytes**
+  (Snorm8x4 / Unorm8x4).
+- Vertex bandwidth is **halved** for every chunk upload.
 
 ## Per-chunk GPU buffers
 
 A block edit re-uploads only the affected chunk instead of the whole loaded
 area (previously ~81 chunks per change). GPU uploads are additionally
-debounced rather than re-uploaded every time a single chunk changes.
+**debounced** rather than re-uploaded every time a single chunk changes.
 
 ## Frustum culling
 
 Gribb–Hartmann plane extraction culls chunks outside the view, with a safety
-margin and a protected 3×3 area around the player to prevent over-culling.
-This reduces visible chunks by roughly half on typical scenes while keeping
-the player's surroundings always rendered.
+margin and a **protected 3×3 area around the player** to prevent
+over-culling. This reduces visible chunks by roughly half on typical scenes
+while keeping the player's surroundings always rendered.
 
 ## Incremental water simulation
 
-- The water simulation rebuilds only the chunks that actually changed,
-  instead of the full render radius every tick.
+- Only **changed chunks** rebuild water meshes — static water never triggers
+  a rebuild.
 - Simulation and meshing are interval-based (`water_sim_interval`,
-  `water_rebuild_interval`); static water never triggers a rebuild.
+  `water_rebuild_interval`).
 - Water mesh recombination is separated from full water mesh rebuilds.
 
 ## CPU meshing budget
 
-A configurable `mesh_build_budget` spreads chunk rebuilding across frames so
-the main thread never hitches on large terrain edits. Seam repair rebuilds
-only neighboring chunk borders when new chunks arrive.
+- Mesh creation is **rate-limited** — only a small number of chunks are built
+  per frame (`mesh_build_budget`).
+- **Seam repair** rebuilds only neighboring chunk borders when new chunks
+  arrive.
+- Chunk meshes and water meshes are cached separately by chunk coordinate.
+
+## Async chunk generation
+
+- Bounded work queue with in-flight deduplication
+- Parallel generation via `rayon` (`into_par_iter()`)
+- Results delivered over `mpsc` — world insertion and mesh coordination stay
+  on the main thread
+
+## Background AI training
+
+The neural-network vegetation trainer runs on a background thread:
+
+| Metric | Value |
+|---|---|
+| Gameplay overhead | ~0.8% |
+| Epoch time | ~5–10 ms (100 samples) |
+| Memory | ~1.2 KB model + 256 KB thread stack |
 
 ## Performance profiles (`settings.rs`)
 
-All the tunables below are centralized in `settings.rs` and switched by the
-**Low-End-PC** mode (one key in the menus, persisted across runs):
+All tunables below are centralized in `settings.rs` and switched by the
+**Low-End-PC** mode (one key in the menus, persisted across runs via
+`settings.json` next to the executable).
 
 | Setting | Effect |
 |---|---|
-| `load_radius` / `render_radius` | How far the world generates and renders |
+| `load_radius` | How far the world generates |
+| `render_radius` | How far the world renders |
 | `cleanup_radius` | When far chunks are unloaded |
 | `mesh_build_budget` | Chunks rebuilt per frame |
-| `water_sim_interval` / `water_rebuild_interval` | Water simulation frequency |
+| `water_sim_interval` | Water simulation frequency |
+| `water_rebuild_interval` | Water meshing frequency |
 | Foliage density | Vegetation placement density |
 | Fog density | Atmosphere draw distance |
 | Vsync | Frame pacing |
 
-## Background AI training
+`AppSettings` is serialized with serde (pretty JSON), loaded with graceful
+fallbacks on parse/read errors, and exposed through `SharedSettings`
+(an `Arc>`) for safe concurrent access.
 
-The neural-network vegetation trainer runs on a background thread with
-**<1% overhead** and ~5–10 ms per epoch, so learning never competes with
-frame time.
+## AI implementation impact (measured)
+
+| Scenario | Before | After |
+|---|---|---|
+| Compile | 45 s | 52 s (+ndarray/tokio) |
+| Startup | ~100 ms | ~105 ms (+AI thread spawn) |
+| Gameplay CPU | 0% AI overhead | 0.8% |
+| Memory | baseline | +1.2 KB model + 256 KB stack |
+
+---
+
+## NV2 Engine - Development
+Source file: projects/nv2-engine/development.md
+
+# Development
+
+How to build, test, and extend NV2 Engine.
+
+## Prerequisites
+
+- **Rust toolchain** (stable is enough for the game)
+- **GPU** with Vulkan / Metal / DX12 / GL support (wgpu backends)
+- For the content tools: **.NET 8 SDK** (`Bridge/Tools`) and **Python 3 +
+  Pillow** (`generate_textures.py`)
+
+## Build & run
+
+```bash
+cd Core
+cargo run --release        # optimized build
+cargo run                  # dev build (third-party crates still at opt-level 3)
+cargo check --release      # fast compile check
+cargo test                 # unit tests (commands, crafting, AI)
+```
+
+## VS Code
+
+`.vscode/tasks.json` already configures a task to run the engine executable
+from the workspace. A custom Vulkan layer (`VkLayer_NV20.json` /
+`VkLayer_NV20.dll`) can be attached from the launch configuration.
+
+## Testing
+
+Unit tests exist in key modules:
+
+| Module | Tests cover |
+|---|---|
+| `crafting.rs` | Shaped recipe matching with offset alignment, shapeless multiset matching |
+| `commands.rs` | Command execution flows (locate forest/highland) |
+| `world/ai_generator.rs` | Forward pass probability validity, training loss decrease |
+
+## Extending: add a block type
+
+1. Add the variant to `BlockType` enum (`world/block.rs`).
+2. Register it in `BLOCK_REGISTRY`: `(id, "name", "texture_name")`.
+3. Add hardness in the `hardness()` match.
+4. Map the texture in the texture registry match.
+5. Add a display name in `name()`.
+6. (Optional) Teach the AI to place it in `place_ai_vegetation()`.
+
+## Extending: add a recipe
+
+Shaped (in `crafting.rs` `default_recipes()`):
+
+```rust
+recipes.register_shaped(ShapedRecipe {
+    pattern: vec![Some(BlockType::Planks), Some(BlockType::Planks)],
+    output:  stack_of(BlockType::Stick, 4),
+    // ...
+});
+```
+
+Shapeless:
+
+```rust
+recipes.register_shapeless(ShapelessRecipe {
+    ingredients: vec![/* ... */],
+    output:      stack_of(BlockType::FlintPickaxe, 1),
+});
+```
+
+Recipes can also be loaded from JSON through `assets.rs` utilities.
+
+## Extending: disable the AI (testing)
+
+In `vegetation.rs` `populate_world_trees_for_chunk()`:
+
+```rust
+pub fn populate_world_trees_for_chunk(...) {
+    self.place_trees(world, generator, cx, cz);
+    // self.place_ai_vegetation(world, generator, cx, cz);  // comment out
+}
+```
+
+## Content pipeline
+
+| Tool | Purpose |
+|---|---|
+| `Bridge/Tools/Slicer` | .NET 8 atlas slicer — scans atlas PNGs, extracts block textures via predefined or analyzed tile rectangles |
+| `generate_textures.py` | Pillow texture transforms — rotate, flip, grayscale, invert, darken, brighten |
+| `Assets/Blocks/` | Runtime texture discovery for the dynamic atlas |
+
+## Save format
+
+Worlds persist to `saves/world.json` (next to the executable):
+
+```json
+{
+  "seed": "...",
+  "chunks": { "...": "flattened block data" },
+  "water_meta": "...",
+  "crafters": { "...": "NVCrafterState" }
+}
+```
+
+Settings persist to `settings.json` (pretty JSON via serde).
+
+## Migration / backward compatibility
+
+- **Old worlds load fine** — AI only affects newly generated chunks.
+- **Public APIs are stable** — `ai_system` is `pub` but non-blocking to
+  existing systems; new block types don't conflict.
+
+---
+
+## NV2 Engine - Roadmap & Changelog
+Source file: projects/nv2-engine/roadmap.md
+
+# Roadmap & Changelog
+
+## Changelog
+
+### AI Phase 1 — vegetation intelligence (v1.0.0, complete)
+
+**1. World height ceiling removed**
+- `CHUNK_H` raised from **256 → 512** blocks
+- Taller mountains, deeper caves, prepared for unlimited-height streaming
+
+**2. 22 new vegetation block types** (`world/block.rs`)
+- Flowers: rose, dandelion, tulips (4 colors), cornflower, allium, azalea
+- Water plants: lily pad, fern, fern plant, seagrass, tall seagrass, kelp
+- Decorations: small sticks, pebbles (3 variants), mossy cobble, vine,
+  moss carpet
+
+**3. AI generator module** (`world/ai_generator.rs`, NEW, ~600 lines)
+- `TerrainAI` MLP: 8→16→4, 320 parameters, ~1.2 KB
+- `AISystem` with background training thread
+- `AIMessage` channel for training progress / texture generation /
+  vegetation decisions
+
+**4. AI integrated into world** (`world/mod.rs`)
+- `World::new_with_settings()` spawns the AI system
+- `ai_system` + `ai_receiver` stored on `World`
+
+**5. Vegetation generation extended** (`world/vegetation.rs`)
+- New `place_ai_vegetation()`: 3×3 cells, 8 terrain features, confidence
+  threshold 0.5, biome-aware probabilities
+
+**6. Dependencies added** (`Core/Cargo.toml`)
+- `ndarray 0.15`, `rand 0.8`, `reqwest 0.11` (json), `tokio 1` (full)
+
+### Behavior change (before → after)
+
+| Aspect | Before | After |
+|---|---|---|
+| Flowers | Random noise-based | AI-predicted placement |
+| Ferns | None | Wet, shaded areas |
+| Sticks/pebbles | None | Natural distribution |
+| Learning | — | Continuous background training |
+| FPS impact | — | None (<1%) |
+
+## Roadmap — Phase 2
+
+### Feature 1: Internet-based dataset integration
+- Add HTTP client (deps already present)
+- Download training datasets, deserialize with serde
+- Feed real-world samples into the training loop alongside synthetic ones
+- **Data format:** JSON arrays of `{ features: [f32; 8], label: u8 }`
+
+### Feature 2: Real-time AI texture generation
+- Generate textures procedurally with the network
+- Integrate with the renderer's dynamic atlas
+- Emit generated textures via `AIMessage::TextureGenerated`
+
+### Feature 3: Online learning from player actions
+- Track player interactions (`record_player_placement(features, choice)`)
+- Use player choices as training signals (heuristic → player preference)
+- Privacy-safe: only local terrain features, no coordinates, no personal data
+
+### Feature 4: Cloud model sharing (multiplayer)
+- Upload/download trained models
+- Community model distribution
+- Versioned model checkpoints
+
+### Feature 5: GPU acceleration
+- Parallelize training samples across GPU (batched forward/backward)
+- Larger models with no frame-time cost
+
+### Feature 6: World & gameplay depth
+- Seasonal vegetation changes
+- Multi-biome coordination
+- Unlimited-height chunk streaming
+- Dedicated gameplay audio system (movement-medium signals already tracked)
+- Networking / multiplayer
+- In-engine content editor
+
+## Known limitations (Phase 1)
+
+1. No internet connectivity yet (Phase 2)
+2. Synthetic training data only
+3. Single-scale learning
+4. No model persistence across sessions
+5. Basic texture generation
 
 ---
 

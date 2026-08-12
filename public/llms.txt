@@ -15,11 +15,16 @@ content, fetch `/Docs/llms-full.txt`.
   - [Architecture](https://bartoszosiej.github.io/Docs/projects/factorio-web-game/architecture)
   - [Gameplay Systems](https://bartoszosiej.github.io/Docs/projects/factorio-web-game/gameplay)
   - [Backend & Monetization](https://bartoszosiej.github.io/Docs/projects/factorio-web-game/backend)
-- [NV2 Engine (NV2_ENGINE)](https://bartoszosiej.github.io/Docs/projects/nv2-engine/): Native Rust voxel engine — wgpu rendering, procedural biomes, AI-trained vegetation, full gameplay loop.
+- [NV2 Engine (NV2_ENGINE)](https://bartoszosiej.github.io/Docs/projects/nv2-engine/): Native Rust voxel engine — 15,800+ lines, wgpu rendering, 97 block types, 9 biomes, AI-trained vegetation, water simulation, full gameplay loop.
   - [Architecture](https://bartoszosiej.github.io/Docs/projects/nv2-engine/architecture)
   - [Gameplay](https://bartoszosiej.github.io/Docs/projects/nv2-engine/gameplay)
+  - [Blocks & Biomes](https://bartoszosiej.github.io/Docs/projects/nv2-engine/blocks)
+  - [Crafting Reference](https://bartoszosiej.github.io/Docs/projects/nv2-engine/crafting)
+  - [Water Simulation](https://bartoszosiej.github.io/Docs/projects/nv2-engine/water)
   - [AI Vegetation System](https://bartoszosiej.github.io/Docs/projects/nv2-engine/ai)
   - [Performance](https://bartoszosiej.github.io/Docs/projects/nv2-engine/performance)
+  - [Development](https://bartoszosiej.github.io/Docs/projects/nv2-engine/development)
+  - [Roadmap & Changelog](https://bartoszosiej.github.io/Docs/projects/nv2-engine/roadmap)
 
 ## Meta
 
