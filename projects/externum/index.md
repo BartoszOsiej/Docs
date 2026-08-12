@@ -1,58 +1,57 @@
 # 📜 Externum
 
-**A programming language that fuses Python's readability, binary's
-performance, and Bash's system control into one unified paradigm.**
+**Externum v2.0 "Sentient"** — własny język programowania, który łączy
+czytelność Pythona, wydajność kodu binarnego i kontrolę systemu Basha w
+jednym paradygmacie.
 
 > `Externum = Python_readability ⊕ Binary_performance ⊕ Bash_control`
 
-Externum is a from-scratch language implementation (Python 3.10+, stdlib
-only) with a full spec in `WIKI.md`. A single source program can target
-Python, a native binary, and shell output.
+Jedno źródło (`.ext`) kompiluje się **jednocześnie do trzech targetów**:
+Python, Bash i reprezentacja binarna — a tryb `run` wykonuje program
+wprost.
 
----
+## ✨ Filozofia
 
-## ✨ Unique features
+- **Jeden zapis, trzy światy** — kod wygląda jak Python, operuje na
+  liczbach binarnych jak assembler i wykonuje polecenia powłoki jak skrypt.
+- **Zero zależności** — czysty standardowy Python (3.10+), bez jednej
+  biblioteki zewnętrznej.
+- **Transpilacja zamiast interpretacji** — kompilator produkuje czytelny,
+  wykonywalny kod docelowy; runtime to cienka warstwa nad tym kodem.
 
-| Feature | Description |
+## ✨ Funkcje (działające, pokryte testami)
+
+| Funkcja | Opis |
 |---|---|
-| **Transpilation layer** | One source compiles to Python, native binary, and shell simultaneously |
-| **Hybrid type system** | Static types with dynamic fallback |
-| **Shell-first integration** | Native shell command embedding (`$ cmd` inside code) |
-| **Zero-cost abstractions** | Compiles to optimal target code |
-| **No dependencies** | Pure Python standard library — nothing to install |
+| **3 targety** | `python`, `bash`, `binary` (lub `all`) z jednego źródła |
+| **Tryb wykonania** | `externum run program.ext` — natychmiastowe uruchomienie |
+| **Liczby binarne** | literały `0b1010`, operacje `&`-style, wariant binarny w target `binary` |
+| **Wyrażenia z priorytetem** | `**`, `* / %`, `+ -`, porównania `== != < > <= >=`, logika `and or not` |
+| **Pełny przepływ sterowania** | `if / elif / else`, `while`, `for ... in`, `break`, `continue` |
+| **Funkcje** | parametry (adnotacje typów opcjonalne), `return`, rekurencja |
+| **Hybrydowa składnia przypisań** | `x = ...` oraz `x += 1` |
+| **Shell-first** | bash inline `` `ls -la` `` i bloki `%% ... %%` |
+| **f-stringi** | `` print(f"value: {x}") `` |
 
-## 🚀 Quick start
-
-```bash
-pip install -e .        # install the compiler CLI
-externum --help
-```
-
-Run the bundled examples:
+## 🚀 Szybki start
 
 ```bash
-ls examples/
+git clone https://github.com/externum/externum.git
+cd externum
+pip install -e .            # Python 3.10+
+
+externum --version          # Externum 2.0.0
+
+# Uruchom program
+externum run examples/hello.ext
+
+# Skompiluj do wszystkich targetów
+externum examples/hello.ext
 ```
 
-## 📚 Learning resources
+## 🗺️ Dokumentacja
 
-- [`WIKI.md`](https://github.com/externum/externum/blob/main/WIKI.md) — the
-  comprehensive language specification (syntax reference, compiler CLI,
-  architecture)
-- `tests/` — conformance tests
-- `examples/` — runnable sample programs
-
-## 📦 Project layout
-
-```
-Externum/
-├── externum/       # Compiler + runtime implementation
-├── examples/       # Sample programs
-├── tests/          # Conformance tests
-├── bin/            # CLI entry points
-├── setup.py        # pip-installable package
-└── WIKI.md         # Full language specification
-```
-
-> Note: the reference spec is authored under the `externum/externum` GitHub
-> namespace; this working copy is the primary development tree.
+- [Składnia](/projects/externum/syntax) — pełny przewodnik po języku
+- [Przykłady](/projects/externum/examples) — działające programy z wyjściem
+- [Kompilator i CLI](/projects/externum/compiler) — targety i opcje
+- [Architektura](/projects/externum/architecture) — pipeline i roadmapa

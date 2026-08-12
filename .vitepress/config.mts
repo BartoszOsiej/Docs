@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 // Base path for GitHub Pages: https://BartoszOsiej.github.io/Docs/
 export default defineConfig({
   title: 'Bartosz Osiej — Docs',
-  description: 'Central documentation hub for all Bartosz Osiej projects — LinkShort, Novactorio, NV2 Engine, AURORA OS, the Cybersec Toolkit, Halcyon Process Monitor, Externum, AI models, launchers and client work.',
+  description: 'Central documentation hub for all Bartosz Osiej projects — LinkShort, Novactorio, NV2 Engine, AURORA OS, the Cybersec Toolkit, Halcyon Process Monitor and the Externum programming language.',
   lang: 'en-US',
   base: '/Docs/',
   cleanUrls: true,
@@ -27,20 +27,13 @@ export default defineConfig({
       { text: 'NV2 Engine', link: '/projects/nv2-engine/' },
       { text: 'Cybersec', link: '/projects/cybersec-tools/' },
       { text: 'AURORA OS', link: '/projects/aurora-os/' },
+      { text: 'Externum', link: '/projects/externum/' },
       { text: 'P2P Chat', link: '/chat/' },
       {
         text: 'More',
         items: [
           { text: 'Halcyon Process Monitor', link: '/projects/halcyon-process-monitor/' },
-          { text: 'Externum Language', link: '/projects/externum/' },
-          { text: 'PolishAI', link: '/projects/polish-ai/' },
-          { text: 'Video MoE', link: '/projects/video-moe/' },
           { text: 'Factory Defense', link: '/projects/factory-defense/' },
-          { text: 'GhostLauncher', link: '/projects/ghost-launcher/' },
-          { text: 'Minecraft Tooling', link: '/projects/minecraft-tools/' },
-          { text: 'Transport Game', link: '/projects/game/' },
-          { text: 'Ghost Developments', link: '/projects/ghostdev/' },
-          { text: 'Client Projects', link: '/projects/client-projects/' },
           { text: 'Update Flow', link: '/update-flow' },
         ],
       },
@@ -117,31 +110,22 @@ export default defineConfig({
         },
       ],
       '/projects/externum/': [
-        { text: 'Externum Language', items: [{ text: 'Overview', link: '/projects/externum/' }] },
-      ],
-      '/projects/polish-ai/': [
-        { text: 'PolishAI', items: [{ text: 'Overview', link: '/projects/polish-ai/' }] },
-      ],
-      '/projects/video-moe/': [
-        { text: 'Video MoE', items: [{ text: 'Overview', link: '/projects/video-moe/' }] },
+        {
+          text: 'Externum Language',
+          items: [
+            { text: 'Overview', link: '/projects/externum/' },
+            { text: 'Syntax Reference', link: '/projects/externum/syntax' },
+            { text: 'Examples', link: '/projects/externum/examples' },
+            { text: 'Compiler & CLI', link: '/projects/externum/compiler' },
+            { text: 'Architecture', link: '/projects/externum/architecture' },
+          ],
+        },
       ],
       '/projects/factory-defense/': [
-        { text: 'Factory Defense', items: [{ text: 'Overview', link: '/projects/factory-defense/' }] },
-      ],
-      '/projects/ghost-launcher/': [
-        { text: 'GhostLauncher', items: [{ text: 'Overview', link: '/projects/ghost-launcher/' }] },
-      ],
-      '/projects/minecraft-tools/': [
-        { text: 'Minecraft Tooling', items: [{ text: 'Overview', link: '/projects/minecraft-tools/' }] },
-      ],
-      '/projects/game/': [
-        { text: 'Transport Game', items: [{ text: 'Overview', link: '/projects/game/' }] },
-      ],
-      '/projects/ghostdev/': [
-        { text: 'Ghost Developments', items: [{ text: 'Overview', link: '/projects/ghostdev/' }] },
-      ],
-      '/projects/client-projects/': [
-        { text: 'Client Projects', items: [{ text: 'Catalog', link: '/projects/client-projects/' }] },
+        {
+          text: 'Factory Defense',
+          items: [{ text: 'Overview', link: '/projects/factory-defense/' }],
+        },
       ],
     },
     outline: { level: [2, 3], label: 'On this page' },

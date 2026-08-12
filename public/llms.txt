@@ -2,7 +2,7 @@
 
 > Central documentation hub for all Bartosz Osiej projects — LinkShort,
 > Novactorio, NV2 Engine, AURORA OS, the Cybersec Toolkit, Halcyon Process
-> Monitor, Externum, AI models, launchers and client work.
+> Monitor and the Externum programming language.
 
 This site is fully readable by AI agents. For a single-file snapshot of all
 content, fetch `/Docs/llms-full.txt`.
@@ -37,15 +37,12 @@ content, fetch `/Docs/llms-full.txt`.
   - [User Guide](https://bartoszosiej.github.io/Docs/projects/aurora-os/user-guide)
 - [Halcyon Process Monitor](https://bartoszosiej.github.io/Docs/projects/halcyon-process-monitor/): Real-time eBPF process and file-op telemetry for Linux with a ransomware sliding-window heuristic and a ratatui TUI.
   - [Architecture](https://bartoszosiej.github.io/Docs/projects/halcyon-process-monitor/architecture)
-- [Externum](https://bartoszosiej.github.io/Docs/projects/externum/): A programming language fusing Python readability, binary performance and Bash control.
-- [PolishAI](https://bartoszosiej.github.io/Docs/projects/polish-ai/): Polish-language transformer with qint8 quantization and AVX2.
-- [Video MoE](https://bartoszosiej.github.io/Docs/projects/video-moe/): ~60M-parameter MoE transformer for video generation on constrained hardware.
+- [Externum](https://bartoszosiej.github.io/Docs/projects/externum/): A programming language of our own — Python readability, binary performance and Bash control from a single source, compiled to three targets or run directly.
+  - [Syntax Reference](https://bartoszosiej.github.io/Docs/projects/externum/syntax)
+  - [Examples](https://bartoszosiej.github.io/Docs/projects/externum/examples)
+  - [Compiler & CLI](https://bartoszosiej.github.io/Docs/projects/externum/compiler)
+  - [Architecture](https://bartoszosiej.github.io/Docs/projects/externum/architecture)
 - [Factory Defense](https://bartoszosiej.github.io/Docs/projects/factory-defense/): Rust factory-building + tower-defense game on macroquad.
-- [GhostLauncher](https://bartoszosiej.github.io/Docs/projects/ghost-launcher/): Electron Minecraft launcher (LandOfGhost) + React rewrite.
-- [Minecraft Tooling](https://bartoszosiej.github.io/Docs/projects/minecraft-tools/): Native map launcher (C++/AppImage) and EvoTech Forge 1.20.1 mod.
-- [Transport Game](https://bartoszosiej.github.io/Docs/projects/game/): Vanilla-JS browser sandbox — terrain, vehicles, building, multiplayer.
-- [Ghost Developments](https://bartoszosiej.github.io/Docs/projects/ghostdev/): Next.js marketing site for an IT services business.
-- [Client Projects](https://bartoszosiej.github.io/Docs/projects/client-projects/): Catalog of commissioned and hobby work.
 - [P2P Chat](https://bartoszosiej.github.io/Docs/chat/): Serverless torrent-principle chat that runs on static hosting via WebTorrent swarms.
 
 ## Meta

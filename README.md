@@ -6,8 +6,9 @@ Central documentation hub for all projects — [FastAPI-url](https://github.com/
 [AURORA-OS](https://github.com/BartoszOsiej/AURORA-OS),
 [cybersec-tools](https://github.com/BartoszOsiej/cybersec-tools),
 [halcyon-process-monitor](https://github.com/BartoszOsiej/halcyon-process-monitor),
-[Externum](https://github.com/BartoszOsiej/Externum), AI models, launchers and
-client work — published as a static site on GitHub Pages.
+[Externum](https://github.com/BartoszOsiej/Externum) and
+[factory_defense](https://github.com/BartoszOsiej/factory_defense) —
+published as a static site on GitHub Pages.
 
 **Live site:** <https://bartoszosiej.github.io/Docs/>
 
@@ -44,9 +45,8 @@ Docs/
 │   ├── cybersec-tools/           # Cybersec Toolkit docs (5 pages)
 │   ├── aurora-os/                # AURORA OS docs (3 pages)
 │   ├── halcyon-process-monitor/  # Halcyon docs (2 pages)
-│   ├── externum/  polish-ai/  video-moe/  factory-defense/
-│   ├── ghost-launcher/  minecraft-tools/  game/  ghostdev/
-│   └── client-projects/          # Catalog of smaller projects
+│   ├── externum/                 # Externum language docs (5 pages)
+│   └── factory-defense/          # Factory Defense docs (1 page)
 ├── public/                       # Static assets (logo, hero, favicon, chat/)
 │   └── chat/                     # P2P chat app (WebTorrent, no build step)
 ├── scripts/                      # Sitemap / llms-full generators

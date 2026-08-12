@@ -16,8 +16,8 @@ hero:
   tagline: >
     A curated documentation hub for every project — a production URL
     shortener, browser games, a native Rust voxel engine, a Rust
-    cybersecurity toolkit, a browser OS, an eBPF security monitor, a
-    programming language, AI models, launchers and client work.
+    cybersecurity toolkit, a browser OS, an eBPF security monitor and a
+    programming language of our own.
   image:
     src: /hero.svg
     alt: Projects
@@ -76,7 +76,7 @@ features:
 <AuroraBackground />
 
 <ScrollReveal>
-## ✨ Flagship Projects
+## ✨ Projekty
 
 <div class="project-grid">
   <ProjectCard
@@ -127,36 +127,13 @@ features:
     tint="#a3e635"
     link="/projects/halcyon-process-monitor/"
   />
-</div>
-</ScrollReveal>
-
-<ScrollReveal :delay="120">
-## 🧩 More Projects
-
-<div class="project-grid">
   <ProjectCard
     icon="📜"
     title="Externum"
-    description="A programming language fusing Python readability, binary performance and Bash control into a unified paradigm — Python 3.10+, stdlib only."
-    :tags="['Language', 'Python', 'Compiler']"
+    description="A programming language of our own — Python readability, binary performance and Bash control from a single source, compiled to three targets or run directly."
+    :tags="['Language', 'Compiler', 'Python', 'Bash']"
     tint="#f59e0b"
     link="/projects/externum/"
-  />
-  <ProjectCard
-    icon="🇵🇱"
-    title="PolishAI"
-    description="A self-developing Polish-language transformer with dynamic qint8 quantization and AVX2 acceleration."
-    :tags="['Python', 'PyTorch', 'NLP', 'Quantization']"
-    tint="#fb7185"
-    link="/projects/polish-ai/"
-  />
-  <ProjectCard
-    icon="🎬"
-    title="Video MoE"
-    description="A ~60M-parameter Mixture-of-Experts transformer for video generation on resource-constrained hardware — CPU-first, quantized."
-    :tags="['Python', 'PyTorch', 'MoE', 'Video']"
-    tint="#c084fc"
-    link="/projects/video-moe/"
   />
   <ProjectCard
     icon="🏭"
@@ -165,46 +142,6 @@ features:
     :tags="['Rust', 'macroquad', 'Game']"
     tint="#34d399"
     link="/projects/factory-defense/"
-  />
-  <ProjectCard
-    icon="👻"
-    title="GhostLauncher"
-    description="A full-featured Electron Minecraft launcher for the LandOfGhost server — autologin, Minehut status, RAM config, shop — plus a React rewrite."
-    :tags="['Electron', 'React', 'Minecraft']"
-    tint="#f97316"
-    link="/projects/ghost-launcher/"
-  />
-  <ProjectCard
-    icon="🗺️"
-    title="Minecraft Tooling"
-    description="A native Minecraft map launcher (C++/AppImage, Prismlauncher) and the EvoTech Forge 1.20.1 mod development tree."
-    :tags="['C++', 'CMake', 'Forge', 'AppImage']"
-    tint="#22d3ee"
-    link="/projects/minecraft-tools/"
-  />
-  <ProjectCard
-    icon="🚛"
-    title="Transport Game"
-    description="A vanilla-JS browser sandbox with procedural terrain, vehicle physics, building, fluids, missions, and multiplayer hooks."
-    :tags="['JavaScript', 'Canvas', 'Game']"
-    tint="#a3e635"
-    link="/projects/game/"
-  />
-  <ProjectCard
-    icon="💼"
-    title="Ghost Developments"
-    description="A Next.js marketing site for an IT services business — portfolio, pricing, contact, and booking pages."
-    :tags="['Next.js', 'React', 'TypeScript']"
-    tint="#e879f9"
-    link="/projects/ghostdev/"
-  />
-  <ProjectCard
-    icon="🗂️"
-    title="Client Projects"
-    description="A catalog of commissioned and hobby work: Netlify SPAs, PyInstaller desktop apps, launchers, game servers and business sites."
-    :tags="['Vite', 'Python', 'Electron', 'Netlify']"
-    tint="#94a3b8"
-    link="/projects/client-projects/"
   />
 </div>
 </ScrollReveal>
@@ -227,7 +164,7 @@ features:
   </GlowCard>
   <GlowCard>
     <h3>💬 Serverless chat</h3>
-    <p>The built-in <a href="/chat/">P2P chat</a> runs on WebTorrent swarms — no server, no database, works on static GitHub Pages.</p>
+    <p>The built-in [P2P chat](/chat/) runs on WebTorrent swarms — no server, no database, works on static GitHub Pages.</p>
   </GlowCard>
 </div>
 </ScrollReveal>
@@ -269,14 +206,7 @@ how this documentation site stays in sync with the source projects.
 | [BartoszOsiej/cybersec-tools](https://github.com/BartoszOsiej/cybersec-tools) | BartoszOsiej | Source: Cybersec Toolkit — 4 Rust security tools |
 | [BartoszOsiej/halcyon-process-monitor](https://github.com/BartoszOsiej/halcyon-process-monitor) | BartoszOsiej | Source: Halcyon Process Monitor — eBPF telemetry |
 | [BartoszOsiej/Externum](https://github.com/BartoszOsiej/Externum) | BartoszOsiej | Source: Externum language |
-| [BartoszOsiej/GhostLauncher](https://github.com/BartoszOsiej/GhostLauncher) | BartoszOsiej | Source: GhostLauncher (Electron + React) |
-| [BartoszOsiej/polish-ai](https://github.com/BartoszOsiej/polish-ai) | BartoszOsiej | Source: PolishAI model |
-| [BartoszOsiej/video-moe](https://github.com/BartoszOsiej/video-moe) | BartoszOsiej | Source: Video MoE model |
 | [BartoszOsiej/factory_defense](https://github.com/BartoszOsiej/factory_defense) | BartoszOsiej | Source: Factory Defense (Rust game) |
-| [BartoszOsiej/MinecraftMapLauncher](https://github.com/BartoszOsiej/MinecraftMapLauncher) | BartoszOsiej | Source: Minecraft Map Launcher |
-| [BartoszOsiej/evotech-mod](https://github.com/BartoszOsiej/evotech-mod) | BartoszOsiej | Source: EvoTech Forge mod |
-| [BartoszOsiej/game](https://github.com/BartoszOsiej/game) | BartoszOsiej | Source: Transport Game (browser) |
-| [BartoszOsiej/ghostdev](https://github.com/BartoszOsiej/ghostdev) | BartoszOsiej | Source: Ghost Developments website |
 | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | BartoszOsiej | **This site** — GitHub Pages docs hub |
 
 ## Update flow diagram
@@ -310,13 +240,9 @@ how this documentation site stays in sync with the source projects.
 | 3 | `NV2_ENGINE` | Engine, AI, gameplay and performance documentation | When the engine changes |
 | 4 | `cybersec-tools` | Tool docs, usage, CLI reference | When a tool changes |
 | 5 | `halcyon-process-monitor` | eBPF architecture & usage docs | When the monitor changes |
-| 6 | `Externum` | Language spec & syntax | When the language changes |
-| 7 | `GhostLauncher` | Launcher features & setup | When the launcher changes |
-| 8 | `polish-ai`, `video-moe` | Model docs | When the models change |
-| 9 | `factory_defense`, `game` | Game docs | When the games change |
-| 10 | `MinecraftMapLauncher`, `evotech-mod` | Tooling docs | When the tools change |
-| 11 | `ghostdev` | Site docs | When the site changes |
-| 12 | `Docs` (this repo) | Final rendered site | On every push to `main` |
+| 6 | `Externum` | Language spec, syntax, compiler & runtime docs | When the language changes |
+| 7 | `factory_defense` | Game docs | When the game changes |
+| 8 | `Docs` (this repo) | Final rendered site | On every push to `main` |
 
 ### Publishing a docs update (source repos)
 
@@ -326,11 +252,8 @@ how this documentation site stays in sync with the source projects.
    - `projects/nv2-engine/` — NV2 Engine
    - `projects/cybersec-tools/` — Cybersec Toolkit
    - `projects/halcyon-process-monitor/` — Halcyon Process Monitor
-   - `projects/externum/` — Externum
-   - `projects/polish-ai/`, `projects/video-moe/` — AI models
-   - `projects/factory-defense/`, `projects/game/` — games
-   - `projects/ghost-launcher/`, `projects/minecraft-tools/` — launchers & mods
-   - `projects/ghostdev/`, `projects/client-projects/` — web & client work
+   - `projects/externum/` — Externum (5 pages)
+   - `projects/factory-defense/` — Factory Defense
 2. Commit to the `Docs` repository and push to `main`.
 3. GitHub Actions builds the VitePress site and deploys it to GitHub Pages
    automatically — no manual steps.
@@ -3865,164 +3788,61 @@ Source: https://bartoszosiej.github.io/Docs/projects/externum/
 ------------------------------------------------------------------------
 # 📜 Externum
 
-**A programming language that fuses Python's readability, binary's
-performance, and Bash's system control into one unified paradigm.**
+**Externum v2.0 "Sentient"** — własny język programowania, który łączy
+czytelność Pythona, wydajność kodu binarnego i kontrolę systemu Basha w
+jednym paradygmacie.
 
 > `Externum = Python_readability ⊕ Binary_performance ⊕ Bash_control`
 
-Externum is a from-scratch language implementation (Python 3.10+, stdlib
-only) with a full spec in `WIKI.md`. A single source program can target
-Python, a native binary, and shell output.
+Jedno źródło (`.ext`) kompiluje się **jednocześnie do trzech targetów**:
+Python, Bash i reprezentacja binarna — a tryb `run` wykonuje program
+wprost.
 
----
+## ✨ Filozofia
 
-## ✨ Unique features
+- **Jeden zapis, trzy światy** — kod wygląda jak Python, operuje na
+  liczbach binarnych jak assembler i wykonuje polecenia powłoki jak skrypt.
+- **Zero zależności** — czysty standardowy Python (3.10+), bez jednej
+  biblioteki zewnętrznej.
+- **Transpilacja zamiast interpretacji** — kompilator produkuje czytelny,
+  wykonywalny kod docelowy; runtime to cienka warstwa nad tym kodem.
 
-| Feature | Description |
+## ✨ Funkcje (działające, pokryte testami)
+
+| Funkcja | Opis |
 |---|---|
-| **Transpilation layer** | One source compiles to Python, native binary, and shell simultaneously |
-| **Hybrid type system** | Static types with dynamic fallback |
-| **Shell-first integration** | Native shell command embedding (`$ cmd` inside code) |
-| **Zero-cost abstractions** | Compiles to optimal target code |
-| **No dependencies** | Pure Python standard library — nothing to install |
+| **3 targety** | `python`, `bash`, `binary` (lub `all`) z jednego źródła |
+| **Tryb wykonania** | `externum run program.ext` — natychmiastowe uruchomienie |
+| **Liczby binarne** | literały `0b1010`, operacje `&`-style, wariant binarny w target `binary` |
+| **Wyrażenia z priorytetem** | `**`, `* / %`, `+ -`, porównania `== != < > <= >=`, logika `and or not` |
+| **Pełny przepływ sterowania** | `if / elif / else`, `while`, `for ... in`, `break`, `continue` |
+| **Funkcje** | parametry (adnotacje typów opcjonalne), `return`, rekurencja |
+| **Hybrydowa składnia przypisań** | `x = ...` oraz `x += 1` |
+| **Shell-first** | bash inline `` `ls -la` `` i bloki `%% ... %%` |
+| **f-stringi** | `` print(f"value: {x}") `` |
 
-## 🚀 Quick start
-
-```bash
-pip install -e .        # install the compiler CLI
-externum --help
-```
-
-Run the bundled examples:
+## 🚀 Szybki start
 
 ```bash
-ls examples/
+git clone https://github.com/externum/externum.git
+cd externum
+pip install -e .            # Python 3.10+
+
+externum --version          # Externum 2.0.0
+
+# Uruchom program
+externum run examples/hello.ext
+
+# Skompiluj do wszystkich targetów
+externum examples/hello.ext
 ```
 
-## 📚 Learning resources
+## 🗺️ Dokumentacja
 
-- [`WIKI.md`](https://github.com/externum/externum/blob/main/WIKI.md) — the
-  comprehensive language specification (syntax reference, compiler CLI,
-  architecture)
-- `tests/` — conformance tests
-- `examples/` — runnable sample programs
-
-## 📦 Project layout
-
-```
-Externum/
-├── externum/       # Compiler + runtime implementation
-├── examples/       # Sample programs
-├── tests/          # Conformance tests
-├── bin/            # CLI entry points
-├── setup.py        # pip-installable package
-└── WIKI.md         # Full language specification
-```
-
-> Note: the reference spec is authored under the `externum/externum` GitHub
-> namespace; this working copy is the primary development tree.
-
-
-## projects/polish-ai/
-Source: https://bartoszosiej.github.io/Docs/projects/polish-ai/
-------------------------------------------------------------------------
-# 🇵🇱 PolishAI
-
-**A self-developing transformer that speaks Polish — with dynamic qint8
-quantization and AVX2 acceleration.**
-
-PolishAI is a research project for Polish-language AI that runs on modest
-hardware: a transformer model with dynamic int8 quantization, AVX2-optimized
-inference, and a training loop that improves from dialogue.
-
----
-
-## ✨ Features
-
-| Feature | Description |
-|---|---|
-| **Self-developing transformer** | Continually retrains from conversation |
-| **Dynamic quantization** | `qint8` weights keep the model small and fast |
-| **AVX2 support** | SIMD-accelerated inference on modern x86 CPUs |
-| **Dialogue learning** | Improves from user interaction |
-| **Lightweight runtime** | `torch` + `numpy` only |
-
-## 🚀 Quick start
-
-```bash
-pip install torch numpy
-python main.py
-```
-
-## 📦 Project layout
-
-```
-polish_ai/
-├── main.py           # Entry point (training + inference)
-├── model/            # Model definitions + quantization
-├── training/         # Training loop
-├── AI/               # Data / checkpoints
-├── data/             # Training data
-├── outputs/          # Generated outputs
-└── requirements.txt
-```
-
-## 🧠 Status
-
-An experimental research project — useful as a reference for compact,
-CPU-friendly Polish NLP and as a foundation for quantized transformer work.
-
-
-## projects/video-moe/
-Source: https://bartoszosiej.github.io/Docs/projects/video-moe/
-------------------------------------------------------------------------
-# 🎬 Video MoE
-
-**A lightweight Mixture-of-Experts transformer (~60M params) for video
-generation on resource-constrained hardware.**
-
-Video MoE is optimized for environments where GPUs are unavailable or
-expensive: compact architecture, PyTorch quantization, fast CPU inference,
-and memory-efficient training.
-
----
-
-## ✨ Features
-
-| Feature | Description |
-|---|---|
-| **Lightweight architecture** | ~60M parameters — trainable on a laptop |
-| **Mixture-of-Experts** | Sparse expert routing keeps FLOPs low per token |
-| **PyTorch quantization** | Int8 inference without quality collapse |
-| **Fast CPU inference** | No GPU required |
-| **Memory-efficient training** | Gradient checkpointing-friendly design |
-
-## 🚀 Quick start
-
-```bash
-pip install -r requirements.txt
-python main.py               # training entry point
-python inference/           # generation / evaluation scripts
-```
-
-## 📦 Project layout
-
-```
-video-moe/
-├── main.py           # Training entry point
-├── model/            # MoE transformer definition
-├── training/         # Training loop + configs
-├── inference/        # Generation / evaluation
-├── configs/          # Experiment configurations
-├── self_ai.py        # Self-play / self-improvement experiment
-├── tests/            # Unit tests
-└── requirements.txt
-```
-
-## 🧠 Status
-
-Research-stage project — a practical starting point for video generation and
-sparse-transformers on constrained hardware.
+- [Składnia](/projects/externum/syntax) — pełny przewodnik po języku
+- [Przykłady](/projects/externum/examples) — działające programy z wyjściem
+- [Kompilator i CLI](/projects/externum/compiler) — targety i opcje
+- [Architektura](/projects/externum/architecture) — pipeline i roadmapa
 
 
 ## projects/factory-defense/
@@ -4078,287 +3898,6 @@ factory_defense/
 Early playable prototype (v0.1.0) — a solid base for a full game loop.
 
 
-## projects/ghost-launcher/
-Source: https://bartoszosiej.github.io/Docs/projects/ghost-launcher/
-------------------------------------------------------------------------
-# 👻 GhostLauncher
-
-**A full-featured Minecraft launcher for the LandOfGhost server (Minehut),
-built with Electron — plus a React + TypeScript rewrite.**
-
-GhostLauncher manages authentication, server status, RAM, and launches
-Minecraft 1.21.4 with a custom shop and YouTube integration. Two
-implementations exist: the production Electron app and a modern React/Vite
-front-end rewrite.
-
----
-
-## ✨ Features (Electron app)
-
-| Feature | Description |
-|---|---|
-| **Autologin** | Microsoft / offline authentication, saved between sessions |
-| **Server status** | Live LandOfGhost status via the Minehut API |
-| **RAM configuration** | 2–16 GB slider, written straight to the JVM args |
-| **Shop (ranks)** | In-app rank purchasing |
-| **YouTube link** | Quick access to server content |
-| **Launch** | Fires up Minecraft 1.21.4 with the right account & profile |
-
-## 🚀 Quick start (Electron)
-
-```bash
-cd GhostLauncher
-npm install
-npm start
-```
-
-## ⚛️ React rewrite (`ghost-launcher-react`)
-
-A React 19 + TypeScript + Vite reimplementation of the same launcher UI —
-designed for web embedding and a more modern component architecture:
-
-```bash
-cd ghost-launcher-react
-npm install
-npm run dev
-```
-
-## 📦 Project layout
-
-```
-GhostLauncher/            # Production Electron app (package name: ghost-launcher)
-├── main.js               # Electron main process
-├── dist/                 # Packaged build
-└── (renderer + launcher logic)
-
-ghost-launcher-react/     # React + Vite rewrite
-├── src/
-└── package.json
-```
-
-## 🎮 Status
-
-In active use by the LandOfGhost Minecraft server community.
-
-
-## projects/minecraft-tools/
-Source: https://bartoszosiej.github.io/Docs/projects/minecraft-tools/
-------------------------------------------------------------------------
-# 🗺️ Minecraft Tooling
-
-**Two separate Minecraft-ecosystem projects: a standalone map launcher and a
-Forge mod development tree.**
-
----
-
-## 📍 Minecraft Map Launcher
-
-A native launcher (C++ / CMake, packaged as an AppImage) that boots a
-Minecraft world-map viewer with Prismlauncher integration — one click from
-launcher to a browsable map of your world.
-
-### Quick start
-
-```bash
-cmake -B build && cmake --build build
-./build-appimage.sh          # produces Minecraft_Map_Launcher-x86_64.AppImage
-```
-
-### Layout
-
-```
-MinecraftMapLauncher/
-├── src/                    # C++ source
-├── CMakeLists.txt
-├── Prismlauncher/          # Prism integration hooks
-├── build-appimage.sh       # AppImage packaging
-└── Minecraft_Map_Launcher-x86_64.AppImage
-```
-
----
-
-## ⚙️ EvoTech (Forge 1.20.1 mod)
-
-A Minecraft Forge mod development tree targeting **1.20.1 (Forge 47.3)**, with
-its own `src/main` codebase and a full `changelog.txt` tracking Forge
-backports and mod changes.
-
-### Quick start
-
-```bash
-cd evotech-mod
-./gradlew build
-```
-
-### Layout
-
-```
-evotech-mod/
-├── src/main/               # Mod sources + resources (mods.toml, textures)
-├── gradle.properties       # MC/Forge version matrix
-├── build.gradle
-└── changelog.txt           # Forge + mod change log (47.x series)
-```
-
-> There is also `evotech-mod-new/`, a newer development branch of the same
-> project with additional in-progress changes.
-
-
-## projects/game/
-Source: https://bartoszosiej.github.io/Docs/projects/game/
-------------------------------------------------------------------------
-# 🚛 Transport Game
-
-**A browser-based transport / building sandbox with vehicles, physics,
-multiplayer, and terrain generation.**
-
-A vanilla JavaScript game (no frameworks) featuring a hand-written engine:
-procedural terrain, vehicle physics, building, fluids, missions, minimap,
-particles, and even built-in chat + multiplayer hooks.
-
----
-
-## ✨ Features
-
-| Feature | Description |
-|---|---|
-| **Procedural terrain** | Noise-based world with roads & rivers |
-| **Vehicle physics** | Drive, fly, and haul across the map |
-| **Building** | Place structures and production chains |
-| **Multiplayer + chat** | Built-in networking hooks and chat UI |
-| **Missions & leveling** | Progression system with XP |
-| **Minimap & particles** | Full HUD and visual feedback |
-| **Vanilla JS** | Zero dependencies — runs anywhere |
-
-## 🚀 Quick start
-
-```bash
-# Serve the folder statically, e.g.:
-python3 -m http.server 8080
-# open http://localhost:8080
-```
-
-## 📦 Project layout
-
-```
-game/
-├── index.html
-├── src/
-│   ├── main.js          # Boot + game loop
-│   ├── engine.js        # Core engine
-│   ├── terrain.js       # Procedural terrain
-│   ├── physics.js       # Vehicle physics
-│   ├── vehicles.js      # Vehicle definitions
-│   ├── building.js      # Construction
-│   ├── fluids.js        # Fluid simulation
-│   ├── multiplayer.js   # Networking
-│   ├── chat.js          # Chat UI
-│   ├── missions.js      # Mission system
-│   ├── leveling.js      # XP & progression
-│   ├── minimap.js       # Minimap
-│   ├── particles.js     # Particle effects
-│   ├── renderer.js      # Canvas renderer
-│   └── worldbuilder.js  # World editing
-└── TODO.txt             # "Mega upgrade" roadmap to production
-```
-
-## 🎮 Status
-
-Playable prototype with a clear `TODO.txt` roadmap (biomes, Perlin terrain,
-caves, bridges, …) toward a publishable release.
-
-
-## projects/ghostdev/
-Source: https://bartoszosiej.github.io/Docs/projects/ghostdev/
-------------------------------------------------------------------------
-# 💼 Ghost Developments — Website
-
-**A Next.js 14 marketing site for Ghost Developments (Szczecin) — an IT
-services business: portfolio, pricing, contact, and booking.**
-
----
-
-## ✨ Features
-
-| Feature | Description |
-|---|---|
-| **Portfolio** | Showcase of completed client work |
-| **Pricing (cennik)** | Transparent service price list |
-| **Contact (kontakt)** | Contact form & details |
-| **Booking (rezerwacja)** | Appointment / order request flow |
-| **Linux help (linux-help)** | Support article hub for Linux users |
-| **Next.js App Router** | Modern file-based routing, RSC-ready |
-
-## 🚀 Quick start
-
-```bash
-cd ghostdev
-npm install
-npm run dev        # http://localhost:3000
-```
-
-## 📦 Project layout
-
-```
-ghostdev/
-├── src/app/
-│   ├── page.tsx         # Landing page
-│   ├── portfolio/       # Portfolio page
-│   ├── cennik/          # Pricing page
-│   ├── kontakt/         # Contact page
-│   ├── rezerwacja/      # Booking page
-│   ├── linux-help/      # Linux support articles
-│   ├── globals.css
-│   └── layout.tsx
-└── src/components/      # Shared components
-```
-
-## 💼 Status
-
-Client-facing marketing site for the Ghost Developments brand — the landing
-site for the launcher and web projects in this documentation hub.
-
-
-## projects/client-projects/
-Source: https://bartoszosiej.github.io/Docs/projects/client-projects/
-------------------------------------------------------------------------
-# 🗂️ Client & Hobby Projects
-
-**A catalog of smaller commissioned and hobby projects.** These live in the
-`~/Projekty` workspace and cover everything from Netlify SPAs and PyInstaller
-desktop apps to game servers and portfolios.
-
----
-
-## Projects at a glance
-
-| Project | Stack | What it is |
-|---|---|---|
-| **Apollo GSM** | Vite + Netlify (`netlify.toml`) | Marketing/SPA site for a phone shop |
-| **Apollo GSM App** | Web app (`ApolloGSM/`) | Companion app for Apollo GSM |
-| **Apollo System** | Python + PyInstaller | Desktop client (Klient + Pracownik specs) with Linux build script |
-| **BFSMC Launcher** | Vanilla JS (`index.html`, `main.js`) | Minecraft launcher for the BFSMC server |
-| **Ghost Development** | — | Brand/organization workspace |
-| **Ghost Launcher** | Electron | See [GhostLauncher](../ghost-launcher/) |
-| **Ghost Launcher React** | React + Vite | See [GhostLauncher](../ghost-launcher/) |
-| **Gost Developments Szczecin** | — | Regional brand site workspace |
-| **Modded Launcher** | JS | Custom modded-Minecraft launcher |
-| **Vanilla Launcher** | JS | Lightweight vanilla launcher |
-| **Seylo** | Static (`index.html`, `videos.json`) | Video showcase site |
-| **Zoo** | React + pnpm | Zoo-themed web project |
-| **Oblednie Cukiernia** | Vite (`dist/`) | Confectionery business site |
-| **Portfolio BFSMC** | — | Portfolio site for the BFSMC community |
-| **U-Marcina** | — | Local business site |
-| **Metybn2 / Metin2** | Game server | Metin2 private-server work |
-
-## 📝 Notes
-
-- These projects are a mix of commissioned client work and hobby experiments;
-  some are archived or superseded by newer versions.
-- The most complete standalone projects have their own documentation pages in
-  this hub ([GhostLauncher](../ghost-launcher/), [Minecraft tooling](../minecraft-tools/)).
-
-
 ## README
 Source: https://bartoszosiej.github.io/Docs/README
 ------------------------------------------------------------------------
@@ -4370,8 +3909,9 @@ Central documentation hub for all projects — [FastAPI-url](https://github.com/
 [AURORA-OS](https://github.com/BartoszOsiej/AURORA-OS),
 [cybersec-tools](https://github.com/BartoszOsiej/cybersec-tools),
 [halcyon-process-monitor](https://github.com/BartoszOsiej/halcyon-process-monitor),
-[Externum](https://github.com/BartoszOsiej/Externum), AI models, launchers and
-client work — published as a static site on GitHub Pages.
+[Externum](https://github.com/BartoszOsiej/Externum) and
+[factory_defense](https://github.com/BartoszOsiej/factory_defense) —
+published as a static site on GitHub Pages.
 
 **Live site:** <https://bartoszosiej.github.io/Docs/>
 
@@ -4408,9 +3948,8 @@ Docs/
 │   ├── cybersec-tools/           # Cybersec Toolkit docs (5 pages)
 │   ├── aurora-os/                # AURORA OS docs (3 pages)
 │   ├── halcyon-process-monitor/  # Halcyon docs (2 pages)
-│   ├── externum/  polish-ai/  video-moe/  factory-defense/
-│   ├── ghost-launcher/  minecraft-tools/  game/  ghostdev/
-│   └── client-projects/          # Catalog of smaller projects
+│   ├── externum/                 # Externum language docs (5 pages)
+│   └── factory-defense/          # Factory Defense docs (1 page)
 ├── public/                       # Static assets (logo, hero, favicon, chat/)
 │   └── chat/                     # P2P chat app (WebTorrent, no build step)
 ├── scripts/                      # Sitemap / llms-full generators
@@ -4424,3 +3963,425 @@ Push to `main` — GitHub Actions builds the site and deploys it automatically.
 
 See [Update Flow](https://bartoszosiej.github.io/Docs/update-flow) for
 the full update map between source repositories and this site.
+
+
+## projects/externum/architecture
+Source: https://bartoszosiej.github.io/Docs/projects/externum/architecture
+------------------------------------------------------------------------
+# Architektura
+
+## Pipeline kompilacji
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                    Externum Compiler                     │
+├─────────────────────────────────────────────────────────┤
+│  Source (.ext)  →  Tokens  →  AST  →  Target Code       │
+└────────┬───────────────────┬──────────────────┬─────────┘
+         │                   │                  │
+         ▼                   ▼                  ▼
+    ┌─────────┐        ┌──────────┐       ┌──────────┐
+    │ Lexer   │  →     │ Parser   │  →    │ Compiler │
+    │ lexer.py│        │ parser.py│       │compiler. │
+    └─────────┘        └──────────┘       │py        │
+                                          └─────┬────┘
+                                       ┌────────┼────────┐
+                                       ▼        ▼        ▼
+                                 ┌────────┐ ┌────────┐ ┌────────┐
+                                 │ Python │ │  Bash  │ │ Binary │
+                                 └────────┘ └────────┘ └────────┘
+```
+
+## Etapy
+
+1. **Lexer** (`lexer.py`) — tokenizacja: wcięcia (INDENT/DEDENT), literały
+   (`0b...`, liczby, stringi + f-stringi), operatory, słowa kluczowe,
+   bash inline (`` `...` ``) i bloki (`%% ... %%`).
+2. **Parser** (`parser.py`) — rekurencyjne zejście z priorytetem
+   operatorów: wyrażenia `or` → `and` → porównania → `+ -` → `* / %` →
+   `**`, plus `if/elif/else`, `while`, `for ... in`, funkcje z parametrami,
+   przypisania i `x += 1`.
+3. **Kompilator** (`compiler.py`) — generacja kodu: do `python` (z
+   `subprocess.run` dla bash), `bash` (wyodrębnione polecenia) i `binary`
+   (literały bitowe).
+4. **Runtime** (`runtime/`) — transpilacja do Pythona i wykonanie
+   w procesie (`externum run`).
+
+## Struktura projektu
+
+```
+Externum/
+├── externum/
+│   ├── lexer.py          # Tokenizacja
+│   ├── parser.py         # AST + wyrażenia
+│   ├── compiler.py       # Generacja kodu (python/bash/binary)
+│   ├── runtime/          # Runtime — wykonanie .ext
+│   │   ├── llm/          # (roadmap) LLM-native
+│   │   ├── neural/       # (roadmap) tensory, autodiff
+│   │   └── distributed/  # (roadmap) aktory, strumienie
+│   └── __main__.py       # CLI (run / compile)
+├── examples/             # hello.ext, calc.ext
+├── tests/                # 25 testów jednostkowych
+├── bin/externum          # Entry point CLI
+├── setup.py              # pip install -e .
+└── WIKI.md               # Specyfikacja języka (wizja)
+```
+
+## Kontrakt API
+
+`externum/__init__.py` eksponuje core (`Lexer`, `Parser`, `Compiler`,
+`Runtime`) oraz **zarezerwowane** moduły przyszłości: `llm` (LLMClient,
+PromptTemplate, FunctionSchema), `neural` (Tensor, Module, Linear, Conv2d,
+Attention, Autograd), `distributed` (Actor, Cluster, Stream, Channel),
+`types` (DependentType, RefinementType, EffectType), `spec` (Spec, Theorem,
+Proof, Verify) i `debug` (TimeTravelDebugger, HotReloader). Importy są
+zabezpieczone — pakiet działa bez tych modułów.
+
+## Roadmapa
+
+- [ ] Moduł `neural` — tensory, autograd, warstwy (kontrakt już w API)
+- [ ] Moduł `llm` — integracja z modelami (function calling)
+- [ ] Moduł `distributed` — aktory i strumienie między procesami
+- [ ] `match`-statementy i klasy
+- [ ] Pełny target `binary` (assembler)
+
+
+## projects/externum/compiler
+Source: https://bartoszosiej.github.io/Docs/projects/externum/compiler
+------------------------------------------------------------------------
+# Kompilator i CLI
+
+## Użycie
+
+```bash
+externum <komenda> [opcje]
+
+Komendy:
+  run       Wykonaj program .ext
+  compile   Skompiluj program .ext (domyślna)
+```
+
+## Kompilacja
+
+```bash
+externum program.ext                      # --target all (domyślnie)
+externum program.ext --target python      # tylko Python
+externum program.ext --target bash        # tylko Bash
+externum program.ext --target binary      # tylko wariant binarny
+externum program.ext -o output.py         # zapisz do pliku
+```
+
+### Targety
+
+| Target | Opis |
+|---|---|
+| `python` | Wykonywalny kod Pythona — instrukcje, funkcje, pętle, `subprocess.run` dla bash |
+| `bash` | Wyodrębnione polecenia i bloki powłoki |
+| `binary` | Literały binarne (`0b...`) jako ciągi bitów |
+| `all` | Wszystkie trzy, sklejone w jeden raport |
+
+## Wykonanie
+
+```bash
+externum run program.ext
+```
+
+Runtime transpiluje źródło do Pythona i wykonuje je w procesie — bez
+pośrednich plików.
+
+## Pozostałe opcje
+
+| Opcja | Opis |
+|---|---|
+| `--version` | `Externum 2.0.0` |
+| `-h, --help` | Pomoc |
+| `-o, --output <plik>` | Zapis wyniku do pliku |
+
+## Przykłady
+
+```bash
+# Uruchom
+externum run examples/hello.ext
+
+# Kompilacja do Pythona
+externum examples/hello.ext --target python -o hello.py && python3 hello.py
+
+# Kompilacja wszystkich targetów do pliku
+externum examples/calc.ext --target all -o calc.out
+
+# Wersja
+externum --version
+```
+
+## Kody błędów
+
+| Kod | Znaczenie |
+|---|---|
+| `1` | Plik nie istnieje / błąd wejścia-wyjścia |
+| `1` | Błąd składni (`Syntax Error`) |
+| `1` | Błąd wykonania (`Runtime Error`) |
+
+
+## projects/externum/examples
+Source: https://bartoszosiej.github.io/Docs/projects/externum/examples
+------------------------------------------------------------------------
+# Examples
+
+Wszystkie przykłady poniżej działają na aktualnej wersji — są pokryte
+testami (`python3 -m unittest discover -s tests`).
+
+## Hello world z liczbami binarnymi
+
+`examples/hello.ext` (z repozytorium):
+
+```externum
+# Externum example
+
+x = 0b1010
+y = 42
+print("Hello from Externum!")
+print(x + y)
+`ls -la`
+%%
+echo "Bash block"
+%%
+```
+
+Uruchomienie:
+
+```bash
+externum run examples/hello.ext
+```
+
+Wyjście:
+
+```
+Hello from Externum!
+52
+<wynik ls -la>
+Bash block
+```
+
+## Kalkulator
+
+`examples/calc.ext`:
+
+```externum
+# Simple calculator in Externum
+
+running = 1
+print("Calculator")
+
+while running:
+    a = int(input("a: "))
+    b = int(input("b: "))
+    print(a + b)
+    print(a * b)
+```
+
+```bash
+externum run examples/calc.ext
+# Calculator
+# a: 6
+# b: 7
+# 13
+# 42
+```
+
+## Silnia — rekurencja
+
+```externum
+def factorial(n):
+    if n <= 1:
+        return 1
+    return n * factorial(n - 1)
+
+print(factorial(10))      # 3628800
+```
+
+## Przepływ sterowania
+
+```externum
+x = 42
+if x > 100:
+    print("large")
+elif x > 0:
+    print("small")
+else:
+    print("zero")
+
+i = 0
+while i < 3:
+    print(i)
+    i += 1
+
+for i in range(3):
+    print(i)
+```
+
+Wyjście: `small`, `0 1 2`, `0 1 2`.
+
+## Skrypt powłoki
+
+```externum
+def main():
+    `echo "Hello from shell"`
+    %%
+    ls -la
+    df -h
+    %%
+
+main()
+```
+
+## Kompilacja do Pythona
+
+```bash
+externum examples/hello.ext --target python -o hello.py
+python3 hello.py
+```
+
+Wygenerowany Python dla `hello.ext` (uproszczony):
+
+```python
+import subprocess
+x = int("1010", 2)
+y = 42
+print('Hello from Externum!')
+print(x + y)
+subprocess.run("ls -la", shell=True)
+subprocess.run("echo \"Bash block\"", shell=True)
+```
+
+
+## projects/externum/syntax
+Source: https://bartoszosiej.github.io/Docs/projects/externum/syntax
+------------------------------------------------------------------------
+# Syntax Reference
+
+Składnia Externum jest oparta na wcięciach (jak Python). Program to ciąg
+instrukcji; komentarze zaczynają się od `#`.
+
+## Zmienne i typy
+
+```externum
+name = "Externum"        # string
+count = 42               # int
+ratio = 3.14             # float
+flag = True              # bool (True / False / None)
+
+# Literały binarne (prefix 0b)
+mask = 0b1010            # = 10
+header = 0b11110000
+```
+
+Typowanie jest dynamiczne (jak w Pythonie); deklaracje typów w
+parametrach funkcji są opcjonalne i ignorowane przez kompilator.
+
+## Operatory
+
+| Kategoria | Operatory |
+|---|---|
+| Arytmetyka | `+` `-` `*` `/` `%` `**` |
+| Porównania | `==` `!=` `<` `>` `<=` `>=` |
+| Logiczne | `and` `or` `not` (działają też `&&` `||`) |
+| Przypisania | `=` `+=` `-=` `*=` `/=` |
+
+Priorytet jest standardowy: `**` > `* / %` > `+ -` > porównania >
+`and` > `or`. Nawiasy `( )` działają normalnie.
+
+```externum
+x = 10 + 5 * 2            # 20
+y = (10 + 5) * 2          # 30
+z = 2 ** 8                # 256
+ok = x > 5 and y < 100    # True
+```
+
+## Instrukcje warunkowe
+
+```externum
+if x > 100:
+    print("large")
+elif x > 0:
+    print("small positive")
+else:
+    print("non-positive")
+```
+
+## Pętle
+
+```externum
+# while
+i = 0
+while i < 10:
+    print(i)
+    i += 1
+
+# for ... in
+for i in range(3):
+    print(i)
+
+# break / continue działają standardowo
+```
+
+## Funkcje
+
+```externum
+def add(a, b):
+    return a + b
+
+# Adnotacje typów są opcjonalne i usuwane przy kompilacji:
+def factorial(n: Int) -> Int:
+    if n <= 1:
+        return 1
+    return n * factorial(n - 1)
+
+print(factorial(5))       # 120
+```
+
+## Wywołania wbudowane
+
+Dostępne jak w Pythonie: `print`, `input`, `len`, `str`, `int`, `float`,
+`bool`, `list`, `dict`, `range`, `open`, `type`, `sum`, `min`, `max`.
+
+```externum
+a = int(input("a: "))     # konwersja wejścia
+b = len("Externum")       # 8
+```
+
+## Stringi i f-stringi
+
+```externum
+msg = "Hello, " + "world!"
+print(f"value: {msg}")
+```
+
+## Integracja z Bashi
+
+### Bash inline (backticks)
+
+Wykonuje polecenie i (przy kompilacji) trafia też do targetu `bash`:
+
+```externum
+output = `ls -la | grep ".py"`
+print(output)
+```
+
+### Bloki bash (`%% ... %%`)
+
+Wielolinijkowe fragmenty powłoki:
+
+```externum
+%%
+#!/bin/bash
+for file in *.py; do
+    echo "Processing $file"
+done
+%%
+```
+
+## Ograniczenia (aktualna wersja)
+
+- Brak klas i `match`-statementów (na roadmapie).
+- Binarne wyjście `--target binary` gromadzi literały binarne
+  (`0b...`) — nie jest jeszcze pełnym assemblerem.
