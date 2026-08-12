@@ -1,37 +1,28 @@
 # 📜 Externum
 
-**Externum v2.0 "Sentient"** — własny język programowania, który łączy
-czytelność Pythona, wydajność kodu binarnego i kontrolę systemu Basha w
-jednym paradygmacie.
+**Externum v3.0 "Sentient"** — własny, w pełni funkcjonalny język
+programowania, który łączy czytelność Pythona, wydajność kodu binarnego i
+kontrolę systemu Basha w jednym paradygmacie.
 
 > `Externum = Python_readability ⊕ Binary_performance ⊕ Bash_control`
 
 Jedno źródło (`.ext`) kompiluje się **jednocześnie do trzech targetów**:
 Python, Bash i reprezentacja binarna — a tryb `run` wykonuje program
-wprost.
+wprost. Dostępny jest też **REPL**, **system modułów** z własną
+**biblioteką standardową** napisaną w Externum.
 
-## ✨ Filozofia
+## ✨ Co potrafi
 
-- **Jeden zapis, trzy światy** — kod wygląda jak Python, operuje na
-  liczbach binarnych jak assembler i wykonuje polecenia powłoki jak skrypt.
-- **Zero zależności** — czysty standardowy Python (3.10+), bez jednej
-  biblioteki zewnętrznej.
-- **Transpilacja zamiast interpretacji** — kompilator produkuje czytelny,
-  wykonywalny kod docelowy; runtime to cienka warstwa nad tym kodem.
-
-## ✨ Funkcje (działające, pokryte testami)
-
-| Funkcja | Opis |
+| Obszar | Wsparcie |
 |---|---|
-| **3 targety** | `python`, `bash`, `binary` (lub `all`) z jednego źródła |
-| **Tryb wykonania** | `externum run program.ext` — natychmiastowe uruchomienie |
-| **Liczby binarne** | literały `0b1010`, operacje `&`-style, wariant binarny w target `binary` |
-| **Wyrażenia z priorytetem** | `**`, `* / %`, `+ -`, porównania `== != < > <= >=`, logika `and or not` |
-| **Pełny przepływ sterowania** | `if / elif / else`, `while`, `for ... in`, `break`, `continue` |
-| **Funkcje** | parametry (adnotacje typów opcjonalne), `return`, rekurencja |
-| **Hybrydowa składnia przypisań** | `x = ...` oraz `x += 1` |
-| **Shell-first** | bash inline `` `ls -la` `` i bloki `%% ... %%` |
-| **f-stringi** | `` print(f"value: {x}") `` |
+| **Typy danych** | listy, słowniki, krotki, zbiory (w tym wielolinijkowe), f-stringi, `0b`/`0x` |
+| **Przepływ** | `if/elif/else`, `while`, `for ... in` (wielozmienne), `break/continue`, `try/except/else/finally`, `with`, `assert` |
+| **Funkcje** | domyślne parametry, `*args`/`**kwargs`, rekurencja, **lambdy**, domknięcia, **generatory** (`yield`) |
+| **OOP** | klasy, **dziedziczenie**, metody, `self` |
+| **Moduły** | `import`, własne moduły `.ext`, biblioteka standardowa |
+| **Wyrażenia** | pełny priorytet operatorów, bitowe `& \| ^ ~ << >>`, **ternary**, **comprehensions** |
+| **Shell** | bash inline `` `cmd` `` i bloki `%% ... %%` |
+| **Narzędzia** | REPL, 3 targety kompilacji, `argv` |
 
 ## 🚀 Szybki start
 
@@ -40,18 +31,27 @@ git clone https://github.com/externum/externum.git
 cd externum
 pip install -e .            # Python 3.10+
 
-externum --version          # Externum 2.0.0
+externum --version          # Externum 3.0.0
 
 # Uruchom program
-externum run examples/hello.ext
+externum run examples/pokedex.ext
 
-# Skompiluj do wszystkich targetów
-externum examples/hello.ext
+# Interaktywna powłoka
+externum repl
 ```
+
+## 📚 Standardowa biblioteka (w Externum)
+
+| Moduł | Zawartość |
+|---|---|
+| `structs` | `Stack`, `Queue`, `Counter` |
+| `strings` | `reverse`, `is_palindrome`, `slugify`, `word_count`, `capitalize`, `truncate` |
+| `mathx` | `clamp`, `is_even`, `gcd`, `fib`, `factorial`, `sum_of_digits` |
+| `fs` | `read_file`, `write_file`, `append_file`, `file_exists`, `list_dir` |
 
 ## 🗺️ Dokumentacja
 
 - [Składnia](/projects/externum/syntax) — pełny przewodnik po języku
 - [Przykłady](/projects/externum/examples) — działające programy z wyjściem
 - [Kompilator i CLI](/projects/externum/compiler) — targety i opcje
-- [Architektura](/projects/externum/architecture) — pipeline i roadmapa
+- [Architektura](/projects/externum/architecture) — pipeline, moduły, roadmapa

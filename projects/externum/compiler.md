@@ -1,13 +1,11 @@
 # Kompilator i CLI
 
-## Użycie
+## Komendy
 
 ```bash
-externum <komenda> [opcje]
-
-Komendy:
-  run       Wykonaj program .ext
-  compile   Skompiluj program .ext (domyślna)
+externum run <plik.ext> [args...]   # wykonaj program
+externum repl                       # interaktywna powłoka
+externum compile <plik.ext>         # skompiluj (domyślna komenda)
 ```
 
 ## Kompilacja
@@ -24,7 +22,7 @@ externum program.ext -o output.py         # zapisz do pliku
 
 | Target | Opis |
 |---|---|
-| `python` | Wykonywalny kod Pythona — instrukcje, funkcje, pętle, `subprocess.run` dla bash |
+| `python` | Wykonywalny kod Pythona — instrukcje, klasy, funkcje, `subprocess.run` dla bash |
 | `bash` | Wyodrębnione polecenia i bloki powłoki |
 | `binary` | Literały binarne (`0b...`) jako ciągi bitów |
 | `all` | Wszystkie trzy, sklejone w jeden raport |
@@ -32,35 +30,39 @@ externum program.ext -o output.py         # zapisz do pliku
 ## Wykonanie
 
 ```bash
-externum run program.ext
+externum run program.ext arg1 arg2
 ```
 
-Runtime transpiluje źródło do Pythona i wykonuje je w procesie — bez
-pośrednich plików.
+Runtime transpiluje źródło do Pythona i wykonuje je w procesie. Argumenty
+trafiają do `sys.argv` programu (`argv[0]` = ścieżka skryptu).
+
+## REPL
+
+```bash
+externum repl
+```
+
+- Interaktywna powłoka z auto-printem wyników wyrażeń
+- Wielolinijkowe bloki (po `:` kontynuujesz, pusta linia kończy)
+- Dostępne `import` i cała biblioteka standardowa
+- Wyjście: `exit()` lub `Ctrl+D`
 
 ## Pozostałe opcje
 
 | Opcja | Opis |
 |---|---|
-| `--version` | `Externum 2.0.0` |
+| `--version` | `Externum 3.0.0` |
 | `-h, --help` | Pomoc |
 | `-o, --output <plik>` | Zapis wyniku do pliku |
 
-## Przykłady
+## Ścieżka wyszukiwania modułów
 
-```bash
-# Uruchom
-externum run examples/hello.ext
+`import module` szuka `module.ext` kolejno w:
 
-# Kompilacja do Pythona
-externum examples/hello.ext --target python -o hello.py && python3 hello.py
-
-# Kompilacja wszystkich targetów do pliku
-externum examples/calc.ext --target all -o calc.out
-
-# Wersja
-externum --version
-```
+1. katalogu skryptu,
+2. bieżącym katalogu,
+3. `lib/` repozytorium Externum,
+4. ścieżkach z `EXTERNUM_PATH` (rozdzielonych `:`).
 
 ## Kody błędów
 
