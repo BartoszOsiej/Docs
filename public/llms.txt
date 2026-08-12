@@ -1,6 +1,6 @@
 # Bartosz Osiej — Docs
 
-> Central documentation hub for FastAPI-url (LinkShort) and Factorio-web-game (Novactorio).
+> Central documentation hub for FastAPI-url (LinkShort), Factorio-web-game (Novactorio) and NV2 Engine.
 
 This site is fully readable by AI agents. For a single-file snapshot of all
 content, fetch `/Docs/llms-full.txt`.
@@ -15,6 +15,11 @@ content, fetch `/Docs/llms-full.txt`.
   - [Architecture](https://bartoszosiej.github.io/Docs/projects/factorio-web-game/architecture)
   - [Gameplay Systems](https://bartoszosiej.github.io/Docs/projects/factorio-web-game/gameplay)
   - [Backend & Monetization](https://bartoszosiej.github.io/Docs/projects/factorio-web-game/backend)
+- [NV2 Engine (NV2_ENGINE)](https://bartoszosiej.github.io/Docs/projects/nv2-engine/): Native Rust voxel engine — wgpu rendering, procedural biomes, AI-trained vegetation, full gameplay loop.
+  - [Architecture](https://bartoszosiej.github.io/Docs/projects/nv2-engine/architecture)
+  - [Gameplay](https://bartoszosiej.github.io/Docs/projects/nv2-engine/gameplay)
+  - [AI Vegetation System](https://bartoszosiej.github.io/Docs/projects/nv2-engine/ai)
+  - [Performance](https://bartoszosiej.github.io/Docs/projects/nv2-engine/performance)
 
 ## Meta
 

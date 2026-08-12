@@ -9,18 +9,18 @@ how this documentation site stays in sync with the source projects.
 |---|---|---|
 | [BartoszOsiej/FastAPI-url](https://github.com/BartoszOsiej/FastAPI-url) | BartoszOsiej (fork of ghost0development) | Source: LinkShort URL shortener |
 | [BartoszOsiej/Factorio-web-game](https://github.com/BartoszOsiej/Factorio-web-game) | BartoszOsiej | Source: Novactorio browser game |
+| [BartoszOsiej/NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE) | BartoszOsiej | Source: NV2 Engine — native Rust voxel game |
 | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | BartoszOsiej | **This site** — GitHub Pages docs hub |
 
 ## Update flow diagram
 
 ```
-┌─────────────────────────┐        ┌─────────────────────────┐
-│  FastAPI-url            │        │  Factorio-web-game      │
-│  (LinkShort source)     │        │  (Novactorio source)    │
-└────────────┬────────────┘        └────────────┬────────────┘
-             │   docs updates                    │   docs updates
-             │   (API changes, features)         │   (systems, backend)
-             ▼                                  ▼
+┌──────────────┐   ┌──────────────┐   ┌──────────────┐
+│ FastAPI-url  │   │ Factorio-    │   │ NV2_ENGINE   │
+│ (LinkShort)  │   │ web-game     │   │ (NV2 Engine) │
+└──────┬───────┘   └──────┬───────┘   └──────┬───────┘
+       │ docs updates     │ docs updates     │ docs updates
+       ▼                  ▼                  ▼
 ┌──────────────────────────────────────────────────────────────┐
 │                      BartoszOsiej/Docs                       │
 │                    (this GitHub Pages site)                  │
@@ -40,13 +40,15 @@ how this documentation site stays in sync with the source projects.
 |---|---|---|---|
 | 1 | `FastAPI-url` | API changes, new endpoints, feature updates | When the API or SPA changes |
 | 2 | `Factorio-web-game` | Engine/systems/backend documentation changes | When gameplay or backend changes |
-| 3 | `Docs` (this repo) | Final rendered site | On every push to `main` |
+| 3 | `NV2_ENGINE` | Engine, AI, gameplay and performance documentation | When the engine changes |
+| 4 | `Docs` (this repo) | Final rendered site | On every push to `main` |
 
 ### Publishing a docs update (source repos)
 
 1. Edit the Markdown under the relevant project's section in `Docs`:
    - `projects/fastapi-url/` — LinkShort
    - `projects/factorio-web-game/` — Novactorio
+   - `projects/nv2-engine/` — NV2 Engine
 2. Commit to the `Docs` repository and push to `main`.
 3. GitHub Actions builds the VitePress site and deploys it to GitHub Pages
    automatically — no manual steps.

@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 // Base path for GitHub Pages: https://BartoszOsiej.github.io/Docs/
 export default defineConfig({
   title: 'Bartosz Osiej — Docs',
-  description: 'Central documentation hub for FastAPI-url (LinkShort) and Factorio-web-game (Novactorio).',
+  description: 'Central documentation hub for FastAPI-url (LinkShort), Factorio-web-game (Novactorio) and NV2 Engine.',
   lang: 'en-US',
   base: '/Docs/',
   cleanUrls: true,
@@ -21,6 +21,7 @@ export default defineConfig({
       { text: 'Home', link: '/' },
       { text: 'LinkShort', link: '/projects/fastapi-url/' },
       { text: 'Novactorio', link: '/projects/factorio-web-game/' },
+      { text: 'NV2 Engine', link: '/projects/nv2-engine/' },
       { text: 'Update Flow', link: '/update-flow' },
     ],
     sidebar: {
@@ -43,6 +44,18 @@ export default defineConfig({
             { text: 'Architecture', link: '/projects/factorio-web-game/architecture' },
             { text: 'Gameplay Systems', link: '/projects/factorio-web-game/gameplay' },
             { text: 'Backend & Monetization', link: '/projects/factorio-web-game/backend' },
+          ],
+        },
+      ],
+      '/projects/nv2-engine/': [
+        {
+          text: 'NV2 Engine',
+          items: [
+            { text: 'Overview', link: '/projects/nv2-engine/' },
+            { text: 'Architecture', link: '/projects/nv2-engine/architecture' },
+            { text: 'Gameplay', link: '/projects/nv2-engine/gameplay' },
+            { text: 'AI Vegetation System', link: '/projects/nv2-engine/ai' },
+            { text: 'Performance', link: '/projects/nv2-engine/performance' },
           ],
         },
       ],

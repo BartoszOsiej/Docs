@@ -4,7 +4,7 @@ layout: home
 hero:
   name: "Bartosz Osiej"
   text: "Engineering Docs Hub"
-  tagline: Central documentation for FastAPI-url (LinkShort) and Factorio-web-game (Novactorio).
+  tagline: Central documentation for FastAPI-url (LinkShort), Factorio-web-game (Novactorio) and NV2 Engine.
   image:
     src: /hero.svg
     alt: Projects
@@ -15,6 +15,9 @@ hero:
     - theme: alt
       text: Novactorio — Factorio-style Game
       link: /projects/factorio-web-game/
+    - theme: alt
+      text: NV2 Engine — Rust Voxel Game
+      link: /projects/nv2-engine/
     - theme: alt
       text: Update Flow
       link: /update-flow
@@ -28,6 +31,10 @@ features:
     title: Novactorio
     details: Browser factory-automation game with a hand-written Canvas 2D engine, co-op, 23 languages, Stripe premium.
     link: /projects/factorio-web-game/
+  - icon: ⛏️
+    title: NV2 Engine
+    details: Native Rust voxel engine — wgpu rendering, procedural biomes, AI-trained vegetation, full gameplay loop.
+    link: /projects/nv2-engine/
   - icon: 🔄
     title: Update Flow
     details: Which repositories publish updates to this documentation site, and how.
