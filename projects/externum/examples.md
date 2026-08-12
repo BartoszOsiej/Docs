@@ -1,38 +1,78 @@
 # Examples
 
-Wszystkie przykłady poniżej działają na aktualnej wersji — są pokryte
-testami (`python3 -m unittest discover -s tests`).
+Wszystkie przykłady działają na aktualnej wersji — pokryte są 118 testami
+(`python3 -m unittest discover -s tests`).
+
+## Pokedex — pełne demo języka
+
+`examples/pokedex.ext` pokazuje klasy z dziedziczeniem, comprehensions,
+lambdy, wyjątki, generatory, f-stringi i bibliotekę standardową:
+
+```python
+import mathx
+import strings
+
+class Fire(Pokemon):
+    def __init__(self, name, hp=50):
+        Pokemon.__init__(self, name, ["fire"], hp)
+
+# comprehensions
+fire_team = [p.name for p in squad if p.is_type("fire")]
+
+# lambda + kwargs
+weakest = min(squad, key=lambda p: p.hp)
+
+# try/except/finally
+try:
+    raise ValueError("psyduck is confused")
+except ValueError as e:
+    print("caught:", e)
+
+# generator
+nums = [f for f in fibonacci(10) if f % 2 == 0]
+
+# stdlib
+print(mathx.gcd(48, 36))        # 12
+print(strings.slugify("Hello World!"))   # hello-world
+```
+
+Uruchomienie i fragment wyjścia:
+
+```bash
+externum run examples/pokedex.ext
+```
+
+```
+=== Squad ===
+Charmander (fire) — 39 HP
+...
+=== Fire types (comprehension) ===
+['Charmander', 'Vulpix']
+=== Weakest member (lambda) ===
+Vulpix has only 38 HP!
+=== Fib numbers (generator + ternary) ===
+[0, 2, 8, 34]
+=== Standard library ===
+gcd(48, 36) = 12
+slug: hello-world
+palindrome: True
+=== Counter (structs lib) ===
+most common: ('a', 3)
+```
 
 ## Hello world z liczbami binarnymi
 
-`examples/hello.ext` (z repozytorium):
+`examples/hello.ext`:
 
 ```python
-# Externum example
-
 x = 0b1010
 y = 42
 print("Hello from Externum!")
-print(x + y)
+print(x + y)      # 52
 `ls -la`
 %%
 echo "Bash block"
 %%
-```
-
-Uruchomienie:
-
-```bash
-externum run examples/hello.ext
-```
-
-Wyjście:
-
-```
-Hello from Externum!
-52
-<wynik ls -la>
-Bash block
 ```
 
 ## Kalkulator
@@ -40,8 +80,6 @@ Bash block
 `examples/calc.ext`:
 
 ```python
-# Simple calculator in Externum
-
 running = 1
 print("Calculator")
 
@@ -50,15 +88,6 @@ while running:
     b = int(input("b: "))
     print(a + b)
     print(a * b)
-```
-
-```bash
-externum run examples/calc.ext
-# Calculator
-# a: 6
-# b: 7
-# 13
-# 42
 ```
 
 ## Silnia — rekurencja
@@ -72,39 +101,43 @@ def factorial(n):
 print(factorial(10))      # 3628800
 ```
 
-## Przepływ sterowania
+## Klasy z dziedziczeniem
 
 ```python
-x = 42
-if x > 100:
-    print("large")
-elif x > 0:
-    print("small")
-else:
-    print("zero")
+class Animal:
+    def __init__(self, name):
+        self.name = name
 
-i = 0
-while i < 3:
-    print(i)
-    i += 1
+class Dog(Animal):
+    def speak(self):
+        print("woof " + self.name)
 
-for i in range(3):
-    print(i)
+Dog("Burek").speak()      # woof Burek
 ```
 
-Wyjście: `small`, `0 1 2`, `0 1 2`.
-
-## Skrypt powłoki
+## Wyjątki i `with`
 
 ```python
-def main():
-    `echo "Hello from shell"`
-    %%
-    ls -la
-    df -h
-    %%
+try:
+    with open("/tmp/demo.txt", "w") as f:
+        f.write("hello")
+    data = open("/tmp/demo.txt", "r").read()
+    print(data)
+except IOError as e:
+    print("io error", e)
+```
 
-main()
+## Moduły
+
+```python
+import structs
+import mathx
+
+s = structs.Stack()
+s.push(10)
+s.push(20)
+print(s.pop())            # 20
+print(mathx.factorial(5)) # 120
 ```
 
 ## Kompilacja do Pythona
@@ -112,16 +145,4 @@ main()
 ```bash
 externum examples/hello.ext --target python -o hello.py
 python3 hello.py
-```
-
-Wygenerowany Python dla `hello.ext` (uproszczony):
-
-```python
-import subprocess
-x = int("1010", 2)
-y = 42
-print('Hello from Externum!')
-print(x + y)
-subprocess.run("ls -la", shell=True)
-subprocess.run("echo \"Bash block\"", shell=True)
 ```

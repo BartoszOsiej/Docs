@@ -1,9 +1,11 @@
 # Syntax Reference
 
 Składnia Externum jest oparta na wcięciach (jak Python). Program to ciąg
-instrukcji; komentarze zaczynają się od `#`.
+instrukcji; komentarze zaczynają się od `#`. Puste linie i linie z
+komentarzami nie wpływają na wcięcia; wcięcia wewnątrz nawiasów są
+ignorowane (jak w Pythonie).
 
-## Zmienne i typy
+## Typy i literały
 
 ```python
 name = "Externum"        # string
@@ -11,25 +13,46 @@ count = 42               # int
 ratio = 3.14             # float
 flag = True              # bool (True / False / None)
 
-# Literały binarne (prefix 0b)
-mask = 0b1010            # = 10
-header = 0b11110000
+mask = 0b1010            # binarny (= 10)
+header = 0xFF            # hex (= 255)
+
+s = """wielolinijkowy
+string"""
+
+data = [1, 2, 3]                     # lista
+d = {"a": 1, "b": 2}                 # słownik
+t = (1, 2)                           # krotka
+st = {1, 2, 3}                       # zbiór
+matrix = [                           # wielolinijkowe literały działają
+    [1, 2],
+    [3, 4],
+]
 ```
 
-Typowanie jest dynamiczne (jak w Pythonie); deklaracje typów w
-parametrach funkcji są opcjonalne i ignorowane przez kompilator.
+## Przypisania
+
+```python
+x = 42
+x += 1
+x *= 2
+a, b = 1, 2              # rozpakowywanie krotek
+d["k"] = "v"             # przypisanie przez indeks
+obj.attr = 5             # przypisanie atrybutu
+```
 
 ## Operatory
 
 | Kategoria | Operatory |
 |---|---|
-| Arytmetyka | `+` `-` `*` `/` `%` `**` |
-| Porównania | `==` `!=` `<` `>` `<=` `>=` |
-| Logiczne | `and` `or` `not` (działają też `&&` `||`) |
-| Przypisania | `=` `+=` `-=` `*=` `/=` |
+| Arytmetyka | `+ - * / % // **` |
+| Porównania | `== != < > <= >=` oraz `is`, `in` |
+| Logiczne | `and or not` (działają też `&& ||`) |
+| Bitowe | `& \| ^ ~ << >>` |
+| Przypisania | `= += -= *= /= //= **= &= \|= ^= <<= >>=` |
+| Inne | ternary `a if cond else b` |
 
-Priorytet jest standardowy: `**` > `* / %` > `+ -` > porównania >
-`and` > `or`. Nawiasy `( )` działają normalnie.
+Priorytet zgodny z Pythonem. Porównania łańcuchowe działają:
+`0 < x < 10`.
 
 ```python
 x = 10 + 5 * 2            # 20
@@ -52,17 +75,16 @@ else:
 ## Pętle
 
 ```python
-# while
 i = 0
 while i < 10:
     print(i)
     i += 1
 
-# for ... in
 for i in range(3):
     print(i)
 
-# break / continue działają standardowo
+for i, v in enumerate(["a", "b"]):   # wiele zmiennych
+    print(i, v)
 ```
 
 ## Funkcje
@@ -71,23 +93,79 @@ for i in range(3):
 def add(a, b):
     return a + b
 
-# Adnotacje typów są opcjonalne i usuwane przy kompilacji:
-def factorial(n: Int) -> Int:
+def greet(name, greeting="hi", *args, **kwargs):
+    print(greeting, name)
+
+def factorial(n: Int) -> Int:        # adnotacje typów są opcjonalne
     if n <= 1:
         return 1
     return n * factorial(n - 1)
 
-print(factorial(5))       # 120
+# lambdy
+square = lambda x: x * x
+
+# domknięcia
+def make_adder(n):
+    def adder(x):
+        return x + n
+    return adder
+
+# generatory
+def fibonacci(n):
+    a, b = 0, 1
+    for _ in range(n):
+        yield a
+        a, b = b, a + b
 ```
 
-## Wywołania wbudowane
-
-Dostępne jak w Pythonie: `print`, `input`, `len`, `str`, `int`, `float`,
-`bool`, `list`, `dict`, `range`, `open`, `type`, `sum`, `min`, `max`.
+## Klasy
 
 ```python
-a = int(input("a: "))     # konwersja wejścia
-b = len("Externum")       # 8
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        print("... from " + self.name)
+
+class Dog(Animal):                   # dziedziczenie
+    def speak(self):
+        print("woof " + self.name)
+```
+
+## Wyjątki
+
+```python
+try:
+    x = 1 / 0
+except ZeroDivisionError as e:
+    print("caught", e)
+except:
+    print("other")
+else:
+    print("no error")
+finally:
+    print("done")
+
+raise ValueError("boom")
+assert x > 0
+```
+
+## Moduły i biblioteka standardowa
+
+```python
+import mathx
+import strings
+from structs import Stack
+
+import os                            # stdlib Pythona też działa
+```
+
+## Comprehensions
+
+```python
+evens = [i for i in range(10) if i % 2 == 0]
+caps = {n: n.upper() for n in names}
 ```
 
 ## Stringi i f-stringi
@@ -95,22 +173,19 @@ b = len("Externum")       # 8
 ```python
 msg = "Hello, " + "world!"
 print(f"value: {msg}")
+print("ab" * 3)
+print(s.strip().replace("a", "x").split(","))   # łańcuch metod
 ```
 
-## Integracja z Bashi
+## Integracja z Bashem
 
 ### Bash inline (backticks)
 
-Wykonuje polecenie i (przy kompilacji) trafia też do targetu `bash`:
-
 ```python
-output = `ls -la | grep ".py"`
-print(output)
+`ls -la | grep ".py"`
 ```
 
 ### Bloki bash (`%% ... %%`)
-
-Wielolinijkowe fragmenty powłoki:
 
 ```python
 %%
@@ -121,8 +196,9 @@ done
 %%
 ```
 
-## Ograniczenia (aktualna wersja)
+## Wywołania wbudowane
 
-- Brak klas i `match`-statementów (na roadmapie).
-- Binarne wyjście `--target binary` gromadzi literały binarne
-  (`0b...`) — nie jest jeszcze pełnym assemblerem.
+`print`, `input`, `len`, `str`, `int`, `float`, `bool`, `list`, `dict`,
+`tuple`, `set`, `range`, `open`, `type`, `sum`, `min`, `max`, `abs`,
+`round`, `enumerate`, `zip`, `sorted`, `reversed`, `chr`, `ord`, `hex`,
+`oct`, `bin`, `isinstance`, `repr`, `format`.
