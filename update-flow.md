@@ -12,6 +12,16 @@ how this documentation site stays in sync with the source projects.
 | [BartoszOsiej/NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE) | BartoszOsiej | Source: NV2 Engine — native Rust voxel game |
 | [BartoszOsiej/AURORA-OS](https://github.com/BartoszOsiej/AURORA-OS) | BartoszOsiej | Source: AURORA OS — browser operating system in TypeScript |
 | [BartoszOsiej/cybersec-tools](https://github.com/BartoszOsiej/cybersec-tools) | BartoszOsiej | Source: Cybersec Toolkit — 4 Rust security tools |
+| [BartoszOsiej/halcyon-process-monitor](https://github.com/BartoszOsiej/halcyon-process-monitor) | BartoszOsiej | Source: Halcyon Process Monitor — eBPF telemetry |
+| [BartoszOsiej/Externum](https://github.com/BartoszOsiej/Externum) | BartoszOsiej | Source: Externum language |
+| [BartoszOsiej/GhostLauncher](https://github.com/BartoszOsiej/GhostLauncher) | BartoszOsiej | Source: GhostLauncher (Electron + React) |
+| [BartoszOsiej/polish-ai](https://github.com/BartoszOsiej/polish-ai) | BartoszOsiej | Source: PolishAI model |
+| [BartoszOsiej/video-moe](https://github.com/BartoszOsiej/video-moe) | BartoszOsiej | Source: Video MoE model |
+| [BartoszOsiej/factory_defense](https://github.com/BartoszOsiej/factory_defense) | BartoszOsiej | Source: Factory Defense (Rust game) |
+| [BartoszOsiej/MinecraftMapLauncher](https://github.com/BartoszOsiej/MinecraftMapLauncher) | BartoszOsiej | Source: Minecraft Map Launcher |
+| [BartoszOsiej/evotech-mod](https://github.com/BartoszOsiej/evotech-mod) | BartoszOsiej | Source: EvoTech Forge mod |
+| [BartoszOsiej/game](https://github.com/BartoszOsiej/game) | BartoszOsiej | Source: Transport Game (browser) |
+| [BartoszOsiej/ghostdev](https://github.com/BartoszOsiej/ghostdev) | BartoszOsiej | Source: Ghost Developments website |
 | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | BartoszOsiej | **This site** — GitHub Pages docs hub |
 
 ## Update flow diagram
@@ -44,7 +54,14 @@ how this documentation site stays in sync with the source projects.
 | 2 | `Factorio-web-game` | Engine/systems/backend documentation changes | When gameplay or backend changes |
 | 3 | `NV2_ENGINE` | Engine, AI, gameplay and performance documentation | When the engine changes |
 | 4 | `cybersec-tools` | Tool docs, usage, CLI reference | When a tool changes |
-| 5 | `Docs` (this repo) | Final rendered site | On every push to `main` |
+| 5 | `halcyon-process-monitor` | eBPF architecture & usage docs | When the monitor changes |
+| 6 | `Externum` | Language spec & syntax | When the language changes |
+| 7 | `GhostLauncher` | Launcher features & setup | When the launcher changes |
+| 8 | `polish-ai`, `video-moe` | Model docs | When the models change |
+| 9 | `factory_defense`, `game` | Game docs | When the games change |
+| 10 | `MinecraftMapLauncher`, `evotech-mod` | Tooling docs | When the tools change |
+| 11 | `ghostdev` | Site docs | When the site changes |
+| 12 | `Docs` (this repo) | Final rendered site | On every push to `main` |
 
 ### Publishing a docs update (source repos)
 
@@ -53,6 +70,12 @@ how this documentation site stays in sync with the source projects.
    - `projects/factorio-web-game/` — Novactorio
    - `projects/nv2-engine/` — NV2 Engine
    - `projects/cybersec-tools/` — Cybersec Toolkit
+   - `projects/halcyon-process-monitor/` — Halcyon Process Monitor
+   - `projects/externum/` — Externum
+   - `projects/polish-ai/`, `projects/video-moe/` — AI models
+   - `projects/factory-defense/`, `projects/game/` — games
+   - `projects/ghost-launcher/`, `projects/minecraft-tools/` — launchers & mods
+   - `projects/ghostdev/`, `projects/client-projects/` — web & client work
 2. Commit to the `Docs` repository and push to `main`.
 3. GitHub Actions builds the VitePress site and deploys it to GitHub Pages
    automatically — no manual steps.
