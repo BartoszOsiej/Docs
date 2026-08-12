@@ -1,5 +1,5 @@
 <template>
-  <a :href="link" class="project-card" @mousemove="onMove">
+  <a :href="withBase(link)" class="project-card" @mousemove="onMove">
     <div class="glow" aria-hidden="true"></div>
     <div class="icon" :style="{ backgroundColor: tint + '22' }">{{ icon }}</div>
     <h3>{{ title }}</h3>
@@ -12,6 +12,8 @@
 </template>
 
 <script setup lang="ts">
+import { withBase } from 'vitepress'
+
 withDefaults(defineProps<{
   link: string
   icon?: string
