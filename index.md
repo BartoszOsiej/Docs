@@ -19,7 +19,7 @@ hero:
       link: /projects/fastapi-url/
     - theme: alt
       text: 💬 N2 Mesh (P2P chat)
-      link: https://bartoszosiej.github.io/N2-Mesh/
+      link: /projects/n2-mesh/
     - theme: alt
       text: LinkShort — URL Shortener
       link: /projects/fastapi-url/
@@ -57,8 +57,8 @@ features:
     link: /projects/halcyon-process-monitor/
   - icon: 💬
     title: N2 Mesh — P2P Chat
-    details: A serverless, torrent-principle chat that works on static hosting — peers connect via WebTorrent swarms. Its own repo and GitHub Pages site.
-    link: https://bartoszosiej.github.io/N2-Mesh/
+    details: A serverless, torrent-principle chat that works on static hosting — peers connect via WebTorrent swarms. Its own repo, docs pages and GitHub Pages site.
+    link: /projects/n2-mesh/
   - icon: 🔄
     title: Update Flow
     details: Which repositories publish updates to this documentation site, and how.

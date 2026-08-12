@@ -22,10 +22,10 @@ title: Projects — Bartosz Osiej
   <ProjectCard
     icon="💬"
     title="N2 Mesh — P2P Chat"
-    description="Torrent-principle messenger that works on static hosting. Room = torrent infohash, peers join a WebTorrent swarm, messages travel over the BitTorrent extended protocol — no server, no database. Lives in its own repo (BartoszOsiej/N2-Mesh)."
+    description="Torrent-principle messenger that works on static hosting. Room = torrent infohash, peers join a WebTorrent swarm, messages travel over the BitTorrent extended protocol — no server, no database. Fully documented in its own docs pages."
     :tags="['WebTorrent', 'P2P', 'BitTorrent', 'Serverless']"
     tint="#a78bfa"
-    link="https://bartoszosiej.github.io/N2-Mesh/"
+    link="/projects/n2-mesh/"
   />
   <ProjectCard
     icon="🔗"
@@ -98,7 +98,7 @@ title: Projects — Bartosz Osiej
 | Project | Repository | Docs |
 |---|---|---|
 | Docs Hub | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | [here](/) |
-| N2 Mesh (P2P Chat) | [BartoszOsiej/N2-Mesh](https://github.com/BartoszOsiej/N2-Mesh) | [live site](https://bartoszosiej.github.io/N2-Mesh/) |
+| N2 Mesh (P2P Chat) | [BartoszOsiej/N2-Mesh](https://github.com/BartoszOsiej/N2-Mesh) | [docs](/projects/n2-mesh/) · [live](https://bartoszosiej.github.io/N2-Mesh/) |
 | LinkShort | [BartoszOsiej/FastAPI-url](https://github.com/BartoszOsiej/FastAPI-url) | [docs](/projects/fastapi-url/) |
 | Novactorio | [BartoszOsiej/Factorio-web-game](https://github.com/BartoszOsiej/Factorio-web-game) | [docs](/projects/factorio-web-game/) |
 | NV2 Engine | [BartoszOsiej/NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE) | [docs](/projects/nv2-engine/) |

@@ -27,8 +27,8 @@ wprost. Dostępny jest też **REPL**, **system modułów** z własną
 ## 🚀 Szybki start
 
 ```bash
-git clone https://github.com/externum/externum.git
-cd externum
+git clone https://github.com/BartoszOsiej/Externum.git
+cd Externum
 pip install -e .            # Python 3.10+
 
 externum --version          # Externum 3.0.0
@@ -39,6 +39,14 @@ externum run examples/pokedex.ext
 # Interaktywna powłoka
 externum repl
 ```
+
+## 🕹️ Wypróbuj na żywo
+
+Poniższy playground wykonuje Externum **w całości w Twojej przeglądarce** —
+transpilator (napisany w Pythonie) działa przez WebAssembly (Pyodide),
+bez żadnego serwera. Kliknij **▶ Run** i patrz, jak program się wykonuje:
+
+<ExternumPlayground />
 
 ## 📚 Standardowa biblioteka (w Externum)
 
