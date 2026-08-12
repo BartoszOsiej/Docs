@@ -16,7 +16,7 @@ export default defineConfig({
     ['meta', { property: 'og:description', content: 'Central documentation hub for FastAPI-url and Factorio-web-game.' }],
   ],
   themeConfig: {
-    logo: '/Docs/logo.svg',
+    logo: '/logo.svg',
     nav: [
       { text: 'Home', link: '/' },
       { text: 'LinkShort', link: '/projects/fastapi-url/' },
