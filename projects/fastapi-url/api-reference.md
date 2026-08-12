@@ -71,10 +71,16 @@ All `/urls` routes except stats and redirect require a JWT bearer header.
 
 Create a short URL.
 
-**Request** — query parameter or JSON body with `target_url`:
+**Request** — query parameter `target_url` (a bare scalar in the FastAPI
+handler, so it is a query parameter, not a JSON body):
 
-```json
-{ "target_url": "https://example.com/very/long/path" }
+```
+POST /urls/shorten?target_url=https://example.com/very/long/path
+```
+
+```bash
+curl -s -X POST 'http://localhost:8000/urls/shorten?target_url=https://example.com/very/long/path' \
+  -H 'Authorization: Bearer <jwt>'
 ```
 
 **Response 200**

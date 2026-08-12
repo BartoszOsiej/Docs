@@ -84,8 +84,9 @@ $ hashsleuth brute 900150983cd24fb0d6963f7d28e17f72 abc 3 --algo md5
 [+] FOUND: abc
 ```
 
-**Parallelization:** workers split the index space by first-character stride;
-each worker decodes its index into charset digits (base-N counter).
+**Parallelization:** workers stride the flat index space (`i = w; i += workers`)
+across every position and length; each worker decodes its index into charset
+digits (base-N counter).
 
 **Search-space guard:** if `charset^len > 100,000,000` the tool aborts that
 length with a clear message instead of exhausting CPU.
@@ -95,8 +96,9 @@ $ hashsleuth brute 5f4dcc3b5aa765d61d8327deb882cf99 abcdefghijklmnopqrstuvwxyz 8
 [-] search space too large (26^8 = 208B); aborting
 ```
 
-> **Note:** brute force grows exponentially — prefer a good wordlist
-> (dictionary mode) before brute-forcing beyond ~6 characters.
+> **Note:** brute force grows exponentially — with a 26-character charset the
+> 100M search-space cap is already exceeded at length 6 (26⁶ = 308M), so the
+> practical limit is ~5 characters. Prefer a good wordlist (dictionary mode).
 
 ## Algorithm auto-detection
 

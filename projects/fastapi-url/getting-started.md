@@ -73,11 +73,9 @@ curl -s -X POST http://localhost:8000/auth/register \
   -H 'Content-Type: application/json' \
   -d '{"email": "you@example.com", "password": "hunter2"}'
 
-# Shorten a URL (Authorization: Bearer <token>)
-curl -s -X POST http://localhost:8000/urls/shorten \
-  -H 'Content-Type: application/json' \
-  -H 'Authorization: Bearer <token>' \
-  -d '"https://example.com/very/long/path"'
+# Shorten a URL (target_url is a query parameter; Authorization: Bearer <token>)
+curl -s -X POST 'http://localhost:8000/urls/shorten?target_url=https://example.com/very/long/path' \
+  -H 'Authorization: Bearer <token>'
 
 # Redirect (public)
 curl -sI http://localhost:8000/urls/r/<short_code>
