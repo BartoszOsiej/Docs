@@ -22,6 +22,7 @@ export default defineConfig({
     logo: '/logo.svg',
     nav: [
       { text: 'Home', link: '/' },
+      { text: 'Projects', link: '/projects/' },
       { text: 'LinkShort', link: '/projects/fastapi-url/' },
       { text: 'Novactorio', link: '/projects/factorio-web-game/' },
       { text: 'NV2 Engine', link: '/projects/nv2-engine/' },
@@ -39,6 +40,23 @@ export default defineConfig({
       },
     ],
     sidebar: {
+      '/projects/': [
+        {
+          text: 'All Projects',
+          items: [
+            { text: '📁 Projects', link: '/projects/' },
+            { text: '💬 P2P Chat', link: '/chat/' },
+            { text: '🔗 LinkShort', link: '/projects/fastapi-url/' },
+            { text: '🏭 Novactorio', link: '/projects/factorio-web-game/' },
+            { text: '⛏️ NV2 Engine', link: '/projects/nv2-engine/' },
+            { text: '◈ AURORA OS', link: '/projects/aurora-os/' },
+            { text: '🛡️ Cybersec Toolkit', link: '/projects/cybersec-tools/' },
+            { text: '🛰️ Halcyon Monitor', link: '/projects/halcyon-process-monitor/' },
+            { text: '📜 Externum', link: '/projects/externum/' },
+            { text: '🏭 Factory Defense', link: '/projects/factory-defense/' },
+          ],
+        },
+      ],
       '/projects/fastapi-url/': [
         {
           text: 'LinkShort (FastAPI-url)',
