@@ -1,6 +1,8 @@
 # Bartosz Osiej — Docs
 
-> Central documentation hub for LinkShort, Novactorio, NV2 Engine, AURORA OS and the Cybersec Toolkit.
+> Central documentation hub for all Bartosz Osiej projects — LinkShort,
+> Novactorio, NV2 Engine, AURORA OS, the Cybersec Toolkit, Halcyon Process
+> Monitor, Externum, AI models, launchers and client work.
 
 This site is fully readable by AI agents. For a single-file snapshot of all
 content, fetch `/Docs/llms-full.txt`.
@@ -15,7 +17,7 @@ content, fetch `/Docs/llms-full.txt`.
   - [Architecture](https://bartoszosiej.github.io/Docs/projects/factorio-web-game/architecture)
   - [Gameplay Systems](https://bartoszosiej.github.io/Docs/projects/factorio-web-game/gameplay)
   - [Backend & Monetization](https://bartoszosiej.github.io/Docs/projects/factorio-web-game/backend)
-- [NV2 Engine (NV2_ENGINE)](https://bartoszosiej.github.io/Docs/projects/nv2-engine/): Native Rust voxel engine — 15,800+ lines, wgpu rendering, 97 block types, 9 biomes, AI-trained vegetation, water simulation, full gameplay loop.
+- [NV2 Engine (NV2_ENGINE)](https://bartoszosiej.github.io/Docs/projects/nv2-engine/): Native Rust voxel engine — wgpu rendering, 97 block types, 9 biomes, AI-trained vegetation, water simulation.
   - [Architecture](https://bartoszosiej.github.io/Docs/projects/nv2-engine/architecture)
   - [Gameplay](https://bartoszosiej.github.io/Docs/projects/nv2-engine/gameplay)
   - [Blocks & Biomes](https://bartoszosiej.github.io/Docs/projects/nv2-engine/blocks)
@@ -25,15 +27,27 @@ content, fetch `/Docs/llms-full.txt`.
   - [Performance](https://bartoszosiej.github.io/Docs/projects/nv2-engine/performance)
   - [Development](https://bartoszosiej.github.io/Docs/projects/nv2-engine/development)
   - [Roadmap & Changelog](https://bartoszosiej.github.io/Docs/projects/nv2-engine/roadmap)
-
 - [Cybersec Toolkit (cybersec-tools)](https://bartoszosiej.github.io/Docs/projects/cybersec-tools/): Four focused Rust security tools — TCP scanning, web vuln checks, hash cracking, pcap analysis.
   - [NetRecon](https://bartoszosiej.github.io/Docs/projects/cybersec-tools/netrecon)
   - [ShadowScan](https://bartoszosiej.github.io/Docs/projects/cybersec-tools/shadowscan)
   - [HashSleuth](https://bartoszosiej.github.io/Docs/projects/cybersec-tools/hashsleuth)
   - [PacketEye](https://bartoszosiej.github.io/Docs/projects/cybersec-tools/packeteye)
-- [AURORA OS (AURORA-OS)](https://bartoszosiej.github.io/Docs/projects/aurora-os/): A complete operating system in the browser — TypeScript kernel, window manager, virtual filesystem, 37-command shell, 8 apps, themes and procedural audio. Zero runtime dependencies.
+- [AURORA OS (AURORA-OS)](https://bartoszosiej.github.io/Docs/projects/aurora-os/): A complete operating system in the browser — TypeScript kernel, window manager, virtual filesystem, 37-command shell, 8 apps, themes and procedural audio.
   - [Architecture](https://bartoszosiej.github.io/Docs/projects/aurora-os/architecture)
   - [User Guide](https://bartoszosiej.github.io/Docs/projects/aurora-os/user-guide)
+- [Halcyon Process Monitor](https://bartoszosiej.github.io/Docs/projects/halcyon-process-monitor/): Real-time eBPF process and file-op telemetry for Linux with a ransomware sliding-window heuristic and a ratatui TUI.
+  - [Architecture](https://bartoszosiej.github.io/Docs/projects/halcyon-process-monitor/architecture)
+- [Externum](https://bartoszosiej.github.io/Docs/projects/externum/): A programming language fusing Python readability, binary performance and Bash control.
+- [PolishAI](https://bartoszosiej.github.io/Docs/projects/polish-ai/): Polish-language transformer with qint8 quantization and AVX2.
+- [Video MoE](https://bartoszosiej.github.io/Docs/projects/video-moe/): ~60M-parameter MoE transformer for video generation on constrained hardware.
+- [Factory Defense](https://bartoszosiej.github.io/Docs/projects/factory-defense/): Rust factory-building + tower-defense game on macroquad.
+- [GhostLauncher](https://bartoszosiej.github.io/Docs/projects/ghost-launcher/): Electron Minecraft launcher (LandOfGhost) + React rewrite.
+- [Minecraft Tooling](https://bartoszosiej.github.io/Docs/projects/minecraft-tools/): Native map launcher (C++/AppImage) and EvoTech Forge 1.20.1 mod.
+- [Transport Game](https://bartoszosiej.github.io/Docs/projects/game/): Vanilla-JS browser sandbox — terrain, vehicles, building, multiplayer.
+- [Ghost Developments](https://bartoszosiej.github.io/Docs/projects/ghostdev/): Next.js marketing site for an IT services business.
+- [Client Projects](https://bartoszosiej.github.io/Docs/projects/client-projects/): Catalog of commissioned and hobby work.
+- [P2P Chat](https://bartoszosiej.github.io/Docs/chat/): Serverless torrent-principle chat that runs on static hosting via WebTorrent swarms.
+
 ## Meta
 
 - [Update Flow](https://bartoszosiej.github.io/Docs/update-flow): which repositories publish updates to this site.

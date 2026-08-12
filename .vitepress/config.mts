@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 // Base path for GitHub Pages: https://BartoszOsiej.github.io/Docs/
 export default defineConfig({
   title: 'Bartosz Osiej — Docs',
-  description: 'Central documentation hub for LinkShort, Novactorio, NV2 Engine, AURORA OS and the Cybersec Toolkit.',
+  description: 'Central documentation hub for all Bartosz Osiej projects — LinkShort, Novactorio, NV2 Engine, AURORA OS, the Cybersec Toolkit, Halcyon Process Monitor, Externum, AI models, launchers and client work.',
   lang: 'en-US',
   base: '/Docs/',
   cleanUrls: true,
@@ -16,7 +16,7 @@ export default defineConfig({
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/Docs/favicon.svg' }],
     ['meta', { name: 'theme-color', content: '#0f172a' }],
     ['meta', { property: 'og:title', content: 'Bartosz Osiej — Docs' }],
-    ['meta', { property: 'og:description', content: 'Central documentation hub for LinkShort, Novactorio, NV2 Engine, AURORA OS and the Cybersec Toolkit.' }],
+    ['meta', { property: 'og:description', content: 'Central documentation hub for all Bartosz Osiej projects.' }],
   ],
   themeConfig: {
     logo: '/logo.svg',
@@ -27,7 +27,23 @@ export default defineConfig({
       { text: 'NV2 Engine', link: '/projects/nv2-engine/' },
       { text: 'Cybersec', link: '/projects/cybersec-tools/' },
       { text: 'AURORA OS', link: '/projects/aurora-os/' },
-      { text: 'Update Flow', link: '/update-flow' },
+      { text: 'P2P Chat', link: '/chat/' },
+      {
+        text: 'More',
+        items: [
+          { text: 'Halcyon Process Monitor', link: '/projects/halcyon-process-monitor/' },
+          { text: 'Externum Language', link: '/projects/externum/' },
+          { text: 'PolishAI', link: '/projects/polish-ai/' },
+          { text: 'Video MoE', link: '/projects/video-moe/' },
+          { text: 'Factory Defense', link: '/projects/factory-defense/' },
+          { text: 'GhostLauncher', link: '/projects/ghost-launcher/' },
+          { text: 'Minecraft Tooling', link: '/projects/minecraft-tools/' },
+          { text: 'Transport Game', link: '/projects/game/' },
+          { text: 'Ghost Developments', link: '/projects/ghostdev/' },
+          { text: 'Client Projects', link: '/projects/client-projects/' },
+          { text: 'Update Flow', link: '/update-flow' },
+        ],
+      },
     ],
     sidebar: {
       '/projects/fastapi-url/': [
@@ -90,6 +106,42 @@ export default defineConfig({
             { text: 'Roadmap & Changelog', link: '/projects/nv2-engine/roadmap' },
           ],
         },
+      ],
+      '/projects/halcyon-process-monitor/': [
+        {
+          text: 'Halcyon Process Monitor',
+          items: [
+            { text: 'Overview', link: '/projects/halcyon-process-monitor/' },
+            { text: 'Architecture', link: '/projects/halcyon-process-monitor/architecture' },
+          ],
+        },
+      ],
+      '/projects/externum/': [
+        { text: 'Externum Language', items: [{ text: 'Overview', link: '/projects/externum/' }] },
+      ],
+      '/projects/polish-ai/': [
+        { text: 'PolishAI', items: [{ text: 'Overview', link: '/projects/polish-ai/' }] },
+      ],
+      '/projects/video-moe/': [
+        { text: 'Video MoE', items: [{ text: 'Overview', link: '/projects/video-moe/' }] },
+      ],
+      '/projects/factory-defense/': [
+        { text: 'Factory Defense', items: [{ text: 'Overview', link: '/projects/factory-defense/' }] },
+      ],
+      '/projects/ghost-launcher/': [
+        { text: 'GhostLauncher', items: [{ text: 'Overview', link: '/projects/ghost-launcher/' }] },
+      ],
+      '/projects/minecraft-tools/': [
+        { text: 'Minecraft Tooling', items: [{ text: 'Overview', link: '/projects/minecraft-tools/' }] },
+      ],
+      '/projects/game/': [
+        { text: 'Transport Game', items: [{ text: 'Overview', link: '/projects/game/' }] },
+      ],
+      '/projects/ghostdev/': [
+        { text: 'Ghost Developments', items: [{ text: 'Overview', link: '/projects/ghostdev/' }] },
+      ],
+      '/projects/client-projects/': [
+        { text: 'Client Projects', items: [{ text: 'Catalog', link: '/projects/client-projects/' }] },
       ],
     },
     outline: { level: [2, 3], label: 'On this page' },
