@@ -3,38 +3,39 @@ Source: https://bartoszosiej.github.io/Docs/
 Generated for AI agents and crawlers. All content below is the complete documentation.
 ========================================================================
 
-
-#======================================================================
 ## Home
-#======================================================================
+Source file: index.md
 
 
 
-#======================================================================
+---
+
 ## Update Flow
-#======================================================================
-Update Flow
+Source file: update-flow.md
 
-This page documents which repositories publish updates to which, including
+# Update Flow
+
+This page documents **which repositories publish updates to which**, including
 how this documentation site stays in sync with the source projects.
 
-Repository map
+## Repository map
 
 | Repository | Owner | Role |
 |---|---|---|
-| BartoszOsiej/FastAPI-url | BartoszOsiej (fork of ghost0development) | Source: LinkShort URL shortener |
-| BartoszOsiej/Factorio-web-game | BartoszOsiej | Source: Novactorio browser game |
-| BartoszOsiej/Docs | BartoszOsiej | This site — GitHub Pages docs hub |
+| [BartoszOsiej/FastAPI-url](https://github.com/BartoszOsiej/FastAPI-url) | BartoszOsiej (fork of ghost0development) | Source: LinkShort URL shortener |
+| [BartoszOsiej/Factorio-web-game](https://github.com/BartoszOsiej/Factorio-web-game) | BartoszOsiej | Source: Novactorio browser game |
+| [BartoszOsiej/NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE) | BartoszOsiej | Source: NV2 Engine — native Rust voxel game |
+| [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | BartoszOsiej | **This site** — GitHub Pages docs hub |
 
-Update flow diagram
+## Update flow diagram
 
-┌─────────────────────────┐        ┌─────────────────────────┐
-│  FastAPI-url            │        │  Factorio-web-game      │
-│  (LinkShort source)     │        │  (Novactorio source)    │
-└────────────┬────────────┘        └────────────┬────────────┘
-             │   docs updates                    │   docs updates
-             │   (API changes, features)         │   (systems, backend)
-             ▼                                  ▼
+```
+┌──────────────┐   ┌──────────────┐   ┌──────────────┐
+│ FastAPI-url  │   │ Factorio-    │   │ NV2_ENGINE   │
+│ (LinkShort)  │   │ web-game     │   │ (NV2 Engine) │
+└──────┬───────┘   └──────┬───────┘   └──────┬───────┘
+       │ docs updates     │ docs updates     │ docs updates
+       ▼                  ▼                  ▼
 ┌──────────────────────────────────────────────────────────────┐
 │                      BartoszOsiej/Docs                       │
 │                    (this GitHub Pages site)                  │
@@ -46,96 +47,103 @@ Update flow diagram
                               │
                               ▼
               https://bartoszosiej.github.io/Docs/
+```
 
-How updates reach this site
+## How updates reach this site
 
 | # | Source repo | What flows in | When |
 |---|---|---|---|
-| 1 | FastAPI-url | API changes, new endpoints, feature updates | When the API or SPA changes |
-| 2 | Factorio-web-game | Engine/systems/backend documentation changes | When gameplay or backend changes |
-| 3 | Docs (this repo) | Final rendered site | On every push to main |
+| 1 | `FastAPI-url` | API changes, new endpoints, feature updates | When the API or SPA changes |
+| 2 | `Factorio-web-game` | Engine/systems/backend documentation changes | When gameplay or backend changes |
+| 3 | `NV2_ENGINE` | Engine, AI, gameplay and performance documentation | When the engine changes |
+| 4 | `Docs` (this repo) | Final rendered site | On every push to `main` |
 
-Publishing a docs update (source repos)
+### Publishing a docs update (source repos)
 
-1. Edit the Markdown under the relevant project's section in Docs:
-   - projects/fastapi-url/ — LinkShort
-   - projects/factorio-web-game/ — Novactorio
-2. Commit to the Docs repository and push to main.
+1. Edit the Markdown under the relevant project's section in `Docs`:
+   - `projects/fastapi-url/` — LinkShort
+   - `projects/factorio-web-game/` — Novactorio
+   - `projects/nv2-engine/` — NV2 Engine
+2. Commit to the `Docs` repository and push to `main`.
 3. GitHub Actions builds the VitePress site and deploys it to GitHub Pages
    automatically — no manual steps.
 
-> Note: The documentation lives in the Docs repository (single source of
-> truth for the site). The source projects publish facts (code changes);
-> the docs are updated in this repo. If you prefer docs to live next to the
-> code, each source repo can hold its own docs/ folder and a workflow can
+> **Note:** The documentation lives in the `Docs` repository (single source of
+> truth for the site). The source projects publish *facts* (code changes);
+> the docs are *updated* in this repo. If you prefer docs to live next to the
+> code, each source repo can hold its own `docs/` folder and a workflow can
 > mirror it here — see "Alternative pattern" below.
 
-Alternative pattern: docs-in-source mirror
+## Alternative pattern: docs-in-source mirror
 
 If you want documentation to live inside each source repo and auto-sync:
 
+```
 FastAPI-url/docs/*.md ──┐
                         ├──► (GitHub Action: copy docs/ → Docs repo) ──► Docs
 Factorio-web-game/docs/*.md ──┘
+```
 
-A workflow in each source repo would checkout Docs, copy its docs/
+A workflow in each source repo would checkout `Docs`, copy its `docs/`
 folder, commit, and push. This keeps docs next to the code they describe,
 with this site as the rendered output.
 
-Deployment pipeline (this repo)
+## Deployment pipeline (this repo)
 
 | Stage | Detail |
 |---|---|
 | Static site generator | VitePress (Node.js) |
-| Build | npm run docs:build |
-| Publish | GitHub Actions → actions/deploy-pages |
-| URL | <https://bartoszosiej.github.io/Docs/> |
+| Build | `npm run docs:build` |
+| Publish | GitHub Actions → `actions/deploy-pages` |
+| URL |  |
 
-GitHub account note
+## GitHub account note
 
-- BartoszOsiej is the current account; ghost0development is the older
-  account from which FastAPI-url was forked.
-- Local clones of FastAPI-url track origin = BartoszOsiej and
-  upstream = ghost0development (for pulling upstream fixes).
+- `BartoszOsiej` is the current account; `ghost0development` is the older
+  account from which `FastAPI-url` was forked.
+- Local clones of `FastAPI-url` track `origin` = `BartoszOsiej` and
+  `upstream` = `ghost0development` (for pulling upstream fixes).
 
+---
 
-#======================================================================
 ## LinkShort - Overview
-#======================================================================
-LinkShort
+Source file: projects/fastapi-url/index.md
 
-> A production-ready URL shortener with JWT authentication, click tracking, and a dark React SPA.
+# LinkShort
 
-LinkShort (repository: FastAPI-url) is a full-stack URL shortening service. A
+> **A production-ready URL shortener with JWT authentication, click tracking, and a dark React SPA.**
+
+LinkShort (repository: `FastAPI-url`) is a full-stack URL shortening service. A
 FastAPI + SQLAlchemy backend serves a JSON REST API and the compiled React 19
 frontend as static assets; SQLite provides zero-configuration persistence.
 
 | | | |
 |---|---|---|
-| !Login | !Dashboard | !List |
+| ![Login](/screenshots/fastapi-url/login.png) | ![Dashboard](/screenshots/fastapi-url/dashboard.png) | ![List](/screenshots/fastapi-url/list.png) |
 
-Highlights
+## Highlights
 
-- JWT authentication — register, login, and token-based API access (python-jose, SHA-256 password hashing).
-- One-click shortening — paste a URL, get a 6-character short code.
-- Click tracking — every redirect increments the click counter.
-- Dashboard — manage URLs: copy, delete, view stats.
-- Dark, responsive UI — React 19 + Vite + TailwindCSS 4.
-- REST API — interactive Swagger docs at /docs.
-- SQLite — zero-config persistence with SQLAlchemy ORM.
+- **JWT authentication** — register, login, and token-based API access (`python-jose`, SHA-256 password hashing).
+- **One-click shortening** — paste a URL, get a 6-character short code.
+- **Click tracking** — every redirect increments the click counter.
+- **Dashboard** — manage URLs: copy, delete, view stats.
+- **Dark, responsive UI** — React 19 + Vite + TailwindCSS 4.
+- **REST API** — interactive Swagger docs at `/docs`.
+- **SQLite** — zero-config persistence with SQLAlchemy ORM.
 
-Tech stack
+## Tech stack
 
 | Layer | Technology |
 |---|---|
 | Backend | Python 3.12, FastAPI, SQLAlchemy 2, SQLite |
-| Auth | JWT (python-jose), SHA-256 password hashing |
+| Auth | JWT (`python-jose`), SHA-256 password hashing |
 | Frontend | React 19, Vite, TailwindCSS 4 |
 | Testing | pytest, httpx (CI on every push) |
-| Deployment | Docker / docker-compose, Fly.io (fly.toml) |
+| Deployment | Docker / docker-compose, Fly.io (`fly.toml`) |
 
-Repository layout
+## Repository layout
 
+```
 FastAPI-url/
 ├── app/
 │   ├── main.py            # FastAPI app, CORS, SPA static serving
@@ -152,161 +160,187 @@ FastAPI-url/
 ├── .github/workflows/ci.yml
 ├── Dockerfile / docker-compose.yml
 └── fly.toml
+```
 
-Related pages
+## Related pages
 
-- Getting Started — run it locally in minutes
-- API Reference — every endpoint, request, and response
-- Deployment — Docker and Fly.io
+- [Getting Started](getting-started) — run it locally in minutes
+- [API Reference](api-reference) — every endpoint, request, and response
+- [Deployment](deployment) — Docker and Fly.io
 
+---
 
-#======================================================================
 ## LinkShort - Getting Started
-#======================================================================
-Getting Started
+Source file: projects/fastapi-url/getting-started.md
+
+# Getting Started
 
 Run LinkShort locally in a few minutes. You need Python 3.12+ and Node.js 18+.
 
-1. Clone and prepare the backend
+## 1. Clone and prepare the backend
 
+```bash
 git clone https://github.com/BartoszOsiej/FastAPI-url.git
 cd FastAPI-url
 
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
+```
 
-2. Configure environment
+## 2. Configure environment
 
 Copy the example environment file and set a secret key:
 
+```bash
 cp .env.example .env
-edit .env — set SECRET_KEY to a long random string
+# edit .env — set SECRET_KEY to a long random string
+```
 
 | Variable | Purpose |
 |---|---|
-| SECRET_KEY | JWT signing secret (change in production!) |
-| DATABASE_URL | Defaults to a local SQLite file |
+| `SECRET_KEY` | JWT signing secret (change in production!) |
+| `DATABASE_URL` | Defaults to a local SQLite file |
 
-3. Start the API
+## 3. Start the API
 
+```bash
 uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+```
 
 Open:
 
-- App + Swagger UI: <http://localhost:8000>
-- Interactive API docs: <http://localhost:8000/docs>
+- **App + Swagger UI:** 
+- **Interactive API docs:** 
 
 The SQLite database is created automatically on startup
-(Base.metadata.create_all).
+(`Base.metadata.create_all`).
 
-4. Build the frontend (optional, for the SPA)
+## 4. Build the frontend (optional, for the SPA)
 
+```bash
 cd frontend
 npm install
 npm run build
 rm -rf ../backend/static
 mkdir -p ../backend/static
 cp -r dist/* ../backend/static/
+```
 
-FastAPI serves the compiled SPA from backend/static — including a catch-all
-route that returns index.html for client-side routing.
+FastAPI serves the compiled SPA from `backend/static` — including a catch-all
+route that returns `index.html` for client-side routing.
 
-5. Run the tests
+## 5. Run the tests
 
+```bash
 pip install pytest httpx
 python -m pytest tests/ -v --tb=long
+```
 
-The same test suite runs in CI (.github/workflows/ci.yml) on every push and
+The same test suite runs in CI (`.github/workflows/ci.yml`) on every push and
 pull request with Python 3.12.
 
-First API call
+## First API call
 
-Register (returns a JWT)
+```bash
+# Register (returns a JWT)
 curl -s -X POST http://localhost:8000/auth/register \
   -H 'Content-Type: application/json' \
   -d '{"email": "you@example.com", "password": "hunter2"}'
 
-Shorten a URL (Authorization: Bearer <token>)
+# Shorten a URL (Authorization: Bearer )
 curl -s -X POST http://localhost:8000/urls/shorten \
   -H 'Content-Type: application/json' \
-  -H 'Authorization: Bearer <token>' \
+  -H 'Authorization: Bearer ' \
   -d '"https://example.com/very/long/path"'
+```
 
-Next steps
+## Next steps
 
-- Explore every endpoint in the API Reference
-- Deploy with Docker or Fly.io
+- Explore every endpoint in the [API Reference](api-reference)
+- Deploy with [Docker or Fly.io](deployment)
 
+---
 
-#======================================================================
 ## LinkShort - API Reference
-#======================================================================
-API Reference
+Source file: projects/fastapi-url/api-reference.md
+
+# API Reference
 
 All endpoints are JSON. Authentication uses a JWT bearer token returned by
-/auth/register and /auth/login. Interactive docs are available at
-/docs (Swagger UI) when the server is running.
+`/auth/register` and `/auth/login`. Interactive docs are available at
+`/docs` (Swagger UI) when the server is running.
 
-Base URL
+## Base URL
 
+```
 http://localhost:8000
+```
 
-Authentication
+## Authentication
 
-POST /auth/register
+### `POST /auth/register`
 
 Create an account and receive a JWT.
 
-Request body
+**Request body**
 
+```json
 { "email": "you@example.com", "password": "hunter2" }
+```
 
-Responses
+**Responses**
 
 | Status | Body |
 |---|---|
-| 200 | { "access_token": "<jwt>", "token_type": "bearer" } |
-| 400 | { "detail": "Email already registered" } |
+| 200 | `{ "access_token": "", "token_type": "bearer" }` |
+| 400 | `{ "detail": "Email already registered" }` |
 
-POST /auth/login
+### `POST /auth/login`
 
 Authenticate and receive a JWT.
 
-Request body
+**Request body**
 
+```json
 { "email": "you@example.com", "password": "hunter2" }
+```
 
-Responses
+**Responses**
 
 | Status | Body |
 |---|---|
-| 200 | { "access_token": "<jwt>", "token_type": "bearer" } |
-| 401 | { "detail": "Invalid credentials" } |
+| 200 | `{ "access_token": "", "token_type": "bearer" }` |
+| 401 | `{ "detail": "Invalid credentials" }` |
 
-GET /auth/me
+### `GET /auth/me`
 
-Return the currently authenticated user. Requires Authorization: Bearer <token>.
+Return the currently authenticated user. Requires `Authorization: Bearer `.
 
-Response
+**Response**
 
+```json
 { "id": "a1b2c3d4", "email": "you@example.com" }
+```
 
-URLs
+## URLs
 
-All /urls/* routes except the redirect require Authorization: Bearer <token>.
+All `/urls/*` routes except the redirect require `Authorization: Bearer `.
 
-POST /urls/shorten
+### `POST /urls/shorten`
 
-Shorten a URL. The body is a plain JSON string (the target URL), not an
+Shorten a URL. The body is a **plain JSON string** (the target URL), not an
 object.
 
-Request body
+**Request body**
 
+```json
 "https://example.com/very/long/path"
+```
 
-Response
+**Response**
 
+```json
 {
   "id": "e5f6a7b8",
   "short_code": "Kx9mQz",
@@ -314,16 +348,18 @@ Response
   "clicks": 0,
   "is_active": true
 }
+```
 
-Short codes are 6 characters from [a-zA-Z0-9], generated with Python's
-secrets module and retried on collision.
+Short codes are 6 characters from `[a-zA-Z0-9]`, generated with Python's
+`secrets` module and retried on collision.
 
-GET /urls/my
+### `GET /urls/my`
 
 List the authenticated user's URLs, newest first.
 
-Response
+**Response**
 
+```json
 [
   {
     "id": "e5f6a7b8",
@@ -333,16 +369,19 @@ Response
     "is_active": true
   }
 ]
+```
 
-GET /urls/{short_code}/stats
+### `GET /urls/{short_code}/stats`
 
-Public stats for any short code. No auth required.
+Public stats for any short code. **No auth required.**
 
-Response
+**Response**
 
+```json
 { "short_code": "Kx9mQz", "target_url": "https://example.com/...", "clicks": 3, "total": 3 }
+```
 
-DELETE /urls/{short_code}
+### `DELETE /urls/{short_code}`
 
 Delete one of the authenticated user's URLs (scoped to the owner).
 
@@ -351,133 +390,146 @@ Delete one of the authenticated user's URLs (scoped to the owner).
 | 204 | Deleted |
 | 404 | Not found or not owned by the caller |
 
-GET /urls/r/{short_code}
+### `GET /urls/r/{short_code}`
 
-Public redirect. Increments the click counter and issues a 302 Found
-redirect to the target URL. Returns 404 if the short code does not exist or
+**Public redirect.** Increments the click counter and issues a `302 Found`
+redirect to the target URL. Returns `404` if the short code does not exist or
 is inactive.
 
-Health
+## Health
 
-GET /health
+### `GET /health`
 
+```json
 { "status": "ok" }
+```
 
-Static SPA
+## Static SPA
 
-When the frontend build exists in backend/static, FastAPI serves:
+When the frontend build exists in `backend/static`, FastAPI serves:
 
-- /assets/* — hashed build assets
-- /{full_path:path} — the SPA entry index.html (client-side routing)
+- `/assets/*` — hashed build assets
+- `/{full_path:path}` — the SPA entry `index.html` (client-side routing)
 
-Error format
+## Error format
 
 Errors are FastAPI's standard shape:
 
+```json
 { "detail": "URL not found" }
+```
 
-Status codes: 400 validation/business error · 401 bad credentials ·
-404 missing resource.
+Status codes: `400` validation/business error · `401` bad credentials ·
+`404` missing resource.
 
+---
 
-#======================================================================
 ## LinkShort - Deployment
-#======================================================================
-Deployment
+Source file: projects/fastapi-url/deployment.md
+
+# Deployment
 
 LinkShort ships with three deployment options: Docker, Docker Compose, and
 Fly.io.
 
-Docker
+## Docker
 
-A multi-stage Dockerfile builds the React frontend and packages the FastAPI
+A multi-stage `Dockerfile` builds the React frontend and packages the FastAPI
 app into a single image.
 
+```bash
 docker build -t linkshort .
 
-SQLite file lives in /app/data (volume mount recommended)
+# SQLite file lives in /app/data (volume mount recommended)
 docker run -p 8000:8000 \
   -e SECRET_KEY=change-me \
   -v ./data:/app/data \
   linkshort
+```
 
-Docker Compose
+## Docker Compose
 
-The provided docker-compose.yml wires the image, port, env vars, and a data
+The provided `docker-compose.yml` wires the image, port, env vars, and a data
 volume:
 
+```bash
 docker compose up -d
+```
 
 | Key | Value |
 |---|---|
 | Image | built from the repo |
-| Port | 8000:8000 |
-| DATABASE_URL | sqlite:///./urlshortener.db |
-| Volume | ./data:/app/data |
+| Port | `8000:8000` |
+| `DATABASE_URL` | `sqlite:///./urlshortener.db` |
+| Volume | `./data:/app/data` |
 
-Fly.io
+## Fly.io
 
-fly.toml is included for one-command deployment:
+`fly.toml` is included for one-command deployment:
 
+```bash
 fly launch   # first time only
 fly deploy
+```
 
-Production checklist
+## Production checklist
 
-- [ ] Set a long, random SECRET_KEY (never commit it)
+- [ ] Set a long, random `SECRET_KEY` (never commit it)
 - [ ] Mount persistent storage for the SQLite database
 - [ ] Run behind TLS (Fly.io provides it automatically)
-- [ ] Confirm backend/static contains a fresh frontend build
-- [ ] Restrict CORS origins instead of the dev * wildcard if needed
+- [ ] Confirm `backend/static` contains a fresh frontend build
+- [ ] Restrict CORS origins instead of the dev `*` wildcard if needed
 
+---
 
-#======================================================================
 ## Novactorio - Overview
-#======================================================================
-Novactorio
+Source file: projects/factorio-web-game/index.md
 
-> A browser factory-automation game in the spirit of Factorio, written from scratch in TypeScript with a hand-built Canvas 2D engine.
+# Novactorio
 
-Novactorio (repository: Factorio-web-game) is a complete browser game: an
+> **A browser factory-automation game in the spirit of Factorio, written from scratch in TypeScript with a hand-built Canvas 2D engine.**
+
+Novactorio (repository: `Factorio-web-game`) is a complete browser game: an
 original 2D engine, chunk-based infinite world generation, supply chains,
 conveyor belts, pipe networks, enemy AI, pollution, co-op multiplayer, 23
 localizations, and a Stripe-powered premium tier.
 
-Stack: TypeScript 5.5 (strict), React 18, Vite 6, Supabase (Auth,
+**Stack:** TypeScript 5.5 (strict), React 18, Vite 6, Supabase (Auth,
 Realtime, storage), Stripe, Deno Edge Functions, Cloudflare Pages/Wrangler.
 
-Highlights
+## Highlights
 
-- Hand-written engine — ~2,500 lines of Canvas 2D rendering with no game
+- **Hand-written engine** — ~2,500 lines of Canvas 2D rendering with no game
   frameworks (no Phaser, no Pixi).
-- Factorio-like depth — conveyor belts, inserters, pipe networks, research
+- **Factorio-like depth** — conveyor belts, inserters, pipe networks, research
   tree, pollution, enemy evolution.
-- Infinite world — chunk-based terrain with Perlin noise, seamless
+- **Infinite world** — chunk-based terrain with Perlin noise, seamless
   scrolling.
-- Co-op multiplayer — Supabase Realtime broadcasts player positions and
+- **Co-op multiplayer** — Supabase Realtime broadcasts player positions and
   build actions (place/remove).
-- 23 languages — runtime-switchable i18n; Polish and English fully
+- **23 languages** — runtime-switchable i18n; Polish and English fully
   translated.
-- Cloud saves — world snapshots backed up to Supabase
-  (world_snapshots.save_data).
-- Premium monetization — Stripe Checkout subscriptions (Starter/Premium)
-  via Deno Edge Functions; webhooks update profiles.premium_tier.
+- **Cloud saves** — world snapshots backed up to Supabase
+  (`world_snapshots.save_data`).
+- **Premium monetization** — Stripe Checkout subscriptions (Starter/Premium)
+  via Deno Edge Functions; webhooks update `profiles.premium_tier`.
 
-Tech stack
+## Tech stack
 
 | Layer | Technology |
 |---|---|
-| Language | TypeScript 5.5, strict: true |
+| Language | TypeScript 5.5, `strict: true` |
 | UI | React 18 (overlay), TailwindCSS |
 | Build | Vite 6 |
 | Rendering | Hand-written Canvas 2D engine |
 | Backend | Supabase (Auth, Realtime, Postgres, Storage) |
 | Payments | Stripe Checkout + webhooks (Deno Edge Functions) |
-| Edge functions | Deno (supabase/functions/) |
+| Edge functions | Deno (`supabase/functions/`) |
 | Deployment | Cloudflare (Wrangler) |
 
-Repository layout (highlights)
+## Repository layout (highlights)
 
+```
 Factorio-web-game/
 ├── src/
 │   ├── game/            # engine.ts, renderer.ts, systems.ts, world.ts, noise.ts, ...
@@ -493,25 +545,28 @@ Factorio-web-game/
 ├── docs/                # planning docs (e.g. plan-NETWORK.md)
 ├── tools/               # easter-egg script, slicer.html
 └── package.json
+```
 
-Related pages
+## Related pages
 
-- Architecture — engine, renderer, world, UI layering
-- Gameplay Systems — supply chains, belts, pipes, enemies, pollution
-- Backend & Monetization — Supabase, Stripe, edge functions
+- [Architecture](architecture) — engine, renderer, world, UI layering
+- [Gameplay Systems](gameplay) — supply chains, belts, pipes, enemies, pollution
+- [Backend & Monetization](backend) — Supabase, Stripe, edge functions
 
+---
 
-#======================================================================
 ## Novactorio - Architecture
-#======================================================================
-Architecture
+Source file: projects/factorio-web-game/architecture.md
+
+# Architecture
 
 Novactorio is deliberately framework-free on the rendering side. The game loop,
 simulation, and drawing are hand-written on the Canvas 2D API; React is used
 only for UI overlays.
 
-Layer overview
+## Layer overview
 
+```
 ┌─────────────────────────────────────────────────────────┐
 │  React overlay (src/components/)                        │
 │  Auth → Start → Game routing, HUD, menus, chat, shop    │
@@ -529,170 +584,176 @@ Layer overview
 ┌─────────────────────────▼───────────────────────────────┐
 │  Canvas 2D API + post-processing (postproc.ts)          │
 └─────────────────────────────────────────────────────────┘
+```
 
-Game engine (src/game/)
+## Game engine (`src/game/`)
 
 | Module | Responsibility |
 |---|---|
-| engine.ts | Game loop (update/render), entity lifecycle, building logic, inventory, combat, particles |
-| renderer.ts | 10 extracted render passes: sky, ground, entities, damage numbers, etc. |
-| systems.ts | Supply chains, conveyor belts, pipe networks, enemy AI, pollution |
-| world.ts | Chunk-based world, block storage, infinite scrolling |
-| noise.ts | Perlin noise for terrain generation |
-| types.ts | Shared type definitions |
-| constants.ts | Tuning constants |
-| audio.ts | Sound effects |
-| postproc.ts | Post-processing effects |
+| `engine.ts` | Game loop (`update`/`render`), entity lifecycle, building logic, inventory, combat, particles |
+| `renderer.ts` | 10 extracted render passes: sky, ground, entities, damage numbers, etc. |
+| `systems.ts` | Supply chains, conveyor belts, pipe networks, enemy AI, pollution |
+| `world.ts` | Chunk-based world, block storage, infinite scrolling |
+| `noise.ts` | Perlin noise for terrain generation |
+| `types.ts` | Shared type definitions |
+| `constants.ts` | Tuning constants |
+| `audio.ts` | Sound effects |
+| `postproc.ts` | Post-processing effects |
 
-Rendering approach
+## Rendering approach
 
 The renderer is organized as discrete draw methods (sky, ground, entities,
 particles, damage numbers, …) rather than a monolithic draw call, keeping each
 pass cheap and debuggable. World chunks are culled to the visible area while
 scrolling.
 
-UI overlay (src/components/)
+## UI overlay (`src/components/`)
 
 React 18 renders the interface on top of the canvas: full screen routing
 (Auth → Start → Game), build menu, chat panel, shop, stats, and settings.
 State flows from the engine into React through a shared game-state bridge.
 
-i18n (src/i18n.ts)
+## i18n (`src/i18n.ts`)
 
 Runtime-switchable localization with 23 languages. Polish and English are the
 fully translated reference locales; the language can be switched live without
 a reload.
 
-Config & environment (src/config/)
+## Config & environment (`src/config/`)
 
-Environment-driven configuration via import.meta.env:
+Environment-driven configuration via `import.meta.env`:
 
 | Variable | Purpose |
 |---|---|
-| VITE_SUPABASE_URL | Supabase project URL |
-| VITE_SUPABASE_ANON_KEY | Supabase anon (publishable) key |
-| VITE_ADMIN_USERS | Comma-separated admin usernames |
+| `VITE_SUPABASE_URL` | Supabase project URL |
+| `VITE_SUPABASE_ANON_KEY` | Supabase anon (publishable) key |
+| `VITE_ADMIN_USERS` | Comma-separated admin usernames |
 
-Deployment target
+## Deployment target
 
 The game builds with Vite and deploys to Cloudflare (Wrangler):
 
+```bash
 npm run build
 wrangler deploy
+```
 
-TypeScript strictness
+## TypeScript strictness
 
-tsconfig runs with strict: true and the project validates with
-tsc --noEmit (npm run typecheck), keeping the codebase type-safe across
+`tsconfig` runs with `strict: true` and the project validates with
+`tsc --noEmit` (`npm run typecheck`), keeping the codebase type-safe across
 ~4,800 lines of game logic.
 
+---
 
-#======================================================================
 ## Novactorio - Gameplay Systems
-#======================================================================
-Gameplay Systems
+Source file: projects/factorio-web-game/gameplay.md
+
+# Gameplay Systems
 
 Novactorio recreates the factory-automation loop in the browser: gather
 resources, build machines, route materials, research, and survive.
 
-Core loop
+## Core loop
 
-1. Mine raw resources from the procedurally generated world.
-2. Build machines, belts, pipes, and inserters to automate production.
-3. Research upgrades in the research tree.
-4. Expand — pollution attracts and evolves enemies.
-5. Co-op — share the factory with friends in real time.
+1. **Mine** raw resources from the procedurally generated world.
+2. **Build** machines, belts, pipes, and inserters to automate production.
+3. **Research** upgrades in the research tree.
+4. **Expand** — pollution attracts and evolves enemies.
+5. **Co-op** — share the factory with friends in real time.
 
-Supply chains & logistics
+## Supply chains & logistics
 
-systems.ts implements the material-flow simulation:
+`systems.ts` implements the material-flow simulation:
 
-- Conveyor belts — items move along belts and merge/split at junctions.
-- Inserters — transfer items between belts, containers, and machines.
-- Pipe networks — fluids and materials flow through connected pipes.
-- Supply chains — recipes consume inputs and produce outputs; machines
+- **Conveyor belts** — items move along belts and merge/split at junctions.
+- **Inserters** — transfer items between belts, containers, and machines.
+- **Pipe networks** — fluids and materials flow through connected pipes.
+- **Supply chains** — recipes consume inputs and produce outputs; machines
   pause when inputs run dry.
 
-World generation
+## World generation
 
-- Chunk-based infinite world (world.ts).
-- Perlin noise terrain (noise.ts) with smooth height variation.
-- Seamless scrolling — chunks generate and unload around the player.
+- **Chunk-based** infinite world (`world.ts`).
+- **Perlin noise** terrain (`noise.ts`) with smooth height variation.
+- **Seamless scrolling** — chunks generate and unload around the player.
 
-Combat & evolution
+## Combat & evolution
 
-- Enemy AI — enemies spawn, path toward your pollution/factory, and attack.
-- Pollution — production emits pollution; higher pollution drives faster
+- **Enemy AI** — enemies spawn, path toward your pollution/factory, and attack.
+- **Pollution** — production emits pollution; higher pollution drives faster
   enemy evolution (bigger, tougher enemies over time).
 
-Combat & interactions
+## Combat & interactions
 
-- Build / remove blocks and machines with a build menu.
-- Inventory per player with hotbar-style access.
-- Particles & damage numbers for juicy feedback (renderer.ts).
+- **Build / remove** blocks and machines with a build menu.
+- **Inventory** per player with hotbar-style access.
+- **Particles & damage numbers** for juicy feedback (`renderer.ts`).
 
-Co-op multiplayer
+## Co-op multiplayer
 
 Supabase Realtime broadcasts:
 
 - Player positions (movement sync)
 - Build actions (place / remove)
-- Chat messages (ChatPanel)
+- Chat messages (`ChatPanel`)
 
 Each client runs the deterministic simulation locally; realtime events keep
 shared state consistent across players.
 
-Premium features
+## Premium features
 
 A premium tier (Stripe) unlocks additional content. See
-Backend & Monetization for the payment flow.
+[Backend & Monetization](backend) for the payment flow.
 
-Controls & UI
+## Controls & UI
 
 - Responsive UI works on desktop and mobile (touch input).
 - 23 languages via runtime i18n switching.
 
+---
 
-#======================================================================
 ## Novactorio - Backend & Monetization
-#======================================================================
-Backend & Monetization
+Source file: projects/factorio-web-game/backend.md
 
-Novactorio's backend is Supabase (Postgres + Auth + Realtime + Storage)
-with Stripe payments handled by Deno Edge Functions.
+# Backend & Monetization
 
-Supabase services
+Novactorio's backend is **Supabase** (Postgres + Auth + Realtime + Storage)
+with **Stripe** payments handled by **Deno Edge Functions**.
+
+## Supabase services
 
 | Service | Usage |
 |---|---|
-| Auth | Email/password registration and login |
-| Postgres | profiles, world_snapshots, shop/trade state (RLS-protected) |
-| Realtime | Co-op broadcast: player positions, build place/remove, chat |
-| Storage | Cloud save backups |
+| **Auth** | Email/password registration and login |
+| **Postgres** | `profiles`, `world_snapshots`, shop/trade state (RLS-protected) |
+| **Realtime** | Co-op broadcast: player positions, build place/remove, chat |
+| **Storage** | Cloud save backups |
 
-Cloud saves
+### Cloud saves
 
-World snapshots are persisted to world_snapshots.save_data, giving players
+World snapshots are persisted to `world_snapshots.save_data`, giving players
 both local storage and a cloud backup.
 
-Row-Level Security (RLS)
+### Row-Level Security (RLS)
 
 Tables are protected with RLS so players can only read/write their own data.
 
-Stripe integration
+## Stripe integration
 
 Payment flow is implemented with four Deno Edge Functions under
-supabase/functions/:
+`supabase/functions/`:
 
 | Function | Purpose |
 |---|---|
-| stripe-checkout | Create a Stripe Checkout session for Starter/Premium |
-| stripe-webhook | Verify the Stripe signature and update profiles.premium_tier |
-| trade-fee-checkout | Checkout for marketplace/trade fees |
-| trade-webhook | Update trade balances after payment |
+| `stripe-checkout` | Create a Stripe Checkout session for Starter/Premium |
+| `stripe-webhook` | Verify the Stripe signature and update `profiles.premium_tier` |
+| `trade-fee-checkout` | Checkout for marketplace/trade fees |
+| `trade-webhook` | Update trade balances after payment |
 
-Flow
+### Flow
 
+```
 Player clicks "Upgrade"  →  stripe-checkout (Deno)  →  Stripe Checkout page
                                                           │
                     Stripe redirect back (success)         │
@@ -700,23 +761,399 @@ Player clicks "Upgrade"  →  stripe-checkout (Deno)  →  Stripe Checkout page
                           ▼                                ▼
         Frontend refreshes premiumTier      stripe-webhook verifies & updates
         after login / redirect              profiles.premium_tier in Supabase
+```
 
-Local development
+### Local development
 
-requires Stripe keys in .env.local
+```bash
+# requires Stripe keys in .env.local
 supabase functions serve stripe-checkout --env-file .env.local
 supabase functions serve stripe-webhook --env-file .env.local
+```
 
-Environment variables
+## Environment variables
 
 | Variable | Purpose |
 |---|---|
-| VITE_SUPABASE_URL | Supabase project URL |
-| VITE_SUPABASE_ANON_KEY | Publishable anon key |
-| VITE_ADMIN_USERS | Admin usernames (comma-separated) |
+| `VITE_SUPABASE_URL` | Supabase project URL |
+| `VITE_SUPABASE_ANON_KEY` | Publishable anon key |
+| `VITE_ADMIN_USERS` | Admin usernames (comma-separated) |
 | Stripe keys | Secret keys used by the Deno edge functions |
 
-Deployment
+## Deployment
 
-- Frontend + game: Cloudflare via Wrangler (wrangler deploy).
-- Edge functions: Supabase (supabase functions deploy).
+- Frontend + game: Cloudflare via Wrangler (`wrangler deploy`).
+- Edge functions: Supabase (`supabase functions deploy`).
+
+---
+
+## NV2 Engine - Overview
+Source file: projects/nv2-engine/index.md
+
+# NV2 Engine
+
+> **A native Rust voxel engine with AI-driven procedural worlds.**
+
+NV2 Engine (repository: `NV2_ENGINE`) is a desktop voxel game and engine
+written in Rust with `wgpu` rendering. It combines procedural terrain
+generation (OpenSimplex2 noise), realistic biomes, a neural-network-driven
+vegetation system that trains in the background while you play, animated water
+simulation, a full block breaking/placing interaction layer, inventory and
+crafting, save/load, and an in-game command system.
+
+**Stack:** Rust 2021, wgpu 0.20, winit 0.30, cgmath 0.18, OpenSimplex2,
+rayon, ndarray, serde/serde_json, fontdue.
+
+## Highlights
+
+- **Procedural worlds** — OpenSimplex2 heightmaps, caves, and 7+ biomes
+  (forest, jungle, taiga, swamp, plains, highlands, and more).
+- **512-block-deep chunks** (16×512×16) — tall mountains, deep caves, ready
+  for unlimited-height streaming.
+- **AI vegetation** — an embedded 8→16→4 MLP (~1.2 KB) learns in the
+  background ( **Note:** `cargo run` in dev mode already builds third-party crates at
+> `opt-level 3`, so even a debug build plays smoothly.
+
+## Related pages
+
+- [Architecture](architecture) — runtime, renderer, world, UI layers
+- [Gameplay](gameplay) — controls, interaction, inventory, crafting, commands
+- [AI Vegetation System](ai) — the embedded neural network and training loop
+- [Performance](performance) — GPU bandwidth, culling, meshing budgets
+
+---
+
+## NV2 Engine - Architecture
+Source file: projects/nv2-engine/architecture.md
+
+# Architecture
+
+NV2 Engine is organized as a Rust runtime in `Core/Src` plus auxiliary .NET
+content-pipeline tools in `Bridge/Tools`. The application entry point is
+`Core/Src/main.rs`, which uses `winit::application::ApplicationHandler` and
+manages three explicit runtime modes: `MainMenu`, `Playing`, and `PauseMenu`.
+
+## Layer overview
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│  App shell (Core/Src/main.rs)                                │
+│  winit event loop · modes (MainMenu/Playing/PauseMenu)       │
+│  input routing · save/load · slash commands · subtitle UI    │
+└──────────────┬───────────────────────┬───────────────────────┘
+               │                       │
+┌──────────────▼───────────────┐  ┌────▼───────────────────────┐
+│  Renderer (renderer/)       │  │  World (world/)            │
+│  wgpu pipelines             │  │  chunk map (cx,cz) -> Chunk│
+│  solid + water + UI + text  │  │  Biomes + ChunkGenerator   │
+│  frustum culling            │  │  background generation     │
+│  per-chunk GPU buffers      │  │  water simulation          │
+│  texture atlas + packs      │  │  AI vegetation + training  │
+└──────────────┬───────────────┘  └────┬───────────────────────┘
+               │                       │
+               └───────────┬───────────┘
+                           ▼
+              Camera::tick_movement (AABB collision,
+              gravity, flight, water sinking)
+```
+
+## App shell (`main.rs`)
+
+The `App` struct owns the renderer state, the `World` instance, input
+accumulation, save/load paths, status/subtitle messaging, slash-command
+input state, and menu selection state. Runtime behaviors handled here:
+
+- New game, save and load flows
+- Pause/resume transitions and cursor capture toggling
+- Slash-command prompt (opened with `/`), routed to `commands::execute(...)`
+- On-screen feedback passed to the renderer subtitle/command prompt system
+
+## Rendering architecture (`renderer/`)
+
+`renderer::State` owns the WGPU surface/device/queue, camera and
+material/biome uniforms, a depth texture, the texture atlas and bind groups,
+and separate pipelines for:
+
+- solid world geometry
+- water geometry
+- flat UI panels
+- sprite-based UI icons
+- text rendering
+
+Chunk meshes and water meshes are cached separately by chunk coordinate.
+Mesh creation is rate-limited (only a small number of chunks per frame),
+GPU uploads are debounced, water mesh recombination is separated from full
+rebuilds, and seam repair rebuilds neighboring chunk borders when new chunks
+arrive.
+
+## World & chunk streaming (`world/`)
+
+`World` stores loaded chunks in a `(cx, cz) -> Chunk` map with a shared
+`BiomeGenerator` and a `ChunkGenerator` for background generation. Chunks
+are 16×512×16 blocks; generation is parallelized with rayon through batched
+async dispatch onto the global thread pool.
+
+## Camera, movement & collision (`renderer/camera.rs`)
+
+The authoritative movement path is: event/input capture in `main.rs` →
+`renderer::State::update(...)` → `Camera::tick_movement(...)`. Implemented:
+
+- First-person camera rotation, walking, sprinting, jumping
+- Flight toggle (F) and gravity with fall-speed limiting
+- Water-specific gravity and sinking behavior
+- AABB-based collision against solid blocks
+- Input-intent capture separated from movement integration
+- Runtime movement modifiers sampled from overlapping block mediums
+  (`BlockType::movement_medium(...)`, with `in_foliage_medium` and
+  `footstep_volume` tracked for future audio hooks)
+
+## UI & text
+
+UI is a hybrid of procedural flat panel quads, sprite-based item icons
+derived from the atlas, and fontdue-backed text layers. Systems include the
+main menu, pause menu, hotbar, full inventory overlay, 2×2 and 3×3 crafting
+overlays, hovered-slot detection, the command prompt, and subtitle/status
+messaging. Menus live in `renderer/menu.rs`; font rasterization and text
+measurement live in `renderer/text.rs`.
+
+## Content pipeline (`Bridge/Tools`)
+
+.NET 8 tools (`System.Drawing.Common`) perform atlas slicing and PNG
+extraction. Python (`generate_textures.py`, Pillow) handles rotation,
+flipping, brightness, grayscale/invert, and related texture transforms.
+The repo also includes a custom Vulkan layer (`VkLayer_NV20.json` /
+`VkLayer_NV20.dll`) usable from the VS Code task configuration.
+
+---
+
+## NV2 Engine - Gameplay
+Source file: projects/nv2-engine/gameplay.md
+
+# Gameplay
+
+NV2 Engine is a full survival-sandbox loop: generate a procedural world,
+break and place blocks with tool gating, gather resources, craft, and
+explore biomes with AI-placed vegetation.
+
+## Controls
+
+| Input | Action |
+|---|---|
+| `W` `A` `S` `D` | Move |
+| `Space` | Jump (or ascend in flight mode) |
+| `Shift` | Sprint (with FOV kick) |
+| `F` | Toggle flight mode |
+| `E` | Open / close inventory |
+| `Esc` | Pause menu (or close inventory) |
+| `/` | Open the command prompt |
+| Left mouse | Break block (held to keep breaking; tool-gated) |
+| Right mouse | Place block / use item |
+| Mouse wheel | Switch hotbar slot |
+| Mouse | Look around (captured while playing) |
+
+In menus, `↑` / `↓` (or `W` / `S`) navigate and `Enter` / `Space` confirm;
+`N` starts a new game and `L` loads from the main menu.
+
+## Block interaction
+
+- **Breaking** — left mouse; the held tool's tier gates which blocks can be
+  broken (a wooden tier cannot break stone-tier blocks).
+- **Placing** — right mouse places the selected hotbar block.
+- Interaction is driven by block raycasting in `interaction.rs`, bridged to
+  gameplay and GUI state through the renderer's `InteractionController`.
+
+## Inventory, hotbar & crafting
+
+- **Hotbar** — scroll to switch the active stack.
+- **Inventory** — `E` opens the full overlay; drag-and-drop stack management.
+- **Crafting** — recipe-driven; a 2×2 player crafting overlay and the 3×3
+  NVCrafter overlay. Recipes are parsed from JSON and matched against
+  inventory contents in `crafting.rs`.
+
+## Movement & physics
+
+Walking, sprinting (with an FOV kick), jumping, gravity, fall-speed
+limiting, and water-specific sinking. Flight mode (`F`) disables gravity.
+Collision is AABB-based against solid blocks; movement modifiers are sampled
+from the block medium the player stands in.
+
+## Commands
+
+Open the prompt with `/` and type a command:
+
+```
+/locate forest       Find the nearest forest biome
+/tp 100 80 -50       Teleport to absolute coordinates
+```
+
+Commands are dispatched by `commands::execute(...)` in `commands.rs`.
+
+## World persistence
+
+The world serializes to JSON (`saves/world.json`) via `world/storage.rs`
+using serde/serde_json. The pause menu offers **Save** and **Save & Exit**;
+the main menu **Load/Save** restores a saved world.
+
+## Day/night & atmosphere
+
+The renderer drives day/night phase progression through `elapsed_time`,
+water animation timing, climate/biome-driven fog and ambient color uniforms,
+a crosshair, subtitle overlays, and the command prompt overlay.
+
+---
+
+## NV2 Engine - AI Vegetation System
+Source file: projects/nv2-engine/ai.md
+
+# AI Vegetation System
+
+NV2 Engine embeds a small neural network that decides where vegetation
+belongs, and trains it **in the background while you play** — with zero FPS
+impact (<1% overhead).
+
+## Model
+
+A lightweight Multi-Layer Perceptron:
+
+```
+Input Layer (8 terrain features)
+    ↓
+Hidden Layer (16 neurons) + ReLU
+    ↓
+Output Layer (4 vegetation classes) + Softmax
+```
+
+The whole model is ~1.2 KB, running in-engine with no external AI runtime.
+
+## Input features
+
+| # | Feature | Range |
+|---|---|---|
+| 1 | Terrain height (normalized elevation) | 0.0–1.0 |
+| 2 | Terrain slope steepness | 0.0–0.5 |
+| 3 | Biome temperature | 0.0–1.0 |
+| 4 | Biome humidity | 0.0–1.0 |
+| 5 | Distance to nearest water | 0.0–1.0 |
+| 6 | Nearby plant density | 0.0–1.0 |
+| 7 | Light level | 0.0–1.0 |
+| 8 | Procedural noise seed | 0.0–1.0 |
+
+## Outputs (vegetation classes)
+
+| Output | Vegetation |
+|---|---|
+| 0 | Flowers — roses, tulips (4 colors), dandelions, cornflower, allium, azalea |
+| 1 | Ferns & water plants — ferns, lily pads, seagrass, tall seagrass, kelp |
+| 2 | Small sticks & decorative items |
+| 3 | Pebbles & rocks (3 variants) |
+
+22 new vegetation block types in total, plus moss carpet and vines.
+
+## Training loop
+
+A background thread runs continuously during gameplay:
+
+```
+Loop (background thread):
+  For each of 100 synthetic samples:
+    - Generate synthetic terrain features
+    - Make AI prediction
+    - Compute target vegetation from heuristics
+    - Backpropagation gradient descent
+    - Update weights & biases
+
+  Every 1000 epochs:
+    - Decay learning rate (0.95x) to prevent overfitting
+    - Optionally save a model checkpoint
+```
+
+- **~5–10 ms per epoch**, 100 samples/epoch, cross-entropy loss
+- Adaptive learning-rate decay; training is asynchronous and non-blocking
+
+## Integration with world generation
+
+- The AI system is initialized in `World::new()` together with its background
+  thread.
+- `VegetationGenerator::place_ai_vegetation()` consults the network for each
+  terrain cell.
+- Cells are 3×3 blocks for procedural variety.
+- A confidence threshold of **0.5** — only high-confidence predictions place
+  vegetation.
+
+## Optional online training
+
+`online_trainer.rs` provides an optional cloud-assisted training mode that
+can refine the model further beyond the in-game background loop.
+
+## Roadmap (Phase 2)
+
+Planned next steps for the AI system include model persistence across
+sessions, GPU-accelerated training, and a modding API exposing the network.
+
+---
+
+## NV2 Engine - Performance
+Source file: projects/nv2-engine/performance.md
+
+# Performance
+
+NV2 Engine is designed around keeping GPU bandwidth, draw calls, and CPU
+meshing proportional to what actually changed — not the whole world.
+
+## GPU bandwidth: packed vertices
+
+- CPU-side vertices are **72 bytes**; the GPU-resident format packs them to
+  **36 bytes** (Snorm8x4 / Unorm8x4).
+- Vertex bandwidth is halved for every chunk upload.
+
+## Per-chunk GPU buffers
+
+A block edit re-uploads only the affected chunk instead of the whole loaded
+area (previously ~81 chunks per change). GPU uploads are additionally
+debounced rather than re-uploaded every time a single chunk changes.
+
+## Frustum culling
+
+Gribb–Hartmann plane extraction culls chunks outside the view, with a safety
+margin and a protected 3×3 area around the player to prevent over-culling.
+This reduces visible chunks by roughly half on typical scenes while keeping
+the player's surroundings always rendered.
+
+## Incremental water simulation
+
+- The water simulation rebuilds only the chunks that actually changed,
+  instead of the full render radius every tick.
+- Simulation and meshing are interval-based (`water_sim_interval`,
+  `water_rebuild_interval`); static water never triggers a rebuild.
+- Water mesh recombination is separated from full water mesh rebuilds.
+
+## CPU meshing budget
+
+A configurable `mesh_build_budget` spreads chunk rebuilding across frames so
+the main thread never hitches on large terrain edits. Seam repair rebuilds
+only neighboring chunk borders when new chunks arrive.
+
+## Performance profiles (`settings.rs`)
+
+All the tunables below are centralized in `settings.rs` and switched by the
+**Low-End-PC** mode (one key in the menus, persisted across runs):
+
+| Setting | Effect |
+|---|---|
+| `load_radius` / `render_radius` | How far the world generates and renders |
+| `cleanup_radius` | When far chunks are unloaded |
+| `mesh_build_budget` | Chunks rebuilt per frame |
+| `water_sim_interval` / `water_rebuild_interval` | Water simulation frequency |
+| Foliage density | Vegetation placement density |
+| Fog density | Atmosphere draw distance |
+| Vsync | Frame pacing |
+
+## Background AI training
+
+The neural-network vegetation trainer runs on a background thread with
+**<1% overhead** and ~5–10 ms per epoch, so learning never competes with
+frame time.
+
+---
+
+END OF DOCUMENTATION
