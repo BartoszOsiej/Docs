@@ -9,6 +9,7 @@ SKIP_DIRS = {".vitepress", "node_modules", ".git", "scripts"}
 ORDER = [
     "index.md",
     "update-flow.md",
+    "projects/index.md",
     "projects/fastapi-url/index.md",
     "projects/fastapi-url/getting-started.md",
     "projects/fastapi-url/api-reference.md",
@@ -38,14 +39,12 @@ ORDER = [
     "projects/halcyon-process-monitor/index.md",
     "projects/halcyon-process-monitor/architecture.md",
     "projects/externum/index.md",
-    "projects/polish-ai/index.md",
-    "projects/video-moe/index.md",
-    "projects/factory-defense/index.md",
-    "projects/ghost-launcher/index.md",
-    "projects/minecraft-tools/index.md",
-    "projects/game/index.md",
-    "projects/ghostdev/index.md",
-    "projects/client-projects/index.md",
+    "projects/externum/syntax.md",
+    "projects/externum/examples.md",
+    "projects/externum/compiler.md",
+    "projects/externum/architecture.md",
+    "projects/n2-mesh/index.md",
+    "projects/n2-mesh/architecture.md",
 ]
 
 out = []

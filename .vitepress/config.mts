@@ -34,7 +34,6 @@ export default defineConfig({
         text: 'More',
         items: [
           { text: 'Halcyon Process Monitor', link: '/projects/halcyon-process-monitor/' },
-          { text: 'Factory Defense', link: '/projects/factory-defense/' },
           { text: 'Update Flow', link: '/update-flow' },
         ],
       },
@@ -53,7 +52,6 @@ export default defineConfig({
             { text: '🛡️ Cybersec Toolkit', link: '/projects/cybersec-tools/' },
             { text: '🛰️ Halcyon Monitor', link: '/projects/halcyon-process-monitor/' },
             { text: '📜 Externum', link: '/projects/externum/' },
-            { text: '🏭 Factory Defense', link: '/projects/factory-defense/' },
           ],
         },
       ],
@@ -145,14 +143,8 @@ export default defineConfig({
           items: [
             { text: 'Overview', link: '/projects/n2-mesh/' },
             { text: 'Architecture', link: '/projects/n2-mesh/architecture' },
-            { text: '🚀 Open Live Chat', link: 'https://bartoszosiej.github.io/N2-Mesh/' },
+            { text: '🚀 Open Live Chat', link: 'https://bartoszosiej.github.io/n2-mesh/' },
           ],
-        },
-      ],
-      '/projects/factory-defense/': [
-        {
-          text: 'Factory Defense',
-          items: [{ text: 'Overview', link: '/projects/factory-defense/' }],
         },
       ],
     },

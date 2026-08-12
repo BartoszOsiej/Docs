@@ -135,14 +135,6 @@ features:
     tint="#f59e0b"
     link="/projects/externum/"
   />
-  <ProjectCard
-    icon="🏭"
-    title="Factory Defense"
-    description="A Rust factory-building + tower-defense game on macroquad: build factories, manage a city economy, defend against waves."
-    :tags="['Rust', 'macroquad', 'Game']"
-    tint="#34d399"
-    link="/projects/factory-defense/"
-  />
 </div>
 </ScrollReveal>
 
@@ -205,9 +197,8 @@ how this documentation site stays in sync with the source projects.
 | [BartoszOsiej/AURORA-OS](https://github.com/BartoszOsiej/AURORA-OS) | BartoszOsiej | Source: AURORA OS — browser operating system in TypeScript |
 | [BartoszOsiej/cybersec-tools](https://github.com/BartoszOsiej/cybersec-tools) | BartoszOsiej | Source: Cybersec Toolkit — 4 Rust security tools |
 | [BartoszOsiej/halcyon-process-monitor](https://github.com/BartoszOsiej/halcyon-process-monitor) | BartoszOsiej | Source: Halcyon Process Monitor — eBPF telemetry |
-| [BartoszOsiej/Externum](https://github.com/BartoszOsiej/Externum) | BartoszOsiej | Source: Externum language |
-| [BartoszOsiej/N2-Mesh](https://github.com/BartoszOsiej/N2-Mesh) | BartoszOsiej | Source: N2 Mesh — P2P chat (own GitHub Pages site) |
-| [BartoszOsiej/factory_defense](https://github.com/BartoszOsiej/factory_defense) | BartoszOsiej | Source: Factory Defense (Rust game) |
+| [BartoszOsiej/externum](https://github.com/BartoszOsiej/externum) | BartoszOsiej | Source: Externum language |
+| [BartoszOsiej/n2-mesh](https://github.com/BartoszOsiej/n2-mesh) | BartoszOsiej | Source: N2 Mesh — P2P chat (own GitHub Pages site) |
 | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | BartoszOsiej | **This site** — GitHub Pages docs hub |
 
 ## Update flow diagram
@@ -242,8 +233,7 @@ how this documentation site stays in sync with the source projects.
 | 4 | `cybersec-tools` | Tool docs, usage, CLI reference | When a tool changes |
 | 5 | `halcyon-process-monitor` | eBPF architecture & usage docs | When the monitor changes |
 | 6 | `Externum` | Language spec, syntax, compiler & runtime docs | When the language changes |
-| 7 | `factory_defense` | Game docs | When the game changes |
-| 8 | `Docs` (this repo) | Final rendered site | On every push to `main` |
+| 7 | `Docs` (this repo) | Final rendered site | On every push to `main` |
 
 ### Publishing a docs update (source repos)
 
@@ -254,7 +244,6 @@ how this documentation site stays in sync with the source projects.
    - `projects/cybersec-tools/` — Cybersec Toolkit
    - `projects/halcyon-process-monitor/` — Halcyon Process Monitor
    - `projects/externum/` — Externum (5 pages)
-   - `projects/factory-defense/` — Factory Defense
 2. Commit to the `Docs` repository and push to `main`.
 3. GitHub Actions builds the VitePress site and deploys it to GitHub Pages
    automatically — no manual steps.
@@ -294,6 +283,125 @@ with this site as the rendered output.
   account from which `FastAPI-url` was forked.
 - Local clones of `FastAPI-url` track `origin` = `BartoszOsiej` and
   `upstream` = `ghost0development` (for pulling upstream fixes).
+
+
+## projects/
+Source: https://bartoszosiej.github.io/Docs/projects/
+------------------------------------------------------------------------
+---
+title: Projects — Bartosz Osiej
+---
+
+# 📁 Projects
+
+> **The complete registry of every project we build and maintain.**
+> Repo → what it is → stack → docs. One page, always current.
+> Source of truth: [`PROJECTS.md`](https://github.com/BartoszOsiej/Docs/blob/main/PROJECTS.md)
+
+## 🔗 All projects
+
+<div class="project-grid">
+  <ProjectCard
+    icon="📚"
+    title="Docs Hub"
+    description="This documentation site itself — VitePress on GitHub Pages, AI-readable llms.txt, auto-deploy via GitHub Actions, and the registry of every project."
+    :tags="['VitePress', 'GitHub Pages', 'WebTorrent']"
+    tint="#38bdf8"
+    link="/"
+  />
+  <ProjectCard
+    icon="💬"
+    title="N2 Mesh — P2P Chat"
+    description="Torrent-principle messenger that works on static hosting. Room = torrent infohash, peers join a WebTorrent swarm, messages travel over the BitTorrent extended protocol — no server, no database. Fully documented in its own docs pages."
+    :tags="['WebTorrent', 'P2P', 'BitTorrent', 'Serverless']"
+    tint="#a78bfa"
+    link="/projects/n2-mesh/"
+  />
+  <ProjectCard
+    icon="🔗"
+    title="LinkShort"
+    description="Production-ready URL shortener. FastAPI backend with JWT auth, per-user link management, click tracking, React 19 SPA served by the API, Docker + Fly.io."
+    :tags="['FastAPI', 'JWT', 'React 19', 'SQLite']"
+    tint="#34d399"
+    link="/projects/fastapi-url/"
+  />
+  <ProjectCard
+    icon="🏭"
+    title="Novactorio"
+    description="Factorio-inspired factory-automation game in the browser. Hand-written Canvas 2D engine, 21,000+ lines of TypeScript, co-op multiplayer, 23 languages, Stripe premium."
+    :tags="['TypeScript', 'Canvas 2D', 'Supabase', 'Stripe']"
+    tint="#fbbf24"
+    link="/projects/factorio-web-game/"
+  />
+  <ProjectCard
+    icon="⛏️"
+    title="NV2 Engine"
+    description="Native Rust voxel engine with AI-driven procedural worlds. wgpu rendering, 97 block types, 9 biomes, water simulation, neural vegetation learning."
+    :tags="['Rust', 'wgpu', 'Vulkan', 'MLP']"
+    tint="#818cf8"
+    link="/projects/nv2-engine/"
+  />
+  <ProjectCard
+    icon="◈"
+    title="AURORA OS"
+    description="A complete operating system in the browser — TypeScript kernel, window manager, virtual filesystem, 37-command shell, 8 apps, themes, procedural audio. Zero runtime dependencies."
+    :tags="['TypeScript', 'Web OS', 'VFS', 'WASM-free']"
+    tint="#38bdf8"
+    link="/projects/aurora-os/"
+  />
+  <ProjectCard
+    icon="🛡️"
+    title="Cybersec Toolkit"
+    description="Four focused Rust security tools: NetRecon TCP scanner, ShadowScan web vulnerability scanner, HashSleuth hash cracker, PacketEye pcap analyzer."
+    :tags="['Rust', 'Security', 'pcap', 'openssl']"
+    tint="#f472b6"
+    link="/projects/cybersec-tools/"
+  />
+  <ProjectCard
+    icon="🛰️"
+    title="Halcyon Process Monitor"
+    description="Real-time eBPF process and file-op telemetry for Linux. execve/openat tracepoints, per-CPU perf buffers, sliding-window ransomware heuristic, ratatui TUI."
+    :tags="['Rust', 'eBPF', 'Aya', 'ratatui']"
+    tint="#a3e635"
+    link="/projects/halcyon-process-monitor/"
+  />
+  <ProjectCard
+    icon="📜"
+    title="Externum"
+    description="A programming language of our own — Python readability, binary performance and Bash control from a single source. Compiled to three targets or run directly with a REPL. 118 tests, all green."
+    :tags="['Language', 'Compiler', 'Interpreter', 'REPL']"
+    tint="#f59e0b"
+    link="/projects/externum/"
+  />
+</div>
+
+## 🗺️ Repo map
+
+| Project | Repository | Docs |
+|---|---|---|
+| Docs Hub | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | [here](/) |
+| N2 Mesh (P2P Chat) | [BartoszOsiej/n2-mesh](https://github.com/BartoszOsiej/n2-mesh) | [docs](/projects/n2-mesh/) · [live](https://bartoszosiej.github.io/n2-mesh/) |
+| LinkShort | [BartoszOsiej/FastAPI-url](https://github.com/BartoszOsiej/FastAPI-url) | [docs](/projects/fastapi-url/) |
+| Novactorio | [BartoszOsiej/Factorio-web-game](https://github.com/BartoszOsiej/Factorio-web-game) | [docs](/projects/factorio-web-game/) |
+| NV2 Engine | [BartoszOsiej/NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE) | [docs](/projects/nv2-engine/) |
+| AURORA OS | [BartoszOsiej/AURORA-OS](https://github.com/BartoszOsiej/AURORA-OS) | [docs](/projects/aurora-os/) |
+| Cybersec Toolkit | [BartoszOsiej/cybersec-tools](https://github.com/BartoszOsiej/cybersec-tools) | [docs](/projects/cybersec-tools/) |
+| Halcyon Process Monitor | [BartoszOsiej/halcyon-process-monitor](https://github.com/BartoszOsiej/halcyon-process-monitor) | [docs](/projects/halcyon-process-monitor/) |
+| Externum | [BartoszOsiej/externum](https://github.com/BartoszOsiej/externum) | [docs](/projects/externum/) |
+
+## 📌 Not listed
+
+Smaller / client / one-off projects (Minecraft launchers, landing pages, client
+sites) are deliberately **not** part of this registry.
+
+<style scoped>
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.1rem;
+  margin: 1.4rem 0 2.4rem;
+}
+</style>
 
 
 ## projects/fastapi-url/
@@ -3816,7 +3924,7 @@ wprost. Dostępny jest też **REPL**, **system modułów** z własną
 ## 🚀 Szybki start
 
 ```bash
-git clone https://github.com/BartoszOsiej/Externum.git
+git clone https://github.com/BartoszOsiej/externum.git
 cd Externum
 pip install -e .            # Python 3.10+
 
@@ -3852,906 +3960,6 @@ bez żadnego serwera. Kliknij **▶ Run** i patrz, jak program się wykonuje:
 - [Przykłady](/projects/externum/examples) — działające programy z wyjściem
 - [Kompilator i CLI](/projects/externum/compiler) — targety i opcje
 - [Architektura](/projects/externum/architecture) — pipeline, moduły, roadmapa
-
-
-## projects/factory-defense/
-Source: https://bartoszosiej.github.io/Docs/projects/factory-defense/
-------------------------------------------------------------------------
-# 🏭 Factory Defense
-
-**A Rust factory-building + tower-defense game built on macroquad.**
-
-Factory Defense combines base construction with combat: build factories,
-manage production lines, and defend them from waves of enemies — rendered
-with the lightweight `macroquad` 2D engine.
-
----
-
-## ✨ Features
-
-| Feature | Description |
-|---|---|
-| **Factory building** | Place and connect production buildings |
-| **Combat system** | Enemy waves with turrets and defenses |
-| **City & economy** | Resource management across a living city |
-| **World generation** | Procedurally generated playfield |
-| **Rust + macroquad** | Single-binary game, no engine runtime |
-
-## 🚀 Quick start
-
-```bash
-cargo run --release
-# or
-./run.sh
-```
-
-## 📦 Project layout
-
-```
-factory_defense/
-├── src/
-│   ├── main.rs       # Entry point + game loop
-│   ├── game.rs       # Game state & rules
-│   ├── world.rs      # World generation & tiles
-│   ├── city.rs       # City / economy simulation
-│   ├── factory.rs    # Factory & production chains
-│   ├── combat.rs     # Enemies, turrets, projectiles
-│   ├── ui.rs         # HUD & menus
-│   ├── render.rs     # Rendering layer
-│   └── types.rs      # Shared data types
-└── Cargo.toml
-```
-
-## 🎮 Status
-
-Early playable prototype (v0.1.0) — a solid base for a full game loop.
-
-
-## PROJECTS
-Source: https://bartoszosiej.github.io/Docs/PROJECTS
-------------------------------------------------------------------------
-# 📁 Project Registry — Bartosz Osiej
-
-> **Central, always-current registry of every project we build and maintain.**
-> This file is the single source of truth: repo → what it is → where the docs live.
-> Rendered on the site at **https://bartoszosiej.github.io/Docs/projects/**
-
-Every project listed here is live on GitHub (owner **BartoszOsiej**), documented
-on this site, and maintained in the working copy at `~/`.
-
----
-
-## 🔗 Repo map (at a glance)
-
-| # | Project | Repo | Stack | Docs page |
-|---|---------|------|-------|-----------|
-| 1 | **Docs Hub** | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | VitePress | [docs](/) |
-| 2 | **N2 Mesh** (P2P chat) | [BartoszOsiej/N2-Mesh](https://github.com/BartoszOsiej/N2-Mesh) | WebTorrent, static | [docs](/projects/n2-mesh/) · [live](https://bartoszosiej.github.io/N2-Mesh/) |
-| 3 | **LinkShort** (URL shortener) | [BartoszOsiej/FastAPI-url](https://github.com/BartoszOsiej/FastAPI-url) | FastAPI, React 19, SQLite | [docs](/projects/fastapi-url/) |
-| 4 | **Novactorio** (factory game) | [BartoszOsiej/Factorio-web-game](https://github.com/BartoszOsiej/Factorio-web-game) | TypeScript, Canvas 2D, Supabase | [docs](/projects/factorio-web-game/) |
-| 5 | **NV2 Engine** (Rust voxel) | [BartoszOsiej/NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE) | Rust, wgpu, AI vegetation | [docs](/projects/nv2-engine/) |
-| 6 | **AURORA OS** (browser OS) | [BartoszOsiej/AURORA-OS](https://github.com/BartoszOsiej/AURORA-OS) | TypeScript, zero deps | [docs](/projects/aurora-os/) |
-| 7 | **Cybersec Toolkit** | [BartoszOsiej/cybersec-tools](https://github.com/BartoszOsiej/cybersec-tools) | Rust, pcap, openssl | [docs](/projects/cybersec-tools/) |
-| 8 | **Halcyon Process Monitor** | [BartoszOsiej/halcyon-process-monitor](https://github.com/BartoszOsiej/halcyon-process-monitor) | Rust, eBPF, Aya, ratatui | [docs](/projects/halcyon-process-monitor/) |
-| 9 | **Externum** (programming language) | [BartoszOsiej/Externum](https://github.com/BartoszOsiej/Externum) | Python, own lexer/parser/compiler | [docs](/projects/externum/) |
-| 10 | **Factory Defense** (Rust game) | [BartoszOsiej/factory_defense](https://github.com/BartoszOsiej/factory_defense) | Rust, macroquad | [docs](/projects/factory-defense/) |
-
----
-
-## 1. Docs Hub — `BartoszOsiej/Docs`
-
-| | |
-|---|---|
-| **What** | This documentation site + project registry. Built with VitePress, deployed to GitHub Pages. |
-| **Stack** | VitePress, GitHub Actions |
-| **Local path** | `~/Docs` |
-| **Live** | https://bartoszosiej.github.io/Docs/ |
-| **Notes** | `llms.txt` / `llms-full.txt` / `sitemap.xml` generated from the page tree. Update flow documented in `update-flow.md`. |
-
-## 2. N2 Mesh (P2P Chat) — `BartoszOsiej/N2-Mesh`
-
-| | |
-|---|---|
-| **What** | Torrent-principle messenger that works on **static hosting** — no server, no database. Room = torrent **infohash**; every peer seeds the same blob and joins a WebTorrent swarm. Messages travel over the **BitTorrent extended protocol** (custom `N2` extension, registered via `wire.use()`) with a send queue until the extended handshake completes — nothing is lost. Same-browser tabs connect via a `BroadcastChannel` local bridge. |
-| **Stack** | WebTorrent (vendored, no CDN), vanilla JS |
-| **Local path** | `~/N2-Mesh` |
-| **Docs** | [/projects/n2-mesh/](/projects/n2-mesh/) — Overview + Architecture |
-| **Live** | https://bartoszosiej.github.io/N2-Mesh/ |
-
-## 3. LinkShort — `BartoszOsiej/FastAPI-url`
-
-| | |
-|---|---|
-| **What** | Production-ready URL shortener: shorten, manage, track clicks. JWT auth, per-user links, analytics. |
-| **Stack** | Python 3.12, FastAPI 0.115, React 19, Tailwind 4, SQLite, Docker, Fly.io |
-| **Local path** | `~/FastAPI-url` |
-| **Docs** | [/projects/fastapi-url/](/projects/fastapi-url/) — Overview, Getting Started, API Reference, Deployment |
-
-## 4. Novactorio — `BartoszOsiej/Factorio-web-game`
-
-| | |
-|---|---|
-| **What** | Browser factory-automation game inspired by Factorio, written from scratch with a hand-rolled Canvas 2D engine. Co-op multiplayer, 23 languages, Stripe premium. |
-| **Stack** | TypeScript 5.5 (strict), React 18, Vite 6, Supabase, Stripe, Deno Edge Functions, Cloudflare |
-| **Local path** | `~/Factorio-web-game` |
-| **Docs** | [/projects/factorio-web-game/](/projects/factorio-web-game/) — Overview, Architecture, Gameplay, Backend & Monetization |
-
-## 5. NV2 Engine — `BartoszOsiej/NV2_ENGINE`
-
-| | |
-|---|---|
-| **What** | Native Rust voxel engine with AI-driven procedural worlds: wgpu rendering, 97 block types, 9 biomes, water simulation, and a neural network that learns vegetation placement while you play. |
-| **Stack** | Rust (nightly), wgpu, OpenSimplex2, MLP, Vulkan |
-| **Local path** | `~/NV2_ENGINE` |
-| **Docs** | [/projects/nv2-engine/](/projects/nv2-engine/) |
-
-## 6. AURORA OS — `BartoszOsiej/AURORA-OS`
-
-| | |
-|---|---|
-| **What** | A complete operating system running in the browser: TypeScript kernel, window manager, virtual filesystem, 37-command shell, 8 apps, themes and procedural audio. Zero runtime dependencies, no frameworks, no server. |
-| **Stack** | TypeScript, zero runtime dependencies, Vite |
-| **Local path** | `~/halcyon-process-monitor/aurora-os` |
-| **Docs** | [/projects/aurora-os/](/projects/aurora-os/) — Overview, Architecture, User Guide |
-
-## 7. Cybersec Toolkit — `BartoszOsiej/cybersec-tools`
-
-| | |
-|---|---|
-| **What** | Four focused Rust security tools: **NetRecon** (TCP scanner), **ShadowScan** (web vulnerability scanner), **HashSleuth** (hash cracker), **PacketEye** (pcap analyzer). |
-| **Stack** | Rust, clap, tokio, pcap, openssl |
-| **Local path** | `~/cybersec-tools` |
-| **Docs** | [/projects/cybersec-tools/](/projects/cybersec-tools/) |
-
-## 8. Halcyon Process Monitor — `BartoszOsiej/halcyon-process-monitor`
-
-| | |
-|---|---|
-| **What** | Real-time eBPF-based process and file-operation telemetry for Linux: `execve`/`openat` tracepoints, per-CPU perf buffers, 1-second sliding-window ransomware heuristic, live ratatui TUI, JSON/plain output, self-diagnostic. |
-| **Stack** | Rust, eBPF (Aya), ratatui, crossterm, nightly toolchain for the BPF crate |
-| **Local path** | `~/halcyon-process-monitor` |
-| **Docs** | [/projects/halcyon-process-monitor/](/projects/halcyon-process-monitor/) — Overview + Architecture |
-
-## 9. Externum — `BartoszOsiej/Externum`
-
-| | |
-|---|---|
-| **What** | Our own programming language — Python readability, binary performance and Bash control from a single source. Full lexer → parser → compiler → runtime pipeline in Python. Compiles to **Python, native binary and Bash**; also runs directly (interpreter + REPL). |
-| **Features (v3.0 "Sentient")** | Classes + inheritance, exceptions, imports of `.ext` modules, lambdas, comprehensions, generators, f-strings, ternary, tuple unpacking, `with/assert/del/global`, bitwise operators, multi-line literals, stdlib (`structs`, `strings`, `fs`, `mathx`) written in Externum itself. |
-| **Stack** | Python 3, own lexer/parser/compiler/runtime, zero deps |
-| **Local path** | `~/Externum` |
-| **Docs** | [/projects/externum/](/projects/externum/) — Overview, Syntax, Examples, Compiler & CLI, Architecture |
-| **Tests** | 118 unit tests, all green |
-
-## 10. Factory Defense — `BartoszOsiej/factory_defense`
-
-| | |
-|---|---|
-| **What** | Rust factory-building + tower-defense game on macroquad: build factories, manage a city economy, defend against waves. |
-| **Stack** | Rust, macroquad |
-| **Local path** | `~/factory_defense` |
-| **Docs** | [/projects/factory-defense/](/projects/factory-defense/) |
-
----
-
-## 📌 Not listed here (deliberately)
-
-Smaller / client / one-off projects (Minecraft launchers, landing pages, client
-sites) are **not** part of this registry and are not documented on this site.
-
-## 🧭 How to keep this file fresh
-
-1. Add a project only when it is a real, maintained project (see the 9 above).
-2. Keep the repo, stack, local path and docs link accurate.
-3. Update `/projects/` (site page), `llms.txt`, `llms-full.txt` and
-   `sitemap.xml` together with this file (scripts: `scripts/gen-llms*.py`,
-   `scripts/gen-sitemap.py`).
-
-
-## README
-Source: https://bartoszosiej.github.io/Docs/README
-------------------------------------------------------------------------
-# Bartosz Osiej — Docs
-
-Central documentation hub for all projects — [FastAPI-url](https://github.com/BartoszOsiej/FastAPI-url)
-(LinkShort), [Factorio-web-game](https://github.com/BartoszOsiej/Factorio-web-game)
-(Novactorio), [NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE),
-[AURORA-OS](https://github.com/BartoszOsiej/AURORA-OS),
-[cybersec-tools](https://github.com/BartoszOsiej/cybersec-tools),
-[halcyon-process-monitor](https://github.com/BartoszOsiej/halcyon-process-monitor),
-[Externum](https://github.com/BartoszOsiej/Externum) and
-[factory_defense](https://github.com/BartoszOsiej/factory_defense) —
-published as a static site on GitHub Pages.
-
-**Live site:** <https://bartoszosiej.github.io/Docs/>
-
-## Tech
-
-- [VitePress](https://vitepress.dev/) — Vue-powered static site generator
-- [WebTorrent](https://webtorrent.io/) — powers [N2 Mesh](https://bartoszosiej.github.io/N2-Mesh/), the P2P chat (its own repo: `BartoszOsiej/N2-Mesh`)
-- Deployed via GitHub Actions → GitHub Pages
-
-## Local development
-
-```bash
-npm install
-npm run docs:dev        # dev server with hot reload
-npm run docs:build      # production build to .vitepress/dist
-npm run docs:preview    # preview the production build
-```
-
-## Regenerating derived files
-
-- `public/sitemap.xml` — run `scripts/gen-sitemap.py`
-- `public/llms-full.txt` — run `scripts/gen-llms-full.py`
-
-## Project structure
-
-```
-Docs/
-├── index.md                      # Landing page
-├── update-flow.md                # Which repos publish updates here
-├── projects/
-│   ├── fastapi-url/              # LinkShort docs (4 pages)
-│   ├── factorio-web-game/        # Novactorio docs (4 pages)
-│   ├── nv2-engine/               # NV2 Engine docs (10 pages)
-│   ├── cybersec-tools/           # Cybersec Toolkit docs (5 pages)
-│   ├── aurora-os/                # AURORA OS docs (3 pages)
-│   ├── halcyon-process-monitor/  # Halcyon docs (2 pages)
-│   ├── externum/                 # Externum language docs (5 pages)
-│   └── factory-defense/          # Factory Defense docs (1 page)
-├── public/                       # Static assets (logo, hero, favicon)
-├── scripts/                      # Sitemap / llms-full generators
-├── .vitepress/config.mts         # Site config, nav, sidebar, search
-└── .github/workflows/deploy.yml  # Pages deployment
-```
-
-## Publishing
-
-Push to `main` — GitHub Actions builds the site and deploys it automatically.
-
-See [Update Flow](https://bartoszosiej.github.io/Docs/update-flow) for
-the full update map between source repositories and this site.
-
-
-## projects/
-Source: https://bartoszosiej.github.io/Docs/projects/
-------------------------------------------------------------------------
----
-title: Projects — Bartosz Osiej
----
-
-# 📁 Projects
-
-> **The complete registry of every project we build and maintain.**
-> Repo → what it is → stack → docs. One page, always current.
-> Source of truth: [`PROJECTS.md`](https://github.com/BartoszOsiej/Docs/blob/main/PROJECTS.md)
-
-## 🔗 All projects
-
-<div class="project-grid">
-  <ProjectCard
-    icon="📚"
-    title="Docs Hub"
-    description="This documentation site itself — VitePress on GitHub Pages, AI-readable llms.txt, auto-deploy via GitHub Actions, and the registry of every project."
-    :tags="['VitePress', 'GitHub Pages', 'WebTorrent']"
-    tint="#38bdf8"
-    link="/"
-  />
-  <ProjectCard
-    icon="💬"
-    title="N2 Mesh — P2P Chat"
-    description="Torrent-principle messenger that works on static hosting. Room = torrent infohash, peers join a WebTorrent swarm, messages travel over the BitTorrent extended protocol — no server, no database. Fully documented in its own docs pages."
-    :tags="['WebTorrent', 'P2P', 'BitTorrent', 'Serverless']"
-    tint="#a78bfa"
-    link="/projects/n2-mesh/"
-  />
-  <ProjectCard
-    icon="🔗"
-    title="LinkShort"
-    description="Production-ready URL shortener. FastAPI backend with JWT auth, per-user link management, click tracking, React 19 SPA served by the API, Docker + Fly.io."
-    :tags="['FastAPI', 'JWT', 'React 19', 'SQLite']"
-    tint="#34d399"
-    link="/projects/fastapi-url/"
-  />
-  <ProjectCard
-    icon="🏭"
-    title="Novactorio"
-    description="Factorio-inspired factory-automation game in the browser. Hand-written Canvas 2D engine, 21,000+ lines of TypeScript, co-op multiplayer, 23 languages, Stripe premium."
-    :tags="['TypeScript', 'Canvas 2D', 'Supabase', 'Stripe']"
-    tint="#fbbf24"
-    link="/projects/factorio-web-game/"
-  />
-  <ProjectCard
-    icon="⛏️"
-    title="NV2 Engine"
-    description="Native Rust voxel engine with AI-driven procedural worlds. wgpu rendering, 97 block types, 9 biomes, water simulation, neural vegetation learning."
-    :tags="['Rust', 'wgpu', 'Vulkan', 'MLP']"
-    tint="#818cf8"
-    link="/projects/nv2-engine/"
-  />
-  <ProjectCard
-    icon="◈"
-    title="AURORA OS"
-    description="A complete operating system in the browser — TypeScript kernel, window manager, virtual filesystem, 37-command shell, 8 apps, themes, procedural audio. Zero runtime dependencies."
-    :tags="['TypeScript', 'Web OS', 'VFS', 'WASM-free']"
-    tint="#38bdf8"
-    link="/projects/aurora-os/"
-  />
-  <ProjectCard
-    icon="🛡️"
-    title="Cybersec Toolkit"
-    description="Four focused Rust security tools: NetRecon TCP scanner, ShadowScan web vulnerability scanner, HashSleuth hash cracker, PacketEye pcap analyzer."
-    :tags="['Rust', 'Security', 'pcap', 'openssl']"
-    tint="#f472b6"
-    link="/projects/cybersec-tools/"
-  />
-  <ProjectCard
-    icon="🛰️"
-    title="Halcyon Process Monitor"
-    description="Real-time eBPF process and file-op telemetry for Linux. execve/openat tracepoints, per-CPU perf buffers, sliding-window ransomware heuristic, ratatui TUI."
-    :tags="['Rust', 'eBPF', 'Aya', 'ratatui']"
-    tint="#a3e635"
-    link="/projects/halcyon-process-monitor/"
-  />
-  <ProjectCard
-    icon="📜"
-    title="Externum"
-    description="A programming language of our own — Python readability, binary performance and Bash control from a single source. Compiled to three targets or run directly with a REPL. 118 tests, all green."
-    :tags="['Language', 'Compiler', 'Interpreter', 'REPL']"
-    tint="#f59e0b"
-    link="/projects/externum/"
-  />
-  <ProjectCard
-    icon="🏭"
-    title="Factory Defense"
-    description="Rust factory-building + tower-defense game on macroquad: build factories, manage a city economy, defend against waves."
-    :tags="['Rust', 'macroquad', 'Game']"
-    tint="#34d399"
-    link="/projects/factory-defense/"
-  />
-</div>
-
-## 🗺️ Repo map
-
-| Project | Repository | Docs |
-|---|---|---|
-| Docs Hub | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | [here](/) |
-| N2 Mesh (P2P Chat) | [BartoszOsiej/N2-Mesh](https://github.com/BartoszOsiej/N2-Mesh) | [docs](/projects/n2-mesh/) · [live](https://bartoszosiej.github.io/N2-Mesh/) |
-| LinkShort | [BartoszOsiej/FastAPI-url](https://github.com/BartoszOsiej/FastAPI-url) | [docs](/projects/fastapi-url/) |
-| Novactorio | [BartoszOsiej/Factorio-web-game](https://github.com/BartoszOsiej/Factorio-web-game) | [docs](/projects/factorio-web-game/) |
-| NV2 Engine | [BartoszOsiej/NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE) | [docs](/projects/nv2-engine/) |
-| AURORA OS | [BartoszOsiej/AURORA-OS](https://github.com/BartoszOsiej/AURORA-OS) | [docs](/projects/aurora-os/) |
-| Cybersec Toolkit | [BartoszOsiej/cybersec-tools](https://github.com/BartoszOsiej/cybersec-tools) | [docs](/projects/cybersec-tools/) |
-| Halcyon Process Monitor | [BartoszOsiej/halcyon-process-monitor](https://github.com/BartoszOsiej/halcyon-process-monitor) | [docs](/projects/halcyon-process-monitor/) |
-| Externum | [BartoszOsiej/Externum](https://github.com/BartoszOsiej/Externum) | [docs](/projects/externum/) |
-| Factory Defense | [BartoszOsiej/factory_defense](https://github.com/BartoszOsiej/factory_defense) | [docs](/projects/factory-defense/) |
-
-## 📌 Not listed
-
-Smaller / client / one-off projects (Minecraft launchers, landing pages, client
-sites) are deliberately **not** part of this registry.
-
-<style scoped>
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.1rem;
-  margin: 1.4rem 0 2.4rem;
-}
-</style>
-
-
-## projects/n2-mesh/architecture
-Source: https://bartoszosiej.github.io/Docs/projects/n2-mesh/architecture
-------------------------------------------------------------------------
----
-title: N2 Mesh — Architecture
----
-
-# 🧱 N2 Mesh — Architektura
-
-## Warstwy
-
-| Warstwa | Technologia | Rola |
-|---|---|---|
-| **Transport** | WebTorrent (WebRTC) | Swarm peer-to-peer, połączenia WebRTC |
-| **Sygnalizacja** | Publiczne WebSocket trackery | Znajdowanie peerów (jak w torrentach) |
-| **Kanał wiadomości** | Protokół rozszerzony BitTorrenta (`N2` ext) | Wysyłka wiadomości po połączeniu torrentowym |
-| **Local bridge** | `BroadcastChannel` | Karty tej samej przeglądarki (WebRTC loopback zablokowany) |
-
-## Kluczowe decyzje techniczne
-
-### 1. Pokój = infohash torrencika
-
-```js
-const content = new Blob([ROOM_PREFIX + state.room]);
-state.client.seed(content, { name: `n2mesh-${state.room}.txt`, announce: TRACKERS }, ...);
-```
-
-Każdy peer seeduje blob o identycznej treści → SHA-1 infohash identyczny →
-wszyscy w tym samym swarmie. Zmiana pokoju = nowy infohash = nowy swarm.
-
-### 2. Extended protocol z poprawną rejestracją
-
-Wiadomości jadą jako rozszerzenie `N2` protokołu rozszerzonego BitTorrenta.
-**Krytyczne:** rozszerzenie MUSI być zarejestrowane na każdym wire przez
-`wire.use()` PRZED wymianą extended handshake:
-
-```js
-function N2MeshExtension(wire) { this._wire = wire; }
-N2MeshExtension.prototype.name = 'N2';
-// ...
-torrent.on('wire', (wire) => {
-  wire.use(N2MeshExtension); // <- bez tego wire.extended('N2', ...) rzuca błąd
-});
-```
-
-Mapa `m` extended handshake budowana jest **z zarejestrowanych rozszerzeń**.
-Bez `wire.use()` wysyłka rzuca `Unrecognized extension: N2` i żadna
-wiadomość nigdy nie opuszcza karty — to był główny bug, naprawiony
-i zweryfikowany testem wire-to-wire.
-
-### 3. Kolejka do extended handshake
-
-```js
-function trySend(wire, payload) {
-  try { wire.extended(EXT, payload); return true; }
-  catch (_) { return false; }
-}
-```
-
-Jeśli peer nie ukończył jeszcze extended handshake, payload trafia do
-kolejki (`__n2pending`) i jest wysyłany ponownie co 600 ms — żadna
-wiadomość się nie gubi.
-
-### 4. Local bridge (BroadcastChannel)
-
-Dwie karty **tej samej przeglądarki** nie mogą połączyć się przez WebRTC
-(przeglądarki blokują loopback WebRTC). Most `BroadcastChannel` łączy je
-lokalnie: karty tej samej przeglądarki wymieniają `hello`/`msg` bezpośrednio,
-a różne przeglądarki/urządzenia — przez swarm WebTorrent.
-
-### 5. WebTorrent vendored
-
-`webtorrent.min.js` (220 KB) jest **wgrany do repo** — zero zależności od
-CDN (wcześniej zła ścieżka CDN zwracała 404 i chat nie działał wcale).
-
-## Pliki
-
-| Plik | Zawartość |
-|---|---|
-| `index.html` | Powłoka single-page |
-| `app.js` | Networking: swarm + extended protocol + local bridge |
-| `style.css` | Ciemny motyw aurora |
-| `webtorrent.min.js` | Vendored WebTorrent |
-| `.github/workflows/deploy.yml` | Deploy na GitHub Pages |
-
-## Przepływ danych
-
-```
-sender:  JSON({u: nick, t: text, ts}) ──► wire.extended('N2', bytes)
-                                              │
-                       peer's wire 'extended' event
-                                              ▼
-receiver:  handlePayload(bytes) ──► addMessage(nick, text)
-```
-
-## Ograniczenia
-
-- **Brak historii** — po wyjściu z pokoju swarm znika (cena braku serwera).
-- **Oba peery muszą być online jednocześnie**.
-- WebRTC może nie przejść przy symetrycznym NAT (brak TURN serwera) —
-  wtedy przydaje się local bridge lub sieć lokalna.
-
-## Repo
-
-[BartoszOsiej/N2-Mesh](https://github.com/BartoszOsiej/N2-Mesh) ·
-[Live](https://bartoszosiej.github.io/N2-Mesh/)
-
-
-## projects/n2-mesh/
-Source: https://bartoszosiej.github.io/Docs/projects/n2-mesh/
-------------------------------------------------------------------------
----
-title: N2 Mesh — P2P Chat
----
-
-# 💬 N2 Mesh — P2P Chat
-
-**Serverless peer-to-peer chat na zasadzie torrentów.** Działa na statycznym
-hostingu (GitHub Pages) — zero serwera, zero bazy danych, zero kont.
-
-> **Wypróbuj teraz:** [🚀 Otwórz N2 Mesh](https://bartoszosiej.github.io/N2-Mesh/)
-> (otwiera się w nowej karcie)
-
-## Zasada działania (torrent principle)
-
-```
-  ┌─────────────┐   room = infohash   ┌─────────────┐
-  │  Peer A     │◄───────────────────►│  Peer B     │
-  │ (twoja karta)│   WebTorrent swarm  │ (ich karta) │
-  └──────┬──────┘                     └──────┬──────┘
-         │   WebRTC signaling via public     │
-         │   WebSocket tracker (tylko)       │
-         ▼                                   ▼
-   ┌────────────────────────────────────────────┐
-   │   Public WebSocket trackers (announce)     │
-   └────────────────────────────────────────────┘
-```
-
-1. **Każdy peer w pokoju seeduje TEN SAM mały blob.** Identyczna treść →
-   identyczny **infohash** → wszyscy trafiają do tego samego swarmu
-   WebTorrent (dokładnie jak w torrentach).
-2. Publiczny WebSocket tracker wykonuje **sygnalizację WebRTC** między
-   członkami swarmu — tracker jest tylko *punktem spotkań*, nigdy nie widzi
-   wiadomości.
-3. Gdy dwóch peerów się połączy, wiadomości czatu jadą po ustanowionym
-   połączeniu jako **wiadomości protokołu rozszerzonego BitTorrenta** — czyli
-   wiadomości dosłownie podróżują po połączeniach peer-to-peer torrentów.
-
-Przez tracker przechodzi **tylko sygnalizacja**; payload wiadomości nigdy.
-
-## Funkcje
-
-- 🔗 **Pokoje jako torrenciki** — ta sama nazwa pokoju = ten sam infohash =
-  ten sam swarm
-- 💬 **Prawdziwe wiadomości P2P** — protokół rozszerzony BitTorrenta,
-  z kolejką do momentu extended handshake (nic nie ginie)
-- 🏷️ Nicki, licznik peerów, status połączenia
-- 🔗 Linki do pokojów (`#/nazwa-pokoju`)
-- 🌙 Ciemny, dostępny z klawiatury interfejs
-- 🖥️ **Local bridge** — karty tej samej przeglądarki nie mogą łączyć się
-  przez WebRTC (browser blokuje loopback WebRTC), więc most `BroadcastChannel`
-  łączy je lokalnie. Różne przeglądarki/urządzenia rozmawiają przez swarm.
-
-## Jak używać
-
-1. Otwórz [N2 Mesh](https://bartoszosiej.github.io/N2-Mesh/) w dwóch
-   przeglądarkach / na dwóch urządzeniach (albo w dwóch kartach jednej).
-2. Ustaw **ten sam pokój** po obu stronach (domyślnie `lobby`).
-3. Napisz nick i wysyłaj wiadomości — lecą peer-to-peer.
-
-> ⚠️ To jest mesh demo-grade: peery muszą być online jednocześnie. Nie ma
-> historii — po wyjściu swarm znika. To cena braku serwera.
-
-## Uruchom lokalnie
-
-```bash
-git clone https://github.com/BartoszOsiej/N2-Mesh.git
-cd N2-Mesh
-python3 -m http.server 8080
-# otwórz http://localhost:8080
-```
-
-## Bezpieczeństwo
-
-- Wiadomości podróżują **wyłącznie peer-to-peer**; tracker wykonuje
-  sygnalizację i nigdy nie odbiera treści wiadomości.
-- Całość to czysty JavaScript (WebTorrent vendored lokalnie — bez CDN),
-  bez śledzenia, bez zapisu danych.
-
-## Więcej
-
-- [Architektura i szczegóły techniczne](/projects/n2-mesh/architecture)
-- [Repo: BartoszOsiej/N2-Mesh](https://github.com/BartoszOsiej/N2-Mesh)
-
-
-## projects/externum/architecture
-Source: https://bartoszosiej.github.io/Docs/projects/externum/architecture
-------------------------------------------------------------------------
-# Architektura
-
-## Pipeline
-
-```
-source (.ext) → Lexer → tokens → Parser → AST → Compiler → python/bash/binary
-                                                  ↘ Runtime (exec) / REPL
-                                                     ↘ .ext module loader
-```
-
-## Etapy
-
-1. **Lexer** (`lexer.py`) — tokenizacja: INDENT/DEDENT **świadoma nawiasów**
-   (wcięcia wewnątrz `()[]{}` są ignorowane, puste linie nie łamią bloków),
-   literały `0b`/`0x`, stringi + f-stringi + triple-quoted, pełny zestaw
-   operatorów, bash inline (`` `...` ``) i bloki (`%% ... %%`).
-2. **Parser** (`parser.py`) — rekurencyjne zejście z priorytetem operatorów
-   (zgodnym z Pythonem), unarne operatory, ternary, lambdy, literały
-   (listy/słowniki/krotki/zbiory — także wielolinijkowe), indeksowanie i
-   slice'y, dostęp do atrybutów, wywołania z kwargs/`*args`/`**args`,
-   comprehensions, rozpakowywanie krotek oraz pełna gramatyka instrukcji:
-   funkcje, klasy z dziedziczeniem, `if/elif/else`, `while`, `for-in`,
-   `try/except/else/finally`, `with`, `import`, `raise`, `assert`, `del`,
-   `yield`, `global`, `nonlocal`.
-3. **Kompilator** (`compiler.py`) — generacja kodu: do `python` (z
-   `subprocess.run` dla bash), `bash` (wyodrębnione polecenia) i `binary`
-   (literały bitowe).
-4. **Runtime** (`runtime/`) — wykonanie w procesie przez `exec` wygenerowanego
-   Pythona; **meta-path finder** kompiluje moduły `.ext` przy `import`;
-   REPL z wykrywaniem kompletności bloków.
-
-## System modułów
-
-`externum/runtime/__init__.py` rejestruje `_ExtFinder` w `sys.meta_path`.
-`import mod` znajduje `mod.ext` (lub `pkg.mod.ext`) w ścieżce wyszukiwania,
-kompiluje do Pythona i ładuje jako moduł — biblioteka standardowa w `lib/`
-jest napisana w samym Externum.
-
-## Struktura projektu
-
-```
-Externum/
-├── externum/
-│   ├── lexer.py          # Tokenizacja
-│   ├── parser.py         # Pełna gramatyka → AST
-│   ├── compiler.py       # Codegen (python/bash/binary)
-│   ├── runtime/          # Runtime, import .ext, REPL
-│   │   ├── llm/          # (roadmap)
-│   │   ├── neural/       # (roadmap)
-│   │   └── distributed/  # (roadmap)
-│   └── __main__.py       # CLI (run / repl / compile)
-├── lib/                  # Biblioteka standardowa (.ext)
-│   ├── structs.ext       # Stack, Queue, Counter
-│   ├── strings.ext       # reverse, slugify, is_palindrome, ...
-│   ├── mathx.ext         # gcd, factorial, fib, ...
-│   └── fs.ext            # read_file, write_file, ...
-├── examples/             # hello.ext, calc.ext, pokedex.ext
-├── tests/                # 118 testów jednostkowych
-├── bin/externum          # Entry point CLI
-├── setup.py              # pip install -e .
-└── WIKI.md               # Specyfikacja języka
-```
-
-## Kontrakt API
-
-`externum/__init__.py` eksponuje core (`Lexer`, `Parser`, `Compiler`,
-`Runtime`) oraz **zarezerwowane** moduły przyszłości: `llm` (LLMClient,
-PromptTemplate, FunctionSchema), `neural` (Tensor, Module, Linear, Conv2d,
-Attention, Autograd), `distributed` (Actor, Cluster, Stream, Channel),
-`types` (DependentType, RefinementType, EffectType), `spec` (Spec, Theorem,
-Proof, Verify) i `debug` (TimeTravelDebugger, HotReloader). Importy są
-zabezpieczone — pakiet działa bez tych modułów.
-
-## Roadmapa
-
-- [x] Pełny język: klasy, wyjątki, moduły, lambdy, comprehensions, generatory
-- [x] REPL, system modułów, biblioteka standardowa, 118 testów
-- [ ] Moduł `neural` — tensory, autograd, warstwy (kontrakt w API)
-- [ ] Moduł `llm` — integracja z modelami (function calling)
-- [ ] Moduł `distributed` — aktory i strumienie między procesami
-- [ ] Pełny target `binary` (assembler)
-
-
-## projects/externum/compiler
-Source: https://bartoszosiej.github.io/Docs/projects/externum/compiler
-------------------------------------------------------------------------
-# Kompilator i CLI
-
-## Komendy
-
-```bash
-externum run <plik.ext> [args...]   # wykonaj program
-externum repl                       # interaktywna powłoka
-externum compile <plik.ext>         # skompiluj (domyślna komenda)
-```
-
-## Kompilacja
-
-```bash
-externum program.ext                      # --target all (domyślnie)
-externum program.ext --target python      # tylko Python
-externum program.ext --target bash        # tylko Bash
-externum program.ext --target binary      # tylko wariant binarny
-externum program.ext -o output.py         # zapisz do pliku
-```
-
-### Targety
-
-| Target | Opis |
-|---|---|
-| `python` | Wykonywalny kod Pythona — instrukcje, klasy, funkcje, `subprocess.run` dla bash |
-| `bash` | Wyodrębnione polecenia i bloki powłoki |
-| `binary` | Literały binarne (`0b...`) jako ciągi bitów |
-| `all` | Wszystkie trzy, sklejone w jeden raport |
-
-## Wykonanie
-
-```bash
-externum run program.ext arg1 arg2
-```
-
-Runtime transpiluje źródło do Pythona i wykonuje je w procesie. Argumenty
-trafiają do `sys.argv` programu (`argv[0]` = ścieżka skryptu).
-
-## REPL
-
-```bash
-externum repl
-```
-
-- Interaktywna powłoka z auto-printem wyników wyrażeń
-- Wielolinijkowe bloki (po `:` kontynuujesz, pusta linia kończy)
-- Dostępne `import` i cała biblioteka standardowa
-- Wyjście: `exit()` lub `Ctrl+D`
-
-## Pozostałe opcje
-
-| Opcja | Opis |
-|---|---|
-| `--version` | `Externum 3.0.0` |
-| `-h, --help` | Pomoc |
-| `-o, --output <plik>` | Zapis wyniku do pliku |
-
-## Ścieżka wyszukiwania modułów
-
-`import module` szuka `module.ext` kolejno w:
-
-1. katalogu skryptu,
-2. bieżącym katalogu,
-3. `lib/` repozytorium Externum,
-4. ścieżkach z `EXTERNUM_PATH` (rozdzielonych `:`).
-
-## Kody błędów
-
-| Kod | Znaczenie |
-|---|---|
-| `1` | Plik nie istnieje / błąd wejścia-wyjścia |
-| `1` | Błąd składni (`Syntax Error`) |
-| `1` | Błąd wykonania (`Runtime Error`) |
-
-
-## projects/externum/examples
-Source: https://bartoszosiej.github.io/Docs/projects/externum/examples
-------------------------------------------------------------------------
-# Examples
-
-Wszystkie przykłady działają na aktualnej wersji — pokryte są 118 testami
-(`python3 -m unittest discover -s tests`).
-
-## Pokedex — pełne demo języka
-
-`examples/pokedex.ext` pokazuje klasy z dziedziczeniem, comprehensions,
-lambdy, wyjątki, generatory, f-stringi i bibliotekę standardową:
-
-```python
-import mathx
-import strings
-
-class Fire(Pokemon):
-    def __init__(self, name, hp=50):
-        Pokemon.__init__(self, name, ["fire"], hp)
-
-# comprehensions
-fire_team = [p.name for p in squad if p.is_type("fire")]
-
-# lambda + kwargs
-weakest = min(squad, key=lambda p: p.hp)
-
-# try/except/finally
-try:
-    raise ValueError("psyduck is confused")
-except ValueError as e:
-    print("caught:", e)
-
-# generator
-nums = [f for f in fibonacci(10) if f % 2 == 0]
-
-# stdlib
-print(mathx.gcd(48, 36))        # 12
-print(strings.slugify("Hello World!"))   # hello-world
-```
-
-Uruchomienie i fragment wyjścia:
-
-```bash
-externum run examples/pokedex.ext
-```
-
-```
-=== Squad ===
-Charmander (fire) — 39 HP
-...
-=== Fire types (comprehension) ===
-['Charmander', 'Vulpix']
-=== Weakest member (lambda) ===
-Vulpix has only 38 HP!
-=== Fib numbers (generator + ternary) ===
-[0, 2, 8, 34]
-=== Standard library ===
-gcd(48, 36) = 12
-slug: hello-world
-palindrome: True
-=== Counter (structs lib) ===
-most common: ('a', 3)
-```
-
-## Hello world z liczbami binarnymi
-
-`examples/hello.ext`:
-
-```python
-x = 0b1010
-y = 42
-print("Hello from Externum!")
-print(x + y)      # 52
-`ls -la`
-%%
-echo "Bash block"
-%%
-```
-
-## Kalkulator
-
-`examples/calc.ext`:
-
-```python
-running = 1
-print("Calculator")
-
-while running:
-    a = int(input("a: "))
-    b = int(input("b: "))
-    print(a + b)
-    print(a * b)
-```
-
-## Silnia — rekurencja
-
-```python
-def factorial(n):
-    if n <= 1:
-        return 1
-    return n * factorial(n - 1)
-
-print(factorial(10))      # 3628800
-```
-
-## Klasy z dziedziczeniem
-
-```python
-class Animal:
-    def __init__(self, name):
-        self.name = name
-
-class Dog(Animal):
-    def speak(self):
-        print("woof " + self.name)
-
-Dog("Burek").speak()      # woof Burek
-```
-
-## Wyjątki i `with`
-
-```python
-try:
-    with open("/tmp/demo.txt", "w") as f:
-        f.write("hello")
-    data = open("/tmp/demo.txt", "r").read()
-    print(data)
-except IOError as e:
-    print("io error", e)
-```
-
-## Moduły
-
-```python
-import structs
-import mathx
-
-s = structs.Stack()
-s.push(10)
-s.push(20)
-print(s.pop())            # 20
-print(mathx.factorial(5)) # 120
-```
-
-## Kompilacja do Pythona
-
-```bash
-externum examples/hello.ext --target python -o hello.py
-python3 hello.py
-```
 
 
 ## projects/externum/syntax
@@ -4961,3 +4169,712 @@ done
 `tuple`, `set`, `range`, `open`, `type`, `sum`, `min`, `max`, `abs`,
 `round`, `enumerate`, `zip`, `sorted`, `reversed`, `chr`, `ord`, `hex`,
 `oct`, `bin`, `isinstance`, `repr`, `format`.
+
+
+## projects/externum/examples
+Source: https://bartoszosiej.github.io/Docs/projects/externum/examples
+------------------------------------------------------------------------
+# Examples
+
+Wszystkie przykłady działają na aktualnej wersji — pokryte są 118 testami
+(`python3 -m unittest discover -s tests`).
+
+## Pokedex — pełne demo języka
+
+`examples/pokedex.ext` pokazuje klasy z dziedziczeniem, comprehensions,
+lambdy, wyjątki, generatory, f-stringi i bibliotekę standardową:
+
+```python
+import mathx
+import strings
+
+class Fire(Pokemon):
+    def __init__(self, name, hp=50):
+        Pokemon.__init__(self, name, ["fire"], hp)
+
+# comprehensions
+fire_team = [p.name for p in squad if p.is_type("fire")]
+
+# lambda + kwargs
+weakest = min(squad, key=lambda p: p.hp)
+
+# try/except/finally
+try:
+    raise ValueError("psyduck is confused")
+except ValueError as e:
+    print("caught:", e)
+
+# generator
+nums = [f for f in fibonacci(10) if f % 2 == 0]
+
+# stdlib
+print(mathx.gcd(48, 36))        # 12
+print(strings.slugify("Hello World!"))   # hello-world
+```
+
+Uruchomienie i fragment wyjścia:
+
+```bash
+externum run examples/pokedex.ext
+```
+
+```
+=== Squad ===
+Charmander (fire) — 39 HP
+...
+=== Fire types (comprehension) ===
+['Charmander', 'Vulpix']
+=== Weakest member (lambda) ===
+Vulpix has only 38 HP!
+=== Fib numbers (generator + ternary) ===
+[0, 2, 8, 34]
+=== Standard library ===
+gcd(48, 36) = 12
+slug: hello-world
+palindrome: True
+=== Counter (structs lib) ===
+most common: ('a', 3)
+```
+
+## Hello world z liczbami binarnymi
+
+`examples/hello.ext`:
+
+```python
+x = 0b1010
+y = 42
+print("Hello from Externum!")
+print(x + y)      # 52
+`ls -la`
+%%
+echo "Bash block"
+%%
+```
+
+## Kalkulator
+
+`examples/calc.ext`:
+
+```python
+running = 1
+print("Calculator")
+
+while running:
+    a = int(input("a: "))
+    b = int(input("b: "))
+    print(a + b)
+    print(a * b)
+```
+
+## Silnia — rekurencja
+
+```python
+def factorial(n):
+    if n <= 1:
+        return 1
+    return n * factorial(n - 1)
+
+print(factorial(10))      # 3628800
+```
+
+## Klasy z dziedziczeniem
+
+```python
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+class Dog(Animal):
+    def speak(self):
+        print("woof " + self.name)
+
+Dog("Burek").speak()      # woof Burek
+```
+
+## Wyjątki i `with`
+
+```python
+try:
+    with open("/tmp/demo.txt", "w") as f:
+        f.write("hello")
+    data = open("/tmp/demo.txt", "r").read()
+    print(data)
+except IOError as e:
+    print("io error", e)
+```
+
+## Moduły
+
+```python
+import structs
+import mathx
+
+s = structs.Stack()
+s.push(10)
+s.push(20)
+print(s.pop())            # 20
+print(mathx.factorial(5)) # 120
+```
+
+## Kompilacja do Pythona
+
+```bash
+externum examples/hello.ext --target python -o hello.py
+python3 hello.py
+```
+
+
+## projects/externum/compiler
+Source: https://bartoszosiej.github.io/Docs/projects/externum/compiler
+------------------------------------------------------------------------
+# Kompilator i CLI
+
+## Komendy
+
+```bash
+externum run <plik.ext> [args...]   # wykonaj program
+externum repl                       # interaktywna powłoka
+externum compile <plik.ext>         # skompiluj (domyślna komenda)
+```
+
+## Kompilacja
+
+```bash
+externum program.ext                      # --target all (domyślnie)
+externum program.ext --target python      # tylko Python
+externum program.ext --target bash        # tylko Bash
+externum program.ext --target binary      # tylko wariant binarny
+externum program.ext -o output.py         # zapisz do pliku
+```
+
+### Targety
+
+| Target | Opis |
+|---|---|
+| `python` | Wykonywalny kod Pythona — instrukcje, klasy, funkcje, `subprocess.run` dla bash |
+| `bash` | Wyodrębnione polecenia i bloki powłoki |
+| `binary` | Literały binarne (`0b...`) jako ciągi bitów |
+| `all` | Wszystkie trzy, sklejone w jeden raport |
+
+## Wykonanie
+
+```bash
+externum run program.ext arg1 arg2
+```
+
+Runtime transpiluje źródło do Pythona i wykonuje je w procesie. Argumenty
+trafiają do `sys.argv` programu (`argv[0]` = ścieżka skryptu).
+
+## REPL
+
+```bash
+externum repl
+```
+
+- Interaktywna powłoka z auto-printem wyników wyrażeń
+- Wielolinijkowe bloki (po `:` kontynuujesz, pusta linia kończy)
+- Dostępne `import` i cała biblioteka standardowa
+- Wyjście: `exit()` lub `Ctrl+D`
+
+## Pozostałe opcje
+
+| Opcja | Opis |
+|---|---|
+| `--version` | `Externum 3.0.0` |
+| `-h, --help` | Pomoc |
+| `-o, --output <plik>` | Zapis wyniku do pliku |
+
+## Ścieżka wyszukiwania modułów
+
+`import module` szuka `module.ext` kolejno w:
+
+1. katalogu skryptu,
+2. bieżącym katalogu,
+3. `lib/` repozytorium Externum,
+4. ścieżkach z `EXTERNUM_PATH` (rozdzielonych `:`).
+
+## Kody błędów
+
+| Kod | Znaczenie |
+|---|---|
+| `1` | Plik nie istnieje / błąd wejścia-wyjścia |
+| `1` | Błąd składni (`Syntax Error`) |
+| `1` | Błąd wykonania (`Runtime Error`) |
+
+
+## projects/externum/architecture
+Source: https://bartoszosiej.github.io/Docs/projects/externum/architecture
+------------------------------------------------------------------------
+# Architektura
+
+## Pipeline
+
+```
+source (.ext) → Lexer → tokens → Parser → AST → Compiler → python/bash/binary
+                                                  ↘ Runtime (exec) / REPL
+                                                     ↘ .ext module loader
+```
+
+## Etapy
+
+1. **Lexer** (`lexer.py`) — tokenizacja: INDENT/DEDENT **świadoma nawiasów**
+   (wcięcia wewnątrz `()[]{}` są ignorowane, puste linie nie łamią bloków),
+   literały `0b`/`0x`, stringi + f-stringi + triple-quoted, pełny zestaw
+   operatorów, bash inline (`` `...` ``) i bloki (`%% ... %%`).
+2. **Parser** (`parser.py`) — rekurencyjne zejście z priorytetem operatorów
+   (zgodnym z Pythonem), unarne operatory, ternary, lambdy, literały
+   (listy/słowniki/krotki/zbiory — także wielolinijkowe), indeksowanie i
+   slice'y, dostęp do atrybutów, wywołania z kwargs/`*args`/`**args`,
+   comprehensions, rozpakowywanie krotek oraz pełna gramatyka instrukcji:
+   funkcje, klasy z dziedziczeniem, `if/elif/else`, `while`, `for-in`,
+   `try/except/else/finally`, `with`, `import`, `raise`, `assert`, `del`,
+   `yield`, `global`, `nonlocal`.
+3. **Kompilator** (`compiler.py`) — generacja kodu: do `python` (z
+   `subprocess.run` dla bash), `bash` (wyodrębnione polecenia) i `binary`
+   (literały bitowe).
+4. **Runtime** (`runtime/`) — wykonanie w procesie przez `exec` wygenerowanego
+   Pythona; **meta-path finder** kompiluje moduły `.ext` przy `import`;
+   REPL z wykrywaniem kompletności bloków.
+
+## System modułów
+
+`externum/runtime/__init__.py` rejestruje `_ExtFinder` w `sys.meta_path`.
+`import mod` znajduje `mod.ext` (lub `pkg.mod.ext`) w ścieżce wyszukiwania,
+kompiluje do Pythona i ładuje jako moduł — biblioteka standardowa w `lib/`
+jest napisana w samym Externum.
+
+## Struktura projektu
+
+```
+Externum/
+├── externum/
+│   ├── lexer.py          # Tokenizacja
+│   ├── parser.py         # Pełna gramatyka → AST
+│   ├── compiler.py       # Codegen (python/bash/binary)
+│   ├── runtime/          # Runtime, import .ext, REPL
+│   │   ├── llm/          # (roadmap)
+│   │   ├── neural/       # (roadmap)
+│   │   └── distributed/  # (roadmap)
+│   └── __main__.py       # CLI (run / repl / compile)
+├── lib/                  # Biblioteka standardowa (.ext)
+│   ├── structs.ext       # Stack, Queue, Counter
+│   ├── strings.ext       # reverse, slugify, is_palindrome, ...
+│   ├── mathx.ext         # gcd, factorial, fib, ...
+│   └── fs.ext            # read_file, write_file, ...
+├── examples/             # hello.ext, calc.ext, pokedex.ext
+├── tests/                # 118 testów jednostkowych
+├── bin/externum          # Entry point CLI
+├── setup.py              # pip install -e .
+└── WIKI.md               # Specyfikacja języka
+```
+
+## Kontrakt API
+
+`externum/__init__.py` eksponuje core (`Lexer`, `Parser`, `Compiler`,
+`Runtime`) oraz **zarezerwowane** moduły przyszłości: `llm` (LLMClient,
+PromptTemplate, FunctionSchema), `neural` (Tensor, Module, Linear, Conv2d,
+Attention, Autograd), `distributed` (Actor, Cluster, Stream, Channel),
+`types` (DependentType, RefinementType, EffectType), `spec` (Spec, Theorem,
+Proof, Verify) i `debug` (TimeTravelDebugger, HotReloader). Importy są
+zabezpieczone — pakiet działa bez tych modułów.
+
+## Roadmapa
+
+- [x] Pełny język: klasy, wyjątki, moduły, lambdy, comprehensions, generatory
+- [x] REPL, system modułów, biblioteka standardowa, 118 testów
+- [ ] Moduł `neural` — tensory, autograd, warstwy (kontrakt w API)
+- [ ] Moduł `llm` — integracja z modelami (function calling)
+- [ ] Moduł `distributed` — aktory i strumienie między procesami
+- [ ] Pełny target `binary` (assembler)
+
+
+## projects/n2-mesh/
+Source: https://bartoszosiej.github.io/Docs/projects/n2-mesh/
+------------------------------------------------------------------------
+---
+title: N2 Mesh — P2P Chat
+---
+
+# 💬 N2 Mesh — P2P Chat
+
+**Serverless peer-to-peer chat na zasadzie torrentów.** Działa na statycznym
+hostingu (GitHub Pages) — zero serwera, zero bazy danych, zero kont.
+
+> **Wypróbuj teraz:** [🚀 Otwórz N2 Mesh](https://bartoszosiej.github.io/n2-mesh/)
+> (otwiera się w nowej karcie)
+
+## Zasada działania (torrent principle)
+
+```
+  ┌─────────────┐   room = infohash   ┌─────────────┐
+  │  Peer A     │◄───────────────────►│  Peer B     │
+  │ (twoja karta)│   WebTorrent swarm  │ (ich karta) │
+  └──────┬──────┘                     └──────┬──────┘
+         │   WebRTC signaling via public     │
+         │   WebSocket tracker (tylko)       │
+         ▼                                   ▼
+   ┌────────────────────────────────────────────┐
+   │   Public WebSocket trackers (announce)     │
+   └────────────────────────────────────────────┘
+```
+
+1. **Każdy peer w pokoju seeduje TEN SAM mały blob.** Identyczna treść →
+   identyczny **infohash** → wszyscy trafiają do tego samego swarmu
+   WebTorrent (dokładnie jak w torrentach).
+2. Publiczny WebSocket tracker wykonuje **sygnalizację WebRTC** między
+   członkami swarmu — tracker jest tylko *punktem spotkań*, nigdy nie widzi
+   wiadomości.
+3. Gdy dwóch peerów się połączy, wiadomości czatu jadą po ustanowionym
+   połączeniu jako **wiadomości protokołu rozszerzonego BitTorrenta** — czyli
+   wiadomości dosłownie podróżują po połączeniach peer-to-peer torrentów.
+
+Przez tracker przechodzi **tylko sygnalizacja**; payload wiadomości nigdy.
+
+## Funkcje
+
+- 🔗 **Pokoje jako torrenciki** — ta sama nazwa pokoju = ten sam infohash =
+  ten sam swarm
+- 💬 **Prawdziwe wiadomości P2P** — protokół rozszerzony BitTorrenta,
+  z kolejką do momentu extended handshake (nic nie ginie)
+- 🏷️ Nicki, licznik peerów, status połączenia
+- 🔗 Linki do pokojów (`#/nazwa-pokoju`)
+- 🌙 Ciemny, dostępny z klawiatury interfejs
+- 🖥️ **Local bridge** — karty tej samej przeglądarki nie mogą łączyć się
+  przez WebRTC (browser blokuje loopback WebRTC), więc most `BroadcastChannel`
+  łączy je lokalnie. Różne przeglądarki/urządzenia rozmawiają przez swarm.
+
+## Jak używać
+
+1. Otwórz [N2 Mesh](https://bartoszosiej.github.io/n2-mesh/) w dwóch
+   przeglądarkach / na dwóch urządzeniach (albo w dwóch kartach jednej).
+2. Ustaw **ten sam pokój** po obu stronach (domyślnie `lobby`).
+3. Napisz nick i wysyłaj wiadomości — lecą peer-to-peer.
+
+> ⚠️ To jest mesh demo-grade: peery muszą być online jednocześnie. Nie ma
+> historii — po wyjściu swarm znika. To cena braku serwera.
+
+## Uruchom lokalnie
+
+```bash
+git clone https://github.com/BartoszOsiej/n2-mesh.git
+cd n2-mesh
+python3 -m http.server 8080
+# otwórz http://localhost:8080
+```
+
+## Bezpieczeństwo
+
+- Wiadomości podróżują **wyłącznie peer-to-peer**; tracker wykonuje
+  sygnalizację i nigdy nie odbiera treści wiadomości.
+- Całość to czysty JavaScript (WebTorrent vendored lokalnie — bez CDN),
+  bez śledzenia, bez zapisu danych.
+
+## Więcej
+
+- [Architektura i szczegóły techniczne](/projects/n2-mesh/architecture)
+- [Repo: BartoszOsiej/n2-mesh](https://github.com/BartoszOsiej/n2-mesh)
+
+
+## projects/n2-mesh/architecture
+Source: https://bartoszosiej.github.io/Docs/projects/n2-mesh/architecture
+------------------------------------------------------------------------
+---
+title: N2 Mesh — Architecture
+---
+
+# 🧱 N2 Mesh — Architektura
+
+## Warstwy
+
+| Warstwa | Technologia | Rola |
+|---|---|---|
+| **Transport** | WebTorrent (WebRTC) | Swarm peer-to-peer, połączenia WebRTC |
+| **Sygnalizacja** | Publiczne WebSocket trackery | Znajdowanie peerów (jak w torrentach) |
+| **Kanał wiadomości** | Protokół rozszerzony BitTorrenta (`N2` ext) | Wysyłka wiadomości po połączeniu torrentowym |
+| **Local bridge** | `BroadcastChannel` | Karty tej samej przeglądarki (WebRTC loopback zablokowany) |
+
+## Kluczowe decyzje techniczne
+
+### 1. Pokój = infohash torrencika
+
+```js
+const content = new Blob([ROOM_PREFIX + state.room]);
+state.client.seed(content, { name: `n2mesh-${state.room}.txt`, announce: TRACKERS }, ...);
+```
+
+Każdy peer seeduje blob o identycznej treści → SHA-1 infohash identyczny →
+wszyscy w tym samym swarmie. Zmiana pokoju = nowy infohash = nowy swarm.
+
+### 2. Extended protocol z poprawną rejestracją
+
+Wiadomości jadą jako rozszerzenie `N2` protokołu rozszerzonego BitTorrenta.
+**Krytyczne:** rozszerzenie MUSI być zarejestrowane na każdym wire przez
+`wire.use()` PRZED wymianą extended handshake:
+
+```js
+function N2MeshExtension(wire) { this._wire = wire; }
+N2MeshExtension.prototype.name = 'N2';
+// ...
+torrent.on('wire', (wire) => {
+  wire.use(N2MeshExtension); // <- bez tego wire.extended('N2', ...) rzuca błąd
+});
+```
+
+Mapa `m` extended handshake budowana jest **z zarejestrowanych rozszerzeń**.
+Bez `wire.use()` wysyłka rzuca `Unrecognized extension: N2` i żadna
+wiadomość nigdy nie opuszcza karty — to był główny bug, naprawiony
+i zweryfikowany testem wire-to-wire.
+
+### 3. Kolejka do extended handshake
+
+```js
+function trySend(wire, payload) {
+  try { wire.extended(EXT, payload); return true; }
+  catch (_) { return false; }
+}
+```
+
+Jeśli peer nie ukończył jeszcze extended handshake, payload trafia do
+kolejki (`__n2pending`) i jest wysyłany ponownie co 600 ms — żadna
+wiadomość się nie gubi.
+
+### 4. Local bridge (BroadcastChannel)
+
+Dwie karty **tej samej przeglądarki** nie mogą połączyć się przez WebRTC
+(przeglądarki blokują loopback WebRTC). Most `BroadcastChannel` łączy je
+lokalnie: karty tej samej przeglądarki wymieniają `hello`/`msg` bezpośrednio,
+a różne przeglądarki/urządzenia — przez swarm WebTorrent.
+
+### 5. WebTorrent vendored
+
+`webtorrent.min.js` (220 KB) jest **wgrany do repo** — zero zależności od
+CDN (wcześniej zła ścieżka CDN zwracała 404 i chat nie działał wcale).
+
+## Pliki
+
+| Plik | Zawartość |
+|---|---|
+| `index.html` | Powłoka single-page |
+| `app.js` | Networking: swarm + extended protocol + local bridge |
+| `style.css` | Ciemny motyw aurora |
+| `webtorrent.min.js` | Vendored WebTorrent |
+| `.github/workflows/deploy.yml` | Deploy na GitHub Pages |
+
+## Przepływ danych
+
+```
+sender:  JSON({u: nick, t: text, ts}) ──► wire.extended('N2', bytes)
+                                              │
+                       peer's wire 'extended' event
+                                              ▼
+receiver:  handlePayload(bytes) ──► addMessage(nick, text)
+```
+
+## Ograniczenia
+
+- **Brak historii** — po wyjściu z pokoju swarm znika (cena braku serwera).
+- **Oba peery muszą być online jednocześnie**.
+- WebRTC może nie przejść przy symetrycznym NAT (brak TURN serwera) —
+  wtedy przydaje się local bridge lub sieć lokalna.
+
+## Repo
+
+[BartoszOsiej/n2-mesh](https://github.com/BartoszOsiej/n2-mesh) ·
+[Live](https://bartoszosiej.github.io/n2-mesh/)
+
+
+## PROJECTS
+Source: https://bartoszosiej.github.io/Docs/PROJECTS
+------------------------------------------------------------------------
+# 📁 Project Registry — Bartosz Osiej
+
+> **Central, always-current registry of every project we build and maintain.**
+> This file is the single source of truth: repo → what it is → where the docs live.
+> Rendered on the site at **https://bartoszosiej.github.io/Docs/projects/**
+
+Every project listed here is live on GitHub (owner **BartoszOsiej**), documented
+on this site, and maintained in the working copy at `~/`.
+
+---
+
+## 🔗 Repo map (at a glance)
+
+| # | Project | Repo | Stack | Docs page |
+|---|---------|------|-------|-----------|
+| 1 | **Docs Hub** | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | VitePress | [docs](/) |
+| 2 | **N2 Mesh** (P2P chat) | [BartoszOsiej/n2-mesh](https://github.com/BartoszOsiej/n2-mesh) | WebTorrent, static | [docs](/projects/n2-mesh/) · [live](https://bartoszosiej.github.io/n2-mesh/) |
+| 3 | **LinkShort** (URL shortener) | [BartoszOsiej/FastAPI-url](https://github.com/BartoszOsiej/FastAPI-url) | FastAPI, React 19, SQLite | [docs](/projects/fastapi-url/) |
+| 4 | **Novactorio** (factory game) | [BartoszOsiej/Factorio-web-game](https://github.com/BartoszOsiej/Factorio-web-game) | TypeScript, Canvas 2D, Supabase | [docs](/projects/factorio-web-game/) |
+| 5 | **NV2 Engine** (Rust voxel) | [BartoszOsiej/NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE) | Rust, wgpu, AI vegetation | [docs](/projects/nv2-engine/) |
+| 6 | **AURORA OS** (browser OS) | [BartoszOsiej/AURORA-OS](https://github.com/BartoszOsiej/AURORA-OS) | TypeScript, zero deps | [docs](/projects/aurora-os/) |
+| 7 | **Cybersec Toolkit** | [BartoszOsiej/cybersec-tools](https://github.com/BartoszOsiej/cybersec-tools) | Rust, pcap, openssl | [docs](/projects/cybersec-tools/) |
+| 8 | **Halcyon Process Monitor** | [BartoszOsiej/halcyon-process-monitor](https://github.com/BartoszOsiej/halcyon-process-monitor) | Rust, eBPF, Aya, ratatui | [docs](/projects/halcyon-process-monitor/) |
+| 9 | **Externum** (programming language) | [BartoszOsiej/externum](https://github.com/BartoszOsiej/externum) | Python, own lexer/parser/compiler | [docs](/projects/externum/) |
+
+---
+
+## 1. Docs Hub — `BartoszOsiej/Docs`
+
+| | |
+|---|---|
+| **What** | This documentation site + project registry. Built with VitePress, deployed to GitHub Pages. |
+| **Stack** | VitePress, GitHub Actions |
+| **Local path** | `~/Docs` |
+| **Live** | https://bartoszosiej.github.io/Docs/ |
+| **Notes** | `llms.txt` / `llms-full.txt` / `sitemap.xml` generated from the page tree. Update flow documented in `update-flow.md`. |
+
+## 2. N2 Mesh (P2P Chat) — `BartoszOsiej/n2-mesh`
+
+| | |
+|---|---|
+| **What** | Torrent-principle messenger that works on **static hosting** — no server, no database. Room = torrent **infohash**; every peer seeds the same blob and joins a WebTorrent swarm. Messages travel over the **BitTorrent extended protocol** (custom `N2` extension, registered via `wire.use()`) with a send queue until the extended handshake completes — nothing is lost. Same-browser tabs connect via a `BroadcastChannel` local bridge. |
+| **Stack** | WebTorrent (vendored, no CDN), vanilla JS |
+| **Local path** | `~/N2-Mesh` |
+| **Docs** | [/projects/n2-mesh/](/projects/n2-mesh/) — Overview + Architecture |
+| **Live** | https://bartoszosiej.github.io/n2-mesh/ |
+
+## 3. LinkShort — `BartoszOsiej/FastAPI-url`
+
+| | |
+|---|---|
+| **What** | Production-ready URL shortener: shorten, manage, track clicks. JWT auth, per-user links, analytics. |
+| **Stack** | Python 3.12, FastAPI 0.115, React 19, Tailwind 4, SQLite, Docker, Fly.io |
+| **Local path** | `~/FastAPI-url` |
+| **Docs** | [/projects/fastapi-url/](/projects/fastapi-url/) — Overview, Getting Started, API Reference, Deployment |
+
+## 4. Novactorio — `BartoszOsiej/Factorio-web-game`
+
+| | |
+|---|---|
+| **What** | Browser factory-automation game inspired by Factorio, written from scratch with a hand-rolled Canvas 2D engine. Co-op multiplayer, 23 languages, Stripe premium. |
+| **Stack** | TypeScript 5.5 (strict), React 18, Vite 6, Supabase, Stripe, Deno Edge Functions, Cloudflare |
+| **Local path** | `~/Factorio-web-game` |
+| **Docs** | [/projects/factorio-web-game/](/projects/factorio-web-game/) — Overview, Architecture, Gameplay, Backend & Monetization |
+
+## 5. NV2 Engine — `BartoszOsiej/NV2_ENGINE`
+
+| | |
+|---|---|
+| **What** | Native Rust voxel engine with AI-driven procedural worlds: wgpu rendering, 97 block types, 9 biomes, water simulation, and a neural network that learns vegetation placement while you play. |
+| **Stack** | Rust (nightly), wgpu, OpenSimplex2, MLP, Vulkan |
+| **Local path** | `~/NV2_ENGINE` |
+| **Docs** | [/projects/nv2-engine/](/projects/nv2-engine/) |
+
+## 6. AURORA OS — `BartoszOsiej/AURORA-OS`
+
+| | |
+|---|---|
+| **What** | A complete operating system running in the browser: TypeScript kernel, window manager, virtual filesystem, 37-command shell, 8 apps, themes and procedural audio. Zero runtime dependencies, no frameworks, no server. |
+| **Stack** | TypeScript, zero runtime dependencies, Vite |
+| **Local path** | `~/halcyon-process-monitor/aurora-os` |
+| **Docs** | [/projects/aurora-os/](/projects/aurora-os/) — Overview, Architecture, User Guide |
+
+## 7. Cybersec Toolkit — `BartoszOsiej/cybersec-tools`
+
+| | |
+|---|---|
+| **What** | Four focused Rust security tools: **NetRecon** (TCP scanner), **ShadowScan** (web vulnerability scanner), **HashSleuth** (hash cracker), **PacketEye** (pcap analyzer). |
+| **Stack** | Rust, clap, tokio, pcap, openssl |
+| **Local path** | `~/cybersec-tools` |
+| **Docs** | [/projects/cybersec-tools/](/projects/cybersec-tools/) |
+
+## 8. Halcyon Process Monitor — `BartoszOsiej/halcyon-process-monitor`
+
+| | |
+|---|---|
+| **What** | Real-time eBPF-based process and file-operation telemetry for Linux: `execve`/`openat` tracepoints, per-CPU perf buffers, 1-second sliding-window ransomware heuristic, live ratatui TUI, JSON/plain output, self-diagnostic. |
+| **Stack** | Rust, eBPF (Aya), ratatui, crossterm, nightly toolchain for the BPF crate |
+| **Local path** | `~/halcyon-process-monitor` |
+| **Docs** | [/projects/halcyon-process-monitor/](/projects/halcyon-process-monitor/) — Overview + Architecture |
+
+## 9. Externum — `BartoszOsiej/externum`
+
+| | |
+|---|---|
+| **What** | Our own programming language — Python readability, binary performance and Bash control from a single source. Full lexer → parser → compiler → runtime pipeline in Python. Compiles to **Python, native binary and Bash**; also runs directly (interpreter + REPL). |
+| **Features (v3.0 "Sentient")** | Classes + inheritance, exceptions, imports of `.ext` modules, lambdas, comprehensions, generators, f-strings, ternary, tuple unpacking, `with/assert/del/global`, bitwise operators, multi-line literals, stdlib (`structs`, `strings`, `fs`, `mathx`) written in Externum itself. |
+| **Stack** | Python 3, own lexer/parser/compiler/runtime, zero deps |
+| **Local path** | `~/Externum` |
+| **Docs** | [/projects/externum/](/projects/externum/) — Overview, Syntax, Examples, Compiler & CLI, Architecture |
+| **Tests** | 118 unit tests, all green |
+
+---
+
+## 📌 Not listed here (deliberately)
+
+Smaller / client / one-off projects (Minecraft launchers, landing pages, client
+sites) are **not** part of this registry and are not documented on this site.
+
+## 🧭 How to keep this file fresh
+
+1. Add a project only when it is a real, maintained project (see the 9 above).
+2. Keep the repo, stack, local path and docs link accurate.
+3. Update `/projects/` (site page), `llms.txt`, `llms-full.txt` and
+   `sitemap.xml` together with this file (scripts: `scripts/gen-llms*.py`,
+   `scripts/gen-sitemap.py`).
+
+
+## README
+Source: https://bartoszosiej.github.io/Docs/README
+------------------------------------------------------------------------
+# Bartosz Osiej — Docs
+
+Central documentation hub for all projects — [FastAPI-url](https://github.com/BartoszOsiej/FastAPI-url)
+(LinkShort), [Factorio-web-game](https://github.com/BartoszOsiej/Factorio-web-game)
+(Novactorio), [NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE),
+[AURORA-OS](https://github.com/BartoszOsiej/AURORA-OS),
+[cybersec-tools](https://github.com/BartoszOsiej/cybersec-tools),
+[halcyon-process-monitor](https://github.com/BartoszOsiej/halcyon-process-monitor),
+[Externum](https://github.com/BartoszOsiej/externum) and
+[N2-Mesh](https://github.com/BartoszOsiej/n2-mesh) —
+published as a static site on GitHub Pages.
+
+**Live site:** <https://bartoszosiej.github.io/Docs/>
+
+## Tech
+
+- [VitePress](https://vitepress.dev/) — Vue-powered static site generator
+- [WebTorrent](https://webtorrent.io/) — powers [N2 Mesh](https://bartoszosiej.github.io/n2-mesh/), the P2P chat (its own repo: `BartoszOsiej/n2-mesh`)
+- Deployed via GitHub Actions → GitHub Pages
+
+## Local development
+
+```bash
+npm install
+npm run docs:dev        # dev server with hot reload
+npm run docs:build      # production build to .vitepress/dist
+npm run docs:preview    # preview the production build
+```
+
+## Regenerating derived files
+
+- `public/sitemap.xml` — run `scripts/gen-sitemap.py`
+- `public/llms-full.txt` — run `scripts/gen-llms-full.py`
+
+## Project structure
+
+```
+Docs/
+├── index.md                      # Landing page
+├── update-flow.md                # Which repos publish updates here
+├── projects/
+│   ├── fastapi-url/              # LinkShort docs (4 pages)
+│   ├── factorio-web-game/        # Novactorio docs (4 pages)
+│   ├── nv2-engine/               # NV2 Engine docs (10 pages)
+│   ├── cybersec-tools/           # Cybersec Toolkit docs (5 pages)
+│   ├── aurora-os/                # AURORA OS docs (3 pages)
+│   ├── halcyon-process-monitor/  # Halcyon docs (2 pages)
+│   ├── externum/                 # Externum language docs (5 pages)
+│   └── n2-mesh/                  # N2 Mesh P2P chat docs (2 pages)
+├── public/                       # Static assets (logo, hero, favicon)
+├── scripts/                      # Sitemap / llms-full generators
+├── .vitepress/config.mts         # Site config, nav, sidebar, search
+└── .github/workflows/deploy.yml  # Pages deployment
+```
+
+## Publishing
+
+Push to `main` — GitHub Actions builds the site and deploys it automatically.
+
+See [Update Flow](https://bartoszosiej.github.io/Docs/update-flow) for
+the full update map between source repositories and this site.

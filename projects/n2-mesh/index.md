@@ -7,7 +7,7 @@ title: N2 Mesh — P2P Chat
 **Serverless peer-to-peer chat na zasadzie torrentów.** Działa na statycznym
 hostingu (GitHub Pages) — zero serwera, zero bazy danych, zero kont.
 
-> **Wypróbuj teraz:** [🚀 Otwórz N2 Mesh](https://bartoszosiej.github.io/N2-Mesh/)
+> **Wypróbuj teraz:** [🚀 Otwórz N2 Mesh](https://bartoszosiej.github.io/n2-mesh/)
 > (otwiera się w nowej karcie)
 
 ## Zasada działania (torrent principle)
@@ -52,7 +52,7 @@ Przez tracker przechodzi **tylko sygnalizacja**; payload wiadomości nigdy.
 
 ## Jak używać
 
-1. Otwórz [N2 Mesh](https://bartoszosiej.github.io/N2-Mesh/) w dwóch
+1. Otwórz [N2 Mesh](https://bartoszosiej.github.io/n2-mesh/) w dwóch
    przeglądarkach / na dwóch urządzeniach (albo w dwóch kartach jednej).
 2. Ustaw **ten sam pokój** po obu stronach (domyślnie `lobby`).
 3. Napisz nick i wysyłaj wiadomości — lecą peer-to-peer.
@@ -63,8 +63,8 @@ Przez tracker przechodzi **tylko sygnalizacja**; payload wiadomości nigdy.
 ## Uruchom lokalnie
 
 ```bash
-git clone https://github.com/BartoszOsiej/N2-Mesh.git
-cd N2-Mesh
+git clone https://github.com/BartoszOsiej/n2-mesh.git
+cd n2-mesh
 python3 -m http.server 8080
 # otwórz http://localhost:8080
 ```
@@ -79,4 +79,4 @@ python3 -m http.server 8080
 ## Więcej
 
 - [Architektura i szczegóły techniczne](/projects/n2-mesh/architecture)
-- [Repo: BartoszOsiej/N2-Mesh](https://github.com/BartoszOsiej/N2-Mesh)
+- [Repo: BartoszOsiej/n2-mesh](https://github.com/BartoszOsiej/n2-mesh)
