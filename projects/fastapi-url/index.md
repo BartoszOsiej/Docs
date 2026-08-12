@@ -1,58 +1,88 @@
 # LinkShort
 
-> **A production-ready URL shortener with JWT authentication, click tracking, and a dark React SPA.**
+> **A production-ready URL shortener — FastAPI backend, JWT auth, click tracking, React 19 SPA, SQLite.**
 
-LinkShort (repository: `FastAPI-url`) is a full-stack URL shortening service. A
-FastAPI + SQLAlchemy backend serves a JSON REST API and the compiled React 19
-frontend as static assets; SQLite provides zero-configuration persistence.
+LinkShort (repository: `FastAPI-url`) is a complete URL-shortening service
+with a Python/FastAPI API, JWT-based authentication, per-user link
+management, click statistics, and a served single-page application frontend.
 
-| | | |
-|---|---|---|
-| ![Login](/screenshots/fastapi-url/login.png) | ![Dashboard](/screenshots/fastapi-url/dashboard.png) | ![List](/screenshots/fastapi-url/list.png) |
+**Stack:** FastAPI (Python) · SQLAlchemy · SQLite · JWT (python-jose) ·
+React 19 SPA (static files served by FastAPI) · pytest
 
 ## Highlights
 
-- **JWT authentication** — register, login, and token-based API access (`python-jose`, SHA-256 password hashing).
-- **One-click shortening** — paste a URL, get a 6-character short code.
-- **Click tracking** — every redirect increments the click counter.
-- **Dashboard** — manage URLs: copy, delete, view stats.
-- **Dark, responsive UI** — React 19 + Vite + TailwindCSS 4.
-- **REST API** — interactive Swagger docs at `/docs`.
-- **SQLite** — zero-config persistence with SQLAlchemy ORM.
+- **Full auth flow** — register → login → JWT bearer tokens; `/auth/me`
+  returns the current user
+- **6-character short codes** — cryptographically random (`secrets`), with
+  collision retry
+- **Click tracking** — every redirect increments the click counter
+- **Per-user URLs** — `/urls/my` lists your links; deletes are owner-scoped
+- **302 redirects** — `/urls/r/{code}` redirects to the target with a click
+  recorded
+- **Public stats** — `/urls/{code}/stats` returns target + click count
+- **SPA serving** — FastAPI mounts the built React app and falls back to
+  `index.html` for client-side routing
+- **CORS open** — `allow_origins=["*"]` for development
 
 ## Tech stack
 
 | Layer | Technology |
 |---|---|
-| Backend | Python 3.12, FastAPI, SQLAlchemy 2, SQLite |
-| Auth | JWT (`python-jose`), SHA-256 password hashing |
-| Frontend | React 19, Vite, TailwindCSS 4 |
-| Testing | pytest, httpx (CI on every push) |
-| Deployment | Docker / docker-compose, Fly.io (`fly.toml`) |
+| API | FastAPI (`app = FastAPI(title="URL Shortener", version="1.0.0")`) |
+| ORM | SQLAlchemy (`Base.metadata.create_all` on startup) |
+| Database | SQLite |
+| Auth | JWT bearer tokens (python-jose) |
+| Password hashing | `app/auth.py` (hashed, never stored plaintext) |
+| Frontend | React 19 SPA in `backend/static/` |
+| Tests | pytest (`tests/test_api.py`) |
+
+## API surface
+
+| Method | Path | Auth | Description |
+|---|---|---|---|
+| `POST` | `/auth/register` | — | Create account, receive JWT |
+| `POST` | `/auth/login` | — | Authenticate, receive JWT |
+| `GET` | `/auth/me` | Bearer | Current user profile |
+| `POST` | `/urls/shorten` | Bearer | Shorten a URL |
+| `GET` | `/urls/my` | Bearer | List your URLs (newest first) |
+| `GET` | `/urls/{code}/stats` | — | Public click stats |
+| `DELETE` | `/urls/{code}` | Bearer | Delete your URL (owner-scoped) |
+| `GET` | `/urls/r/{code}` | — | 302 redirect + click count |
+| `GET` | `/health` | — | Liveness probe |
 
 ## Repository layout
 
 ```
 FastAPI-url/
 ├── app/
-│   ├── main.py            # FastAPI app, CORS, SPA static serving
-│   ├── auth.py            # password hashing, JWT create/verify
-│   ├── database.py        # engine + session
-│   ├── models.py          # User, URL (SQLAlchemy)
-│   ├── schemas.py         # Pydantic request/response models
+│   ├── main.py            # FastAPI app, CORS, SPA serving
+│   ├── auth.py            # JWT creation/verification, password hashing
+│   ├── database.py        # SQLAlchemy engine + session
+│   ├── models.py          # User, URL models
+│   ├── schemas.py         # Pydantic schemas (UserCreate, Token, URLOut, URLStats)
+│   ├── config.py          # Settings
 │   └── routers/
-│       ├── auth_router.py # /auth/register, /auth/login, /auth/me
-│       └── urls.py        # /urls/shorten, /urls/my, /urls/r/{code}, ...
-├── frontend/              # React 19 SPA (Vite)
-├── backend/static/        # Compiled SPA output, served by FastAPI
-├── tests/test_api.py      # API tests (pytest)
-├── .github/workflows/ci.yml
-├── Dockerfile / docker-compose.yml
-└── fly.toml
+│       ├── auth_router.py # /auth/* endpoints
+│       └── urls.py        # /urls/* endpoints
+├── backend/static/        # Built React SPA (served by FastAPI)
+├── tests/
+│   └── test_api.py        # API integration tests
+└── ...
 ```
+
+## Short-code generation
+
+```python
+def gen_short() -> str:
+    chars = string.ascii_letters + string.digits
+    return ''.join(secrets.choice(chars) for _ in range(6))
+```
+
+6 characters from a 62-char alphabet ≈ **5.7×10¹⁰ combinations**; collisions
+are checked and retried against the database.
 
 ## Related pages
 
-- [Getting Started](getting-started) — run it locally in minutes
-- [API Reference](api-reference) — every endpoint, request, and response
-- [Deployment](deployment) — Docker and Fly.io
+- [Getting Started](getting-started) — local setup and first run
+- [API Reference](api-reference) — every endpoint with requests/responses
+- [Deployment](deployment) — Docker, environments, production notes

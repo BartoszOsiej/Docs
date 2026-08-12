@@ -78,7 +78,40 @@ curl -s -X POST http://localhost:8000/urls/shorten \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer <token>' \
   -d '"https://example.com/very/long/path"'
+
+# Redirect (public)
+curl -sI http://localhost:8000/urls/r/<short_code>
+# → HTTP/2 302, Location: https://example.com/very/long/path
+
+# Stats (public)
+curl -s http://localhost:8000/urls/<short_code>/stats
 ```
+
+## Project tour
+
+```
+app/
+├── main.py            # FastAPI app, CORS, health, SPA serving
+├── auth.py            # JWT create/verify + password hashing
+├── database.py        # SQLAlchemy engine, session, Base
+├── models.py          # User + URL SQLAlchemy models
+├── schemas.py         # Pydantic request/response schemas
+├── config.py          # Settings (secret key, DB URL)
+└── routers/
+    ├── auth_router.py # POST /auth/register|login, GET /auth/me
+    └── urls.py        # POST /urls/shorten, GET /urls/my|{code}/stats,
+                       # DELETE /urls/{code}, GET /urls/r/{code}
+tests/
+└── test_api.py        # pytest integration tests
+backend/static/        # compiled React SPA
+```
+
+## How authentication works
+
+1. `POST /auth/register` hashes the password and issues a signed JWT.
+2. Every protected route reads `Authorization: Bearer <jwt>`.
+3. `get_current_user` (in `app/auth.py`) verifies the token and resolves the
+   user for the request.
 
 ## Next steps
 

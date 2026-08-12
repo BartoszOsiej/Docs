@@ -1,6 +1,6 @@
 # Bartosz Osiej — Docs
 
-> Central documentation hub for FastAPI-url (LinkShort), Factorio-web-game (Novactorio) and NV2 Engine.
+> Central documentation hub for LinkShort, Novactorio, NV2 Engine and the Cybersec Toolkit.
 
 This site is fully readable by AI agents. For a single-file snapshot of all
 content, fetch `/Docs/llms-full.txt`.
@@ -26,6 +26,11 @@ content, fetch `/Docs/llms-full.txt`.
   - [Development](https://bartoszosiej.github.io/Docs/projects/nv2-engine/development)
   - [Roadmap & Changelog](https://bartoszosiej.github.io/Docs/projects/nv2-engine/roadmap)
 
+- [Cybersec Toolkit (cybersec-tools)](https://bartoszosiej.github.io/Docs/projects/cybersec-tools/): Four focused Rust security tools — TCP scanning, web vuln checks, hash cracking, pcap analysis.
+  - [NetRecon](https://bartoszosiej.github.io/Docs/projects/cybersec-tools/netrecon)
+  - [ShadowScan](https://bartoszosiej.github.io/Docs/projects/cybersec-tools/shadowscan)
+  - [HashSleuth](https://bartoszosiej.github.io/Docs/projects/cybersec-tools/hashsleuth)
+  - [PacketEye](https://bartoszosiej.github.io/Docs/projects/cybersec-tools/packeteye)
 ## Meta
 
 - [Update Flow](https://bartoszosiej.github.io/Docs/update-flow): which repositories publish updates to this site.
