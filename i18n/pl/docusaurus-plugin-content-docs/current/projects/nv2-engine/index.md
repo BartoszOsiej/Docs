@@ -1,5 +1,7 @@
 # NV2 Engine
 
+<a class="tests-cta" href="./testy">🧪 Zobacz animowane wyniki testów — 98 zaliczonych / 99 łącznie →</a>
+
 > **Natywny silnik wokselowy w Rust z proceduralnymi światami sterowanymi przez AI — pełna desktopowa gra wokselowa zbudowana na wgpu, z wbudowaną siecią neuronową, która uczy się rozmieszczania roślinności podczas gry.**
 
 NV2 Engine (repozytorium: `NV2_ENGINE`) to nie prototyp terenu — to

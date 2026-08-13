@@ -1,5 +1,7 @@
 # 🛰️ Halcyon Process Monitor
 
+<a class="tests-cta" href="./tests">🧪 View animated test results — 9/9 →</a>
+
 **Real-time, eBPF-based process and file-operation telemetry for Linux.**
 
 Halcyon Process Monitor traces `execve` and `openat` syscalls at the kernel

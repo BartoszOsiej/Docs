@@ -1,5 +1,7 @@
 # LinkShort
 
+<a class="tests-cta" href="./testy">🧪 Zobacz animowane wyniki testów — 15/15 →</a>
+
 > **Produkcyjny skracacz URL — backend FastAPI, auth JWT, śledzenie kliknięć, SPA React 19, SQLite.**
 
 LinkShort (repozytorium: `FastAPI-url`) to kompletny serwis do skracania

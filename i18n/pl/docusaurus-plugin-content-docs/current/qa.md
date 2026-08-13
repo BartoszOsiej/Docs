@@ -9,32 +9,37 @@ Legenda: ✅ zaliczony · ⚠️ częściowo (patrz uwagi) · ❌ niezaliczony
 
 ## Przegląd
 
-| # | Projekt | Zestaw | Razem | Zaliczone | Błędy | Zignorowane | Status |
-|---|---------|--------|-------|-----------|-------|-------------|--------|
-| 1 | [NV2 Engine](#nv2-engine-nv2_engine) | `cargo test` | 97 | 96 | 0 | 1 (benchmark release) | ✅ |
-| 2 | [Cybersec Toolkit](#zestaw-narzędzi-cyberbezpieczeństwa-cybersec-tools) | `cargo test --workspace` | 13 | 13 | 0 | 0 | ✅ |
-| 3 | [Halcyon Process Monitor](#halcyon-process-monitor-halcyon-process-monitor) | `cargo test` | 3 | 3 | 0 | 0 | ✅ |
-| 4 | [Externum](#externum-externum) | `unittest discover` | 118 | 118 | 0 | 0 | ✅ |
-| 5 | [AURORA OS](#aurora-os-aurora-os) | `npm test` + `tsc` | 34 | 34 | 0 | 0 | ✅ |
-| 6 | [Novactorio](#novactorio--gra-factorio-web-factorio-web-game) | typecheck + build + lint | — | — | — | — | ✅ |
-| 7 | [LinkShort](#linkshort--skracacz-url-fastapi-fastapi-url) | `pytest tests/` | 11 | 11 | 0 | 0 | ✅ |
-| 8 | [N2 Mesh](#n2-mesh-n2-mesh) | `npm test` | 19 | 19 | 0 | 0 | ✅ |
-| 9 | [Docs — ta witryna](#docs--ta-witryna) | `npm run build` | — | — | — | — | ✅ |
+| # | Projekt | Zestaw | Razem | Zaliczone | Błędy | Zignorowane | Status | Strona animowana |
+|---|---------|--------|-------|-----------|-------|-------------|--------|-----------------|
+| 1 | [NV2 Engine](#nv2-engine-nv2_engine) | `cargo test` | 99 | 98 | 0 | 1 (benchmark release) | ✅ | [testy](/projects/nv2-engine/testy/) |
+| 2 | [Cybersec Toolkit](#zestaw-narzędzi-cyberbezpieczeństwa-cybersec-tools) | `cargo test --workspace` | 29 | 29 | 0 | 0 | ✅ | [testy](/projects/cybersec-tools/testy/) |
+| 3 | [Halcyon Process Monitor](#halcyon-process-monitor-halcyon-process-monitor) | `cargo test` | 9 | 9 | 0 | 0 | ✅ | [testy](/projects/halcyon-process-monitor/testy/) |
+| 4 | [Externum](#externum-externum) | `unittest discover` | 120 | 120 | 0 | 0 | ✅ | [testy](/projects/externum/testy/) |
+| 5 | [AURORA OS](#aurora-os-aurora-os) | `npm test` + `tsc` | 56 | 56 | 0 | 0 | ✅ | [testy](/projects/aurora-os/testy/) |
+| 6 | [Novactorio](#novactorio--gra-factorio-web-factorio-web-game) | typecheck + build + lint | — | — | — | — | ✅ | [testy](/projects/factorio-web-game/testy/) |
+| 7 | [LinkShort](#linkshort--skracacz-url-fastapi-fastapi-url) | `pytest tests/` | 15 | 15 | 0 | 0 | ✅ | [testy](/projects/fastapi-url/testy/) |
+| 8 | [N2 Mesh](#n2-mesh-n2-mesh) | `npm test` | 22 | 22 | 0 | 0 | ✅ | [testy](/projects/n2-mesh/testy/) |
+| 9 | [Docs — ta witryna](#docs--ta-witryna) | `npm run build` | — | — | — | — | ✅ | [testy](/testy/) |
 
-**Σ 295 automatycznych testów · 294 zaliczone · 0 błędów** (+ bramki
+**Σ 350 automatycznych testów · 349 zaliczonych · 0 błędów** (+ bramki
 typecheck/build/lint w projektach webowych).
+
+> 🧪 Każdy projekt ma też dedykowaną **animowaną stronę testów** (PL:
+> `/pl/projects/<projekt>/testy`, EN: `/projects/<projekt>/tests`) z
+> licznikami, paskami postępu i animowanymi wierszami — linki w tabeli
+> powyżej i na stronie głównej każdego projektu.
 
 ---
 
 ## NV2 Engine (`NV2_ENGINE`)
 
-**97 testów** (96 zaliczonych, 1 zignorowany = benchmark release) · pełny
+**99 testów** (98 zaliczonych, 1 zignorowany = benchmark release) · [strona animowana](/projects/nv2-engine/testy/) · pełny
 raport: [`TEST_REPORT.md`](https://github.com/BartoszOsiej/NV2_ENGINE/blob/main/TEST_REPORT.md)
 
 | Zestaw | Testy | Wynik |
 |---|---|---|
-| Cały projekt | 97 (96 + 1 zignorowany) | ✅ 96 zaliczone, 0 błędów |
-| Moduły AI/ML (ai_generator, memplp, online_trainer, vegetation, biomes) | 32 | ✅ |
+| Cały projekt | 99 (98 + 1 zignorowany) | ✅ 98 zaliczone, 0 błędów |
+| Moduły AI/ML (ai_generator, memplp, online_trainer, vegetation, biomes) | 34 | ✅ |
 | Świat i teren (block, world) | 13 | ✅ |
 | Rozgrywka (interaction, crafting, inventory) | 38 | ✅ |
 | Renderer (camera, mesh, texture_registry) | 6 | ✅ |
@@ -42,7 +47,7 @@ raport: [`TEST_REPORT.md`](https://github.com/BartoszOsiej/NV2_ENGINE/blob/main/
 
 | Moduł | Testy | Wynik |
 |---|---|---|
-| `world::ai_generator` (AI system, bundle modeli, datasety, preferencje, checkpointy, tekstury) | 16 | ✅ |
+| `world::ai_generator` (AI system, bundle modeli, datasety, preferencje, checkpointy, tekstury) | 18 | ✅ |
 | `world::memplp` (rdzeń MeMLP — trening/wprzód, odporność na NaN, migracja, JSON roundtrip) | 10 | ✅ |
 | `interaction` (stawianie/usuwanie bloków z feedbackiem AI) | 19 | ✅ |
 | `inventory` | 13 | ✅ |
@@ -85,14 +90,14 @@ Odtworzenie: `cd Core && cargo test && cargo test --release qa_benchmark_report 
 
 ## Zestaw narzędzi cyberbezpieczeństwa (`cybersec-tools`)
 
-**13 testów** w 4 crate'ach — wszystkie zaliczone.
+**29 testów** w 4 crate'ach — wszystkie zaliczone. [Strona animowana](/projects/cybersec-tools/testy/)
 
 | Crate | Testy | Zakres | Wynik |
 |---|---|---|---|
-| hashsleuth | 4 | identyfikacja + wektory skrótów | ✅ |
-| netrecon | 4 | nazwy usług, parsowanie portów/CIDR | ✅ |
-| packeteye | 3 | parsowanie Ethernet/IPv4/TCP | ✅ |
-| shadowscan | 2 | normalizacja celów | ✅ |
+| hashsleuth | 8 | identyfikacja (długości hex, prefiksy crypt/Django/LDAP/phpass) + wektory skrótów | ✅ |
+| netrecon | 8 | nazwy usług, porty/zakresy, ekspansja CIDR + odrzucanie | ✅ |
+| packeteye | 8 | TCP SYN/SYNACK/FIN, porty UDP, ICMP, ARP, IPv6, bezpieczeństwo śmieci | ✅ |
+| shadowscan | 5 | normalizacja celów z portami/zapytaniami/schematami | ✅ |
 
 Nowe testy ujawniły i naprawiły prawdziwy błąd: znaczniki phpass (`$P$`/`$H$`)
 były porównywane z zahashowanym, małymi literami tekstem i nigdy nie mogły
@@ -104,7 +109,7 @@ Odtworzenie: `cargo test --workspace`
 
 ## Halcyon Process Monitor (`halcyon-process-monitor`)
 
-**3 testy** (crate userspace `process-monitor`).
+**9 testów** (crate userspace `process-monitor`). [Strona animowana](/projects/halcyon-process-monitor/testy/)
 
 | Kontrola | Wynik |
 |---|---|
@@ -121,7 +126,7 @@ Odtworzenie: `cargo test`
 
 ## Externum (`externum`)
 
-**118 testów** — czysty Python, bez zależności.
+**120 testów** — czysty Python, bez zależności. [Strona animowana](/projects/externum/testy/)
 
 | Klasa testowa | Etap | Testy | Wynik |
 |---|---|---|---|
@@ -132,6 +137,7 @@ Odtworzenie: `cargo test`
 | `TestMultilineLiterals` | Dodatkowe: literały wieloliniowe | 5 | ✅ |
 | `TestClassesWithBlankLines` | Dodatkowe: klasy z pustymi liniami | 2 | ✅ |
 | `TestMoreFeatures` | Dodatkowe: comprehensions, bitwise, `with`/`assert`, f-stringi… | 12 | ✅ |
+| `TestTernaryAndUnpacking` | Dodatkowe: ternary, zamiana przez rozpakowanie krotek | 2 | ✅ |
 
 Odtworzenie: `python3 -m unittest discover -s tests`
 
@@ -139,12 +145,12 @@ Odtworzenie: `python3 -m unittest discover -s tests`
 
 ## AURORA OS (`AURORA-OS`)
 
-**34/34 testy rdzenia** (EventBus, FileSystem, interpreter powłoki) ·
-typecheck TypeScript czysty.
+**56/56 asercji rdzenia** (31 przypadków: EventBus, FileSystem, interpreter
+powłoki) · typecheck TypeScript czysty. [Strona animowana](/projects/aurora-os/testy/)
 
 | Obszar | Testy | Wynik |
 |---|---|---|
-| Logika rdzenia (`npm test`, harness Node) | 34 | ✅ 34 zaliczone, 0 błędów |
+| Logika rdzenia (`npm test`, harness Node) | 56 | ✅ 56 zaliczonych, 0 błędów |
 | TypeScript (`tsc -p tsconfig.json`) | — | ✅ 0 błędów |
 
 Odtworzenie: `npm test`
@@ -154,6 +160,7 @@ Odtworzenie: `npm test`
 ## Novactorio — gra Factorio Web (`Factorio-web-game`)
 
 Brak harnessu testów jednostkowych; bramki jakości to typecheck, build i lint.
+[Strona animowana](/projects/factorio-web-game/testy/)
 
 | Bramka | Wynik |
 |---|---|
@@ -177,7 +184,8 @@ Odtworzenie: `npm run typecheck && npm run build && npm run lint`
 
 ## LinkShort — skracacz URL FastAPI (`FastAPI-url`)
 
-**11/11 testów API przechodzi** — `tests/test_api.py` (venv Python 3.9).
+**15/15 testów API przechodzi** — `tests/test_api.py` (venv Python 3.9).
+[Strona animowana](/projects/fastapi-url/testy/)
 
 | Test | Endpoint(y) | Asercje | Wynik |
 |---|---|---|---|
@@ -192,6 +200,10 @@ Odtworzenie: `npm run typecheck && npm run build && npm run lint`
 | `test_stats_404_for_unknown_code` | `GET /urls/zzzzzz/stats` | 404 | ✅ |
 | `test_delete_removes_link` | `DELETE /urls/{code}`, przekierowanie | 204; po usunięciu → 404 | ✅ |
 | `test_delete_enforces_ownership` | `DELETE /urls/{code}` (dwóch użytkowników) | inny użytkownik → 404 | ✅ |
+| `test_login_unknown_email_rejected` | `POST /auth/login` | nieznany e-mail → 401 | ✅ |
+| `test_delete_unknown_code_404` | `DELETE /urls/zzzzzz` | 404 | ✅ |
+| `test_redirect_unknown_code_404` | `GET /urls/r/zzzzzz` | 404 | ✅ |
+| `test_inactive_link_still_resolves` | `GET /urls/r/{code}` | 302 + nagłówek location | ✅ |
 
 Wszystkie 11 modułów Pythona kompiluje się czysto. Uruchomiono na
 **Pythonie 3.9** (domyślny 3.14 w środowisku QA nie ma gotowych wheeli dla
@@ -204,17 +216,17 @@ Odtworzenie: `python3.9 -m venv venv && venv/bin/pip install -r requirements.txt
 
 ## N2 Mesh (`n2-mesh`)
 
-**19/19 testów jednostkowych przechodzi** (`npm test`, `node:test` na
+**22/22 testów jednostkowych przechodzi** (`npm test`, `node:test` na
 `core.js`) — czysta logika wydzielona do `core.js` (bez przeglądarki, bez
-sieci, bez zależności).
+sieci, bez zależności). [Strona animowana](/projects/n2-mesh/testy/)
 
 | Grupa | Testy | Zakres | Wynik |
 |---|---|---|---|
 | Bajty | 2 | round-trip utf8, zwykłe tablice | ✅ |
 | Id i dedup | 5 | unikalność `newMid`; `isNewMid` pierwsze-dodanie/wygaśnięcie/limit; puste id | ✅ |
-| Parsowanie pokoi | 2 | normalizacja hasha, limit 48 znaków, fallback `lobby` | ✅ |
+| Parsowanie pokoi | 3 | normalizacja hasha, limit 48 znaków, fallback `lobby`, usuwanie wiodącego ukośnika | ✅ |
 | Kolory nicków | 1 | stabilne, deterministyczne | ✅ |
-| Pakiety MQTT | 9 | długość 1/2-bajtowa, PINGREQ, round-trip PUBLISH, packet id QoS>0, nagłówek CONNECT, struktura SUB/UNSUB | ✅ |
+| Pakiety MQTT | 11 | długość 1/2-bajtowa, pusty nagłówek, PINGREQ, round-trip PUBLISH, packet id QoS>0, nagłówek CONNECT, struktura SUB/UNSUB | ✅ |
 
 Testy złapały prawdziwy błąd: `mqttParsePublish` sprawdzał flagę **DUP**
 (`0x08`) zamiast poziomu **QoS** (`0x06`) przy pomijaniu identyfikatora
@@ -225,6 +237,8 @@ Odtworzenie: `npm test && npm run check`
 ---
 
 ## Docs — ta witryna
+
+[Strona animowana](/testy/)
 
 | Kontrola | Wynik |
 |---|---|

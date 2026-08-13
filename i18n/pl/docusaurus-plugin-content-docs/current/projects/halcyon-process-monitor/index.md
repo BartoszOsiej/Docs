@@ -1,5 +1,7 @@
 # 🛰️ Monitor Procesów Halcyon
 
+<a class="tests-cta" href="./testy">🧪 Zobacz animowane wyniki testów — 9/9 →</a>
+
 **Telemetria procesów i operacji na plikach w czasie rzeczywistym dla
 Linuksa, oparta o eBPF.**
 

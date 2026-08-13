@@ -13,7 +13,7 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'N2 Mesh (P2P Chat)',
       collapsed: true,
-      items: ['projects/n2-mesh/index', 'projects/n2-mesh/architecture'],
+      items: ['projects/n2-mesh/index', 'projects/n2-mesh/architecture', 'projects/n2-mesh/tests'],
     },
     {
       type: 'category',
@@ -24,6 +24,7 @@ const sidebars: SidebarsConfig = {
         'projects/fastapi-url/getting-started',
         'projects/fastapi-url/api-reference',
         'projects/fastapi-url/deployment',
+        'projects/fastapi-url/tests',
       ],
     },
     {
@@ -35,6 +36,7 @@ const sidebars: SidebarsConfig = {
         'projects/factorio-web-game/architecture',
         'projects/factorio-web-game/gameplay',
         'projects/factorio-web-game/backend',
+        'projects/factorio-web-game/tests',
       ],
     },
     {
@@ -52,6 +54,7 @@ const sidebars: SidebarsConfig = {
         'projects/nv2-engine/performance',
         'projects/nv2-engine/development',
         'projects/nv2-engine/roadmap',
+        'projects/nv2-engine/tests',
       ],
     },
     {
@@ -64,6 +67,7 @@ const sidebars: SidebarsConfig = {
         'projects/cybersec-tools/shadowscan',
         'projects/cybersec-tools/hashsleuth',
         'projects/cybersec-tools/packeteye',
+        'projects/cybersec-tools/tests',
       ],
     },
     {
@@ -74,6 +78,7 @@ const sidebars: SidebarsConfig = {
         'projects/aurora-os/index',
         'projects/aurora-os/architecture',
         'projects/aurora-os/user-guide',
+        'projects/aurora-os/tests',
       ],
     },
     {
@@ -83,6 +88,7 @@ const sidebars: SidebarsConfig = {
       items: [
         'projects/halcyon-process-monitor/index',
         'projects/halcyon-process-monitor/architecture',
+        'projects/halcyon-process-monitor/tests',
       ],
     },
     {
@@ -95,6 +101,7 @@ const sidebars: SidebarsConfig = {
         'projects/externum/examples',
         'projects/externum/compiler',
         'projects/externum/architecture',
+        'projects/externum/tests',
       ],
     },
     {
@@ -106,6 +113,11 @@ const sidebars: SidebarsConfig = {
       type: 'doc',
       id: 'qa',
       label: 'QA & Test Reports',
+    },
+    {
+      type: 'doc',
+      id: 'tests',
+      label: 'Tests — this site',
     },
     {
       type: 'doc',

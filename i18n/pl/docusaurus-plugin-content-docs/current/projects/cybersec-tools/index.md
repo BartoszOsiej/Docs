@@ -1,5 +1,7 @@
 # Cybersec Toolkit
 
+<a class="tests-cta" href="./testy">🧪 Zobacz animowane wyniki testów — 29/29 →</a>
+
 > **Zestaw narzędzi cyberbezpieczeństwa w Rust — cztery skupione narzędzia offensive-security zbudowane jako workspace Cargo, bez zewnętrznych usług i z czystymi, opartymi o stdlib implementacjami.**
 
 Cybersec Toolkit (repozytorium: `BartoszOsiej/cybersec-tools`) zawiera
