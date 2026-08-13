@@ -15,7 +15,7 @@ git remote set-url origin https://github.com/BartoszOsiej/Docs.git 2>/dev/null |
 git remote -v | head -1
 
 echo "==> Building..."
-npm run docs:build
+npm run build
 
 echo "==> Pushing to BartoszOsiej/Docs..."
 git push -u origin main

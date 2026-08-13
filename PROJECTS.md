@@ -13,7 +13,7 @@ on this site, and maintained in the working copy at `~/`.
 
 | # | Project | Repo | Stack | Docs page |
 |---|---------|------|-------|-----------|
-| 1 | **Docs Hub** | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | VitePress | [docs](/) |
+| 1 | **Docs Hub** | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | Docusaurus | [docs](/) |
 | 2 | **N2 Mesh** (P2P chat) | [BartoszOsiej/n2-mesh](https://github.com/BartoszOsiej/n2-mesh) | WebRTC, static | [docs](/projects/n2-mesh/) · [live](https://bartoszosiej.github.io/n2-mesh/) |
 | 3 | **LinkShort** (URL shortener) | [BartoszOsiej/FastAPI-url](https://github.com/BartoszOsiej/FastAPI-url) | FastAPI, React 19, SQLite | [docs](/projects/fastapi-url/) |
 | 4 | **Novactorio** (factory game) | [BartoszOsiej/Factorio-web-game](https://github.com/BartoszOsiej/Factorio-web-game) | TypeScript, Canvas 2D, Supabase | [docs](/projects/factorio-web-game/) |
@@ -29,8 +29,8 @@ on this site, and maintained in the working copy at `~/`.
 
 | | |
 |---|---|
-| **What** | This documentation site + project registry. Built with VitePress, deployed to GitHub Pages. |
-| **Stack** | VitePress, GitHub Actions |
+| **What** | This documentation site + project registry. Built with Docusaurus, deployed to GitHub Pages. |
+| **Stack** | Docusaurus, GitHub Actions |
 | **Local path** | `~/Docs` |
 | **Live** | https://bartoszosiej.github.io/Docs/ |
 | **Notes** | `llms.txt` / `llms-full.txt` / `sitemap.xml` generated from the page tree. Update flow documented in `update-flow.md`. |
@@ -123,4 +123,4 @@ sites) are **not** part of this registry and are not documented on this site.
 2. Keep the repo, stack, local path and docs link accurate.
 3. Update `/projects/` (site page), `llms.txt`, `llms-full.txt` and
    `sitemap.xml` together with this file (scripts: `scripts/gen-llms*.py`,
-   `scripts/gen-sitemap.py`).
+   the Docusaurus sitemap plugin).

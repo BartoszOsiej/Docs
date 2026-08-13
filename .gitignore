@@ -1,5 +1,14 @@
+# Dependencies
 node_modules/
-.vitepress/cache/
-.vitepress/dist/
+
+# Docusaurus build output
+build/
+.docusaurus/
+
+# Cache
+.npm/
+.cache/
+
+# Misc
 *.local
 .DS_Store

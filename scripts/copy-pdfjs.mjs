@@ -14,7 +14,7 @@ import { fileURLToPath } from 'node:url'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const PDFJS = join(ROOT, 'node_modules', 'pdfjs-dist')
-const DEST = join(ROOT, 'public', 'pdfjs')
+const DEST = join(ROOT, 'static', 'pdfjs')
 
 if (!existsSync(PDFJS)) {
   console.error('pdfjs-dist not found — run `npm install` first.')
@@ -28,4 +28,4 @@ cpSync(join(PDFJS, 'build', 'pdf.worker.min.mjs'), join(DEST, 'pdf.worker.min.mj
 cpSync(join(PDFJS, 'standard_fonts'), join(DEST, 'standard_fonts'), { recursive: true })
 cpSync(join(PDFJS, 'cmaps'), join(DEST, 'cmaps'), { recursive: true })
 
-console.log('Copied pdf.js worker + standard fonts to public/pdfjs/')
+console.log('Copied pdf.js worker + standard fonts to static/pdfjs/')

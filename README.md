@@ -29,7 +29,7 @@ A built-in module reads PDFs as **visual books** (two-page spreads, spine,
 3D page-flip) and translates pages **in the browser without any API key**:
 
 - pdf.js renders pages; the worker + standard fonts are vendored in
-  `public/pdfjs/` (no CDN).
+  `static/pdfjs/` (no CDN).
 - Translation uses keyless, CORS-enabled providers — Google's public
   endpoint first, MyMemory as fallback. A Microsoft Translator (Azure)
   provider is included behind the same interface if you ever want to plug
@@ -38,8 +38,8 @@ A built-in module reads PDFs as **visual books** (two-page spreads, spine,
 
 ## Tech
 
-- [VitePress](https://vitepress.dev/) — Vue-powered static site generator
-  (i18n via `locales` in `.vitepress/config.mts`)
+- [Docusaurus](https://docusaurus.dev/) — Vue-powered static site generator
+  (i18n via `locales` in `.docusaurus/docusaurus.config.ts`)
 - [pdf.js](https://mozilla.github.io/pdf.js/) — PDF rendering for the book viewer
 - WebRTC + MQTT — power [N2 Mesh](https://bartoszosiej.github.io/n2-mesh/), the P2P chat (its own repo: `BartoszOsiej/n2-mesh`)
 - Deployed via GitHub Actions → GitHub Pages
@@ -48,31 +48,33 @@ A built-in module reads PDFs as **visual books** (two-page spreads, spine,
 
 ```bash
 npm install
-npm run docs:dev        # dev server with hot reload
-npm run docs:build      # production build to .vitepress/dist
-npm run docs:preview    # preview the production build
+npm run start           # dev server with hot reload
+npm run build           # production build to build/
+npm run serve           # preview the production build
 ```
 
-`predocs:dev` / `predocs:build` automatically regenerate the sample PDFs
-(`scripts/gen-sample-pdfs.mjs`) and copy the pdf.js worker/fonts/cmaps into
-`public/pdfjs/` (`scripts/copy-pdfjs.mjs`).
+`prebuild` automatically regenerates the sample PDFs
+(`scripts/gen-sample-pdfs.mjs`), copies the pdf.js worker/fonts/cmaps into
+`static/pdfjs/` (`scripts/copy-pdfjs.mjs`), and refreshes `llms-full.txt`
+(`scripts/gen-llms-full.py`).
 
 ## Regenerating derived files
 
-- `public/sitemap.xml` — run `scripts/gen-sitemap.py`
-- `public/llms-full.txt` — run `scripts/gen-llms-full.py`
-- `public/pdfs/sample-*.pdf` — run `scripts/gen-sample-pdfs.mjs`
+- `sitemap.xml` — generated automatically by the Docusaurus sitemap plugin
+- `static/llms-full.txt` — run `scripts/gen-llms-full.py`
+- `static/pdfs/sample-*.pdf` — run `scripts/gen-sample-pdfs.mjs`
 
 ## Project structure
 
 ```
 Docs/
-├── index.md                      # Landing page (EN)
-├── pl/                           # Polish locale — every page mirrored
-│   ├── index.md
-│   ├── projects/…
-│   └── translator.md
-├── translator.md                 # PDF Book & Translator demo (EN)
+├── src/pages/index.tsx           # Landing page (EN + PL, locale-aware)
+├── i18n/pl/                      # Polish locale — every page mirrored
+│   └── docusaurus-plugin-content-docs/current/
+│       ├── projects/…
+│       └── translator.md
+├── docs/
+│   ├── translator.md             # PDF Book & Translator demo (EN)
 ├── update-flow.md                # Which repos publish updates here
 ├── projects/
 │   ├── fastapi-url/              # LinkShort docs (4 pages)
@@ -83,16 +85,17 @@ Docs/
 │   ├── halcyon-process-monitor/  # Halcyon docs (2 pages)
 │   ├── externum/                 # Externum language docs (5 pages)
 │   └── n2-mesh/                  # N2 Mesh P2P chat docs (2 pages)
-├── public/
+├── static/
 │   ├── pdfs/                     # Sample PDFs for the translator demo
-│   └── pdfjs/                    # Vendored pdf.js worker, fonts, cmaps
-├── scripts/                      # Sitemap / llms-full / sample-PDF generators
-└── .vitepress/
-    ├── config.mts                # Site config, locales, nav, sidebar, search
-    └── theme/
-        ├── translator.ts         # Keyless translation providers
-        └── components/
-            └── PdfBookViewer.vue # Visual book PDF reader + translator
+│   ├── pdfjs/                    # Vendored pdf.js worker, fonts, cmaps
+│   └── llms.txt / llms-full.txt  # AI-readable content index + snapshot
+├── scripts/                      # llms-full / sample-PDF generators
+└── src/
+    ├── components/               # React components (PdfBookViewer, ProjectCard…)
+    ├── lib/translator.ts         # Keyless translation providers
+    ├── pages/index.tsx           # Bilingual landing page
+    ├── theme/MDXComponents.tsx   # Global MDX component registration
+    └── css/custom.css            # Aurora theme, glassmorphism, typography
 ```
 
 ## Publishing
