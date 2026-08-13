@@ -2,12 +2,13 @@
 """Regenerate public/llms-full.txt — a single-file snapshot of the whole site."""
 import os
 
-ROOT = "/home/user/Docs"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = "https://bartoszosiej.github.io/Docs"
 SKIP_DIRS = {".vitepress", "node_modules", ".git", "scripts"}
 
 ORDER = [
     "index.md",
+    "translator.md",
     "update-flow.md",
     "projects/index.md",
     "projects/fastapi-url/index.md",
@@ -50,11 +51,21 @@ ORDER = [
 out = []
 out.append("Bartosz Osiej - Docs - Full Content Snapshot")
 out.append(f"Source: {BASE}/")
+out.append("Bilingual site: English (root) + Polish (/pl/).")
 out.append("Generated for AI agents and crawlers. All content below is the complete documentation.")
 out.append("=" * 72)
 
-# Append any md files not in the explicit order (keeps future pages included).
+# Polish locale pages follow the English ones (deterministic, sorted).
 known = set(ORDER)
+for dirpath, dirnames, filenames in os.walk(os.path.join(ROOT, "pl")):
+    dirnames.sort()
+    for f in sorted(filenames):
+        if f.endswith(".md"):
+            rel = os.path.relpath(os.path.join(dirpath, f), ROOT).replace(os.sep, "/")
+            if rel not in known:
+                ORDER.append(rel)
+
+# Append any other md files not in the explicit order (keeps future pages included).
 for dirpath, dirnames, filenames in os.walk(ROOT):
     dirnames[:] = [d for d in dirnames if d not in SKIP_DIRS]
     for f in sorted(filenames):

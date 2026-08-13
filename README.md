@@ -12,10 +12,36 @@ published as a static site on GitHub Pages.
 
 **Live site:** <https://bartoszosiej.github.io/Docs/>
 
+> 🇵🇱 Ten dokument ma też wersję polską: [README.pl.md](README.pl.md)
+
+## 🌍 Bilingual
+
+The site is fully bilingual:
+
+- **English** is the default locale (root paths, e.g. `/Docs/projects/`).
+- **Polish** lives under `/Docs/pl/…` (e.g. `/Docs/pl/projects/`).
+- A language switcher in the navbar toggles between them; every page has a
+  matching translation.
+
+## 📖 PDF Book & Translator
+
+A built-in module reads PDFs as **visual books** (two-page spreads, spine,
+3D page-flip) and translates pages **in the browser without any API key**:
+
+- pdf.js renders pages; the worker + standard fonts are vendored in
+  `public/pdfjs/` (no CDN).
+- Translation uses keyless, CORS-enabled providers — Google's public
+  endpoint first, MyMemory as fallback. A Microsoft Translator (Azure)
+  provider is included behind the same interface if you ever want to plug
+  in a key.
+- Live demo: <https://bartoszosiej.github.io/Docs/translator>
+
 ## Tech
 
 - [VitePress](https://vitepress.dev/) — Vue-powered static site generator
-- [WebTorrent](https://webtorrent.io/) — powers [N2 Mesh](https://bartoszosiej.github.io/n2-mesh/), the P2P chat (its own repo: `BartoszOsiej/n2-mesh`)
+  (i18n via `locales` in `.vitepress/config.mts`)
+- [pdf.js](https://mozilla.github.io/pdf.js/) — PDF rendering for the book viewer
+- WebRTC + MQTT — power [N2 Mesh](https://bartoszosiej.github.io/n2-mesh/), the P2P chat (its own repo: `BartoszOsiej/n2-mesh`)
 - Deployed via GitHub Actions → GitHub Pages
 
 ## Local development
@@ -27,16 +53,26 @@ npm run docs:build      # production build to .vitepress/dist
 npm run docs:preview    # preview the production build
 ```
 
+`predocs:dev` / `predocs:build` automatically regenerate the sample PDFs
+(`scripts/gen-sample-pdfs.mjs`) and copy the pdf.js worker/fonts/cmaps into
+`public/pdfjs/` (`scripts/copy-pdfjs.mjs`).
+
 ## Regenerating derived files
 
 - `public/sitemap.xml` — run `scripts/gen-sitemap.py`
 - `public/llms-full.txt` — run `scripts/gen-llms-full.py`
+- `public/pdfs/sample-*.pdf` — run `scripts/gen-sample-pdfs.mjs`
 
 ## Project structure
 
 ```
 Docs/
-├── index.md                      # Landing page
+├── index.md                      # Landing page (EN)
+├── pl/                           # Polish locale — every page mirrored
+│   ├── index.md
+│   ├── projects/…
+│   └── translator.md
+├── translator.md                 # PDF Book & Translator demo (EN)
 ├── update-flow.md                # Which repos publish updates here
 ├── projects/
 │   ├── fastapi-url/              # LinkShort docs (4 pages)
@@ -47,10 +83,16 @@ Docs/
 │   ├── halcyon-process-monitor/  # Halcyon docs (2 pages)
 │   ├── externum/                 # Externum language docs (5 pages)
 │   └── n2-mesh/                  # N2 Mesh P2P chat docs (2 pages)
-├── public/                       # Static assets (logo, hero, favicon)
-├── scripts/                      # Sitemap / llms-full generators
-├── .vitepress/config.mts         # Site config, nav, sidebar, search
-└── .github/workflows/deploy.yml  # Pages deployment
+├── public/
+│   ├── pdfs/                     # Sample PDFs for the translator demo
+│   └── pdfjs/                    # Vendored pdf.js worker, fonts, cmaps
+├── scripts/                      # Sitemap / llms-full / sample-PDF generators
+└── .vitepress/
+    ├── config.mts                # Site config, locales, nav, sidebar, search
+    └── theme/
+        ├── translator.ts         # Keyless translation providers
+        └── components/
+            └── PdfBookViewer.vue # Visual book PDF reader + translator
 ```
 
 ## Publishing

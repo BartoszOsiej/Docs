@@ -7,6 +7,14 @@
 This site is fully readable by AI agents. For a single-file snapshot of all
 content, fetch `/Docs/llms-full.txt`.
 
+The site is bilingual: every page below has a Polish version under
+`/Docs/pl/…` (e.g. `/Docs/pl/projects/fastapi-url/`).
+
+## Tools
+
+- [PDF Book & Translator](https://bartoszosiej.github.io/Docs/translator): read PDFs as visual books and translate pages in the browser — keyless (Google · MyMemory), no account.
+  - [Polish](https://bartoszosiej.github.io/Docs/pl/translator)
+
 ## Projects
 
 - [LinkShort (FastAPI-url)](https://bartoszosiej.github.io/Docs/projects/fastapi-url/): Production-ready URL shortener — FastAPI, JWT auth, click tracking, React 19 SPA, SQLite.
@@ -42,7 +50,7 @@ content, fetch `/Docs/llms-full.txt`.
   - [Examples](https://bartoszosiej.github.io/Docs/projects/externum/examples)
   - [Compiler & CLI](https://bartoszosiej.github.io/Docs/projects/externum/compiler)
   - [Architecture](https://bartoszosiej.github.io/Docs/projects/externum/architecture)
-- [N2 Mesh](https://bartoszosiej.github.io/n2-mesh/): Serverless torrent-principle P2P chat that runs on static hosting via WebTorrent swarms (own repo).
+- [N2 Mesh](https://bartoszosiej.github.io/n2-mesh/): Serverless P2P chat that runs on static hosting via WebRTC data channels with MQTT signaling (own repo).
 
 ## Meta
 

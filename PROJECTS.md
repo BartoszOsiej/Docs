@@ -14,7 +14,7 @@ on this site, and maintained in the working copy at `~/`.
 | # | Project | Repo | Stack | Docs page |
 |---|---------|------|-------|-----------|
 | 1 | **Docs Hub** | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | VitePress | [docs](/) |
-| 2 | **N2 Mesh** (P2P chat) | [BartoszOsiej/n2-mesh](https://github.com/BartoszOsiej/n2-mesh) | WebTorrent, static | [docs](/projects/n2-mesh/) · [live](https://bartoszosiej.github.io/n2-mesh/) |
+| 2 | **N2 Mesh** (P2P chat) | [BartoszOsiej/n2-mesh](https://github.com/BartoszOsiej/n2-mesh) | WebRTC, static | [docs](/projects/n2-mesh/) · [live](https://bartoszosiej.github.io/n2-mesh/) |
 | 3 | **LinkShort** (URL shortener) | [BartoszOsiej/FastAPI-url](https://github.com/BartoszOsiej/FastAPI-url) | FastAPI, React 19, SQLite | [docs](/projects/fastapi-url/) |
 | 4 | **Novactorio** (factory game) | [BartoszOsiej/Factorio-web-game](https://github.com/BartoszOsiej/Factorio-web-game) | TypeScript, Canvas 2D, Supabase | [docs](/projects/factorio-web-game/) |
 | 5 | **NV2 Engine** (Rust voxel) | [BartoszOsiej/NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE) | Rust, wgpu, AI vegetation | [docs](/projects/nv2-engine/) |
@@ -39,8 +39,8 @@ on this site, and maintained in the working copy at `~/`.
 
 | | |
 |---|---|
-| **What** | Torrent-principle messenger that works on **static hosting** — no server, no database. Room = torrent **infohash**; every peer seeds the same blob and joins a WebTorrent swarm. Messages travel over the **BitTorrent extended protocol** (custom `N2` extension, registered via `wire.use()`) with a send queue until the extended handshake completes — nothing is lost. Same-browser tabs connect via a `BroadcastChannel` local bridge. |
-| **Stack** | WebTorrent (vendored, no CDN), vanilla JS |
+| **What** | WebRTC messenger that works on **static hosting** — no server, no database. Room = signaling **topic**; peers announce their presence on a public MQTT broker and connect directly over **WebRTC data channels** (classic signaling-server pattern), with the MQTT topic doubling as an automatic fallback on networks that block WebRTC (mobile CGNAT). Recipients deduplicate by message id — nothing is lost. Same-browser tabs connect via a `BroadcastChannel` local bridge. |
+| **Stack** | Native WebRTC, own MQTT 3.1.1 client (~100 lines, no libs), vanilla JS |
 | **Local path** | `~/N2-Mesh` |
 | **Docs** | [/projects/n2-mesh/](/projects/n2-mesh/) — Overview + Architecture |
 | **Live** | https://bartoszosiej.github.io/n2-mesh/ |

@@ -1,12 +1,12 @@
 # Examples
 
-Wszystkie przykłady działają na aktualnej wersji — pokryte są 118 testami
+All examples run on the current version — covered by 118 tests
 (`python3 -m unittest discover -s tests`).
 
-## Pokedex — pełne demo języka
+## Pokedex — the full language demo
 
-`examples/pokedex.ext` pokazuje klasy z dziedziczeniem, comprehensions,
-lambdy, wyjątki, generatory, f-stringi i bibliotekę standardową:
+`examples/pokedex.ext` shows classes with inheritance, comprehensions,
+lambdas, exceptions, generators, f-strings and the standard library:
 
 ```python
 import mathx
@@ -36,7 +36,7 @@ print(mathx.gcd(48, 36))        # 12
 print(strings.slugify("Hello World!"))   # hello-world
 ```
 
-Uruchomienie i fragment wyjścia:
+Running it and a sample of the output:
 
 ```bash
 externum run examples/pokedex.ext
@@ -60,7 +60,7 @@ palindrome: True
 most common: ('a', 3)
 ```
 
-## Hello world z liczbami binarnymi
+## Hello world with binary numbers
 
 `examples/hello.ext`:
 
@@ -75,7 +75,7 @@ echo "Bash block"
 %%
 ```
 
-## Kalkulator
+## Calculator
 
 `examples/calc.ext`:
 
@@ -90,7 +90,7 @@ while running:
     print(a * b)
 ```
 
-## Silnia — rekurencja
+## Factorial — recursion
 
 ```python
 def factorial(n):
@@ -101,7 +101,7 @@ def factorial(n):
 print(factorial(10))      # 3628800
 ```
 
-## Klasy z dziedziczeniem
+## Classes with inheritance
 
 ```python
 class Animal:
@@ -115,7 +115,7 @@ class Dog(Animal):
 Dog("Burek").speak()      # woof Burek
 ```
 
-## Wyjątki i `with`
+## Exceptions and `with`
 
 ```python
 try:
@@ -127,7 +127,7 @@ except IOError as e:
     print("io error", e)
 ```
 
-## Moduły
+## Modules
 
 ```python
 import structs
@@ -140,7 +140,7 @@ print(s.pop())            # 20
 print(mathx.factorial(5)) # 120
 ```
 
-## Kompilacja do Pythona
+## Compiling to Python
 
 ```bash
 externum examples/hello.ext --target python -o hello.py

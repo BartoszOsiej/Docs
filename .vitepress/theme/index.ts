@@ -7,6 +7,7 @@ import ProjectCard from './components/ProjectCard.vue'
 import GlowCard from './components/GlowCard.vue'
 import ScrollReveal from './components/ScrollReveal.vue'
 import ExternumPlayground from './components/ExternumPlayground.vue'
+import PdfBookViewer from './components/PdfBookViewer.vue'
 
 export default {
   extends: DefaultTheme,
@@ -17,5 +18,6 @@ export default {
     app.component('GlowCard', GlowCard)
     app.component('ScrollReveal', ScrollReveal)
     app.component('ExternumPlayground', ExternumPlayground)
+    app.component('PdfBookViewer', PdfBookViewer)
   },
 } satisfies Theme

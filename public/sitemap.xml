@@ -3,6 +3,46 @@
   <url><loc>https://bartoszosiej.github.io/Docs/PROJECTS</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://bartoszosiej.github.io/Docs/README</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://bartoszosiej.github.io/Docs/index</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/PROJECTS</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/aurora-os/architecture</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/aurora-os/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/aurora-os/user-guide</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/cybersec-tools/hashsleuth</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/cybersec-tools/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/cybersec-tools/netrecon</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/cybersec-tools/packeteye</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/cybersec-tools/shadowscan</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/externum/architecture</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/externum/compiler</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/externum/examples</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/externum/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/externum/syntax</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/factorio-web-game/architecture</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/factorio-web-game/backend</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/factorio-web-game/gameplay</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/factorio-web-game/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/fastapi-url/api-reference</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/fastapi-url/deployment</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/fastapi-url/getting-started</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/fastapi-url/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/halcyon-process-monitor/architecture</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/halcyon-process-monitor/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/n2-mesh/architecture</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/n2-mesh/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/nv2-engine/ai</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/nv2-engine/architecture</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/nv2-engine/blocks</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/nv2-engine/crafting</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/nv2-engine/development</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/nv2-engine/gameplay</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/nv2-engine/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/nv2-engine/performance</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/nv2-engine/roadmap</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/projects/nv2-engine/water</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/translator</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/pl/update-flow</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://bartoszosiej.github.io/Docs/projects/aurora-os/architecture</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://bartoszosiej.github.io/Docs/projects/aurora-os/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://bartoszosiej.github.io/Docs/projects/aurora-os/user-guide</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
@@ -39,6 +79,7 @@
   <url><loc>https://bartoszosiej.github.io/Docs/projects/nv2-engine/performance</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://bartoszosiej.github.io/Docs/projects/nv2-engine/roadmap</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://bartoszosiej.github.io/Docs/projects/nv2-engine/water</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://bartoszosiej.github.io/Docs/translator</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://bartoszosiej.github.io/Docs/update-flow</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://bartoszosiej.github.io/Docs/llms.txt</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
   <url><loc>https://bartoszosiej.github.io/Docs/llms-full.txt</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
