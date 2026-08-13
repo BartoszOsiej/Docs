@@ -223,6 +223,6 @@ dataset downloads).
 
 ## Roadmap (Phase 2)
 
-See the [Roadmap](roadmap) page for: internet dataset integration, real-time
+See the [Roadmap](./roadmap.md) page for: internet dataset integration, real-time
 AI texture generation, player-preference learning, cloud model sharing,
 seasonal vegetation, multi-biome coordination, and GPU-accelerated training.

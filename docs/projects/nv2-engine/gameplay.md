@@ -96,7 +96,7 @@ Two crafting surfaces:
 
 `RecipeRegistry` supports **shaped recipes** (pattern matching with offset
 support) and **shapeless recipes** (multiset matching). Recipes are also
-loadable from JSON (`assets.rs`). See the [Crafting Reference](crafting) for
+loadable from JSON (`assets.rs`). See the [Crafting Reference](./crafting.md) for
 every recipe with exact patterns.
 
 ---

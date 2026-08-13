@@ -117,7 +117,7 @@ the titlebar or controls. Features:
 - **Quoting** — `tokenize()` honors double quotes
 - **Command context** — `ps`/`kill`/`open`/`apps`/`history`/`shutdown` bind
   to the live process table and app registry
-- **35+ commands** — full reference in the [user guide](user-guide)
+- **35+ commands** — full reference in the [user guide](./user-guide.md)
 
 ## Audio — no files, all synthesis
 
@@ -144,4 +144,4 @@ wc, unknown-command handling).
 
 ---
 
-*Next: [User guide — commands, shortcuts, apps](user-guide) · [Overview](/projects/aurora-os/)*
+*Next: [User guide — commands, shortcuts, apps](./user-guide.md) · [Overview](/projects/aurora-os/)*

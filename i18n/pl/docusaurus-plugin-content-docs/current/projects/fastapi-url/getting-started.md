@@ -114,5 +114,5 @@ backend/static/        # Zbudowane SPA React
 
 ## Następne kroki
 
-- Poznaj każdy endpoint w [Referencji API](api-reference)
-- Wdróż przez [Docker lub Fly.io](deployment)
+- Poznaj każdy endpoint w [Referencji API](./api-reference.md)
+- Wdróż przez [Docker lub Fly.io](./deployment.md)

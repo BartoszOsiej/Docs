@@ -137,4 +137,4 @@ aby zobaczyć tę samą listę, lub `man &lt;command&gt;` dla wpisu manuala.
 
 ---
 
-*Wróć do [Przeglądu](/projects/aurora-os/) · [Architektury](architecture)*
+*Wróć do [Przeglądu](/projects/aurora-os/) · [Architektury](./architecture.md)*

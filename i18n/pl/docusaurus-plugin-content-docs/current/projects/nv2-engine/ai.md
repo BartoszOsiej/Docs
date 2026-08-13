@@ -225,7 +225,7 @@ zestawów danych).
 
 ## Plan (Faza 2)
 
-Zobacz stronę [Plan i zmiany](roadmap), aby poznać: integrację zestawów
+Zobacz stronę [Plan i zmiany](./roadmap.md), aby poznać: integrację zestawów
 danych z internetu, generację tekstur AI w czasie rzeczywistym, uczenie
 preferencji gracza, współdzielenie modeli w chmurze, sezonową roślinność,
 koordynację wielu biomów i trening przyspieszany GPU.
