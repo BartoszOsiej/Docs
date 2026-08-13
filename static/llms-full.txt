@@ -4819,8 +4819,9 @@ Reproduce: `npm test`
 
 ## Novactorio — Factorio Web Game (`Factorio-web-game`)
 
-✅ Typecheck now **0 errors** · ✅ production build OK · lint: 0 unused-vars
-errors (28 style-only `no-explicit-any` remain).
+✅ Typecheck **0 errors** · ✅ production build OK · ✅ **lint 0 errors**
+(all 28 `no-explicit-any` removed in this sweep; 7 react-hooks style
+warnings remain).
 
 Fixes landed during the sweep:
 - Weather transitions crashed (`lerped config.color` missing) — fixed
@@ -4828,23 +4829,34 @@ Fixes landed during the sweep:
 - Player walk animation permanently frozen (`PlayerState.prevX/prevY`
   never existed) — now tracked by the renderer
 - Missing `removeBuilding` import, dead weather/glow caches removed
+- **Save format typed** — `SaveData` tuples now typed; the previously
+  loaded-but-never-saved `totalPollutionGenerated` / `worldSeed` are now
+  persisted
 
 Reproduce: `npm run typecheck && npm run build && npm run lint`
 
 ## LinkShort — FastAPI URL shortener (`FastAPI-url`)
 
-✅ **3/3 API tests pass** — `tests/test_api.py`: health, register/login,
-shorten + stats + redirect (`302`). All 11 Python modules compile clean.
-Ran on **Python 3.9** (the QA environment's default 3.14 has no prebuilt
-wheels for the 2024-pinned `pydantic-core`/`bcrypt`; the Docker image uses
-3.12, where the pins install cleanly).
+✅ **11/11 API tests pass** — `tests/test_api.py`: health, register/login,
+me, duplicate-email rejection, auth-gated shorten, per-user `/urls/my`
+isolation, click counting, 404s, delete + ownership enforcement.
+All 11 Python modules compile clean. Ran on **Python 3.9** (the QA
+environment's default 3.14 has no prebuilt wheels for the 2024-pinned
+`pydantic-core`/`bcrypt`; the Docker image uses 3.12, where the pins
+install cleanly).
 
 Reproduce: `python3.9 -m venv venv && venv/bin/pip install -r requirements.txt && venv/bin/pytest tests/ -v`
 
 ## N2 Mesh (`n2-mesh`)
 
-✅ JavaScript syntax checks pass (`node --check` on all scripts). Pure static
-P2P app — no build step, no test harness defined.
+✅ **19/19 unit tests pass** (`npm test`, `node:test` on `core.js`) ·
+syntax checks clean. Pure logic (bytes, ids, dedup, room parsing, the
+MQTT 3.1.1 packet layer) was extracted into `core.js` for headless
+testing.
+
+The tests caught a real bug: `mqttParsePublish` checked the **DUP flag**
+(`0x08`) instead of the **QoS level** (`0x06`) when skipping packet ids,
+misparsing QoS-1 PUBLISH payloads — fixed.
 
 ## Docs — this site
 
@@ -4940,8 +4952,9 @@ Reproduce: `npm test`
 
 ## Novactorio — Factorio Web Game (`Factorio-web-game`)
 
-✅ Typecheck now **0 errors** · ✅ production build OK · lint: 0 unused-vars
-errors (28 style-only `no-explicit-any` remain).
+✅ Typecheck **0 errors** · ✅ production build OK · ✅ **lint 0 errors**
+(all 28 `no-explicit-any` removed in this sweep; 7 react-hooks style
+warnings remain).
 
 Fixes landed during the sweep:
 - Weather transitions crashed (`lerped config.color` missing) — fixed
@@ -4949,23 +4962,34 @@ Fixes landed during the sweep:
 - Player walk animation permanently frozen (`PlayerState.prevX/prevY`
   never existed) — now tracked by the renderer
 - Missing `removeBuilding` import, dead weather/glow caches removed
+- **Save format typed** — `SaveData` tuples now typed; the previously
+  loaded-but-never-saved `totalPollutionGenerated` / `worldSeed` are now
+  persisted
 
 Reproduce: `npm run typecheck && npm run build && npm run lint`
 
 ## LinkShort — FastAPI URL shortener (`FastAPI-url`)
 
-✅ **3/3 API tests pass** — `tests/test_api.py`: health, register/login,
-shorten + stats + redirect (`302`). All 11 Python modules compile clean.
-Ran on **Python 3.9** (the QA environment's default 3.14 has no prebuilt
-wheels for the 2024-pinned `pydantic-core`/`bcrypt`; the Docker image uses
-3.12, where the pins install cleanly).
+✅ **11/11 API tests pass** — `tests/test_api.py`: health, register/login,
+me, duplicate-email rejection, auth-gated shorten, per-user `/urls/my`
+isolation, click counting, 404s, delete + ownership enforcement.
+All 11 Python modules compile clean. Ran on **Python 3.9** (the QA
+environment's default 3.14 has no prebuilt wheels for the 2024-pinned
+`pydantic-core`/`bcrypt`; the Docker image uses 3.12, where the pins
+install cleanly).
 
 Reproduce: `python3.9 -m venv venv && venv/bin/pip install -r requirements.txt && venv/bin/pytest tests/ -v`
 
 ## N2 Mesh (`n2-mesh`)
 
-✅ JavaScript syntax checks pass (`node --check` on all scripts). Pure static
-P2P app — no build step, no test harness defined.
+✅ **19/19 unit tests pass** (`npm test`, `node:test` on `core.js`) ·
+syntax checks clean. Pure logic (bytes, ids, dedup, room parsing, the
+MQTT 3.1.1 packet layer) was extracted into `core.js` for headless
+testing.
+
+The tests caught a real bug: `mqttParsePublish` checked the **DUP flag**
+(`0x08`) instead of the **QoS level** (`0x06`) when skipping packet ids,
+misparsing QoS-1 PUBLISH payloads — fixed.
 
 ## Docs — this site
 
