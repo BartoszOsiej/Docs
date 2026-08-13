@@ -7,6 +7,7 @@ import GlowCard from '@site/src/components/GlowCard'
 import ScrollReveal from '@site/src/components/ScrollReveal'
 import ExternumPlayground from '@site/src/components/ExternumPlayground'
 import PdfBookViewer from '@site/src/components/PdfBookViewer'
+import TestSuiteView from '@site/src/components/TestSuiteView'
 
 export default {
   ...MDXComponents,
@@ -17,4 +18,5 @@ export default {
   ScrollReveal,
   ExternumPlayground,
   PdfBookViewer,
+  TestSuiteView,
 }

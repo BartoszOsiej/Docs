@@ -1,5 +1,7 @@
 # 📜 Externum
 
+<a class="tests-cta" href="./testy">🧪 Zobacz animowane wyniki testów — 120/120 →</a>
+
 **Externum v3.0 "Sentient"** — własny, w pełni funkcjonalny język
 programowania, który łączy czytelność Pythona, wydajność kodu binarnego i
 kontrolę systemu Basha w jednym paradygmacie.

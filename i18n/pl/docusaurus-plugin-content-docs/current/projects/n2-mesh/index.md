@@ -1,5 +1,7 @@
 # 💬 N2 Mesh — czat P2P
 
+<a class="tests-cta" href="./testy">🧪 Zobacz animowane wyniki testów — 22/22 →</a>
+
 **Bezserwerowy czat peer-to-peer z automatycznym fallbackiem relay.** Działa
 na statycznym hostingu (GitHub Pages) — zero własnego serwera, zero bazy
 danych, zero kont.

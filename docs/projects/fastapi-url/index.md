@@ -1,5 +1,7 @@
 # LinkShort
 
+<a class="tests-cta" href="./tests">🧪 View animated test results — 15/15 →</a>
+
 > **A production-ready URL shortener — FastAPI backend, JWT auth, click tracking, React 19 SPA, SQLite.**
 
 LinkShort (repository: `FastAPI-url`) is a complete URL-shortening service

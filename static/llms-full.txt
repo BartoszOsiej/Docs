@@ -361,6 +361,8 @@ Source: https://bartoszosiej.github.io/Docs/projects/fastapi-url/
 ------------------------------------------------------------------------
 # LinkShort
 
+<a class="tests-cta" href="./tests">🧪 View animated test results — 15/15 →</a>
+
 > **A production-ready URL shortener — FastAPI backend, JWT auth, click tracking, React 19 SPA, SQLite.**
 
 LinkShort (repository: `FastAPI-url`) is a complete URL-shortening service
@@ -838,6 +840,8 @@ Source: https://bartoszosiej.github.io/Docs/projects/factorio-web-game/
 ------------------------------------------------------------------------
 # Novactorio
 
+<a class="tests-cta" href="./tests">🧪 View animated quality gates — typecheck · build · lint →</a>
+
 > **A browser factory-automation game in the spirit of Factorio, written from scratch in TypeScript with a hand-built Canvas 2D engine.**
 
 Novactorio (repository: `Factorio-web-game`) is a complete browser game: an
@@ -1232,6 +1236,8 @@ deployments with per-function secrets.
 Source: https://bartoszosiej.github.io/Docs/projects/nv2-engine/
 ------------------------------------------------------------------------
 # NV2 Engine
+
+<a class="tests-cta" href="./tests">🧪 View animated test results — 98 passed / 99 total →</a>
 
 > **A native Rust voxel engine with AI-driven procedural worlds — a full desktop voxel game built on wgpu, featuring an embedded neural network that learns vegetation placement while you play.**
 
@@ -2765,6 +2771,8 @@ Source: https://bartoszosiej.github.io/Docs/projects/cybersec-tools/
 ------------------------------------------------------------------------
 # Cybersec Toolkit
 
+<a class="tests-cta" href="./tests">🧪 View animated test results — 29/29 →</a>
+
 > **A Rust cybersecurity toolkit — four focused offensive-security tools built as a Cargo workspace, with zero external services and clean stdlib-heavy implementations.**
 
 The Cybersec Toolkit (repository: `BartoszOsiej/cybersec-tools`) contains four
@@ -3282,6 +3290,8 @@ Source: https://bartoszosiej.github.io/Docs/projects/aurora-os/
 ------------------------------------------------------------------------
 # ◈ AURORA OS
 
+<a class="tests-cta" href="./tests">🧪 View animated test results — 56/56 →</a>
+
 **A complete operating system running in your browser.**
 
 AURORA OS is a from-scratch desktop environment — window manager, virtual
@@ -3661,6 +3671,8 @@ Source: https://bartoszosiej.github.io/Docs/projects/halcyon-process-monitor/
 ------------------------------------------------------------------------
 # 🛰️ Halcyon Process Monitor
 
+<a class="tests-cta" href="./tests">🧪 View animated test results — 9/9 →</a>
+
 **Real-time, eBPF-based process and file-operation telemetry for Linux.**
 
 Halcyon Process Monitor traces `execve` and `openat` syscalls at the kernel
@@ -3890,6 +3902,8 @@ openat entry ──► EVENTS map ──► perf buffer ──► Msg::Event ─
 Source: https://bartoszosiej.github.io/Docs/projects/externum/
 ------------------------------------------------------------------------
 # 📜 Externum
+
+<a class="tests-cta" href="./tests">🧪 View animated test results — 120/120 →</a>
 
 **Externum v3.0 "Sentient"** — a fully functional programming language of
 our own that fuses Python's readability, binary performance and Bash's
@@ -4485,6 +4499,8 @@ Source: https://bartoszosiej.github.io/Docs/projects/n2-mesh/
 ------------------------------------------------------------------------
 # 💬 N2 Mesh — P2P Chat
 
+<a class="tests-cta" href="./tests">🧪 View animated test results — 22/22 →</a>
+
 **Serverless peer-to-peer chat with an automatic relay fallback.** It runs on
 static hosting (GitHub Pages) — zero servers, zero databases, zero accounts.
 
@@ -4749,32 +4765,37 @@ Legend: ✅ pass · ⚠️ partial (see notes) · ❌ fail
 
 ## Overview
 
-| # | Project | Suite | Total | Passed | Failed | Ignored | Status |
-|---|---------|-------|-------|--------|--------|---------|--------|
-| 1 | [NV2 Engine](#nv2-engine-nv2_engine) | `cargo test` | 97 | 96 | 0 | 1 (release bench) | ✅ |
-| 2 | [Cybersec Toolkit](#cybersec-toolkit-cybersec-tools) | `cargo test --workspace` | 13 | 13 | 0 | 0 | ✅ |
-| 3 | [Halcyon Process Monitor](#halcyon-process-monitor-halcyon-process-monitor) | `cargo test` | 3 | 3 | 0 | 0 | ✅ |
-| 4 | [Externum](#externum-externum) | `unittest discover` | 118 | 118 | 0 | 0 | ✅ |
-| 5 | [AURORA OS](#aurora-os-aurora-os) | `npm test` + `tsc` | 34 | 34 | 0 | 0 | ✅ |
-| 6 | [Novactorio](#novactorio--factorio-web-game-factorio-web-game) | typecheck + build + lint | — | — | — | — | ✅ |
-| 7 | [LinkShort](#linkshort--fastapi-url-shortener-fastapi-url) | `pytest tests/` | 11 | 11 | 0 | 0 | ✅ |
-| 8 | [N2 Mesh](#n2-mesh-n2-mesh) | `npm test` | 19 | 19 | 0 | 0 | ✅ |
-| 9 | [Docs — this site](#docs--this-site) | `npm run build` | — | — | — | — | ✅ |
+| # | Project | Suite | Total | Passed | Failed | Ignored | Status | Animated page |
+|---|---------|-------|-------|--------|--------|---------|--------|---------------|
+| 1 | [NV2 Engine](#nv2-engine-nv2_engine) | `cargo test` | 99 | 98 | 0 | 1 (release bench) | ✅ | [tests](/projects/nv2-engine/tests/) |
+| 2 | [Cybersec Toolkit](#cybersec-toolkit-cybersec-tools) | `cargo test --workspace` | 29 | 29 | 0 | 0 | ✅ | [tests](/projects/cybersec-tools/tests/) |
+| 3 | [Halcyon Process Monitor](#halcyon-process-monitor-halcyon-process-monitor) | `cargo test` | 9 | 9 | 0 | 0 | ✅ | [tests](/projects/halcyon-process-monitor/tests/) |
+| 4 | [Externum](#externum-externum) | `unittest discover` | 120 | 120 | 0 | 0 | ✅ | [tests](/projects/externum/tests/) |
+| 5 | [AURORA OS](#aurora-os-aurora-os) | `npm test` + `tsc` | 56 | 56 | 0 | 0 | ✅ | [tests](/projects/aurora-os/tests/) |
+| 6 | [Novactorio](#novactorio--factorio-web-game-factorio-web-game) | typecheck + build + lint | — | — | — | — | ✅ | [tests](/projects/factorio-web-game/tests/) |
+| 7 | [LinkShort](#linkshort--fastapi-url-shortener-fastapi-url) | `pytest tests/` | 15 | 15 | 0 | 0 | ✅ | [tests](/projects/fastapi-url/tests/) |
+| 8 | [N2 Mesh](#n2-mesh-n2-mesh) | `npm test` | 22 | 22 | 0 | 0 | ✅ | [tests](/projects/n2-mesh/tests/) |
+| 9 | [Docs — this site](#docs--this-site) | `npm run build` | — | — | — | — | ✅ | [tests](/tests/) |
 
-**Σ 295 automated tests · 294 passed · 0 failed** (+ build/lint/typecheck
+**Σ 350 automated tests · 349 passed · 0 failed** (+ build/lint/typecheck
 gates on the web projects).
+
+> 🧪 Every project also has a dedicated **animated tests page** (EN:
+> `/projects/<project>/tests`, PL: `/pl/projects/<project>/testy`) with
+> count-up counters, progress bars and staggered row animations — linked
+> from the table above and from each project's index page.
 
 ---
 
 ## NV2 Engine (`NV2_ENGINE`)
 
-**97 tests** (96 passed, 1 ignored = release benchmark) · full report:
+**99 tests** (98 passed, 1 ignored = release benchmark) · [animated page](/projects/nv2-engine/tests/) · full report:
 [`TEST_REPORT.md`](https://github.com/BartoszOsiej/NV2_ENGINE/blob/main/TEST_REPORT.md)
 
 | Suite | Tests | Result |
 |---|---|---|
-| Whole project | 97 (96 + 1 ignored) | ✅ 96 passed, 0 failed |
-| AI / ML modules (ai_generator, memplp, online_trainer, vegetation, biomes) | 32 | ✅ |
+| Whole project | 99 (98 + 1 ignored) | ✅ 98 passed, 0 failed |
+| AI / ML modules (ai_generator, memplp, online_trainer, vegetation, biomes) | 34 | ✅ |
 | World & terrain (block, world) | 13 | ✅ |
 | Gameplay (interaction, crafting, inventory) | 38 | ✅ |
 | Renderer (camera, mesh, texture_registry) | 6 | ✅ |
@@ -4782,7 +4803,7 @@ gates on the web projects).
 
 | Module | Tests | Result |
 |---|---|---|
-| `world::ai_generator` (AI system, model bundles, datasets, preferences, checkpoints, textures) | 16 | ✅ |
+| `world::ai_generator` (AI system, model bundles, datasets, preferences, checkpoints, textures) | 18 | ✅ |
 | `world::memplp` (MeMLP core — train/forward, NaN hardening, migration, JSON roundtrip) | 10 | ✅ |
 | `interaction` (block break/place incl. AI feedback) | 19 | ✅ |
 | `inventory` | 13 | ✅ |
@@ -4824,14 +4845,14 @@ Reproduce: `cd Core && cargo test && cargo test --release qa_benchmark_report --
 
 ## Cybersec Toolkit (`cybersec-tools`)
 
-**13 tests** across the 4 crates — all passing.
+**29 tests** across the 4 crates — all passing. [Animated page](/projects/cybersec-tools/tests/)
 
 | Crate | Tests | Coverage | Result |
 |---|---|---|---|
-| hashsleuth | 4 | identify + digest vectors | ✅ |
-| netrecon | 4 | service names, port/CIDR parsing | ✅ |
-| packeteye | 3 | Ethernet/IPv4/TCP parsing | ✅ |
-| shadowscan | 2 | target normalization | ✅ |
+| hashsleuth | 8 | identify (hex lengths, crypt/Django/LDAP/phpass prefixes) + digest vectors | ✅ |
+| netrecon | 8 | service names, ports/ranges, CIDR expansion + rejection | ✅ |
+| packeteye | 8 | TCP SYN/SYNACK/FIN, UDP ports, ICMP, ARP, IPv6, garbage safety | ✅ |
+| shadowscan | 5 | target normalization incl. ports/queries/schemes | ✅ |
 
 The new tests exposed and fixed a real bug: phpass hash markers (`$P$`/`$H$`)
 were compared against the lowercased hash and could never match.
@@ -4842,7 +4863,7 @@ Reproduce: `cargo test --workspace`
 
 ## Halcyon Process Monitor (`halcyon-process-monitor`)
 
-**3 tests** (userspace `process-monitor` crate).
+**9 tests** (userspace `process-monitor` crate). [Animated page](/projects/halcyon-process-monitor/tests/)
 
 | Check | Result |
 |---|---|
@@ -4859,7 +4880,7 @@ Reproduce: `cargo test`
 
 ## Externum (`externum`)
 
-**118 tests** — pure Python, no dependencies.
+**120 tests** — pure Python, no dependencies. [Animated page](/projects/externum/tests/)
 
 | Test class | Stage | Tests | Result |
 |---|---|---|---|
@@ -4870,6 +4891,7 @@ Reproduce: `cargo test`
 | `TestMultilineLiterals` | Extra: multi-line literals | 5 | ✅ |
 | `TestClassesWithBlankLines` | Extra: classes with blank lines | 2 | ✅ |
 | `TestMoreFeatures` | Extra: comprehensions, bitwise, `with`/`assert`, f-strings… | 12 | ✅ |
+| `TestTernaryAndUnpacking` | Extra: ternary expressions, tuple-unpacking swaps | 2 | ✅ |
 
 Reproduce: `python3 -m unittest discover -s tests`
 
@@ -4877,12 +4899,12 @@ Reproduce: `python3 -m unittest discover -s tests`
 
 ## AURORA OS (`AURORA-OS`)
 
-**34/34 core tests** (EventBus, FileSystem, shell interpreter) ·
-TypeScript typecheck clean.
+**56/56 core assertions** (31 test cases: EventBus, FileSystem, shell
+interpreter) · TypeScript typecheck clean. [Animated page](/projects/aurora-os/tests/)
 
 | Area | Tests | Result |
 |---|---|---|
-| Core logic (`npm test`, Node harness) | 34 | ✅ 34 passed, 0 failed |
+| Core logic (`npm test`, Node harness) | 56 | ✅ 56 passed, 0 failed |
 | TypeScript (`tsc -p tsconfig.json`) | — | ✅ 0 errors |
 
 Reproduce: `npm test`
@@ -4892,6 +4914,7 @@ Reproduce: `npm test`
 ## Novactorio — Factorio Web Game (`Factorio-web-game`)
 
 No unit-test harness; the quality gates are typecheck, build and lint.
+[Animated page](/projects/factorio-web-game/tests/)
 
 | Gate | Result |
 |---|---|
@@ -4915,7 +4938,8 @@ Reproduce: `npm run typecheck && npm run build && npm run lint`
 
 ## LinkShort — FastAPI URL shortener (`FastAPI-url`)
 
-**11/11 API tests pass** — `tests/test_api.py` (Python 3.9 venv).
+**15/15 API tests pass** — `tests/test_api.py` (Python 3.9 venv).
+[Animated page](/projects/fastapi-url/tests/)
 
 | Test | Endpoint(s) | Asserts | Result |
 |---|---|---|---|
@@ -4930,6 +4954,10 @@ Reproduce: `npm run typecheck && npm run build && npm run lint`
 | `test_stats_404_for_unknown_code` | `GET /urls/zzzzzz/stats` | 404 | ✅ |
 | `test_delete_removes_link` | `DELETE /urls/{code}`, redirect | 204; redirect after delete → 404 | ✅ |
 | `test_delete_enforces_ownership` | `DELETE /urls/{code}` (two users) | other user → 404 | ✅ |
+| `test_login_unknown_email_rejected` | `POST /auth/login` | unknown email → 401 | ✅ |
+| `test_delete_unknown_code_404` | `DELETE /urls/zzzzzz` | 404 | ✅ |
+| `test_redirect_unknown_code_404` | `GET /urls/r/zzzzzz` | 404 | ✅ |
+| `test_inactive_link_still_resolves` | `GET /urls/r/{code}` | 302 + location header | ✅ |
 
 All 11 Python modules compile clean. Ran on **Python 3.9** (the QA
 environment's default 3.14 has no prebuilt wheels for the 2024-pinned
@@ -4942,16 +4970,17 @@ Reproduce: `python3.9 -m venv venv && venv/bin/pip install -r requirements.txt &
 
 ## N2 Mesh (`n2-mesh`)
 
-**19/19 unit tests pass** (`npm test`, `node:test` on `core.js`) — pure
+**22/22 unit tests pass** (`npm test`, `node:test` on `core.js`) — pure
+[Animated page](/projects/n2-mesh/tests/) · 
 logic extracted into `core.js` (no browser, no network, no deps).
 
 | Group | Tests | Coverage | Result |
 |---|---|---|---|
 | Bytes | 2 | utf8 round-trips, plain arrays | ✅ |
 | Ids & dedup | 5 | `newMid` uniqueness; `isNewMid` first-sight/expiry/cap; empty ids | ✅ |
-| Room parsing | 2 | hash normalisation, 48-char cap, `lobby` fallback | ✅ |
+| Room parsing | 3 | hash normalisation, 48-char cap, `lobby` fallback, leading-slash stripping | ✅ |
 | Nick colors | 1 | stable, deterministic | ✅ |
-| MQTT packets | 9 | single/multi-byte remaining length, PINGREQ, PUBLISH round-trip, QoS>0 packet id, CONNECT header, SUB/UNSUB structure | ✅ |
+| MQTT packets | 11 | single/multi-byte remaining length, empty body, PINGREQ, PUBLISH round-trips, QoS>0 packet id, CONNECT header, SUB/UNSUB structure | ✅ |
 
 The tests caught a real bug: `mqttParsePublish` checked the **DUP flag**
 (`0x08`) instead of the **QoS level** (`0x06`) when skipping packet ids,
@@ -4963,6 +4992,8 @@ Reproduce: `npm test && npm run check`
 
 ## Docs — this site
 
+[Animated page](/tests/)
+
 | Check | Result |
 |---|---|
 | Production build (`npm run build`, EN + PL) | ✅ 0 broken links (fails the build on broken links) |
@@ -4971,6 +5002,236 @@ Reproduce: `npm test && npm run check`
 | TypeScript | ✅ clean |
 
 Reproduce: `npm run build`
+
+
+## tests
+Source: https://bartoszosiej.github.io/Docs/tests
+------------------------------------------------------------------------
+---
+sidebar_label: Tests
+title: Tests
+description: Animated build and QA checks for the Docs site itself.
+---
+
+# Tests — Docs site
+
+Build and QA checks for **this documentation site**, verified during the
+sweep. Everything below animates on scroll.
+
+<TestSuiteView project="docs" lang="en" />
+
+## Reproduce
+
+```bash
+npm run build
+```
+
+
+## projects/aurora-os/tests
+Source: https://bartoszosiej.github.io/Docs/projects/aurora-os/tests
+------------------------------------------------------------------------
+---
+sidebar_label: Tests
+title: Tests
+description: Full animated test results for AURORA OS.
+---
+
+# Tests — AURORA OS
+
+Full automated test results for **AURORA OS**, collected during the QA sweep
+on 2026-08-13 (Linux, Rust 1.97, Node 22, Python 3). Scroll down — the
+counters count up, the bars fill in and every row animates as it enters the
+viewport. Use **▶ Replay animation** to run it again.
+
+<TestSuiteView project="aurora-os" lang="en" />
+
+## Reproduce
+
+```bash
+npm test
+npx tsc -p tsconfig.json --noEmit
+```
+
+
+## projects/cybersec-tools/tests
+Source: https://bartoszosiej.github.io/Docs/projects/cybersec-tools/tests
+------------------------------------------------------------------------
+---
+sidebar_label: Tests
+title: Tests
+description: Full animated test results for Cybersec Toolkit.
+---
+
+# Tests — Cybersec Toolkit
+
+Full automated test results for **Cybersec Toolkit**, collected during the QA sweep
+on 2026-08-13 (Linux, Rust 1.97, Node 22, Python 3). Scroll down — the
+counters count up, the bars fill in and every row animates as it enters the
+viewport. Use **▶ Replay animation** to run it again.
+
+<TestSuiteView project="cybersec-tools" lang="en" />
+
+## Reproduce
+
+```bash
+cargo test --workspace
+```
+
+
+## projects/externum/tests
+Source: https://bartoszosiej.github.io/Docs/projects/externum/tests
+------------------------------------------------------------------------
+---
+sidebar_label: Tests
+title: Tests
+description: Full animated test results for Externum.
+---
+
+# Tests — Externum
+
+Full automated test results for **Externum**, collected during the QA sweep
+on 2026-08-13 (Linux, Rust 1.97, Node 22, Python 3). Scroll down — the
+counters count up, the bars fill in and every row animates as it enters the
+viewport. Use **▶ Replay animation** to run it again.
+
+<TestSuiteView project="externum" lang="en" />
+
+## Reproduce
+
+```bash
+python3 -m unittest discover -s tests
+```
+
+
+## projects/factorio-web-game/tests
+Source: https://bartoszosiej.github.io/Docs/projects/factorio-web-game/tests
+------------------------------------------------------------------------
+---
+sidebar_label: Tests
+title: Tests
+description: Full animated test results for Novactorio.
+---
+
+# Tests — Novactorio
+
+Full automated test results for **Novactorio**, collected during the QA sweep
+on 2026-08-13 (Linux, Rust 1.97, Node 22, Python 3). Scroll down — the
+counters count up, the bars fill in and every row animates as it enters the
+viewport. Use **▶ Replay animation** to run it again.
+
+<TestSuiteView project="factorio-web-game" lang="en" />
+
+## Reproduce
+
+```bash
+npm run typecheck
+npm run build
+npm run lint
+```
+
+
+## projects/fastapi-url/tests
+Source: https://bartoszosiej.github.io/Docs/projects/fastapi-url/tests
+------------------------------------------------------------------------
+---
+sidebar_label: Tests
+title: Tests
+description: Full animated test results for LinkShort.
+---
+
+# Tests — LinkShort
+
+Full automated test results for **LinkShort**, collected during the QA sweep
+on 2026-08-13 (Linux, Rust 1.97, Node 22, Python 3). Scroll down — the
+counters count up, the bars fill in and every row animates as it enters the
+viewport. Use **▶ Replay animation** to run it again.
+
+<TestSuiteView project="fastapi-url" lang="en" />
+
+## Reproduce
+
+```bash
+python3.9 -m venv venv && venv/bin/pip install -r requirements.txt
+venv/bin/python -m pytest tests/ -v
+```
+
+
+## projects/halcyon-process-monitor/tests
+Source: https://bartoszosiej.github.io/Docs/projects/halcyon-process-monitor/tests
+------------------------------------------------------------------------
+---
+sidebar_label: Tests
+title: Tests
+description: Full animated test results for Halcyon Process Monitor.
+---
+
+# Tests — Halcyon Process Monitor
+
+Full automated test results for **Halcyon Process Monitor**, collected during the QA sweep
+on 2026-08-13 (Linux, Rust 1.97, Node 22, Python 3). Scroll down — the
+counters count up, the bars fill in and every row animates as it enters the
+viewport. Use **▶ Replay animation** to run it again.
+
+<TestSuiteView project="halcyon-process-monitor" lang="en" />
+
+## Reproduce
+
+```bash
+cargo test
+```
+
+
+## projects/n2-mesh/tests
+Source: https://bartoszosiej.github.io/Docs/projects/n2-mesh/tests
+------------------------------------------------------------------------
+---
+sidebar_label: Tests
+title: Tests
+description: Full animated test results for N2 Mesh.
+---
+
+# Tests — N2 Mesh
+
+Full automated test results for **N2 Mesh**, collected during the QA sweep
+on 2026-08-13 (Linux, Rust 1.97, Node 22, Python 3). Scroll down — the
+counters count up, the bars fill in and every row animates as it enters the
+viewport. Use **▶ Replay animation** to run it again.
+
+<TestSuiteView project="n2-mesh" lang="en" />
+
+## Reproduce
+
+```bash
+npm test
+npm run check
+```
+
+
+## projects/nv2-engine/tests
+Source: https://bartoszosiej.github.io/Docs/projects/nv2-engine/tests
+------------------------------------------------------------------------
+---
+sidebar_label: Tests
+title: Tests
+description: Full animated test results for NV2 Engine.
+---
+
+# Tests — NV2 Engine
+
+Full automated test results for **NV2 Engine**, collected during the QA sweep
+on 2026-08-13 (Linux, Rust 1.97, Node 22, Python 3). Scroll down — the
+counters count up, the bars fill in and every row animates as it enters the
+viewport. Use **▶ Replay animation** to run it again.
+
+<TestSuiteView project="nv2-engine" lang="en" />
+
+## Reproduce
+
+```bash
+cd Core
+cargo test
+cargo test --release qa_benchmark_report -- --ignored --nocapture
+```
 
 
 ## qa
@@ -4987,32 +5248,37 @@ Legend: ✅ pass · ⚠️ partial (see notes) · ❌ fail
 
 ## Overview
 
-| # | Project | Suite | Total | Passed | Failed | Ignored | Status |
-|---|---------|-------|-------|--------|--------|---------|--------|
-| 1 | [NV2 Engine](#nv2-engine-nv2_engine) | `cargo test` | 97 | 96 | 0 | 1 (release bench) | ✅ |
-| 2 | [Cybersec Toolkit](#cybersec-toolkit-cybersec-tools) | `cargo test --workspace` | 13 | 13 | 0 | 0 | ✅ |
-| 3 | [Halcyon Process Monitor](#halcyon-process-monitor-halcyon-process-monitor) | `cargo test` | 3 | 3 | 0 | 0 | ✅ |
-| 4 | [Externum](#externum-externum) | `unittest discover` | 118 | 118 | 0 | 0 | ✅ |
-| 5 | [AURORA OS](#aurora-os-aurora-os) | `npm test` + `tsc` | 34 | 34 | 0 | 0 | ✅ |
-| 6 | [Novactorio](#novactorio--factorio-web-game-factorio-web-game) | typecheck + build + lint | — | — | — | — | ✅ |
-| 7 | [LinkShort](#linkshort--fastapi-url-shortener-fastapi-url) | `pytest tests/` | 11 | 11 | 0 | 0 | ✅ |
-| 8 | [N2 Mesh](#n2-mesh-n2-mesh) | `npm test` | 19 | 19 | 0 | 0 | ✅ |
-| 9 | [Docs — this site](#docs--this-site) | `npm run build` | — | — | — | — | ✅ |
+| # | Project | Suite | Total | Passed | Failed | Ignored | Status | Animated page |
+|---|---------|-------|-------|--------|--------|---------|--------|---------------|
+| 1 | [NV2 Engine](#nv2-engine-nv2_engine) | `cargo test` | 99 | 98 | 0 | 1 (release bench) | ✅ | [tests](/projects/nv2-engine/tests/) |
+| 2 | [Cybersec Toolkit](#cybersec-toolkit-cybersec-tools) | `cargo test --workspace` | 29 | 29 | 0 | 0 | ✅ | [tests](/projects/cybersec-tools/tests/) |
+| 3 | [Halcyon Process Monitor](#halcyon-process-monitor-halcyon-process-monitor) | `cargo test` | 9 | 9 | 0 | 0 | ✅ | [tests](/projects/halcyon-process-monitor/tests/) |
+| 4 | [Externum](#externum-externum) | `unittest discover` | 120 | 120 | 0 | 0 | ✅ | [tests](/projects/externum/tests/) |
+| 5 | [AURORA OS](#aurora-os-aurora-os) | `npm test` + `tsc` | 56 | 56 | 0 | 0 | ✅ | [tests](/projects/aurora-os/tests/) |
+| 6 | [Novactorio](#novactorio--factorio-web-game-factorio-web-game) | typecheck + build + lint | — | — | — | — | ✅ | [tests](/projects/factorio-web-game/tests/) |
+| 7 | [LinkShort](#linkshort--fastapi-url-shortener-fastapi-url) | `pytest tests/` | 15 | 15 | 0 | 0 | ✅ | [tests](/projects/fastapi-url/tests/) |
+| 8 | [N2 Mesh](#n2-mesh-n2-mesh) | `npm test` | 22 | 22 | 0 | 0 | ✅ | [tests](/projects/n2-mesh/tests/) |
+| 9 | [Docs — this site](#docs--this-site) | `npm run build` | — | — | — | — | ✅ | [tests](/tests/) |
 
-**Σ 295 automated tests · 294 passed · 0 failed** (+ build/lint/typecheck
+**Σ 350 automated tests · 349 passed · 0 failed** (+ build/lint/typecheck
 gates on the web projects).
+
+> 🧪 Every project also has a dedicated **animated tests page** (EN:
+> `/projects/<project>/tests`, PL: `/pl/projects/<project>/testy`) with
+> count-up counters, progress bars and staggered row animations — linked
+> from the table above and from each project's index page.
 
 ---
 
 ## NV2 Engine (`NV2_ENGINE`)
 
-**97 tests** (96 passed, 1 ignored = release benchmark) · full report:
+**99 tests** (98 passed, 1 ignored = release benchmark) · [animated page](/projects/nv2-engine/tests/) · full report:
 [`TEST_REPORT.md`](https://github.com/BartoszOsiej/NV2_ENGINE/blob/main/TEST_REPORT.md)
 
 | Suite | Tests | Result |
 |---|---|---|
-| Whole project | 97 (96 + 1 ignored) | ✅ 96 passed, 0 failed |
-| AI / ML modules (ai_generator, memplp, online_trainer, vegetation, biomes) | 32 | ✅ |
+| Whole project | 99 (98 + 1 ignored) | ✅ 98 passed, 0 failed |
+| AI / ML modules (ai_generator, memplp, online_trainer, vegetation, biomes) | 34 | ✅ |
 | World & terrain (block, world) | 13 | ✅ |
 | Gameplay (interaction, crafting, inventory) | 38 | ✅ |
 | Renderer (camera, mesh, texture_registry) | 6 | ✅ |
@@ -5020,7 +5286,7 @@ gates on the web projects).
 
 | Module | Tests | Result |
 |---|---|---|
-| `world::ai_generator` (AI system, model bundles, datasets, preferences, checkpoints, textures) | 16 | ✅ |
+| `world::ai_generator` (AI system, model bundles, datasets, preferences, checkpoints, textures) | 18 | ✅ |
 | `world::memplp` (MeMLP core — train/forward, NaN hardening, migration, JSON roundtrip) | 10 | ✅ |
 | `interaction` (block break/place incl. AI feedback) | 19 | ✅ |
 | `inventory` | 13 | ✅ |
@@ -5062,14 +5328,14 @@ Reproduce: `cd Core && cargo test && cargo test --release qa_benchmark_report --
 
 ## Cybersec Toolkit (`cybersec-tools`)
 
-**13 tests** across the 4 crates — all passing.
+**29 tests** across the 4 crates — all passing. [Animated page](/projects/cybersec-tools/tests/)
 
 | Crate | Tests | Coverage | Result |
 |---|---|---|---|
-| hashsleuth | 4 | identify + digest vectors | ✅ |
-| netrecon | 4 | service names, port/CIDR parsing | ✅ |
-| packeteye | 3 | Ethernet/IPv4/TCP parsing | ✅ |
-| shadowscan | 2 | target normalization | ✅ |
+| hashsleuth | 8 | identify (hex lengths, crypt/Django/LDAP/phpass prefixes) + digest vectors | ✅ |
+| netrecon | 8 | service names, ports/ranges, CIDR expansion + rejection | ✅ |
+| packeteye | 8 | TCP SYN/SYNACK/FIN, UDP ports, ICMP, ARP, IPv6, garbage safety | ✅ |
+| shadowscan | 5 | target normalization incl. ports/queries/schemes | ✅ |
 
 The new tests exposed and fixed a real bug: phpass hash markers (`$P$`/`$H$`)
 were compared against the lowercased hash and could never match.
@@ -5080,7 +5346,7 @@ Reproduce: `cargo test --workspace`
 
 ## Halcyon Process Monitor (`halcyon-process-monitor`)
 
-**3 tests** (userspace `process-monitor` crate).
+**9 tests** (userspace `process-monitor` crate). [Animated page](/projects/halcyon-process-monitor/tests/)
 
 | Check | Result |
 |---|---|
@@ -5097,7 +5363,7 @@ Reproduce: `cargo test`
 
 ## Externum (`externum`)
 
-**118 tests** — pure Python, no dependencies.
+**120 tests** — pure Python, no dependencies. [Animated page](/projects/externum/tests/)
 
 | Test class | Stage | Tests | Result |
 |---|---|---|---|
@@ -5108,6 +5374,7 @@ Reproduce: `cargo test`
 | `TestMultilineLiterals` | Extra: multi-line literals | 5 | ✅ |
 | `TestClassesWithBlankLines` | Extra: classes with blank lines | 2 | ✅ |
 | `TestMoreFeatures` | Extra: comprehensions, bitwise, `with`/`assert`, f-strings… | 12 | ✅ |
+| `TestTernaryAndUnpacking` | Extra: ternary expressions, tuple-unpacking swaps | 2 | ✅ |
 
 Reproduce: `python3 -m unittest discover -s tests`
 
@@ -5115,12 +5382,12 @@ Reproduce: `python3 -m unittest discover -s tests`
 
 ## AURORA OS (`AURORA-OS`)
 
-**34/34 core tests** (EventBus, FileSystem, shell interpreter) ·
-TypeScript typecheck clean.
+**56/56 core assertions** (31 test cases: EventBus, FileSystem, shell
+interpreter) · TypeScript typecheck clean. [Animated page](/projects/aurora-os/tests/)
 
 | Area | Tests | Result |
 |---|---|---|
-| Core logic (`npm test`, Node harness) | 34 | ✅ 34 passed, 0 failed |
+| Core logic (`npm test`, Node harness) | 56 | ✅ 56 passed, 0 failed |
 | TypeScript (`tsc -p tsconfig.json`) | — | ✅ 0 errors |
 
 Reproduce: `npm test`
@@ -5130,6 +5397,7 @@ Reproduce: `npm test`
 ## Novactorio — Factorio Web Game (`Factorio-web-game`)
 
 No unit-test harness; the quality gates are typecheck, build and lint.
+[Animated page](/projects/factorio-web-game/tests/)
 
 | Gate | Result |
 |---|---|
@@ -5153,7 +5421,8 @@ Reproduce: `npm run typecheck && npm run build && npm run lint`
 
 ## LinkShort — FastAPI URL shortener (`FastAPI-url`)
 
-**11/11 API tests pass** — `tests/test_api.py` (Python 3.9 venv).
+**15/15 API tests pass** — `tests/test_api.py` (Python 3.9 venv).
+[Animated page](/projects/fastapi-url/tests/)
 
 | Test | Endpoint(s) | Asserts | Result |
 |---|---|---|---|
@@ -5168,6 +5437,10 @@ Reproduce: `npm run typecheck && npm run build && npm run lint`
 | `test_stats_404_for_unknown_code` | `GET /urls/zzzzzz/stats` | 404 | ✅ |
 | `test_delete_removes_link` | `DELETE /urls/{code}`, redirect | 204; redirect after delete → 404 | ✅ |
 | `test_delete_enforces_ownership` | `DELETE /urls/{code}` (two users) | other user → 404 | ✅ |
+| `test_login_unknown_email_rejected` | `POST /auth/login` | unknown email → 401 | ✅ |
+| `test_delete_unknown_code_404` | `DELETE /urls/zzzzzz` | 404 | ✅ |
+| `test_redirect_unknown_code_404` | `GET /urls/r/zzzzzz` | 404 | ✅ |
+| `test_inactive_link_still_resolves` | `GET /urls/r/{code}` | 302 + location header | ✅ |
 
 All 11 Python modules compile clean. Ran on **Python 3.9** (the QA
 environment's default 3.14 has no prebuilt wheels for the 2024-pinned
@@ -5180,16 +5453,17 @@ Reproduce: `python3.9 -m venv venv && venv/bin/pip install -r requirements.txt &
 
 ## N2 Mesh (`n2-mesh`)
 
-**19/19 unit tests pass** (`npm test`, `node:test` on `core.js`) — pure
+**22/22 unit tests pass** (`npm test`, `node:test` on `core.js`) — pure
+[Animated page](/projects/n2-mesh/tests/) · 
 logic extracted into `core.js` (no browser, no network, no deps).
 
 | Group | Tests | Coverage | Result |
 |---|---|---|---|
 | Bytes | 2 | utf8 round-trips, plain arrays | ✅ |
 | Ids & dedup | 5 | `newMid` uniqueness; `isNewMid` first-sight/expiry/cap; empty ids | ✅ |
-| Room parsing | 2 | hash normalisation, 48-char cap, `lobby` fallback | ✅ |
+| Room parsing | 3 | hash normalisation, 48-char cap, `lobby` fallback, leading-slash stripping | ✅ |
 | Nick colors | 1 | stable, deterministic | ✅ |
-| MQTT packets | 9 | single/multi-byte remaining length, PINGREQ, PUBLISH round-trip, QoS>0 packet id, CONNECT header, SUB/UNSUB structure | ✅ |
+| MQTT packets | 11 | single/multi-byte remaining length, empty body, PINGREQ, PUBLISH round-trips, QoS>0 packet id, CONNECT header, SUB/UNSUB structure | ✅ |
 
 The tests caught a real bug: `mqttParsePublish` checked the **DUP flag**
 (`0x08`) instead of the **QoS level** (`0x06`) when skipping packet ids,
@@ -5201,6 +5475,8 @@ Reproduce: `npm test && npm run check`
 
 ## Docs — this site
 
+[Animated page](/tests/)
+
 | Check | Result |
 |---|---|
 | Production build (`npm run build`, EN + PL) | ✅ 0 broken links (fails the build on broken links) |
@@ -5209,3 +5485,233 @@ Reproduce: `npm test && npm run check`
 | TypeScript | ✅ clean |
 
 Reproduce: `npm run build`
+
+
+## tests
+Source: https://bartoszosiej.github.io/Docs/tests
+------------------------------------------------------------------------
+---
+sidebar_label: Tests
+title: Tests
+description: Animated build and QA checks for the Docs site itself.
+---
+
+# Tests — Docs site
+
+Build and QA checks for **this documentation site**, verified during the
+sweep. Everything below animates on scroll.
+
+<TestSuiteView project="docs" lang="en" />
+
+## Reproduce
+
+```bash
+npm run build
+```
+
+
+## projects/aurora-os/tests
+Source: https://bartoszosiej.github.io/Docs/projects/aurora-os/tests
+------------------------------------------------------------------------
+---
+sidebar_label: Tests
+title: Tests
+description: Full animated test results for AURORA OS.
+---
+
+# Tests — AURORA OS
+
+Full automated test results for **AURORA OS**, collected during the QA sweep
+on 2026-08-13 (Linux, Rust 1.97, Node 22, Python 3). Scroll down — the
+counters count up, the bars fill in and every row animates as it enters the
+viewport. Use **▶ Replay animation** to run it again.
+
+<TestSuiteView project="aurora-os" lang="en" />
+
+## Reproduce
+
+```bash
+npm test
+npx tsc -p tsconfig.json --noEmit
+```
+
+
+## projects/cybersec-tools/tests
+Source: https://bartoszosiej.github.io/Docs/projects/cybersec-tools/tests
+------------------------------------------------------------------------
+---
+sidebar_label: Tests
+title: Tests
+description: Full animated test results for Cybersec Toolkit.
+---
+
+# Tests — Cybersec Toolkit
+
+Full automated test results for **Cybersec Toolkit**, collected during the QA sweep
+on 2026-08-13 (Linux, Rust 1.97, Node 22, Python 3). Scroll down — the
+counters count up, the bars fill in and every row animates as it enters the
+viewport. Use **▶ Replay animation** to run it again.
+
+<TestSuiteView project="cybersec-tools" lang="en" />
+
+## Reproduce
+
+```bash
+cargo test --workspace
+```
+
+
+## projects/externum/tests
+Source: https://bartoszosiej.github.io/Docs/projects/externum/tests
+------------------------------------------------------------------------
+---
+sidebar_label: Tests
+title: Tests
+description: Full animated test results for Externum.
+---
+
+# Tests — Externum
+
+Full automated test results for **Externum**, collected during the QA sweep
+on 2026-08-13 (Linux, Rust 1.97, Node 22, Python 3). Scroll down — the
+counters count up, the bars fill in and every row animates as it enters the
+viewport. Use **▶ Replay animation** to run it again.
+
+<TestSuiteView project="externum" lang="en" />
+
+## Reproduce
+
+```bash
+python3 -m unittest discover -s tests
+```
+
+
+## projects/factorio-web-game/tests
+Source: https://bartoszosiej.github.io/Docs/projects/factorio-web-game/tests
+------------------------------------------------------------------------
+---
+sidebar_label: Tests
+title: Tests
+description: Full animated test results for Novactorio.
+---
+
+# Tests — Novactorio
+
+Full automated test results for **Novactorio**, collected during the QA sweep
+on 2026-08-13 (Linux, Rust 1.97, Node 22, Python 3). Scroll down — the
+counters count up, the bars fill in and every row animates as it enters the
+viewport. Use **▶ Replay animation** to run it again.
+
+<TestSuiteView project="factorio-web-game" lang="en" />
+
+## Reproduce
+
+```bash
+npm run typecheck
+npm run build
+npm run lint
+```
+
+
+## projects/fastapi-url/tests
+Source: https://bartoszosiej.github.io/Docs/projects/fastapi-url/tests
+------------------------------------------------------------------------
+---
+sidebar_label: Tests
+title: Tests
+description: Full animated test results for LinkShort.
+---
+
+# Tests — LinkShort
+
+Full automated test results for **LinkShort**, collected during the QA sweep
+on 2026-08-13 (Linux, Rust 1.97, Node 22, Python 3). Scroll down — the
+counters count up, the bars fill in and every row animates as it enters the
+viewport. Use **▶ Replay animation** to run it again.
+
+<TestSuiteView project="fastapi-url" lang="en" />
+
+## Reproduce
+
+```bash
+python3.9 -m venv venv && venv/bin/pip install -r requirements.txt
+venv/bin/python -m pytest tests/ -v
+```
+
+
+## projects/halcyon-process-monitor/tests
+Source: https://bartoszosiej.github.io/Docs/projects/halcyon-process-monitor/tests
+------------------------------------------------------------------------
+---
+sidebar_label: Tests
+title: Tests
+description: Full animated test results for Halcyon Process Monitor.
+---
+
+# Tests — Halcyon Process Monitor
+
+Full automated test results for **Halcyon Process Monitor**, collected during the QA sweep
+on 2026-08-13 (Linux, Rust 1.97, Node 22, Python 3). Scroll down — the
+counters count up, the bars fill in and every row animates as it enters the
+viewport. Use **▶ Replay animation** to run it again.
+
+<TestSuiteView project="halcyon-process-monitor" lang="en" />
+
+## Reproduce
+
+```bash
+cargo test
+```
+
+
+## projects/n2-mesh/tests
+Source: https://bartoszosiej.github.io/Docs/projects/n2-mesh/tests
+------------------------------------------------------------------------
+---
+sidebar_label: Tests
+title: Tests
+description: Full animated test results for N2 Mesh.
+---
+
+# Tests — N2 Mesh
+
+Full automated test results for **N2 Mesh**, collected during the QA sweep
+on 2026-08-13 (Linux, Rust 1.97, Node 22, Python 3). Scroll down — the
+counters count up, the bars fill in and every row animates as it enters the
+viewport. Use **▶ Replay animation** to run it again.
+
+<TestSuiteView project="n2-mesh" lang="en" />
+
+## Reproduce
+
+```bash
+npm test
+npm run check
+```
+
+
+## projects/nv2-engine/tests
+Source: https://bartoszosiej.github.io/Docs/projects/nv2-engine/tests
+------------------------------------------------------------------------
+---
+sidebar_label: Tests
+title: Tests
+description: Full animated test results for NV2 Engine.
+---
+
+# Tests — NV2 Engine
+
+Full automated test results for **NV2 Engine**, collected during the QA sweep
+on 2026-08-13 (Linux, Rust 1.97, Node 22, Python 3). Scroll down — the
+counters count up, the bars fill in and every row animates as it enters the
+viewport. Use **▶ Replay animation** to run it again.
+
+<TestSuiteView project="nv2-engine" lang="en" />
+
+## Reproduce
+
+```bash
+cd Core
+cargo test
+cargo test --release qa_benchmark_report -- --ignored --nocapture
+```

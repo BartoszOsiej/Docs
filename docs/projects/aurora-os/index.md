@@ -1,5 +1,7 @@
 # ◈ AURORA OS
 
+<a class="tests-cta" href="./tests">🧪 View animated test results — 56/56 →</a>
+
 **A complete operating system running in your browser.**
 
 AURORA OS is a from-scratch desktop environment — window manager, virtual

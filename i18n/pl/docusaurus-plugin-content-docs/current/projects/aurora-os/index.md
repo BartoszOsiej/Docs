@@ -1,5 +1,7 @@
 # ◈ AURORA OS
 
+<a class="tests-cta" href="./testy">🧪 Zobacz animowane wyniki testów — 56/56 →</a>
+
 **Kompletny system operacyjny działający w Twojej przeglądarce.**
 
 AURORA OS to środowisko desktopowe pisane od zera — menedżer okien,

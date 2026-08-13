@@ -1,5 +1,7 @@
 # NV2 Engine
 
+<a class="tests-cta" href="./tests">🧪 View animated test results — 98 passed / 99 total →</a>
+
 > **A native Rust voxel engine with AI-driven procedural worlds — a full desktop voxel game built on wgpu, featuring an embedded neural network that learns vegetation placement while you play.**
 
 NV2 Engine (repository: `NV2_ENGINE`) is not a terrain prototype — it is a

@@ -1,5 +1,7 @@
 # Novactorio
 
+<a class="tests-cta" href="./testy">🧪 Zobacz animowane bramki jakości — typecheck · build · lint →</a>
+
 > **Przeglądarkowa gra o automatyzacji fabryk w duchu Factorio, napisana od zera w TypeScript z ręcznie zbudowanym silnikiem Canvas 2D.**
 
 Novactorio (repozytorium: `Factorio-web-game`) to kompletna gra

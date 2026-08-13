@@ -1,5 +1,7 @@
 # Novactorio
 
+<a class="tests-cta" href="./tests">🧪 View animated quality gates — typecheck · build · lint →</a>
+
 > **A browser factory-automation game in the spirit of Factorio, written from scratch in TypeScript with a hand-built Canvas 2D engine.**
 
 Novactorio (repository: `Factorio-web-game`) is a complete browser game: an

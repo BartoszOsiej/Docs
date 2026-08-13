@@ -1,5 +1,7 @@
 # 💬 N2 Mesh — P2P Chat
 
+<a class="tests-cta" href="./tests">🧪 View animated test results — 22/22 →</a>
+
 **Serverless peer-to-peer chat with an automatic relay fallback.** It runs on
 static hosting (GitHub Pages) — zero servers, zero databases, zero accounts.
 
