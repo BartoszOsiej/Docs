@@ -89,6 +89,7 @@ const config: Config = {
             { type: 'doc', docId: 'projects/n2-mesh/index', label: 'N2 Mesh' },
           ],
         },
+        { to: 'rd', position: 'left', label: 'R&D' },
         { to: 'translator', position: 'left', label: 'PDF Translator' },
         {
           href: 'https://bartoszosiej.github.io/prompt-inbox/',
