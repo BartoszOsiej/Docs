@@ -186,9 +186,35 @@ pub struct TerrainAI {  // opakowuje MeMLP, API silnika pozostaje stabilne
 Zmierzono przez `cargo test --release qa_benchmark_report -- --ignored --nocapture` —
 pełne liczby w `TEST_REPORT.md`.
 
+## Funkcje Fazy 2 (2026-08-13)
+
+### Współdzielenie modeli społeczności
+
+Modele są przenośne. `/ai_export <path> [author]` zapisuje `nv2-model-bundle`
+— pełny checkpoint z metadanymi autora / opisu / wskazówki biomu — a
+`/ai_import <path>` wczytuje dowolny współdzielony bundle, sanityzuje go i
+utrwala w checkpointcie runtime. API: `AISystem::export_model` /
+`import_model`. To lokalna połowa roadmapy chmurowej: pliki można już
+wymieniać między graczami i serwerami.
+
+### Import datasetów treningowych
+
+Zbiory JSON (`samples`: 8 cech terenu, `targets`: 4-klasowe rozkłady
+roślinności) są walidowane i trenowane bezpośrednio — `/ai_dataset <path>
+[epochs]` lub `AISystem::train_on_dataset`. Puste i niespójne pliki są
+odrzucane; wiersze z NaN pomijane.
+
+### Uczenie preferencji gracza
+
+`TerrainAI` trzyma liczniki preferencji klas (kwiat / paproć / patyk /
+kamyk) w checkpointcie (`#[serde(default)]` — stare checkpointy pozostają
+kompatybilne). Postawienie rośliny zwiększa jej licznik; pętla w tle miesza
+cele heurystyczne z nauczonym rozkładem (waga 30%), więc model skłania się
+ku temu, co lubi gracz. `/ai_stats` pokazuje żywe liczniki.
+
 ## Testowanie
 
-26 testów AI/ML w `world::ai_generator` (10), `world::memplp` (10),
+32 testy AI/ML w `world::ai_generator` (16), `world::memplp` (10),
 `world::online_trainer` (2), `world::vegetation` (3) i `world::biomes` (1):
 
 - Przejście wprzód daje poprawny rozkład prawdopodobieństwa
@@ -203,6 +229,12 @@ pełne liczby w `TEST_REPORT.md`.
 - **Wejścia NaN są odrzucane** bez ruszania wag
 - **Zatrute checkpointy nadal się ładują** — wagi `null` (NaN) wczytywane
   jako `0.0` zamiast unieważniać cały plik
+- **Bundle modeli round-tripują** — eksport → import zachowuje metadane i
+  parametry; pliki niebędące bundle'ami są odrzucane
+- **Datasety importują się i trenują** — walidacja odrzuca puste/niespójne
+  pliki
+- **Preferencje przesuwają cele** — blend skłania się ku ulubionej klasie
+  gracza i przetrwa round-trip checkpointu
 
 > Solidność: `Mlp::train` klipuje gradienty (±5) i ogranicza aktualizacje
 > parametrów (±1), `save_checkpoint` sanityzuje NaN/Inf przed zapisem,
