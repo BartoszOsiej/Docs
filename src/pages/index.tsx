@@ -29,6 +29,8 @@ interface Copy {
   cta2Body: string
   cta3Title: string
   cta3Body: string
+  cta4Title: string
+  cta4Body: string
   stackTitle: string
   stackRows: Array<[string, string]>
   tip: string
@@ -65,6 +67,8 @@ const EN: Copy = {
   cta2Body: 'A serverless WebRTC messenger that runs on static hosting.',
   cta3Title: 'How this site updates',
   cta3Body: 'Which repositories publish here, and how the pipeline works.',
+  cta4Title: 'R&D — published research',
+  cta4Body: 'The Quantum Flash Tomograph preprint — full text, DOI and citation audit.',
   stackTitle: 'The stack behind this hub',
   stackRows: [
     ['Static site', 'Docusaurus, hosted on GitHub Pages'],
@@ -107,6 +111,8 @@ const PL: Copy = {
   cta2Body: 'Bezserwerowy komunikator WebRTC działający na statycznym hostingu.',
   cta3Title: 'Jak ta witryna się aktualizuje',
   cta3Body: 'Które repozytoria publikują tu zmiany i jak działa pipeline.',
+  cta4Title: 'R&D — opublikowane badania',
+  cta4Body: 'Preprint Quantum Flash Tomograph — pełny tekst, DOI i audyt cytowań.',
   stackTitle: 'Stos technologiczny tego centrum',
   stackRows: [
     ['Statyczna witryna', 'Docusaurus, hostowana na GitHub Pages'],
@@ -127,6 +133,7 @@ export default function Home(): React.JSX.Element {
   const catalogUrl = useBaseUrl('/projects/')
   const chatUrl = useBaseUrl('/projects/n2-mesh/')
   const updateUrl = useBaseUrl('/update-flow')
+  const rdUrl = useBaseUrl('/rd/')
 
   return (
     <Layout
@@ -203,6 +210,13 @@ export default function Home(): React.JSX.Element {
                 <span>
                   <strong>{copy.cta3Title}</strong>
                   <em>{copy.cta3Body}</em>
+                </span>
+              </a>
+              <a className="cta-card" href={rdUrl}>
+                <span className="cta-icon">🔬</span>
+                <span>
+                  <strong>{copy.cta4Title}</strong>
+                  <em>{copy.cta4Body}</em>
                 </span>
               </a>
             </div>

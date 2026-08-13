@@ -20,6 +20,14 @@ title: Projekty — Bartosz Osiej
     link="/"
   />
   <ProjectCard
+    icon="🔬"
+    title="R&D — Centrum badawcze"
+    description="Otwartodostępowe badania publikowane pod moim nazwiskiem na Zenodo ze stałym DOI. Znajdziesz tu preprint Quantum Flash Tomograph — pełny tekst, metadane i audyt cytowań, licencja CC-BY-4.0."
+    tags={['Badania', 'Preprint', 'DOI', 'Open Access']}
+    tint="#2dd4bf"
+    link="/rd/"
+  />
+  <ProjectCard
     icon="💬"
     title="N2 Mesh — czat P2P"
     description="Komunikator WebRTC działający na statycznym hostingu. Peerzy ogłaszają obecność na publicznym temacie MQTT i łączą się bezpośrednio przez kanały danych WebRTC — bez serwera i bazy danych."
@@ -90,6 +98,7 @@ title: Projekty — Bartosz Osiej
 | Projekt | Repozytorium | Dokumentacja |
 |---|---|---|
 | Docs Hub | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | [tutaj](/) |
+| R&D — Quantum Flash Tomograph | Zenodo DOI [`10.5281/zenodo.21701871`](https://doi.org/10.5281/zenodo.21701871) | [dokumentacja](/rd/) |
 | N2 Mesh (czat P2P) | [BartoszOsiej/n2-mesh](https://github.com/BartoszOsiej/n2-mesh) | [dokumentacja](/projects/n2-mesh/) · [na żywo](https://bartoszosiej.github.io/n2-mesh/) |
 | LinkShort | [BartoszOsiej/FastAPI-url](https://github.com/BartoszOsiej/FastAPI-url) | [dokumentacja](/projects/fastapi-url/) |
 | Novactorio | [BartoszOsiej/Factorio-web-game](https://github.com/BartoszOsiej/Factorio-web-game) | [dokumentacja](/projects/factorio-web-game/) |

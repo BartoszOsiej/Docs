@@ -73,8 +73,37 @@ export function langLabel(code: string): string {
 /* Chunking                                                            */
 /* ------------------------------------------------------------------ */
 
-const GOOGLE_MAX = 4500 // URL-length safe
+const GOOGLE_MAX = 3800 // URL-length safe (encodeURIComponent inflates non-ASCII)
 const MYMEMORY_MAX = 450 // 500 per their API, keep margin
+
+/** Google clients Google actually accepts. `client=t` is blocked — never use it. */
+const GOOGLE_CLIENTS = ['gtx', 'dict-chrome-ex']
+
+const sleep = (ms: number): Promise<void> => new Promise((r) => setTimeout(r, ms))
+
+async function fetchJson<T>(url: string, signal?: AbortSignal): Promise<T> {
+  let lastErr: unknown = null
+  for (let attempt = 0; attempt < 3; attempt++) {
+    if (attempt > 0) await sleep(600 * attempt)
+    try {
+      const res = await fetch(url, { signal })
+      if (res.ok) {
+        const data: unknown = await res.json()
+        return data as T
+      }
+      // 403/429/5xx are often transient on Google's public endpoint — retry.
+      if ([403, 429, 500, 502, 503, 504].includes(res.status)) {
+        lastErr = new Error(`HTTP ${res.status}`)
+        continue
+      }
+      throw new Error(`HTTP ${res.status}`)
+    } catch (err) {
+      if (signal?.aborted) throw err
+      lastErr = err
+    }
+  }
+  throw lastErr ?? new Error('fetch failed')
+}
 
 function chunk(text: string, size: number): string[] {
   const out: string[] = []
@@ -97,16 +126,25 @@ function chunk(text: string, size: number): string[] {
 /* ------------------------------------------------------------------ */
 
 async function googleTranslate(text: string, from: string, to: string, signal?: AbortSignal): Promise<string> {
-  const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${from}&tl=${to}&dt=t&q=${encodeURIComponent(text)}`
-  const res = await fetch(url, { signal })
-  if (!res.ok) throw new Error(`Google gtx HTTP ${res.status}`)
-  const data: unknown = await res.json()
-  // shape: [[[translated, original, ...], ...], ...]
-  const rows = Array.isArray(data) ? (data[0] as unknown[]) : []
-  return rows
-    .map((row) => (Array.isArray(row) ? String(row[0] ?? '') : ''))
-    .join('')
-    .trim()
+  let lastErr: unknown = null
+  for (const client of GOOGLE_CLIENTS) {
+    try {
+      const url = `https://translate.googleapis.com/translate_a/single?client=${client}&sl=${from}&tl=${to}&dt=t&q=${encodeURIComponent(text)}`
+      const data = await fetchJson<unknown[]>(url, signal)
+      // shape: [[[translated, original, ...], ...], ...]
+      const rows = Array.isArray(data) ? (data[0] as unknown[]) : []
+      const out = rows
+        .map((row) => (Array.isArray(row) ? String(row[0] ?? '') : ''))
+        .join('')
+        .trim()
+      if (!out) throw new Error(`Google (${client}) returned an empty translation`)
+      return out
+    } catch (err) {
+      lastErr = err
+      if (signal?.aborted) throw err
+    }
+  }
+  throw lastErr ?? new Error('All Google clients failed')
 }
 
 async function myMemoryTranslate(text: string, from: string, to: string, signal?: AbortSignal): Promise<string> {
@@ -202,15 +240,16 @@ export async function translateText(
 /** Detect the language of a text using Google's gtx detector (sl=auto). */
 export async function detectLanguage(text: string, signal?: AbortSignal): Promise<string> {
   const sample = text.slice(0, 2000)
-  const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=en&dt=t&q=${encodeURIComponent(sample)}`
-  try {
-    const res = await fetch(url, { signal })
-    if (!res.ok) return 'auto'
-    const data: unknown = await res.json()
-    // shape: [[[...]], null, 'en', ...]
-    const detected = Array.isArray(data) ? data[2] : undefined
-    return typeof detected === 'string' && detected ? detected : 'auto'
-  } catch {
-    return 'auto'
+  for (const client of GOOGLE_CLIENTS) {
+    try {
+      const url = `https://translate.googleapis.com/translate_a/single?client=${client}&sl=auto&tl=en&dt=t&q=${encodeURIComponent(sample)}`
+      const data = await fetchJson<unknown[]>(url, signal)
+      // shape: [[[...]], null, 'en', ...]
+      const detected = Array.isArray(data) ? data[2] : undefined
+      if (typeof detected === 'string' && detected && detected !== 'auto') return detected
+    } catch {
+      if (signal?.aborted) throw signal.reason
+    }
   }
+  return 'auto'
 }

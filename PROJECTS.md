@@ -112,6 +112,19 @@ on this site, and maintained in the working copy at `~/`.
 
 ---
 
+## 🔬 R&D — Research Hub (not a repo)
+
+Open-access research published under my own name, hosted on Zenodo with a
+persistent DOI, licensed CC-BY-4.0. Full text lives on the **R&D** docs page:
+https://bartoszosiej.github.io/Docs/rd/
+
+- **Quantum Flash Tomograph** — *Single-Shot Volumetric Human Body Imaging at
+  Cellular Resolution via Squeezed-State Compressed Sensing MRI*
+- DOI (v4): [`10.5281/zenodo.21701871`](https://doi.org/10.5281/zenodo.21701871)
+- Documented on [this site](/rd/)
+
+---
+
 ## 📌 Not listed here (deliberately)
 
 Smaller / client / one-off projects (Minecraft launchers, landing pages, client
