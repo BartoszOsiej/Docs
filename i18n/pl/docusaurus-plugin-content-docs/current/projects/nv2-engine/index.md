@@ -30,16 +30,20 @@ env_logger · C#/.NET 8 (narzędzia treści) · Python/Pillow (narzędzia tekstu
 | **Kanały generacji** | Dedykowane kanały OpenSimplex + seed'y dla kształtu kontynentów, temperatury, wilgotności, erozji, szczytów/rzeźby, wysokości/szczegółów, warpu, jaskiń, rud, wody |
 | **Generacja asynchroniczna** | Ograniczona kolejka zadań, dedup w locie, równoległa generacja rayon, dostawa mpsc do głównego wątku |
 
-### Roślinność sterowana AI
+### Roślinność sterowana AI — MeMLP
 | Funkcja | Szczegóły |
 |---|---|
-| **Wbudowana sieć neuronowa** | MLP 8→16→4, 320 parametrów, ~1,2 KB pamięci |
+| **Architektura** | **MeMLP** (Modular embedded Multi-layer Perceptron Model) — modułowa, w procesie, czysty CPU, jeden checkpoint JSON |
+| **Głowa roślinności** | Głębokie MLP 8→24→16→4, ~0,3 µs/predykcję (3,4 M/s) |
+| **Głowa bioma** | 8→12→9 — klasyfikacja bioma sterująca dekoracjami |
+| **Głowa tekstur** | 8→12→6 — wybór stylu tekstur proceduralnych |
 | **Cechy wejściowe** | 8 cech terenu: wysokość, nachylenie, temperatura, wilgotność, odległość od wody, gęstość roślin, światło, seed szumu |
 | **Klasy wyjściowe** | 4 klasy roślinności: kwiaty, paprocie/rośliny wodne, patyki/dekoracje, kamyki/skały |
-| **Trening w tle** | Ciągły wątek, 100 próbek/epokę, ~5–10 ms/epokę, obciążenie &lt;1% CPU |
-| **Metoda treningu** | Online stochastic gradient descent, loss cross-entropy, ReLU ukryte, Softmax wyjściowe, adaptacyjny spadek LR (0,95×/1000 epok) |
+| **Trening w tle** | Ciągły wątek, 240+ próbek/epokę przez wszystkie głowy, obciążenie &lt;1% CPU |
+| **Metoda treningu** | Online SGD + cross-entropy, backprop przez wszystkie warstwy; trening na feedbacku gracza, danych klimatycznych online (offline-safe) i próbkach syntetycznych |
+| **Checkpointy** | Jeden plik JSON; legacy checkpointy 8→16→4 migrują automatycznie |
 | **Bloki roślinności** | 22 nowe typy bloków: róże, tulipany (4 kolory), mlecze, chabry, czosnki, azalie, paprocie, grzybienie, trawy morskie, kelp, mech dywanowy, winorośle, patyki, kamyki |
-| **Próg ufności** | 0,5 — tylko przewidywania o wysokiej ufności stawiają bloki |
+| **Próg ufności** | 0,40 — tylko przewidywania o wysokiej ufności stawiają bloki |
 
 ### Renderowanie (wgpu 0.20)
 | Funkcja | Szczegóły |

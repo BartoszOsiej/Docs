@@ -30,16 +30,20 @@ env_logger · C#/.NET 8 (content tools) · Python/Pillow (texture tools)
 | **Generation channels** | Dedicated OpenSimplex channels + seeds for continent shape, temperature, humidity, erosion, peaks/relief, height/detail, warp, caves, ores, water |
 | **Async generation** | Bounded work queue, in-flight dedup, rayon parallel generation, mpsc delivery to main thread |
 
-### AI-driven vegetation
+### AI-driven vegetation — MeMLP
 | Feature | Detail |
 |---|---|
-| **Embedded neural network** | 8→16→4 MLP, 320 parameters, ~1.2 KB total memory |
+| **Architecture** | **MeMLP** (Modular embedded Multi-layer Perceptron Model) — modular, in-process, pure CPU, one JSON checkpoint |
+| **Vegetation head** | Deep MLP 8→24→16→4, ~0.3 µs/prediction (3.4 M/s) |
+| **Biome head** | 8→12→9 — biome classification driving biome-aware decorations |
+| **Texture head** | 8→12→6 — procedural texture-style selection |
 | **Input features** | 8 terrain features: height, slope, temperature, humidity, water distance, plant density, light, noise seed |
 | **Output classes** | 4 vegetation classes: flowers, ferns/water plants, sticks/decorations, pebbles/rocks |
-| **Background training** | Continuous thread, 100 samples/epoch, ~5–10 ms/epoch, &lt;1% CPU overhead |
-| **Training method** | Online stochastic gradient descent, cross-entropy loss, ReLU hidden, Softmax output, adaptive LR decay (0.95×/1000 epochs) |
+| **Background training** | Continuous thread, 240+ samples/epoch across all heads, &lt;1% CPU overhead |
+| **Training method** | Online SGD + cross-entropy, backprop through all layers; trains on player feedback, online climate data (offline-safe) and synthetic samples |
+| **Checkpoints** | Single JSON file; legacy 8→16→4 checkpoints migrate automatically |
 | **Vegetation blocks** | 22 new block types: roses, tulips (4 colors), dandelions, cornflower, allium, azalea, ferns, lily pads, seagrass, kelp, moss carpet, vines, sticks, pebbles |
-| **Confidence threshold** | 0.5 — only high-confidence predictions place blocks |
+| **Confidence threshold** | 0.40 — only high-confidence predictions place blocks |
 
 ### Rendering (wgpu 0.20)
 | Feature | Detail |

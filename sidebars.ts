@@ -104,6 +104,11 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
+      id: 'qa',
+      label: 'QA & Test Reports',
+    },
+    {
+      type: 'doc',
       id: 'update-flow',
       label: 'Update Flow',
     },
