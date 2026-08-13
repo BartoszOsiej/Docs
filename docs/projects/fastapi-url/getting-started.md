@@ -113,5 +113,5 @@ backend/static/        # compiled React SPA
 
 ## Next steps
 
-- Explore every endpoint in the [API Reference](api-reference)
-- Deploy with [Docker or Fly.io](deployment)
+- Explore every endpoint in the [API Reference](./api-reference.md)
+- Deploy with [Docker or Fly.io](./deployment.md)

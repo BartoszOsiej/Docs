@@ -118,7 +118,7 @@ przyjmuje `Shell` (callbacki print + cwd) i działa w Node. Najważniejsze:
 - **Cytowanie** — `tokenize()` honoruje cudzysłowy podwójne
 - **Kontekst komend** — `ps`/`kill`/`open`/`apps`/`history`/`shutdown`
   wiążą się z żywą tabelą procesów i rejestrem aplikacji
-- **35+ komend** — pełna referencja w [podręczniku użytkownika](user-guide)
+- **35+ komend** — pełna referencja w [podręczniku użytkownika](./user-guide.md)
 
 ## Audio — bez plików, cała synteza
 
@@ -147,4 +147,4 @@ mkdir, touch, wc, obsługa nieznanych komend).
 
 ---
 
-*Dalej: [Podręcznik użytkownika — komendy, skróty, aplikacje](user-guide) · [Przegląd](/projects/aurora-os/)*
+*Dalej: [Podręcznik użytkownika — komendy, skróty, aplikacje](./user-guide.md) · [Przegląd](/projects/aurora-os/)*

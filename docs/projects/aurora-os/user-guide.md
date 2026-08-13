@@ -137,4 +137,4 @@ terminal for the same list, or `man &lt;command&gt;` for the manual entry.
 
 ---
 
-*Back to [Overview](/projects/aurora-os/) · [Architecture](architecture)*
+*Back to [Overview](/projects/aurora-os/) · [Architecture](./architecture.md)*

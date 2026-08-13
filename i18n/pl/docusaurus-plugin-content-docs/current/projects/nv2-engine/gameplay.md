@@ -98,7 +98,7 @@ Dwie powierzchnie craftingu:
 `RecipeRegistry` wspiera **przepisy kształtowe** (dopasowanie wzorca
 z obsługą offsetu) i **przepisy bezkształtowe** (dopasowanie multizbioru).
 Przepisy można też wczytywać z JSON (`assets.rs`). Zobacz
-[Referencję craftingu](crafting), aby poznać każdy przepis z dokładnymi
+[Referencję craftingu](./crafting.md), aby poznać każdy przepis z dokładnymi
 wzorami.
 
 ---

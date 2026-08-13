@@ -81,7 +81,7 @@ Functions.
 ## Premium features
 
 A premium tier (Stripe) unlocks additional content. See
-[Backend & Monetization](backend) for the payment flow.
+[Backend & Monetization](./backend.md) for the payment flow.
 
 ## Controls & UI
 

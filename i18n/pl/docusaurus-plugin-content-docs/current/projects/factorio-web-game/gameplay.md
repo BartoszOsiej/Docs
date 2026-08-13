@@ -87,7 +87,7 @@ z opłatą obsługiwanym przez `trade-fee-checkout` i rozliczanym przez
 ## Funkcje premium
 
 Poziom premium (Stripe) odblokowuje dodatkową zawartość. Zobacz
-[Backend i monetyzacja](backend), aby poznać przepływ płatności.
+[Backend i monetyzacja](./backend.md), aby poznać przepływ płatności.
 
 ## Sterowanie i UI
 

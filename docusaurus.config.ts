@@ -12,7 +12,10 @@ const config: Config = {
   baseUrl: '/Docs/',
   organizationName: 'BartoszOsiej',
   projectName: 'Docs',
-  trailingSlash: false,
+  // GitHub Pages serves /path/ from path/index.html; without trailing
+  // slashes Docusaurus emits flat .html files and every trailing-slash URL
+  // (footer links, hero CTAs, locale switcher) 404s on GitHub Pages.
+  trailingSlash: true,
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   i18n: {
