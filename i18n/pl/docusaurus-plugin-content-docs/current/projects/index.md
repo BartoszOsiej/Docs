@@ -95,18 +95,10 @@ title: Projekty — Bartosz Osiej
 
 ## 🗺️ Mapa repozytoriów
 
-| Projekt | Repozytorium | Dokumentacja |
-|---|---|---|
-| Docs Hub | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | [tutaj](/) |
-| R&D — Quantum Flash Tomograph | Zenodo DOI [`10.5281/zenodo.21701871`](https://doi.org/10.5281/zenodo.21701871) | [dokumentacja](/rd/) |
-| N2 Mesh (czat P2P) | [BartoszOsiej/n2-mesh](https://github.com/BartoszOsiej/n2-mesh) | [dokumentacja](/projects/n2-mesh/) · [na żywo](https://bartoszosiej.github.io/n2-mesh/) |
-| LinkShort | [BartoszOsiej/FastAPI-url](https://github.com/BartoszOsiej/FastAPI-url) | [dokumentacja](/projects/fastapi-url/) |
-| Novactorio | [BartoszOsiej/Factorio-web-game](https://github.com/BartoszOsiej/Factorio-web-game) | [dokumentacja](/projects/factorio-web-game/) |
-| NV2 Engine | [BartoszOsiej/NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE) | [dokumentacja](/projects/nv2-engine/) |
-| AURORA OS | [BartoszOsiej/AURORA-OS](https://github.com/BartoszOsiej/AURORA-OS) | [dokumentacja](/projects/aurora-os/) |
-| Cybersec Toolkit | [BartoszOsiej/cybersec-tools](https://github.com/BartoszOsiej/cybersec-tools) | [dokumentacja](/projects/cybersec-tools/) |
-| Monitor Procesów Halcyon | [BartoszOsiej/halcyon-process-monitor](https://github.com/BartoszOsiej/halcyon-process-monitor) | [dokumentacja](/projects/halcyon-process-monitor/) |
-| Externum | [BartoszOsiej/externum](https://github.com/BartoszOsiej/externum) | [dokumentacja](/projects/externum/) |
+> Interaktywna — przeciągnij węzły, scrolluj, aby przybliżyć, kliknij projekt, aby otworzyć jego dokumentację.
+
+<RepoMap />
+
 
 ## 📌 Niewymienione
 
