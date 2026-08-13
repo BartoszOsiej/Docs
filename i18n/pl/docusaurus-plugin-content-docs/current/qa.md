@@ -82,11 +82,14 @@ Odtworzenie: `npm run typecheck && npm run build && npm run lint`
 
 ## LinkShort — skracacz URL FastAPI (`FastAPI-url`)
 
-⚠️ Wszystkie 11 modułów Pythona **kompiluje się czysto**; zestaw testów
-(3 testy w `tests/test_api.py`) wymaga `pytest` + `fastapi`, które nie są
-zainstalowane w środowisku QA.
+✅ **3/3 testy API przechodzą** — `tests/test_api.py`: health,
+rejestracja/logowanie, skracanie + statystyki + przekierowanie (`302`).
+Wszystkie 11 modułów Pythona kompiluje się czysto. Uruchomiono na
+**Pythonie 3.9** (domyślny 3.14 w środowisku QA nie ma gotowych wheeli dla
+przypiętych z 2024 `pydantic-core`/`bcrypt`; obraz Dockera używa 3.12, gdzie
+przypięcia instalują się czysto).
 
-Odtworzenie: `pip install -r requirements.txt && pytest`
+Odtworzenie: `python3.9 -m venv venv && venv/bin/pip install -r requirements.txt && venv/bin/pytest tests/ -v`
 
 ## N2 Mesh (`n2-mesh`)
 

@@ -79,11 +79,13 @@ Reproduce: `npm run typecheck && npm run build && npm run lint`
 
 ## LinkShort — FastAPI URL shortener (`FastAPI-url`)
 
-⚠️ All 11 Python modules **compile clean**; the test suite (3 tests in
-`tests/test_api.py`) requires `pytest` + `fastapi`, which are not installed
-in the QA environment.
+✅ **3/3 API tests pass** — `tests/test_api.py`: health, register/login,
+shorten + stats + redirect (`302`). All 11 Python modules compile clean.
+Ran on **Python 3.9** (the QA environment's default 3.14 has no prebuilt
+wheels for the 2024-pinned `pydantic-core`/`bcrypt`; the Docker image uses
+3.12, where the pins install cleanly).
 
-Reproduce: `pip install -r requirements.txt && pytest`
+Reproduce: `python3.9 -m venv venv && venv/bin/pip install -r requirements.txt && venv/bin/pytest tests/ -v`
 
 ## N2 Mesh (`n2-mesh`)
 
