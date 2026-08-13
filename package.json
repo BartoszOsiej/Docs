@@ -4,11 +4,18 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "gen:pdfs": "node scripts/gen-sample-pdfs.mjs",
+    "copy:pdfjs": "node scripts/copy-pdfjs.mjs",
+    "predocs:dev": "npm run gen:pdfs && npm run copy:pdfjs",
+    "predocs:build": "npm run gen:pdfs && npm run copy:pdfjs",
     "docs:dev": "vitepress dev",
     "docs:build": "vitepress build",
     "docs:preview": "vitepress preview"
   },
   "devDependencies": {
     "vitepress": "^1.6.4"
+  },
+  "dependencies": {
+    "pdfjs-dist": "^6.2.108"
   }
 }

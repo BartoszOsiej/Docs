@@ -4,118 +4,110 @@ title: N2 Mesh — P2P Chat
 
 # 💬 N2 Mesh — P2P Chat
 
-**Serverless chat na zasadzie torrentów z automatycznym fallbackiem relay.**
-Działa na statycznym hostingu (GitHub Pages) — zero własnego serwera, zero
-bazy danych, zero kont.
+**Serverless peer-to-peer chat with an automatic relay fallback.** It runs on
+static hosting (GitHub Pages) — zero servers, zero databases, zero accounts.
 
-> **Wypróbuj teraz:** [🚀 Otwórz N2 Mesh](https://bartoszosiej.github.io/n2-mesh/)
-> (otwiera się w nowej karcie)
+> **Try it now:** [🚀 Open N2 Mesh](https://bartoszosiej.github.io/n2-mesh/)
+> (opens in a new tab)
 
-## Zasada działania (torrent principle)
+## How it works
 
 ```
-  ┌─────────────┐   room = infohash   ┌─────────────┐
-  │  Peer A     │◄───────────────────►│  Peer B     │
-  │ (twoja karta)│   WebTorrent swarm  │ (ich karta) │
-  └──────┬──────┘  (WebRTC, P2P)      └──────┬──────┘
-         │   WebRTC signaling via public     │
-         │   WebSocket tracker (tylko)       │
-         ▼                                   ▼
-   ┌────────────────────────────────────────────┐
-   │   Public WebSocket trackers (announce)     │
-   └────────────────────────────────────────────┘
-
-   ══ Fallback, gdy WebRTC nie może się połączyć ══
-   (sieci komórkowe / CGNAT)
-
-   ┌─────────────┐     MQTT over WSS     ┌─────────────┐
-   │  Peer A     │◄──────────────────────►│  Peer B     │
-   └──────┬──────┘  per-room topic       └──────┬──────┘
-          ▼                                    ▼
-   ┌────────────────────────────────────────────┐
-   │   Public MQTT broker (wss, bez konta)      │
-   └────────────────────────────────────────────┘
+  ┌─────────────┐   WebRTC data channel   ┌─────────────┐
+  │  Peer A     │◄───────────────────────►│  Peer B     │
+  │ (your tab)  │    (direct, P2P)        │ (their tab) │
+  └──────┬──────┘                         └──────┬──────┘
+         │    SDP offer/answer/ICE via          │
+         │    public MQTT topic (signaling only) │
+         ▼                                       ▼
+   ┌─────────────────────────────────────────────────┐
+   │   Public MQTT broker (per-room topic)           │
+   │   presence + signaling + fallback for messages  │
+   └─────────────────────────────────────────────────┘
 ```
 
-### Warstwa 1 — P2P (torrent principle)
+### Layer 1 — P2P (WebRTC)
 
-1. **Każdy peer w pokoju seeduje TEN SAM mały blob.** Identyczna treść →
-   identyczny **infohash** → wszyscy trafiają do tego samego swarmu
-   WebTorrent (dokładnie jak w torrentach).
-2. Publiczny WebSocket tracker wykonuje **sygnalizację WebRTC** między
-   członkami swarmu — tracker jest tylko *punktem spotkań*, nigdy nie widzi
-   wiadomości.
-3. Gdy dwóch peerów się połączy, wiadomości czatu jadą po ustanowionym
-   połączeniu jako **wiadomości protokołu rozszerzonego BitTorrenta** — czyli
-   wiadomości dosłownie podróżują po połączeniach peer-to-peer torrentów.
+1. **Peers announce their presence** on a per-room MQTT topic (public broker,
+   no account — the same way messengers discover each other).
+2. When two peers see each other, they exchange **WebRTC offer/answer/ICE
+   candidates** through that topic (the classic signaling-server pattern used
+   by PeerJS & co.). The broker only *introduces* peers — it never sees
+   message payloads.
+3. Once connected, chat messages travel over the **WebRTC data channel**
+   directly between browsers — real peer-to-peer.
 
-### Warstwa 2 — Relay (automatyczny fallback)
+### Layer 2 — Relay (automatic fallback)
 
-Czysty P2P w przeglądarce **nie może się połączyć na sieciach komórkowych**:
-operatorzy używają CGNAT i blokują przebijanie się przez NAT, a darmowe
-publiczne serwery TURN, które kiedyś to mostkowały, są martwe lub płatne
-(2026). Dlatego każda wiadomość jest **równolegle publikowana** do
-per-roomowego topicu na publicznym brokcie MQTT (WSS, bez konta). Każdy
-odbiorca **deduplikuje po ID wiadomości** — więc:
+Pure browser P2P **cannot connect on mobile networks**: carriers use CGNAT
+and block NAT hole-punching, and the free public TURN servers that used to
+bridge it are dead or paid (2026). That is why every message is also
+**published in parallel** to a per-room topic on a public MQTT broker
+(WSS, no account). Every receiver **deduplicates by message ID**, so:
 
-- peery, które mogą się połączyć P2P → wiadomości lecą bezpośrednio po
-  połączeniach torrentowych,
-- urządzenia, które nie mogą (telefon na LTE/5G) → wymieniają wiadomości
-  przez relay.
+- peers that can connect P2P → messages travel directly over the WebRTC data
+  channel,
+- devices that cannot (phones on LTE/5G) → exchange messages via the relay.
 
-**P2P pierwszy, relay jako fallback** — ten sam wzorzec, którego używają
-prawdziwe komunikatory.
+**P2P first, relay as a fallback** — the same pattern real messengers use.
 
-## Funkcje
+> **Why not WebTorrent trackers?** The original build found peers through
+> public WebTorrent WebSocket trackers (`tracker.webtorrent.dev`,
+> `tracker.openwebtorrent.com`). Those trackers now accept announces and see
+> the swarm, but **no longer relay WebRTC offers** between peers (verified
+> live: two peers registered in the same swarm, zero offers ever returned).
+> Since the browser build of WebTorrent can only use WebSocket trackers (no
+> UDP/DHT in the browser), peers could never find each other — so signaling
+> moved to the MQTT relay.
 
-- 🔗 **Pokoje jako torrenciki** — ta sama nazwa pokoju = ten sam infohash =
-  ten sam swarm
-- 📡 **Relay fallback** — własny, zero-zależnościowy klient MQTT 3.1.1 (ok.
-  100 linii, bez bibliotek), publikacja do `n2mesh/{pokój}`, izolacja pokoi
-  po dokładnym topicu
-- 🔀 **Dedup po ID** — wiadomość odebrana przez P2P *i* relay *i* most
-  lokalny wyświetla się raz
-- 💬 **Prawdziwe wiadomości P2P** — protokół rozszerzony BitTorrenta,
-  z kolejką do momentu extended handshake (nic nie ginie)
-- 🏷️ Nicki, licznik peerów, status połączenia (P2P / P2P+relay / relay)
-- 🔗 Linki do pokojów (`#/nazwa-pokoju`)
-- 🌙 Ciemny, dostępny z klawiatury interfejs
-- 🖥️ **Local bridge** — karty tej samej przeglądarki nie mogą łączyć się
-  przez WebRTC (browser blokuje loopback WebRTC), więc most `BroadcastChannel`
-  łączy je lokalnie.
+## Features
 
-## Jak używać
+- 🔗 **Rooms** — the same room name = the same signaling topic = the same
+  peer group
+- 📡 **Relay fallback** — a dependency-free MQTT 3.1.1 client (~100 lines, no
+  libraries), publishing to `n2mesh/{room}`, room isolation by exact topic
+- 🔀 **Deduplication by ID** — a message received over P2P *and* relay *and*
+  the local bridge is displayed once
+- 💬 **True P2P messages** — over WebRTC data channels, with MQTT fallback
+- 🏷️ Nicknames, peer counter, connection status (P2P / P2P+relay / relay)
+- 🔗 Shareable room links (`#/room-name`)
+- 🌙 Dark, keyboard-accessible interface, zero dependencies (no CDN, no build)
+- 🖥️ **Local bridge** — tabs of the same browser cannot connect via WebRTC
+  (browsers block WebRTC loopback), so a `BroadcastChannel` bridge connects
+  them locally
 
-1. Otwórz [N2 Mesh](https://bartoszosiej.github.io/n2-mesh/) na dwóch
-   urządzeniach (albo w dwóch kartach jednej przeglądarki).
-2. Ustaw **ten sam pokój** po obu stronach (domyślnie `lobby`).
-3. Napisz nick i wysyłaj wiadomości — na komputerze polecą P2P, na telefonie
-   automatycznie przez relay. Oba przypadki działają z tego samego linku.
+## How to use it
 
-> ⚠️ To jest mesh demo-grade: nie ma historii — po wyjściu swarm znika.
-> Wiadomości wysłane, gdy druga strona jest offline, są tracone (brak
-> kolejkowania po stronie brokera).
+1. Open [N2 Mesh](https://bartoszosiej.github.io/n2-mesh/) on two devices
+   (or two tabs of one browser).
+2. Set **the same room** on both sides (default: `lobby`).
+3. Pick a nickname and send messages — on a desktop they travel P2P, on a
+   phone automatically via the relay. Both cases work from the same link.
 
-## Uruchom lokalnie
+> ⚠️ This is a demo-grade mesh: there is no history — when you leave, the
+> room is gone. Messages sent while the other side is offline are lost
+> (no broker-side queueing).
+
+## Run locally
 
 ```bash
 git clone https://github.com/BartoszOsiej/n2-mesh.git
 cd n2-mesh
 python3 -m http.server 8080
-# otwórz http://localhost:8080
+# open http://localhost:8080
 ```
 
-## Bezpieczeństwo
+## Security
 
-- **Tryb P2P:** wiadomości podróżują wyłącznie peer-to-peer; tracker
-  wykonuje tylko sygnalizację i nigdy nie odbiera treści.
-- **Tryb relay:** wiadomości przechodzą przez publiczny broker MQTT — to
-  fallback dla sieci, w których P2P jest niemożliwy. Pokoje są izolowane
-  (każdy subskrybuje tylko swój topic).
-- Całość to czysty JavaScript (WebTorrent vendored lokalnie — bez CDN),
-  bez śledzenia, bez zapisu danych.
+- **P2P mode:** messages travel exclusively peer-to-peer; the MQTT broker
+  only performs signaling and never receives content.
+- **Relay mode:** messages pass through a public MQTT broker — a fallback
+  for networks where P2P is impossible. Rooms are isolated (each subscriber
+  only gets its own topic).
+- Everything is plain JavaScript (zero dependencies — no CDN), no tracking,
+  no data stored.
 
-## Więcej
+## More
 
-- [Architektura i szczegóły techniczne](/projects/n2-mesh/architecture)
+- [Architecture & technical details](/projects/n2-mesh/architecture)
 - [Repo: BartoszOsiej/n2-mesh](https://github.com/BartoszOsiej/n2-mesh)

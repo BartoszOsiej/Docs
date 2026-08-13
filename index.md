@@ -70,7 +70,7 @@ Four things make this hub what it is:
     <span class="cta-icon">💬</span>
     <span>
       <strong>N2 Mesh — the P2P chat</strong>
-      <em>A serverless, torrent-principle messenger that runs on static hosting.</em>
+      <em>A serverless WebRTC messenger that runs on static hosting.</em>
     </span>
   </a>
   <a class="cta-card" href="/update-flow">

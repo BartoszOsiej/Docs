@@ -15,15 +15,15 @@ title: Projects — Bartosz Osiej
     icon="📚"
     title="Docs Hub"
     description="This documentation site itself — VitePress on GitHub Pages, AI-readable llms.txt, auto-deploy via GitHub Actions, and the registry of every project."
-    :tags="['VitePress', 'GitHub Pages', 'WebTorrent']"
+    :tags="['VitePress', 'GitHub Pages']"
     tint="#38bdf8"
     link="/"
   />
   <ProjectCard
     icon="💬"
     title="N2 Mesh — P2P Chat"
-    description="Torrent-principle messenger that works on static hosting. Room = torrent infohash, peers join a WebTorrent swarm, messages travel over the BitTorrent extended protocol — no server, no database. Fully documented in its own docs pages."
-    :tags="['WebTorrent', 'P2P', 'BitTorrent', 'Serverless']"
+    description="WebRTC messenger that works on static hosting. Peers announce their presence on a public MQTT topic and connect directly over WebRTC data channels — no server, no database. Fully documented in its own docs pages."
+    :tags="['WebRTC', 'P2P', 'MQTT', 'Serverless']"
     tint="#a78bfa"
     link="/projects/n2-mesh/"
   />

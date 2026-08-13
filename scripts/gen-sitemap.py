@@ -4,14 +4,17 @@ import os
 import sys
 from xml.sax.saxutils import escape
 
-ROOT = "/home/user/Docs"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = "https://bartoszosiej.github.io/Docs"
 SKIP_DIRS = {".vitepress", "node_modules", ".git", "scripts"}
 
 # (relative page path without extension, changefreq, priority)
 PRIORITY = {
     "index": ("weekly", "1.0"),
+    "translator": ("weekly", "0.7"),
     "update-flow": ("monthly", "0.6"),
+    "pl/index": ("weekly", "0.9"),
+    "pl/translator": ("weekly", "0.7"),
 }
 SECTION_PRIORITY = {  # index page of each section
     "projects/fastapi-url": ("weekly", "0.9"),
