@@ -32,8 +32,18 @@ Unit tests exist in key modules:
 | Module | Tests cover |
 |---|---|
 | `crafting.rs` | Shaped recipe matching with offset alignment, shapeless multiset matching |
-| `commands.rs` | Command execution flows (locate forest/highland) |
-| `world/ai_generator.rs` | Forward pass probability validity, training loss decrease |
+| `commands.rs` | Command execution flows (locate forest/highland, `/ai_*` round-trips and validation) |
+| `world/ai_generator.rs` | Forward pass validity, training loss decrease, NaN hardening, model bundles, datasets, preferences |
+| `world/memplp.rs` | MLP forward/train, deterministic init, legacy migration, NaN survival |
+
+## AI commands
+
+| Command | Effect |
+|---|---|
+| `/ai_export <path> [author]` | Export the live model as a portable community bundle |
+| `/ai_import <path>` | Import a shared model bundle and persist it |
+| `/ai_dataset <path> [epochs]` | Train the vegetation head on a JSON dataset |
+| `/ai_stats` | Show live model stats + player preferences |
 
 ## Extending: add a block type
 

@@ -2,6 +2,21 @@
 
 ## Changelog
 
+### Faza 2 — współdzielenie modeli, datasety, preferencje gracza (2026-08-13)
+
+1. **Współdzielenie modeli** — przenośny format `nv2-model-bundle`
+   (eksport/import przez `/ai_export`, `/ai_import`), sanityzowany pod
+   kątem NaN i utrwalany po imporcie.
+2. **Import datasetów treningowych** — `/ai_dataset <path> [epochs]` trenuje
+   głowę roślinności na walidowanych zbiorach JSON.
+3. **Uczenie preferencji gracza** — liczniki klas w checkpointcie (wstecznie
+   kompatybilne), wmieszane w cele treningowe (30%).
+4. **Odporność checkpointu na NaN** — klipowanie gradientu, sanityzacja przy
+   zapisie, tolerancyjne ładowanie; naprawiono realny bug uszkodzenia.
+
+Zestaw: **96 zaliczonych / 0 błędów** (97 łącznie z zignorowanym benchmarkiem
+release).
+
 ### Faza 1 AI — inteligencja roślinności (v1.0.0, ukończona)
 
 **1. Usunięto limit wysokości świata**
@@ -44,39 +59,38 @@
 
 ## Plan — Faza 2
 
-### Funkcja 1: Integracja zestawów danych z internetu
-- Dodaj klienta HTTP (zależności już obecne)
-- Pobieraj zestawy treningowe, deserializuj serde
-- Wprowadzaj realne próbki do pętli treningu obok syntetycznych
-- **Format danych:** tablice JSON `{ features: [f32; 8], label: u8 }`
+### Funkcja 1: Integracja zestawów danych z internetu — ✅ część lokalna
+- ✅ Wczytywanie, walidacja i trening na plikach JSON (`/ai_dataset`)
+- ⬜ Chmurowe repozytorium datasetów / endpointy API
+- ⬜ Łączenie z live weather już działa (Open-Meteo, fallback offline)
 
 ### Funkcja 2: Generacja tekstur AI w czasie rzeczywistym
-- Generuj tekstury proceduralnie siecią
-- Zintegruj z dynamicznym atlasem renderera
-- Emituj wygenerowane tekstury przez `AIMessage::TextureGenerated`
+- ⬜ Generuj tekstury proceduralnie siecią
+- ⬜ Zintegruj z dynamicznym atlasem renderera
+- ⬜ Emituj wygenerowane tekstury przez `AIMessage::TextureGenerated`
 
-### Funkcja 3: Uczenie online z działań gracza
-- Śledź interakcje gracza (`record_player_placement(features, choice)`)
-- Używaj wyborów gracza jako sygnałów treningowych (heurystyka → preferencja gracza)
-- Bezpieczne prywatnościowo: tylko lokalne cechy terenu, bez współrzędnych,
+### Funkcja 3: Uczenie online z działań gracza — ✅ ukończone (2026-08-13)
+- ✅ Wybory gracza śledzone jako liczniki preferencji w checkpointcie
+- ✅ Cele treningowe wmieszane z nauczonymi preferencjami (30%)
+- ✅ Bezpieczne prywatnościowo: tylko lokalne cechy terenu, bez współrzędnych,
   bez danych osobowych
 
-### Funkcja 4: Współdzielenie modeli w chmurze (multiplayer)
-- Upload/pobieranie wytrenowanych modeli
-- Dystrybucja modeli społeczności
-- Versionowane checkpointy modeli
+### Funkcja 4: Współdzielenie modeli w chmurze (multiplayer) — ✅ część lokalna
+- ✅ Przenośny `nv2-model-bundle` (eksport/import przez `/ai_export`, `/ai_import`)
+- ⬜ Chmurowe endpointy upload/download / marketplace modeli
+- ✅ Versionowany, samoopisujący się format checkpointu
 
 ### Funkcja 5: Akceleracja GPU
-- Równoległe próbki treningowe na GPU (batchowane wprzód/wstecz)
-- Większe modele bez kosztu czasu klatki
+- ⬜ Równoległe próbki treningowe na GPU (batchowane wprzód/wstecz)
+- ⬜ Większe modele bez kosztu czasu klatki
 
 ### Funkcja 6: Głębia świata i rozgrywki
-- Sezonowe zmiany roślinności
-- Koordynacja wielu biomów
-- Streaming chunków bez limitu wysokości
-- Dedykowany system audio rozgrywki (sygnały ośrodków ruchu już śledzone)
-- Sieciowanie / multiplayer
-- Edytor treści w silniku
+- ⬜ Sezonowe zmiany roślinności
+- ⬜ Koordynacja wielu biomów
+- ⬜ Streaming chunków bez limitu wysokości
+- ⬜ Dedykowany system audio rozgrywki (sygnały ośrodków ruchu już śledzone)
+- ⬜ Sieciowanie / multiplayer
+- ⬜ Edytor treści w silniku
 
 ## Znane ograniczenia (Faza 1)
 

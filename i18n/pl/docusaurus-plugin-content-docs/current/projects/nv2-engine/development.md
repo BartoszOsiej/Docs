@@ -32,8 +32,18 @@ Testy jednostkowe istnieją w kluczowych modułach:
 | Moduł | Testy obejmują |
 |---|---|
 | `crafting.rs` | Dopasowanie przepisów kształtowych z wyrównaniem offsetu, bezkształtowe dopasowanie multizbioru |
-| `commands.rs` | Przepływy wykonywania komend (locate forest/highland) |
-| `world/ai_generator.rs` | Poprawność rozkładu prawdopodobieństwa wprzód, spadek lossu treningu |
+| `commands.rs` | Przepływy wykonywania komend (locate forest/highland, round-tripy i walidacja `/ai_*`) |
+| `world/ai_generator.rs` | Poprawność wprzód, spadek lossu, odporność na NaN, bundle modeli, datasety, preferencje |
+| `world/memplp.rs` | MLP wprzód/trening, deterministyczna inicjalizacja, migracja legacy, przetrwanie NaN |
+
+## Komendy AI
+
+| Komenda | Efekt |
+|---|---|
+| `/ai_export <path> [author]` | Eksport żywego modelu jako przenośnego bundle'a społeczności |
+| `/ai_import <path>` | Import współdzielonego modelu i utrwalenie go |
+| `/ai_dataset <path> [epochs]` | Trening głowy roślinności na zbiorze JSON |
+| `/ai_stats` | Podgląd statystyk modelu + preferencji gracza |
 
 ## Rozszerzanie: dodaj typ bloku
 

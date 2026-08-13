@@ -2,6 +2,19 @@
 
 ## Changelog
 
+### Phase 2 — model sharing, datasets, player preferences (2026-08-13)
+
+1. **Community model sharing** — portable `nv2-model-bundle` export/import
+   (`/ai_export`, `/ai_import`), NaN-sanitised and persisted on import.
+2. **Training-dataset import** — `/ai_dataset <path> [epochs]` trains the
+   vegetation head on validated JSON datasets.
+3. **Player-preference learning** — per-class counters in the checkpoint
+   (backward compatible), blended into training targets (30%).
+4. **NaN checkpoint hardening** — gradient clipping, sanitise-on-save,
+   tolerant load; fixed a real corruption bug.
+
+Suite: **96 passed / 0 failed** (97 total incl. ignored release benchmark).
+
 ### AI Phase 1 — vegetation intelligence (v1.0.0, complete)
 
 **1. World height ceiling removed**
@@ -43,38 +56,37 @@
 
 ## Roadmap — Phase 2
 
-### Feature 1: Internet-based dataset integration
-- Add HTTP client (deps already present)
-- Download training datasets, deserialize with serde
-- Feed real-world samples into the training loop alongside synthetic ones
-- **Data format:** JSON arrays of `{ features: [f32; 8], label: u8 }`
+### Feature 1: Internet-based dataset integration — ✅ local part done
+- ✅ Load + validate + train on JSON dataset files (`/ai_dataset`)
+- ⬜ Cloud dataset repository / API endpoints
+- ⬜ Live weather merge already runs (Open-Meteo, offline fallback)
 
 ### Feature 2: Real-time AI texture generation
-- Generate textures procedurally with the network
-- Integrate with the renderer's dynamic atlas
-- Emit generated textures via `AIMessage::TextureGenerated`
+- ⬜ Generate textures procedurally with the network
+- ⬜ Integrate with the renderer's dynamic atlas
+- ⬜ Emit generated textures via `AIMessage::TextureGenerated`
 
-### Feature 3: Online learning from player actions
-- Track player interactions (`record_player_placement(features, choice)`)
-- Use player choices as training signals (heuristic → player preference)
-- Privacy-safe: only local terrain features, no coordinates, no personal data
+### Feature 3: Online learning from player actions — ✅ done (2026-08-13)
+- ✅ Player choices tracked as preference counters in the checkpoint
+- ✅ Training targets blended with learned preferences (30%)
+- ✅ Privacy-safe: only local terrain features, no coordinates, no personal data
 
-### Feature 4: Cloud model sharing (multiplayer)
-- Upload/download trained models
-- Community model distribution
-- Versioned model checkpoints
+### Feature 4: Cloud model sharing (multiplayer) — ✅ local part done
+- ✅ Portable `nv2-model-bundle` export/import (`/ai_export`, `/ai_import`)
+- ⬜ Cloud upload/download endpoints / model marketplace
+- ✅ Versioned, self-describing checkpoint format
 
 ### Feature 5: GPU acceleration
-- Parallelize training samples across GPU (batched forward/backward)
-- Larger models with no frame-time cost
+- ⬜ Parallelize training samples across GPU (batched forward/backward)
+- ⬜ Larger models with no frame-time cost
 
 ### Feature 6: World & gameplay depth
-- Seasonal vegetation changes
-- Multi-biome coordination
-- Unlimited-height chunk streaming
-- Dedicated gameplay audio system (movement-medium signals already tracked)
-- Networking / multiplayer
-- In-engine content editor
+- ⬜ Seasonal vegetation changes
+- ⬜ Multi-biome coordination
+- ⬜ Unlimited-height chunk streaming
+- ⬜ Dedicated gameplay audio system (movement-medium signals already tracked)
+- ⬜ Networking / multiplayer
+- ⬜ In-engine content editor
 
 ## Known limitations (Phase 1)
 

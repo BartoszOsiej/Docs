@@ -170,6 +170,33 @@ pub struct TerrainAI {  // wraps the MeMLP, engine-facing API is stable
 5. **Player learning** — `interaction.rs` calls `ai_feedback::record_place` /
    `record_break` on every vegetation interaction.
 
+## Phase-2 features (2026-08-13)
+
+### Community model sharing
+
+Models are portable. `/ai_export <path> [author]` writes an `nv2-model-bundle`
+— the full checkpoint wrapped with author / description / biome-hint
+metadata — and `/ai_import <path>` loads any shared bundle, sanitises it and
+persists it to the runtime checkpoint. API: `AISystem::export_model` /
+`import_model`. This is the local half of the cloud-sharing roadmap: files
+can already be exchanged between players and servers.
+
+### Training-dataset import
+
+JSON datasets (`samples`: 8 terrain features, `targets`: 4-class vegetation
+distributions) are validated and trained on directly — `/ai_dataset <path>
+[epochs]` or `AISystem::train_on_dataset`. Empty or mismatched files are
+rejected; non-finite rows are skipped.
+
+### Player-preference learning
+
+`TerrainAI` keeps per-class preference counters (flower / fern / stick /
+pebble) inside the checkpoint (`#[serde(default)]` — old checkpoints stay
+compatible). Placing a vegetation block increments its counter; the
+background loop blends heuristic targets with the learned distribution
+(30% weight), so the model leans toward what the player likes. `/ai_stats`
+shows the live counters.
+
 ## Performance
 
 | Aspect | Value |
@@ -185,7 +212,7 @@ full numbers in `TEST_REPORT.md`.
 
 ## Testing
 
-26 AI/ML tests across `world::ai_generator` (10), `world::memplp` (10),
+32 AI/ML tests across `world::ai_generator` (16), `world::memplp` (10),
 `world::online_trainer` (2), `world::vegetation` (3) and `world::biomes` (1):
 
 - Forward pass produces a valid probability distribution
@@ -200,6 +227,11 @@ full numbers in `TEST_REPORT.md`.
 - **NaN inputs are rejected** without touching the weights
 - **Poisoned checkpoints still load** — `null` (NaN) weights read back as
   `0.0` instead of failing the whole load
+- **Model bundles round-trip** — export → import preserves metadata and
+  parameters; non-bundle files are rejected
+- **Datasets import and train** — validation rejects empty/mismatched files
+- **Preferences shift targets** — the blend leans toward the player's
+  favourite class and survives checkpoint round-trips
 
 > Robustness: `Mlp::train` clips gradients (±5) and bounds per-parameter
 > updates (±1), `save_checkpoint` sanitises NaN/Inf before writing, and
