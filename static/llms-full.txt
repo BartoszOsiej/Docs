@@ -17,6 +17,10 @@ This page is a live demo of the translator module built into this docs hub.
 Pick a sample below and press **Translate page** (or **Translate all**) to
 watch a page get converted to Polish — rendered right on the book page.
 
+You can also **open any PDF from your computer** with the 📂 *Open PDF*
+button (or by dragging & dropping a file onto the viewer) — it is read
+entirely in your browser, never uploaded.
+
 <PdfBookViewer
   src="/pdfs/sample-english.pdf"
   title="Sample — English Manual"
@@ -26,6 +30,8 @@ watch a page get converted to Polish — rendered right on the book page.
   src="/pdfs/sample-polish.pdf"
   title="Przykład — Polski Dokument"
 />
+
+<PdfBookViewer title="Your PDF here — drop a file to start" />
 
 ---
 
@@ -40,6 +46,7 @@ watch a page get converted to Polish — rendered right on the book page.
 | 📑 **Per-page or whole book** | *Translate page* handles the current page; *Translate all* queues every page with a progress bar |
 | 🖼️ **On-page overlay** | Translated text can be shown over the page itself, or read in the panel below the book |
 | ⌨️ **Keyboard friendly** | `←` / `→` arrow keys turn the pages |
+| 📂 **Open your own PDFs** | Load any PDF from your computer (file picker or drag & drop) — processed 100% client-side |
 
 ## 🧪 Try it
 
@@ -47,7 +54,9 @@ watch a page get converted to Polish — rendered right on the book page.
 2. Set the target language (default: **Polski**).
 3. Press **Translate page** — the translation appears in the panel and on the page.
 4. Press **Translate all** to translate the whole book.
-5. Load your own PDF by embedding the component with a different `src`.
+5. **Open your own PDF** — click 📂 *Open PDF* and pick a file, or just drag &
+   drop it onto the viewer. The file is processed entirely in your browser.
+6. Embed the component with a different `src` to show a static PDF instead.
 
 ## 🔌 Embedding it in your docs
 
@@ -57,9 +66,17 @@ The component is registered globally, so any Markdown page can embed it:
 <PdfBookViewer src="/pdfs/sample-english.pdf" title="My Book" />
 ```
 
+To let readers open their own PDF (no `src`), embed it without a source:
+
+```md
+<PdfBookViewer title="Upload your PDF" />
+```
+
+In both cases the 📂 *Open PDF* button and drag & drop are available.
+
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `src` | string | — | PDF URL. Absolute paths are resolved against the site base; http(s) URLs load directly |
+| `src` | string | — | Optional PDF URL. Absolute paths are resolved against the site base; http(s) URLs load directly. Omit it to get a file-picker / drag-and-drop viewer |
 | `title` | string | `PDF Book` | Book title (shown in the toolbar and on the cover) |
 | `initialPage` | number | `1` | Page the book opens on |
 
@@ -82,6 +99,9 @@ PDF (URL) ──► pdf.js ──► canvas pages ──► book layout (spread 
 - **Rendering:** [pdf.js](https://mozilla.github.io/pdf.js/) renders every page
   to a `&lt;canvas&gt;`. The worker and the standard-14 font data are vendored in
   `public/pdfjs/` so the viewer works offline — no CDN.
+- **Local files:** picking a file (or dropping it) reads it with
+  `File.arrayBuffer()` and hands the raw bytes to `pdf.js`
+  (`getDocument({ data })`) — the PDF never leaves the browser.
 - **Text extraction:** `page.getTextContent()` returns positioned text spans;
   they are joined into paragraphs and chunked (Google: ~4 500 chars,
   MyMemory: ~450 chars) to stay inside each API's limits.
@@ -547,8 +567,8 @@ backend/static/        # compiled React SPA
 
 ## Next steps
 
-- Explore every endpoint in the [API Reference](api-reference)
-- Deploy with [Docker or Fly.io](deployment)
+- Explore every endpoint in the [API Reference](./api-reference.md)
+- Deploy with [Docker or Fly.io](./deployment.md)
 
 
 ## projects/fastapi-url/api-reference
@@ -1092,7 +1112,7 @@ Functions.
 ## Premium features
 
 A premium tier (Stripe) unlocks additional content. See
-[Backend & Monetization](backend) for the payment flow.
+[Backend & Monetization](./backend.md) for the payment flow.
 
 ## Controls & UI
 
@@ -1243,16 +1263,20 @@ env_logger · C#/.NET 8 (content tools) · Python/Pillow (texture tools)
 | **Generation channels** | Dedicated OpenSimplex channels + seeds for continent shape, temperature, humidity, erosion, peaks/relief, height/detail, warp, caves, ores, water |
 | **Async generation** | Bounded work queue, in-flight dedup, rayon parallel generation, mpsc delivery to main thread |
 
-### AI-driven vegetation
+### AI-driven vegetation — MeMLP
 | Feature | Detail |
 |---|---|
-| **Embedded neural network** | 8→16→4 MLP, 320 parameters, ~1.2 KB total memory |
+| **Architecture** | **MeMLP** (Modular embedded Multi-layer Perceptron Model) — modular, in-process, pure CPU, one JSON checkpoint |
+| **Vegetation head** | Deep MLP 8→24→16→4, ~0.3 µs/prediction (3.4 M/s) |
+| **Biome head** | 8→12→9 — biome classification driving biome-aware decorations |
+| **Texture head** | 8→12→6 — procedural texture-style selection |
 | **Input features** | 8 terrain features: height, slope, temperature, humidity, water distance, plant density, light, noise seed |
 | **Output classes** | 4 vegetation classes: flowers, ferns/water plants, sticks/decorations, pebbles/rocks |
-| **Background training** | Continuous thread, 100 samples/epoch, ~5–10 ms/epoch, &lt;1% CPU overhead |
-| **Training method** | Online stochastic gradient descent, cross-entropy loss, ReLU hidden, Softmax output, adaptive LR decay (0.95×/1000 epochs) |
+| **Background training** | Continuous thread, 240+ samples/epoch across all heads, &lt;1% CPU overhead |
+| **Training method** | Online SGD + cross-entropy, backprop through all layers; trains on player feedback, online climate data (offline-safe) and synthetic samples |
+| **Checkpoints** | Single JSON file; legacy 8→16→4 checkpoints migrate automatically |
 | **Vegetation blocks** | 22 new block types: roses, tulips (4 colors), dandelions, cornflower, allium, azalea, ferns, lily pads, seagrass, kelp, moss carpet, vines, sticks, pebbles |
-| **Confidence threshold** | 0.5 — only high-confidence predictions place blocks |
+| **Confidence threshold** | 0.40 — only high-confidence predictions place blocks |
 
 ### Rendering (wgpu 0.20)
 | Feature | Detail |
@@ -1681,7 +1705,7 @@ Two crafting surfaces:
 
 `RecipeRegistry` supports **shaped recipes** (pattern matching with offset
 support) and **shapeless recipes** (multiset matching). Recipes are also
-loadable from JSON (`assets.rs`). See the [Crafting Reference](crafting) for
+loadable from JSON (`assets.rs`). See the [Crafting Reference](./crafting.md) for
 every recipe with exact patterns.
 
 ---
@@ -2172,12 +2196,17 @@ Key details:
 ## projects/nv2-engine/ai
 Source: https://bartoszosiej.github.io/Docs/projects/nv2-engine/ai
 ------------------------------------------------------------------------
-# AI Vegetation System
+# AI System — MeMLP (Modular embedded Multi-layer Perceptron Model)
 
-NV2 Engine embeds a small neural network that decides where vegetation
-belongs, and trains it **in the background while you play** — with zero FPS
-impact (&lt;1% CPU overhead). This is a complete, production-ready MLP
-implementation in `world/ai_generator.rs` (410 lines) using `ndarray`.
+NV2 Engine embeds a small neural network — **MeMLP** (Modular embedded
+Multi-layer Perceptron Model) — that decides where vegetation belongs,
+classifies biomes from climate features and selects procedural texture
+styles. It trains **in the background while you play** with zero FPS impact
+(&lt;1% CPU overhead). Everything lives in-process: pure CPU, one JSON
+checkpoint, no cloud, no GPU.
+
+Implementation: `world/memplp.rs` (MeMLP core) + `world/ai_generator.rs`
+(engine-facing system), using `ndarray`.
 
 ## Architecture overview
 
@@ -2187,47 +2216,50 @@ implementation in `world/ai_generator.rs` (410 lines) using `ndarray`.
 │  World Generation                                           │
 │   ├─ Chunk generation (BiomeGenerator)                      │
 │   ├─ Tree placement (VegetationGenerator)                   │
-│   ├─ Grass/flowers (traditional)                            │
 │   └─ AI Vegetation (place_ai_vegetation) ◄──────┐           │
 │                                                  │          │
 └──────────────────────────────────────────────────┬──────────┘
                                                    │
-                Queries AI for predictions (non-blocking
-                via Arc<Mutex>)
+            Queries AI for predictions (non-blocking
+            via Arc<Mutex>)
                                                    │
 ┌──────────────────────────────────────────────────▼──────────┐
 │              Background AI Thread (continuous)              │
-│  TerrainAI Neural Network                                   │
-│   ├─ Forward pass (inference)                               │
-│   ├─ Backward pass (training)                               │
-│   ├─ Weight updates                                         │
-│   └─ Bias updates                                           │
+│  TerrainAI → MeMLP modular model                            │
+│   ├─ Vegetation head: 8 → 24 → 16 → 4 (deep MLP)           │
+│   ├─ Biome head:      8 → 12 → 9                            │
+│   ├─ Texture head:    8 → 12 → 6                            │
+│   ├─ Player feedback  (world/ai_feedback.rs)                │
+│   └─ Online datasets  (world/online_trainer.rs, offline-ok) │
 │                                                             │
-│  Training Loop (100 samples/epoch):                         │
-│   1. Generate synthetic features                            │
-│   2. Make prediction                                        │
-│   3. Calculate target from heuristic                        │
-│   4. Compute cross-entropy loss                             │
-│   5. Backpropagation                                        │
-│   6. Update all weights                                     │
+│  Training Loop (200+ samples/epoch):                        │
+│   1. Drain player actions (highest priority)                │
+│   2. Merge online climate data (every ~60 s, offline-safe)  │
+│   3. Synthetic samples for all three heads                  │
+│   4. Backpropagation (cross-entropy)                        │
+│   5. Checkpoint every 20 epochs                             │
 └─────────────────────────────────────────────────────────────┘
 ```
 
 ## Model
 
-```
-Input Layer (8 terrain features)
-    ↓
-Hidden Layer (16 neurons) + ReLU
-    ↓
-Output Layer (4 vegetation classes) + Softmax
-```
+MeMLP is **modular**: one checkpoint file contains several specialist
+multi-layer perceptrons, each solving one task.
 
-- **Parameters:** 8×16 + 16×4 = **320 parameters** (w1 `[8×16]`, b1 `[16]`,
-  w2 `[16×4]`, b2 `[4]`)
-- **Total memory:** ~1.2 KB (512 B w1 + 64 B b1 + 256 B w2 + 16 B b2 +
-  ~300 B metadata)
-- **Inference time:** ~10 µs per prediction (O(192) operations)
+| Module | Shape | Task |
+|---|---|---|
+| `vegetation` | 8 → 24 → 16 → 4 | flower / fern / stick / pebble placement |
+| `biome` | 8 → 12 → 9 | biome classification (9 biomes, matches `BiomeId`) |
+| `texture` | 8 → 12 → 6 | procedural texture-style selection |
+
+- **Total parameters:** 1095 (fresh) / 623 (migrated legacy checkpoint)
+- **Checkpoint:** single JSON file, ~1–4 KB (`Core/checkpoints/ai_model.json`)
+- **Inference:** ~0.3 µs per head forward pass (release build)
+- **Training:** ~0.5–1.2 M samples/s per head (release build)
+
+> Old pre-MeMLP checkpoints (single hidden layer `8→16→4`) are **detected and
+> migrated automatically** — trained weights are preserved, new heads start
+> fresh. The shipped checkpoint is already v1 MeMLP.
 
 ## Input features (8)
 
@@ -2242,7 +2274,7 @@ Output Layer (4 vegetation classes) + Softmax
 | 7 | Light level | 0.0–1.0 |
 | 8 | Procedural noise seed | 0.0–1.0 |
 
-## Outputs (4 vegetation classes)
+## Outputs (vegetation head, 4 classes)
 
 | Output | Vegetation |
 |---|---|
@@ -2253,26 +2285,22 @@ Output Layer (4 vegetation classes) + Softmax
 
 ## Mathematics
 
-### Forward pass
+### Forward pass (per head)
 
 ```
-Hidden:  h = ReLU(input @ w1.T + b1)      where ReLU(x) = max(0, x)
-Logits:  logits = h @ w2.T + b2
+Hidden:  h1 = ReLU(input @ w1 + b1)          where ReLU(x) = max(0, x)
+         h2 = ReLU(h1 @ w2 + b2)             (deep heads)
+Logits:  logits = h_last @ wN + bN
 Softmax: p_i = exp(logits_i - max(logits)) / sum_j(exp(logits_j - max(logits)))
 ```
 
-### Backward pass (cross-entropy)
+### Backward pass (cross-entropy, backprop through all layers)
 
 ```
 Loss:         Loss = -sum_i(target_i * log(p_i))
-Output grad:  dL/dz2 = p - target                    (elementwise)
-H→O weights:  dL/dw2[j,i] = dL/dz2[i] * h[j]
-              dL/db2[i]   = dL/dz2[i]
-Hidden grad:  dL/dh[j] = sum_i(dL/dz2[i] * w2[j,i])
-              dL/dz1[j] = dL/dh[j] * relu_derivative(z1[j])
-                           where relu_derivative(x) = 1 if x > 0 else 0
-I→H weights:  dL/dw1[k,j] = dL/dz1[j] * input[k]
-              dL/db1[j]   = dL/dz1[j]
+Output grad:  dL/dz = p - target             (elementwise)
+Weight grad:  dL/dw[k][i,j] = dL/dz[j] * h[k-1][i]
+Hidden grad:  dL/dh = dL/dz @ w.T · ReLU'(z) (chain rule through ReLU)
 ```
 
 ### Gradient descent
@@ -2284,65 +2312,48 @@ b := b - learning_rate * dL/db
 
 ## Training loop
 
-A background thread runs continuously:
+A background thread runs continuously, combining three signal sources:
 
-```
-Loop (background thread):
-  For each of 100 samples:
-    - Generate synthetic terrain features (rand::thread_rng)
-    - Make AI prediction (forward)
-    - Compute target vegetation from heuristics
-    - Backpropagation gradient descent (backward)
-    - Update weights & biases
+1. **Player feedback** (highest priority) — `world/ai_feedback.rs` records
+   every vegetation block the player places or breaks; the AI literally
+   learns from what you do (buffer bounded at 4096 samples).
+2. **Online climate data** — `world/online_trainer.rs` fetches real
+   temperature/humidity from Open-Meteo (keyless, 8 cities spanning desert,
+   rainforest, tundra…) every ~60 s, with a synthetic offline fallback.
+3. **Synthetic samples** — heuristic targets keep all three heads sharp:
+   200 vegetation samples + 40 biome/texture samples per epoch.
 
-  Every 1000 epochs:
-    - Decay learning rate (×0.95) to prevent overfitting
-    - Optionally save a model checkpoint
-```
-
-### Target heuristic (synthetic training)
-
-```
-if humidity > 0.6 and light < 0.5:   ferns (output 1)
-else if humidity > 0.5:              flowers (output 0)
-else if height < 0.3:                pebbles (output 3)
-else:                                sticks (output 2)
-```
+Checkpoint saved every 20 epochs to `Core/checkpoints/ai_model.json`.
 
 ### Hyperparameters
 
 | Parameter | Value | Notes |
 |---|---|---|
 | Learning rate | 0.01 | Sweet spot; 0.1 oscillates, 0.001 too slow |
-| Decay | 0.95× / 1000 epochs | Prevents overfitting, fine-tunes weights |
-| Samples/epoch | 100 | ~5–10 ms per epoch |
-| Confidence threshold | 0.5 | Only high-confidence predictions place blocks |
+| Confidence threshold | 0.40 | Only high-confidence predictions place blocks |
 | Cell size | 3×3 blocks | Procedural variety |
+| Feedback buffer | 4096 | Bounded, newest samples win |
 
 ## Public API (`ai_generator.rs`)
 
 ```rust
-pub enum AIMessage {
-    TrainingProgress { epoch: u32, loss: f32 },
-    TextureGenerated { seed: u64, texture_data: Vec<u8> },
-    VegetationDecision { wx: i32, wy: i32, wz: i32, block: BlockType, confidence: f32 },
-}
-
-pub struct TerrainAI { /* w1, b1, w2, b2, learning_rate, training_samples */ }
-
-pub struct AISystem {
-    ai: Arc<Mutex<TerrainAI>>,
-    tx: Sender<AIMessage>,
-    training_thread: JoinHandle<()>,
+pub struct TerrainAI {  // wraps the MeMLP, engine-facing API is stable
+    model: MeMLP,       // vegetation (8→24→16→4) + biome (8→12→9) + texture (8→12→6)
+    learning_rate: f32,
+    training_samples: usize,
+    // ...
 }
 ```
 
 | Method | Signature | Purpose |
 |---|---|---|
-| `forward` | `(&self, features: &[f32; 8]) -> [f32; 4]` | Inference: ReLU hidden + softmax output |
+| `forward` | `(&self, features: &[f32; 8]) -> [f32; 4]` | Vegetation head inference |
 | `backward` | `(&mut self, features: &[f32; 8], target: [f32; 4]) -> f32` | One training step, returns loss |
-| `predict_vegetation` | `(&self, features: &[f32; 8]) -> (BlockType, f32)` | Thread-safe prediction (locks Arc&lt;Mutex&gt;) |
-| `generate_texture` | `(seed, w, h) -> Vec&lt;u8&gt;` | AI-assisted texture generation |
+| `predict_biome` | `(&self, features: &[f32; 8]) -> usize` | Biome head (0..9, `BiomeId` order) |
+| `predict_texture_style` | `(&self, features: &[f32; 8]) -> usize` | Texture head (0..5) |
+| `predict_vegetation` | `(&self, features: &[f32; 8]) -> (BlockType, f32)` | Thread-safe prediction |
+| `save_checkpoint` / `load_checkpoint` | `(path)` | JSON persistence, legacy migration |
+| `model_stats` | `() -> (usize, u32, usize)` | params, MeMLP version, samples |
 
 ## Integration points
 
@@ -2351,55 +2362,43 @@ pub struct AISystem {
 2. **Feature extraction** — `place_ai_vegetation()` in `vegetation.rs`
    extracts the 8 terrain features per 3×3 cell.
 3. **Prediction & placement** — `predict_vegetation(&features)` returns the
-   block + confidence; blocks are placed only when `confidence > 0.5`,
-   respecting biome-specific placement probabilities.
+   block + confidence; blocks are placed only when `confidence > 0.40`.
+4. **Biome-aware decorations** — `DecorationAI` uses `predict_biome()` to
+   choose decoration style (fern in swamp/taiga, flowers in forests…).
+5. **Player learning** — `interaction.rs` calls `ai_feedback::record_place` /
+   `record_break` on every vegetation interaction.
 
 ## Performance
 
 | Aspect | Value |
 |---|---|
-| Model size | ~1.2 KB |
-| Inference | ~10 µs (O(192) ops) |
-| Epoch | ~5–10 ms (100 samples) |
+| Model size | ~1–4 KB checkpoint |
+| Inference | ~0.3 µs per head (3.4 M predictions/s) |
+| Training | ~0.5–1.2 M samples/s per head |
 | Gameplay overhead | ~0.8% (background thread on idle CPU) |
 | Startup cost | ~+5 ms (thread spawn) |
 
-Why it's fast: small model, single hidden layer, `max(0, x)` ReLU, optimized
-4-way softmax, no convolutions, single-sample online learning.
+Measured with `cargo test --release qa_benchmark_report -- --ignored --nocapture` —
+full numbers in `TEST_REPORT.md`.
 
 ## Testing
 
-Unit tests in `ai_generator.rs` verify:
+22 AI tests across `world::ai_generator` (9), `world::memplp` (7),
+`world::online_trainer` (2), `world::vegetation` (3) and `world::biomes` (1):
 
-- **Forward pass** — output is a valid probability distribution (sum ≈ 1.0)
-- **Training** — loss decreases (or stays within 1.1×) across steps
-
-## Debugging
-
-```rust
-// Log training progress every 100 epochs
-if epoch % 100 == 0 {
-    println!("[AI] Epoch {}: Loss = {:.4}", epoch, avg_loss);
-}
-
-// Watch high-confidence predictions
-let (block, conf) = world.ai_system.predict_vegetation(&features);
-if conf > 0.8 {
-    println!("[AI] High confidence: {} ({}%)", block.name(), (conf * 100.0) as u32);
-}
-```
-
-## Optional online training
-
-`online_trainer.rs` provides an optional cloud-assisted training mode
-(dependencies `reqwest` + `tokio` are already in Cargo.toml for future
-dataset downloads).
+- Forward pass produces a valid probability distribution
+- Training decreases loss and fits simple patterns
+- Checkpoint JSON round-trips exactly
+- **Legacy checkpoints migrate** (both synthetic and the shipped file)
+- Procedural textures are deterministic per seed
+- Player-feedback buffer stays bounded
+- Heuristic targets stay in range
 
 ## Roadmap (Phase 2)
 
-See the [Roadmap](roadmap) page for: internet dataset integration, real-time
-AI texture generation, player-preference learning, cloud model sharing,
-seasonal vegetation, multi-biome coordination, and GPU-accelerated training.
+See the [Roadmap](./roadmap.md) page for: real-time AI texture generation,
+player-preference learning, cloud model sharing, seasonal vegetation,
+multi-biome coordination, and GPU-accelerated training.
 
 
 ## projects/nv2-engine/performance
@@ -3419,7 +3418,7 @@ the titlebar or controls. Features:
 - **Quoting** — `tokenize()` honors double quotes
 - **Command context** — `ps`/`kill`/`open`/`apps`/`history`/`shutdown` bind
   to the live process table and app registry
-- **35+ commands** — full reference in the [user guide](user-guide)
+- **35+ commands** — full reference in the [user guide](./user-guide.md)
 
 ## Audio — no files, all synthesis
 
@@ -3446,7 +3445,7 @@ wc, unknown-command handling).
 
 ---
 
-*Next: [User guide — commands, shortcuts, apps](user-guide) · [Overview](/projects/aurora-os/)*
+*Next: [User guide — commands, shortcuts, apps](./user-guide.md) · [Overview](/projects/aurora-os/)*
 
 
 ## projects/aurora-os/user-guide
@@ -3591,7 +3590,7 @@ terminal for the same list, or `man &lt;command&gt;` for the manual entry.
 
 ---
 
-*Back to [Overview](/projects/aurora-os/) · [Architecture](architecture)*
+*Back to [Overview](/projects/aurora-os/) · [Architecture](./architecture.md)*
 
 
 ## projects/halcyon-process-monitor/
@@ -4671,3 +4670,213 @@ discovery: presence on 'n2mesh/room' ──► dial() ──► SDP/ICE via rela
 
 [BartoszOsiej/n2-mesh](https://github.com/BartoszOsiej/n2-mesh) ·
 [Live](https://bartoszosiej.github.io/n2-mesh/)
+
+
+## qa
+Source: https://bartoszosiej.github.io/Docs/qa
+------------------------------------------------------------------------
+# QA & Test Reports
+
+Automated test sweep across every project in the registry — whole-project
+suites, per-module and per-category breakdowns, performance benchmarks and
+security/static-analysis checks. Run on 2026-08-13 (Linux, Rust 1.97, Node
+22, Python 3).
+
+Legend: ✅ pass · ⚠️ partial (see notes) · ❌ fail
+
+## NV2 Engine (`NV2_ENGINE`)
+
+**84 tests** (83 passed, 1 ignored = release benchmark) · full report:
+[`TEST_REPORT.md`](https://github.com/BartoszOsiej/NV2_ENGINE/blob/main/TEST_REPORT.md)
+
+| Suite | Result |
+|---|---|
+| Whole project | ✅ 83 passed, 0 failed |
+| AI / ML modules (ai_generator, memplp, online_trainer, vegetation, biomes) | ✅ 22 tests |
+| World & terrain (block, world) | ✅ 13 tests |
+| Gameplay (interaction, crafting, inventory) | ✅ 39 tests |
+| Renderer (camera, mesh, texture_registry) | ✅ 6 tests |
+| Shell / misc (commands, assets) | ✅ 4 tests |
+| Performance benchmark (release) | ✅ vegetation head 3.41 M pred/s · training up to 1.16 M samples/s |
+| Security: `unsafe` blocks | ✅ 0 in the whole codebase |
+| Clippy (`--all-targets`) | ⚠️ 46 warnings, 0 errors (pre-existing style nits) |
+
+Reproduce: `cd Core && cargo test && cargo test --release qa_benchmark_report -- --ignored --nocapture`
+
+## Cybersec Toolkit (`cybersec-tools`)
+
+**13 tests** across the 4 crates — all passing.
+
+| Crate | Tests |
+|---|---|
+| hashsleuth | ✅ 4 (identify + digest vectors) |
+| netrecon | ✅ 4 (service names, port/CIDR parsing) |
+| packeteye | ✅ 3 (Ethernet/IPv4/TCP parsing) |
+| shadowscan | ✅ 2 (target normalization) |
+
+The new tests exposed and fixed a real bug: phpass hash markers (`$P$`/`$H$`)
+were compared against the lowercased hash and could never match.
+
+Reproduce: `cargo test --workspace`
+
+## Halcyon Process Monitor (`halcyon-process-monitor`)
+
+✅ **3 tests pass** (userspace `process-monitor` crate) · 0 clippy warnings ·
+7 `unsafe` blocks (syscall/interop layer — expected and reviewed).
+
+> The `process-monitor-ebpf` crate targets `bpfel-unknown-none` and cannot be
+> built/tested on the host toolchain; `build.sh` handles it explicitly.
+
+Reproduce: `cargo test`
+
+## Externum (`externum`)
+
+✅ **118 tests pass** (`python3 -m unittest discover -s tests`) — lexer,
+parser, compiler and runtime conformance, pure Python, no dependencies.
+
+## AURORA OS (`AURORA-OS`)
+
+✅ **34/34 core tests pass** · TypeScript typecheck clean (`tsc -p tsconfig.json`).
+
+Reproduce: `npm test`
+
+## Novactorio — Factorio Web Game (`Factorio-web-game`)
+
+✅ Typecheck now **0 errors** · ✅ production build OK · lint: 0 unused-vars
+errors (28 style-only `no-explicit-any` remain).
+
+Fixes landed during the sweep:
+- Weather transitions crashed (`lerped config.color` missing) — fixed
+- Light alpha read out of bounds (`cfg[5]` of a 5-tuple) — fixed
+- Player walk animation permanently frozen (`PlayerState.prevX/prevY`
+  never existed) — now tracked by the renderer
+- Missing `removeBuilding` import, dead weather/glow caches removed
+
+Reproduce: `npm run typecheck && npm run build && npm run lint`
+
+## LinkShort — FastAPI URL shortener (`FastAPI-url`)
+
+⚠️ All 11 Python modules **compile clean**; the test suite (3 tests in
+`tests/test_api.py`) requires `pytest` + `fastapi`, which are not installed
+in the QA environment.
+
+Reproduce: `pip install -r requirements.txt && pytest`
+
+## N2 Mesh (`n2-mesh`)
+
+✅ JavaScript syntax checks pass (`node --check` on all scripts). Pure static
+P2P app — no build step, no test harness defined.
+
+## Docs — this site
+
+✅ **/pl/ 404 bug fixed** — `trailingSlash: true` so every route ships an
+`index.html` (GitHub Pages requirement) · all Polish routes verified 200 ·
+**0 broken links** in the build (EN + PL) · locale parity: every English page
+has a Polish translation · TypeScript clean.
+
+Reproduce: `npm run build` (fails the build on broken links).
+
+
+## qa
+Source: https://bartoszosiej.github.io/Docs/qa
+------------------------------------------------------------------------
+# QA & Test Reports
+
+Automated test sweep across every project in the registry — whole-project
+suites, per-module and per-category breakdowns, performance benchmarks and
+security/static-analysis checks. Run on 2026-08-13 (Linux, Rust 1.97, Node
+22, Python 3).
+
+Legend: ✅ pass · ⚠️ partial (see notes) · ❌ fail
+
+## NV2 Engine (`NV2_ENGINE`)
+
+**84 tests** (83 passed, 1 ignored = release benchmark) · full report:
+[`TEST_REPORT.md`](https://github.com/BartoszOsiej/NV2_ENGINE/blob/main/TEST_REPORT.md)
+
+| Suite | Result |
+|---|---|
+| Whole project | ✅ 83 passed, 0 failed |
+| AI / ML modules (ai_generator, memplp, online_trainer, vegetation, biomes) | ✅ 22 tests |
+| World & terrain (block, world) | ✅ 13 tests |
+| Gameplay (interaction, crafting, inventory) | ✅ 39 tests |
+| Renderer (camera, mesh, texture_registry) | ✅ 6 tests |
+| Shell / misc (commands, assets) | ✅ 4 tests |
+| Performance benchmark (release) | ✅ vegetation head 3.41 M pred/s · training up to 1.16 M samples/s |
+| Security: `unsafe` blocks | ✅ 0 in the whole codebase |
+| Clippy (`--all-targets`) | ⚠️ 46 warnings, 0 errors (pre-existing style nits) |
+
+Reproduce: `cd Core && cargo test && cargo test --release qa_benchmark_report -- --ignored --nocapture`
+
+## Cybersec Toolkit (`cybersec-tools`)
+
+**13 tests** across the 4 crates — all passing.
+
+| Crate | Tests |
+|---|---|
+| hashsleuth | ✅ 4 (identify + digest vectors) |
+| netrecon | ✅ 4 (service names, port/CIDR parsing) |
+| packeteye | ✅ 3 (Ethernet/IPv4/TCP parsing) |
+| shadowscan | ✅ 2 (target normalization) |
+
+The new tests exposed and fixed a real bug: phpass hash markers (`$P$`/`$H$`)
+were compared against the lowercased hash and could never match.
+
+Reproduce: `cargo test --workspace`
+
+## Halcyon Process Monitor (`halcyon-process-monitor`)
+
+✅ **3 tests pass** (userspace `process-monitor` crate) · 0 clippy warnings ·
+7 `unsafe` blocks (syscall/interop layer — expected and reviewed).
+
+> The `process-monitor-ebpf` crate targets `bpfel-unknown-none` and cannot be
+> built/tested on the host toolchain; `build.sh` handles it explicitly.
+
+Reproduce: `cargo test`
+
+## Externum (`externum`)
+
+✅ **118 tests pass** (`python3 -m unittest discover -s tests`) — lexer,
+parser, compiler and runtime conformance, pure Python, no dependencies.
+
+## AURORA OS (`AURORA-OS`)
+
+✅ **34/34 core tests pass** · TypeScript typecheck clean (`tsc -p tsconfig.json`).
+
+Reproduce: `npm test`
+
+## Novactorio — Factorio Web Game (`Factorio-web-game`)
+
+✅ Typecheck now **0 errors** · ✅ production build OK · lint: 0 unused-vars
+errors (28 style-only `no-explicit-any` remain).
+
+Fixes landed during the sweep:
+- Weather transitions crashed (`lerped config.color` missing) — fixed
+- Light alpha read out of bounds (`cfg[5]` of a 5-tuple) — fixed
+- Player walk animation permanently frozen (`PlayerState.prevX/prevY`
+  never existed) — now tracked by the renderer
+- Missing `removeBuilding` import, dead weather/glow caches removed
+
+Reproduce: `npm run typecheck && npm run build && npm run lint`
+
+## LinkShort — FastAPI URL shortener (`FastAPI-url`)
+
+⚠️ All 11 Python modules **compile clean**; the test suite (3 tests in
+`tests/test_api.py`) requires `pytest` + `fastapi`, which are not installed
+in the QA environment.
+
+Reproduce: `pip install -r requirements.txt && pytest`
+
+## N2 Mesh (`n2-mesh`)
+
+✅ JavaScript syntax checks pass (`node --check` on all scripts). Pure static
+P2P app — no build step, no test harness defined.
+
+## Docs — this site
+
+✅ **/pl/ 404 bug fixed** — `trailingSlash: true` so every route ships an
+`index.html` (GitHub Pages requirement) · all Polish routes verified 200 ·
+**0 broken links** in the build (EN + PL) · locale parity: every English page
+has a Polish translation · TypeScript clean.
+
+Reproduce: `npm run build` (fails the build on broken links).

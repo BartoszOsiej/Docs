@@ -91,6 +91,11 @@ const config: Config = {
         },
         { to: 'translator', position: 'left', label: 'PDF Translator' },
         {
+          href: 'https://bartoszosiej.github.io/prompt-inbox/',
+          position: 'left',
+          label: 'Prompt Inbox',
+        },
+        {
           type: 'localeDropdown',
           position: 'right',
         },
@@ -121,6 +126,7 @@ const config: Config = {
             { label: 'Externum', to: '/projects/externum/' },
             { label: 'N2 Mesh (P2P Chat)', to: '/projects/n2-mesh/' },
             { label: 'PDF Book & Translator', to: '/translator' },
+            { label: 'Prompt Inbox', href: 'https://bartoszosiej.github.io/prompt-inbox/' },
           ],
         },
         {

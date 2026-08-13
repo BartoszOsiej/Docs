@@ -1,9 +1,14 @@
-# AI Vegetation System
+# AI System — MeMLP (Modular embedded Multi-layer Perceptron Model)
 
-NV2 Engine embeds a small neural network that decides where vegetation
-belongs, and trains it **in the background while you play** — with zero FPS
-impact (&lt;1% CPU overhead). This is a complete, production-ready MLP
-implementation in `world/ai_generator.rs` (410 lines) using `ndarray`.
+NV2 Engine embeds a small neural network — **MeMLP** (Modular embedded
+Multi-layer Perceptron Model) — that decides where vegetation belongs,
+classifies biomes from climate features and selects procedural texture
+styles. It trains **in the background while you play** with zero FPS impact
+(&lt;1% CPU overhead). Everything lives in-process: pure CPU, one JSON
+checkpoint, no cloud, no GPU.
+
+Implementation: `world/memplp.rs` (MeMLP core) + `world/ai_generator.rs`
+(engine-facing system), using `ndarray`.
 
 ## Architecture overview
 
@@ -13,47 +18,50 @@ implementation in `world/ai_generator.rs` (410 lines) using `ndarray`.
 │  World Generation                                           │
 │   ├─ Chunk generation (BiomeGenerator)                      │
 │   ├─ Tree placement (VegetationGenerator)                   │
-│   ├─ Grass/flowers (traditional)                            │
 │   └─ AI Vegetation (place_ai_vegetation) ◄──────┐           │
 │                                                  │          │
 └──────────────────────────────────────────────────┬──────────┘
                                                    │
-                Queries AI for predictions (non-blocking
-                via Arc<Mutex>)
+            Queries AI for predictions (non-blocking
+            via Arc<Mutex>)
                                                    │
 ┌──────────────────────────────────────────────────▼──────────┐
 │              Background AI Thread (continuous)              │
-│  TerrainAI Neural Network                                   │
-│   ├─ Forward pass (inference)                               │
-│   ├─ Backward pass (training)                               │
-│   ├─ Weight updates                                         │
-│   └─ Bias updates                                           │
+│  TerrainAI → MeMLP modular model                            │
+│   ├─ Vegetation head: 8 → 24 → 16 → 4 (deep MLP)           │
+│   ├─ Biome head:      8 → 12 → 9                            │
+│   ├─ Texture head:    8 → 12 → 6                            │
+│   ├─ Player feedback  (world/ai_feedback.rs)                │
+│   └─ Online datasets  (world/online_trainer.rs, offline-ok) │
 │                                                             │
-│  Training Loop (100 samples/epoch):                         │
-│   1. Generate synthetic features                            │
-│   2. Make prediction                                        │
-│   3. Calculate target from heuristic                        │
-│   4. Compute cross-entropy loss                             │
-│   5. Backpropagation                                        │
-│   6. Update all weights                                     │
+│  Training Loop (200+ samples/epoch):                        │
+│   1. Drain player actions (highest priority)                │
+│   2. Merge online climate data (every ~60 s, offline-safe)  │
+│   3. Synthetic samples for all three heads                  │
+│   4. Backpropagation (cross-entropy)                        │
+│   5. Checkpoint every 20 epochs                             │
 └─────────────────────────────────────────────────────────────┘
 ```
 
 ## Model
 
-```
-Input Layer (8 terrain features)
-    ↓
-Hidden Layer (16 neurons) + ReLU
-    ↓
-Output Layer (4 vegetation classes) + Softmax
-```
+MeMLP is **modular**: one checkpoint file contains several specialist
+multi-layer perceptrons, each solving one task.
 
-- **Parameters:** 8×16 + 16×4 = **320 parameters** (w1 `[8×16]`, b1 `[16]`,
-  w2 `[16×4]`, b2 `[4]`)
-- **Total memory:** ~1.2 KB (512 B w1 + 64 B b1 + 256 B w2 + 16 B b2 +
-  ~300 B metadata)
-- **Inference time:** ~10 µs per prediction (O(192) operations)
+| Module | Shape | Task |
+|---|---|---|
+| `vegetation` | 8 → 24 → 16 → 4 | flower / fern / stick / pebble placement |
+| `biome` | 8 → 12 → 9 | biome classification (9 biomes, matches `BiomeId`) |
+| `texture` | 8 → 12 → 6 | procedural texture-style selection |
+
+- **Total parameters:** 1095 (fresh) / 623 (migrated legacy checkpoint)
+- **Checkpoint:** single JSON file, ~1–4 KB (`Core/checkpoints/ai_model.json`)
+- **Inference:** ~0.3 µs per head forward pass (release build)
+- **Training:** ~0.5–1.2 M samples/s per head (release build)
+
+> Old pre-MeMLP checkpoints (single hidden layer `8→16→4`) are **detected and
+> migrated automatically** — trained weights are preserved, new heads start
+> fresh. The shipped checkpoint is already v1 MeMLP.
 
 ## Input features (8)
 
@@ -68,7 +76,7 @@ Output Layer (4 vegetation classes) + Softmax
 | 7 | Light level | 0.0–1.0 |
 | 8 | Procedural noise seed | 0.0–1.0 |
 
-## Outputs (4 vegetation classes)
+## Outputs (vegetation head, 4 classes)
 
 | Output | Vegetation |
 |---|---|
@@ -79,26 +87,22 @@ Output Layer (4 vegetation classes) + Softmax
 
 ## Mathematics
 
-### Forward pass
+### Forward pass (per head)
 
 ```
-Hidden:  h = ReLU(input @ w1.T + b1)      where ReLU(x) = max(0, x)
-Logits:  logits = h @ w2.T + b2
+Hidden:  h1 = ReLU(input @ w1 + b1)          where ReLU(x) = max(0, x)
+         h2 = ReLU(h1 @ w2 + b2)             (deep heads)
+Logits:  logits = h_last @ wN + bN
 Softmax: p_i = exp(logits_i - max(logits)) / sum_j(exp(logits_j - max(logits)))
 ```
 
-### Backward pass (cross-entropy)
+### Backward pass (cross-entropy, backprop through all layers)
 
 ```
 Loss:         Loss = -sum_i(target_i * log(p_i))
-Output grad:  dL/dz2 = p - target                    (elementwise)
-H→O weights:  dL/dw2[j,i] = dL/dz2[i] * h[j]
-              dL/db2[i]   = dL/dz2[i]
-Hidden grad:  dL/dh[j] = sum_i(dL/dz2[i] * w2[j,i])
-              dL/dz1[j] = dL/dh[j] * relu_derivative(z1[j])
-                           where relu_derivative(x) = 1 if x > 0 else 0
-I→H weights:  dL/dw1[k,j] = dL/dz1[j] * input[k]
-              dL/db1[j]   = dL/dz1[j]
+Output grad:  dL/dz = p - target             (elementwise)
+Weight grad:  dL/dw[k][i,j] = dL/dz[j] * h[k-1][i]
+Hidden grad:  dL/dh = dL/dz @ w.T · ReLU'(z) (chain rule through ReLU)
 ```
 
 ### Gradient descent
@@ -110,65 +114,48 @@ b := b - learning_rate * dL/db
 
 ## Training loop
 
-A background thread runs continuously:
+A background thread runs continuously, combining three signal sources:
 
-```
-Loop (background thread):
-  For each of 100 samples:
-    - Generate synthetic terrain features (rand::thread_rng)
-    - Make AI prediction (forward)
-    - Compute target vegetation from heuristics
-    - Backpropagation gradient descent (backward)
-    - Update weights & biases
+1. **Player feedback** (highest priority) — `world/ai_feedback.rs` records
+   every vegetation block the player places or breaks; the AI literally
+   learns from what you do (buffer bounded at 4096 samples).
+2. **Online climate data** — `world/online_trainer.rs` fetches real
+   temperature/humidity from Open-Meteo (keyless, 8 cities spanning desert,
+   rainforest, tundra…) every ~60 s, with a synthetic offline fallback.
+3. **Synthetic samples** — heuristic targets keep all three heads sharp:
+   200 vegetation samples + 40 biome/texture samples per epoch.
 
-  Every 1000 epochs:
-    - Decay learning rate (×0.95) to prevent overfitting
-    - Optionally save a model checkpoint
-```
-
-### Target heuristic (synthetic training)
-
-```
-if humidity > 0.6 and light < 0.5:   ferns (output 1)
-else if humidity > 0.5:              flowers (output 0)
-else if height < 0.3:                pebbles (output 3)
-else:                                sticks (output 2)
-```
+Checkpoint saved every 20 epochs to `Core/checkpoints/ai_model.json`.
 
 ### Hyperparameters
 
 | Parameter | Value | Notes |
 |---|---|---|
 | Learning rate | 0.01 | Sweet spot; 0.1 oscillates, 0.001 too slow |
-| Decay | 0.95× / 1000 epochs | Prevents overfitting, fine-tunes weights |
-| Samples/epoch | 100 | ~5–10 ms per epoch |
-| Confidence threshold | 0.5 | Only high-confidence predictions place blocks |
+| Confidence threshold | 0.40 | Only high-confidence predictions place blocks |
 | Cell size | 3×3 blocks | Procedural variety |
+| Feedback buffer | 4096 | Bounded, newest samples win |
 
 ## Public API (`ai_generator.rs`)
 
 ```rust
-pub enum AIMessage {
-    TrainingProgress { epoch: u32, loss: f32 },
-    TextureGenerated { seed: u64, texture_data: Vec<u8> },
-    VegetationDecision { wx: i32, wy: i32, wz: i32, block: BlockType, confidence: f32 },
-}
-
-pub struct TerrainAI { /* w1, b1, w2, b2, learning_rate, training_samples */ }
-
-pub struct AISystem {
-    ai: Arc<Mutex<TerrainAI>>,
-    tx: Sender<AIMessage>,
-    training_thread: JoinHandle<()>,
+pub struct TerrainAI {  // wraps the MeMLP, engine-facing API is stable
+    model: MeMLP,       // vegetation (8→24→16→4) + biome (8→12→9) + texture (8→12→6)
+    learning_rate: f32,
+    training_samples: usize,
+    // ...
 }
 ```
 
 | Method | Signature | Purpose |
 |---|---|---|
-| `forward` | `(&self, features: &[f32; 8]) -> [f32; 4]` | Inference: ReLU hidden + softmax output |
+| `forward` | `(&self, features: &[f32; 8]) -> [f32; 4]` | Vegetation head inference |
 | `backward` | `(&mut self, features: &[f32; 8], target: [f32; 4]) -> f32` | One training step, returns loss |
-| `predict_vegetation` | `(&self, features: &[f32; 8]) -> (BlockType, f32)` | Thread-safe prediction (locks Arc&lt;Mutex&gt;) |
-| `generate_texture` | `(seed, w, h) -> Vec&lt;u8&gt;` | AI-assisted texture generation |
+| `predict_biome` | `(&self, features: &[f32; 8]) -> usize` | Biome head (0..9, `BiomeId` order) |
+| `predict_texture_style` | `(&self, features: &[f32; 8]) -> usize` | Texture head (0..5) |
+| `predict_vegetation` | `(&self, features: &[f32; 8]) -> (BlockType, f32)` | Thread-safe prediction |
+| `save_checkpoint` / `load_checkpoint` | `(path)` | JSON persistence, legacy migration |
+| `model_stats` | `() -> (usize, u32, usize)` | params, MeMLP version, samples |
 
 ## Integration points
 
@@ -177,52 +164,40 @@ pub struct AISystem {
 2. **Feature extraction** — `place_ai_vegetation()` in `vegetation.rs`
    extracts the 8 terrain features per 3×3 cell.
 3. **Prediction & placement** — `predict_vegetation(&features)` returns the
-   block + confidence; blocks are placed only when `confidence > 0.5`,
-   respecting biome-specific placement probabilities.
+   block + confidence; blocks are placed only when `confidence > 0.40`.
+4. **Biome-aware decorations** — `DecorationAI` uses `predict_biome()` to
+   choose decoration style (fern in swamp/taiga, flowers in forests…).
+5. **Player learning** — `interaction.rs` calls `ai_feedback::record_place` /
+   `record_break` on every vegetation interaction.
 
 ## Performance
 
 | Aspect | Value |
 |---|---|
-| Model size | ~1.2 KB |
-| Inference | ~10 µs (O(192) ops) |
-| Epoch | ~5–10 ms (100 samples) |
+| Model size | ~1–4 KB checkpoint |
+| Inference | ~0.3 µs per head (3.4 M predictions/s) |
+| Training | ~0.5–1.2 M samples/s per head |
 | Gameplay overhead | ~0.8% (background thread on idle CPU) |
 | Startup cost | ~+5 ms (thread spawn) |
 
-Why it's fast: small model, single hidden layer, `max(0, x)` ReLU, optimized
-4-way softmax, no convolutions, single-sample online learning.
+Measured with `cargo test --release qa_benchmark_report -- --ignored --nocapture` —
+full numbers in `TEST_REPORT.md`.
 
 ## Testing
 
-Unit tests in `ai_generator.rs` verify:
+22 AI tests across `world::ai_generator` (9), `world::memplp` (7),
+`world::online_trainer` (2), `world::vegetation` (3) and `world::biomes` (1):
 
-- **Forward pass** — output is a valid probability distribution (sum ≈ 1.0)
-- **Training** — loss decreases (or stays within 1.1×) across steps
-
-## Debugging
-
-```rust
-// Log training progress every 100 epochs
-if epoch % 100 == 0 {
-    println!("[AI] Epoch {}: Loss = {:.4}", epoch, avg_loss);
-}
-
-// Watch high-confidence predictions
-let (block, conf) = world.ai_system.predict_vegetation(&features);
-if conf > 0.8 {
-    println!("[AI] High confidence: {} ({}%)", block.name(), (conf * 100.0) as u32);
-}
-```
-
-## Optional online training
-
-`online_trainer.rs` provides an optional cloud-assisted training mode
-(dependencies `reqwest` + `tokio` are already in Cargo.toml for future
-dataset downloads).
+- Forward pass produces a valid probability distribution
+- Training decreases loss and fits simple patterns
+- Checkpoint JSON round-trips exactly
+- **Legacy checkpoints migrate** (both synthetic and the shipped file)
+- Procedural textures are deterministic per seed
+- Player-feedback buffer stays bounded
+- Heuristic targets stay in range
 
 ## Roadmap (Phase 2)
 
-See the [Roadmap](./roadmap.md) page for: internet dataset integration, real-time
-AI texture generation, player-preference learning, cloud model sharing,
-seasonal vegetation, multi-biome coordination, and GPU-accelerated training.
+See the [Roadmap](./roadmap.md) page for: real-time AI texture generation,
+player-preference learning, cloud model sharing, seasonal vegetation,
+multi-biome coordination, and GPU-accelerated training.
