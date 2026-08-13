@@ -1,0 +1,54 @@
+{
+  "title": {
+    "message": "Bartosz Osiej",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "Bartosz Osiej — Docs",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Projects": {
+    "message": "Projekty",
+    "description": "Navbar item with label Projects"
+  },
+  "item.label.Docs": {
+    "message": "Dokumentacja",
+    "description": "Navbar item with label Docs"
+  },
+  "item.label.PDF Translator": {
+    "message": "Tłumacz PDF",
+    "description": "Navbar item with label PDF Translator"
+  },
+  "item.label.LinkShort": {
+    "message": "LinkShort",
+    "description": "Navbar item with label LinkShort"
+  },
+  "item.label.Novactorio": {
+    "message": "Novactorio",
+    "description": "Navbar item with label Novactorio"
+  },
+  "item.label.NV2 Engine": {
+    "message": "NV2 Engine",
+    "description": "Navbar item with label NV2 Engine"
+  },
+  "item.label.Cybersec Toolkit": {
+    "message": "Cybersec Toolkit",
+    "description": "Navbar item with label Cybersec Toolkit"
+  },
+  "item.label.AURORA OS": {
+    "message": "AURORA OS",
+    "description": "Navbar item with label AURORA OS"
+  },
+  "item.label.Externum": {
+    "message": "Externum",
+    "description": "Navbar item with label Externum"
+  },
+  "item.label.Halcyon Monitor": {
+    "message": "Monitor Halcyon",
+    "description": "Navbar item with label Halcyon Monitor"
+  },
+  "item.label.N2 Mesh": {
+    "message": "N2 Mesh",
+    "description": "Navbar item with label N2 Mesh"
+  }
+}

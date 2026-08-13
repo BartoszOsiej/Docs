@@ -1,0 +1,58 @@
+{
+  "link.title.Projects": {
+    "message": "Projekty",
+    "description": "The title of the footer links column with title=Projects in the footer"
+  },
+  "link.title.More": {
+    "message": "Więcej",
+    "description": "The title of the footer links column with title=More in the footer"
+  },
+  "link.title.Community": {
+    "message": "Społeczność",
+    "description": "The title of the footer links column with title=Community in the footer"
+  },
+  "link.item.label.LinkShort": {
+    "message": "LinkShort",
+    "description": "The label of footer link with label=LinkShort linking to /projects/fastapi-url/"
+  },
+  "link.item.label.Novactorio": {
+    "message": "Novactorio",
+    "description": "The label of footer link with label=Novactorio linking to /projects/factorio-web-game/"
+  },
+  "link.item.label.NV2 Engine": {
+    "message": "NV2 Engine",
+    "description": "The label of footer link with label=NV2 Engine linking to /projects/nv2-engine/"
+  },
+  "link.item.label.Cybersec Toolkit": {
+    "message": "Cybersec Toolkit",
+    "description": "The label of footer link with label=Cybersec Toolkit linking to /projects/cybersec-tools/"
+  },
+  "link.item.label.AURORA OS": {
+    "message": "AURORA OS",
+    "description": "The label of footer link with label=AURORA OS linking to /projects/aurora-os/"
+  },
+  "link.item.label.Externum": {
+    "message": "Externum",
+    "description": "The label of footer link with label=Externum linking to /projects/externum/"
+  },
+  "link.item.label.N2 Mesh (P2P Chat)": {
+    "message": "N2 Mesh (czat P2P)",
+    "description": "The label of footer link with label=N2 Mesh (P2P Chat) linking to /projects/n2-mesh/"
+  },
+  "link.item.label.PDF Book & Translator": {
+    "message": "Książka PDF i Tłumacz",
+    "description": "The label of footer link with label=PDF Book & Translator linking to /translator"
+  },
+  "link.item.label.GitHub": {
+    "message": "GitHub",
+    "description": "The label of footer link with label=GitHub linking to https://github.com/BartoszOsiej"
+  },
+  "link.item.label.Halcyon Process Monitor": {
+    "message": "Monitor Procesów Halcyon",
+    "description": "The label of footer link with label=Halcyon Process Monitor linking to /projects/halcyon-process-monitor/"
+  },
+  "copyright": {
+    "message": "© 2026 Bartosz Osiej · Zbudowano z Docusaurus",
+    "description": "The footer copyright"
+  }
+}

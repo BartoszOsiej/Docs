@@ -1,0 +1,50 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.docs.category.Projects": {
+    "message": "Projects",
+    "description": "The label for category 'Projects' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.N2 Mesh (P2P Chat)": {
+    "message": "N2 Mesh (P2P Chat)",
+    "description": "The label for category 'N2 Mesh (P2P Chat)' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.LinkShort": {
+    "message": "LinkShort",
+    "description": "The label for category 'LinkShort' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Novactorio": {
+    "message": "Novactorio",
+    "description": "The label for category 'Novactorio' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.NV2 Engine": {
+    "message": "NV2 Engine",
+    "description": "The label for category 'NV2 Engine' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Cybersec Toolkit": {
+    "message": "Cybersec Toolkit",
+    "description": "The label for category 'Cybersec Toolkit' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.AURORA OS": {
+    "message": "AURORA OS",
+    "description": "The label for category 'AURORA OS' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Halcyon Process Monitor": {
+    "message": "Halcyon Process Monitor",
+    "description": "The label for category 'Halcyon Process Monitor' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Externum": {
+    "message": "Externum",
+    "description": "The label for category 'Externum' in sidebar 'docs'"
+  },
+  "sidebar.docs.doc.PDF Book & Translator": {
+    "message": "PDF Book & Translator",
+    "description": "The label for the doc item 'PDF Book & Translator' in sidebar 'docs', linking to the doc translator"
+  },
+  "sidebar.docs.doc.Update Flow": {
+    "message": "Update Flow",
+    "description": "The label for the doc item 'Update Flow' in sidebar 'docs', linking to the doc update-flow"
+  }
+}

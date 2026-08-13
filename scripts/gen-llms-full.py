@@ -1,10 +1,15 @@
 #!/usr/bin/env python3
-"""Regenerate public/llms-full.txt — a single-file snapshot of the whole site."""
+"""Regenerate static/llms-full.txt — a single-file snapshot of the whole site.
+
+Docusaurus layout: English docs live in docs/, Polish in
+i18n/pl/docusaurus-plugin-content-docs/current/.
+"""
 import os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = "https://bartoszosiej.github.io/Docs"
-SKIP_DIRS = {".vitepress", "node_modules", ".git", "scripts"}
+EN_DOCS = os.path.join(ROOT, "docs")
+PL_DOCS = os.path.join(ROOT, "i18n", "pl", "docusaurus-plugin-content-docs", "current")
 
 ORDER = [
     "index.md",
@@ -57,25 +62,28 @@ out.append("=" * 72)
 
 # Polish locale pages follow the English ones (deterministic, sorted).
 known = set(ORDER)
-for dirpath, dirnames, filenames in os.walk(os.path.join(ROOT, "pl")):
+for dirpath, dirnames, filenames in os.walk(PL_DOCS):
     dirnames.sort()
     for f in sorted(filenames):
         if f.endswith(".md"):
-            rel = os.path.relpath(os.path.join(dirpath, f), ROOT).replace(os.sep, "/")
+            rel = os.path.relpath(os.path.join(dirpath, f), PL_DOCS).replace(os.sep, "/")
             if rel not in known:
                 ORDER.append(rel)
 
-# Append any other md files not in the explicit order (keeps future pages included).
-for dirpath, dirnames, filenames in os.walk(ROOT):
-    dirnames[:] = [d for d in dirnames if d not in SKIP_DIRS]
+# Append any other EN md files not in the explicit order (keeps future pages included).
+for dirpath, dirnames, filenames in os.walk(EN_DOCS):
+    dirnames.sort()
     for f in sorted(filenames):
         if f.endswith(".md"):
-            rel = os.path.relpath(os.path.join(dirpath, f), ROOT).replace(os.sep, "/")
+            rel = os.path.relpath(os.path.join(dirpath, f), EN_DOCS).replace(os.sep, "/")
             if rel not in known:
                 ORDER.append(rel)
 
 for rel in ORDER:
-    path = os.path.join(ROOT, rel)
+    path = os.path.join(EN_DOCS, rel)
+    if not os.path.exists(path):
+        # Try the Polish tree for this page
+        path = os.path.join(PL_DOCS, rel)
     if not os.path.exists(path):
         print(f"  skip missing: {rel}")
         continue
@@ -90,7 +98,7 @@ for rel in ORDER:
         out.append(fh.read().rstrip())
     out.append("")
 
-out_path = os.path.join(ROOT, "public", "llms-full.txt")
+out_path = os.path.join(ROOT, "static", "llms-full.txt")
 with open(out_path, "w", encoding="utf-8") as fh:
     fh.write("\n".join(out))
 print(f"Wrote {out_path} ({len(out)} lines, {len(ORDER)} pages)")

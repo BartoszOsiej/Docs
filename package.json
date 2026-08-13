@@ -1,21 +1,51 @@
 {
-  "name": "bartosz-docs",
-  "version": "1.0.0",
+  "name": "bartosz-osiej-docs",
+  "version": "3.0.0",
   "private": true,
-  "type": "module",
   "scripts": {
     "gen:pdfs": "node scripts/gen-sample-pdfs.mjs",
     "copy:pdfjs": "node scripts/copy-pdfjs.mjs",
-    "predocs:dev": "npm run gen:pdfs && npm run copy:pdfjs",
-    "predocs:build": "npm run gen:pdfs && npm run copy:pdfjs",
-    "docs:dev": "vitepress dev",
-    "docs:build": "vitepress build",
-    "docs:preview": "vitepress preview"
-  },
-  "devDependencies": {
-    "vitepress": "^1.6.4"
+    "gen:llms": "python3 scripts/gen-llms-full.py",
+    "prebuild": "npm run gen:pdfs && npm run copy:pdfjs && npm run gen:llms",
+    "docusaurus": "docusaurus",
+    "start": "npm run prebuild && docusaurus start",
+    "build": "npm run prebuild && docusaurus build",
+    "swizzle": "docusaurus swizzle",
+    "deploy": "docusaurus deploy",
+    "clear": "docusaurus clear",
+    "serve": "docusaurus serve",
+    "write-translations": "docusaurus write-translations",
+    "write-heading-ids": "docusaurus write-heading-ids"
   },
   "dependencies": {
-    "pdfjs-dist": "^6.2.108"
+    "@docusaurus/core": "3.10.2",
+    "@docusaurus/preset-classic": "3.10.2",
+    "@mdx-js/react": "^3.0.0",
+    "clsx": "^2.0.0",
+    "pdfjs-dist": "^6.2.108",
+    "prism-react-renderer": "^2.3.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "3.10.2",
+    "@docusaurus/tsconfig": "3.10.2",
+    "@docusaurus/types": "^3.10.2",
+    "typescript": "~5.6.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 3 chrome version",
+      "last 3 firefox version",
+      "last 5 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">=18.0"
   }
 }

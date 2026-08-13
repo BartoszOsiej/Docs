@@ -13,7 +13,7 @@ udokumentowany na tej stronie i utrzymywany w kopii roboczej w `~/`.
 
 | # | Projekt | Repo | Stos | Strona dokumentacji |
 |---|---------|------|-------|-----------|
-| 1 | **Docs Hub** | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | VitePress | [docs](/) |
+| 1 | **Docs Hub** | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | Docusaurus | [docs](/) |
 | 2 | **N2 Mesh** (czat P2P) | [BartoszOsiej/n2-mesh](https://github.com/BartoszOsiej/n2-mesh) | WebRTC, statyczny hosting | [docs](/projects/n2-mesh/) · [live](https://bartoszosiej.github.io/n2-mesh/) |
 | 3 | **LinkShort** (skracacz URL) | [BartoszOsiej/FastAPI-url](https://github.com/BartoszOsiej/FastAPI-url) | FastAPI, React 19, SQLite | [docs](/projects/fastapi-url/) |
 | 4 | **Novactorio** (gra o fabrykach) | [BartoszOsiej/Factorio-web-game](https://github.com/BartoszOsiej/Factorio-web-game) | TypeScript, Canvas 2D, Supabase | [docs](/projects/factorio-web-game/) |
@@ -29,8 +29,8 @@ udokumentowany na tej stronie i utrzymywany w kopii roboczej w `~/`.
 
 | | |
 |---|---|
-| **Co** | Ta witryna dokumentacyjna + rejestr projektów. Zbudowana w VitePress, wdrażana na GitHub Pages. |
-| **Stos** | VitePress, GitHub Actions |
+| **Co** | Ta witryna dokumentacyjna + rejestr projektów. Zbudowana w Docusaurus, wdrażana na GitHub Pages. |
+| **Stos** | Docusaurus, GitHub Actions |
 | **Ścieżka lokalna** | `~/Docs` |
 | **Na żywo** | https://bartoszosiej.github.io/Docs/ |
 | **Uwagi** | `llms.txt` / `llms-full.txt` / `sitemap.xml` generowane z drzewa stron. Przepływ aktualizacji udokumentowany w `update-flow.md`. |
@@ -125,4 +125,4 @@ dokumentowane na tej stronie.
 2. Utrzymuj dokładne repo, stos, ścieżkę lokalną i link do dokumentacji.
 3. Aktualizuj `/projects/` (stronę witryny), `llms.txt`, `llms-full.txt`
    i `sitemap.xml` razem z tym plikiem (skrypty: `scripts/gen-llms*.py`,
-   `scripts/gen-sitemap.py`).
+   the Docusaurus sitemap plugin).

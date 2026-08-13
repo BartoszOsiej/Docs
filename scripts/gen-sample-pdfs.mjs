@@ -5,8 +5,8 @@
  * Generates the two sample PDFs used by the Docs translator demo
  * (the "PDF as a visual book" module):
  *
- *   public/pdfs/sample-english.pdf  — 3 pages of English text about the Docs Hub
- *   public/pdfs/sample-polish.pdf   — 2 pages of Polish text about the Docs Hub
+ *   static/pdfs/sample-english.pdf  — 3 pages of English text about the Docs Hub
+ *   static/pdfs/sample-polish.pdf   — 2 pages of Polish text about the Docs Hub
  *
  * The writer is deliberately minimal and dependency-free (plain PDF 1.4 with
  * the built-in Helvetica font), so the script runs anywhere with Node:
@@ -23,7 +23,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
-const OUT_DIR = join(ROOT, 'public', 'pdfs')
+const OUT_DIR = join(ROOT, 'static', 'pdfs')
 
 /* ------------------------------------------------------------------ */
 /* Tiny PDF writer                                                     */
@@ -121,7 +121,7 @@ const englishPdf = buildPdf([
   [
     { type: 'heading', text: 'Getting started' },
     { type: 'text', text: 'Open the project catalog to browse every repository and its documentation. Use the search box to find a specific endpoint, module or feature.' },
-    { type: 'text', text: 'The site is built with VitePress, deployed to GitHub Pages by GitHub Actions, and exposes llms.txt plus llms-full.txt for AI agents.' },
+    { type: 'text', text: 'The site is built with Docusaurus, deployed to GitHub Pages by GitHub Actions, and exposes llms.txt plus llms-full.txt for AI agents.' },
   ],
   [
     { type: 'heading', text: 'Features' },
@@ -141,7 +141,7 @@ const polishPdf = buildPdf([
   [
     { type: 'heading', text: 'Jak zaczac' },
     { type: 'text', text: 'Otworz katalog projektow, aby przegladac wszystkie repozytoria i ich dokumentacje. Uzyj wyszukiwarki, aby znalezc konkretny endpoint, modul lub funkcje.' },
-    { type: 'text', text: 'Witryna jest zbudowana w VitePress, wdrazana na GitHub Pages przez GitHub Actions i udostepnia llms.txt oraz llms-full.txt dla agentow AI.' },
+    { type: 'text', text: 'Witryna jest zbudowana w Docusaurus, wdrazana na GitHub Pages przez GitHub Actions i udostepnia llms.txt oraz llms-full.txt dla agentow AI.' },
   ],
 ])
 

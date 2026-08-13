@@ -31,7 +31,7 @@ stron, grzbiet, trójwymiarowe przewracanie kartek) i tłumaczy strony
 **w przeglądarce bez żadnego klucza API**:
 
 - pdf.js renderuje strony; worker i standardowe fonty są wgrane w
-  `public/pdfjs/` (bez CDN).
+  `static/pdfjs/` (bez CDN).
 - Tłumaczenie używa darmowych providerów z CORS — najpierw publiczny
   endpoint Google, fallback MyMemory. Provider Microsoft Translator
   (Azure) jest zawarty za tym samym interfejsem, gdybyś chciał kiedyś
@@ -40,8 +40,8 @@ stron, grzbiet, trójwymiarowe przewracanie kartek) i tłumaczy strony
 
 ## Technologia
 
-- [VitePress](https://vitepress.dev/) — generator statycznych witryn oparty o Vue
-  (i18n przez `locales` w `.vitepress/config.mts`)
+- [Docusaurus](https://docusaurus.dev/) — generator statycznych witryn oparty o Vue
+  (i18n przez `locales` w `.docusaurus/docusaurus.config.ts`)
 - [pdf.js](https://mozilla.github.io/pdf.js/) — renderowanie PDF dla czytnika książek
 - WebRTC + MQTT — napędzają [N2 Mesh](https://bartoszosiej.github.io/n2-mesh/), czat P2P (własne repo: `BartoszOsiej/n2-mesh`)
 - Wdrażane przez GitHub Actions → GitHub Pages
@@ -50,31 +50,33 @@ stron, grzbiet, trójwymiarowe przewracanie kartek) i tłumaczy strony
 
 ```bash
 npm install
-npm run docs:dev        # serwer dev z hot reload
-npm run docs:build      # build produkcyjny do .vitepress/dist
-npm run docs:preview    # podgląd buildu produkcyjnego
+npm run start          # serwer dev z hot reload
+npm run build           # build produkcyjny do build/
+npm run serve           # podgląd buildu produkcyjnego
 ```
 
-`predocs:dev` / `predocs:build` automatycznie regenerują przykładowe PDF-y
-(`scripts/gen-sample-pdfs.mjs`) i kopiują worker/fonty/cmaps pdf.js do
-`public/pdfjs/` (`scripts/copy-pdfjs.mjs`).
+`prebuild` automatycznie regeneruje przykładowe PDF-y
+(`scripts/gen-sample-pdfs.mjs`), kopiuje worker/fonty/cmaps pdf.js do
+`static/pdfjs/` (`scripts/copy-pdfjs.mjs`) i odświeża `llms-full.txt`
+(`scripts/gen-llms-full.py`).
 
 ## Regenerowanie plików pochodnych
 
-- `public/sitemap.xml` — uruchom `scripts/gen-sitemap.py`
-- `public/llms-full.txt` — uruchom `scripts/gen-llms-full.py`
-- `public/pdfs/sample-*.pdf` — uruchom `scripts/gen-sample-pdfs.mjs`
+- `sitemap.xml` — generowany automatycznie przez plugin sitemap Docusaurus
+- `static/llms-full.txt` — uruchom `scripts/gen-llms-full.py`
+- `static/pdfs/sample-*.pdf` — uruchom `scripts/gen-sample-pdfs.mjs`
 
 ## Struktura projektu
 
 ```
 Docs/
-├── index.md                      # Strona główna (EN)
-├── pl/                           # Lokalizacja polska — każda strona zdublowana
-│   ├── index.md
-│   ├── projects/…
-│   └── translator.md
-├── translator.md                 # Demo Książki PDF i Tłumacza (EN)
+├── src/pages/index.tsx           # Strona główna (EN + PL, zależna od locale)
+├── i18n/pl/                      # Lokalizacja polska — każda strona zdublowana
+│   └── docusaurus-plugin-content-docs/current/
+│       ├── projects/…
+│       └── translator.md
+├── docs/
+│   ├── translator.md             # Demo Książki PDF i Tłumacza (EN)
 ├── update-flow.md                # Które repo publikują tu aktualizacje
 ├── projects/
 │   ├── fastapi-url/              # Dokumentacja LinkShort (4 strony)
@@ -89,12 +91,12 @@ Docs/
 │   ├── pdfs/                     # Przykładowe PDF-y do demo tłumacza
 │   └── pdfjs/                    # Wgrany worker pdf.js, fonty, cmaps
 ├── scripts/                      # Generatory sitemap / llms-full / przykładowych PDF
-└── .vitepress/
-    ├── config.mts                # Konfiguracja witryny, locales, nav, sidebar, wyszukiwarka
+└── .docusaurus/
+    ├── docusaurus.config.ts                # Konfiguracja witryny, locales, nav, sidebar, wyszukiwarka
     └── theme/
         ├── translator.ts         # Darmowe providery tłumaczeń
         └── components/
-            └── PdfBookViewer.vue # Wizualny czytnik książek PDF + tłumacz
+            └── PdfBookViewer.tsx # Wizualny czytnik książek PDF + tłumacz
 ```
 
 ## Publikacja
