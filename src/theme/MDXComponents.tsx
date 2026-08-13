@@ -8,6 +8,7 @@ import ScrollReveal from '@site/src/components/ScrollReveal'
 import ExternumPlayground from '@site/src/components/ExternumPlayground'
 import PdfBookViewer from '@site/src/components/PdfBookViewer'
 import TestSuiteView from '@site/src/components/TestSuiteView'
+import RepoMap from '@site/src/components/RepoMap'
 
 export default {
   ...MDXComponents,
@@ -19,4 +20,5 @@ export default {
   ExternumPlayground,
   PdfBookViewer,
   TestSuiteView,
+  RepoMap,
 }
