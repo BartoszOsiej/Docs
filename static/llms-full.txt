@@ -271,6 +271,14 @@ Source: https://bartoszosiej.github.io/Docs/projects/
     link="/"
   />
   <ProjectCard
+    icon="🔬"
+    title="R&D — Research Hub"
+    description="Open-access research published under my own name on Zenodo with a persistent DOI. Hosts the Quantum Flash Tomograph preprint — full text, metadata and a web-wide citation audit, licensed CC-BY-4.0."
+    tags={['Research', 'Preprint', 'DOI', 'Open Access']}
+    tint="#2dd4bf"
+    link="/rd/"
+  />
+  <ProjectCard
     icon="💬"
     title="N2 Mesh — P2P Chat"
     description="WebRTC messenger that works on static hosting. Peers announce their presence on a public MQTT topic and connect directly over WebRTC data channels — no server, no database. Fully documented in its own docs pages."
@@ -341,6 +349,7 @@ Source: https://bartoszosiej.github.io/Docs/projects/
 | Project | Repository | Docs |
 |---|---|---|
 | Docs Hub | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | [here](/) |
+| R&D — Quantum Flash Tomograph | Zenodo DOI [`10.5281/zenodo.21701871`](https://doi.org/10.5281/zenodo.21701871) | [docs](/rd/) |
 | N2 Mesh (P2P Chat) | [BartoszOsiej/n2-mesh](https://github.com/BartoszOsiej/n2-mesh) | [docs](/projects/n2-mesh/) · [live](https://bartoszosiej.github.io/n2-mesh/) |
 | LinkShort | [BartoszOsiej/FastAPI-url](https://github.com/BartoszOsiej/FastAPI-url) | [docs](/projects/fastapi-url/) |
 | Novactorio | [BartoszOsiej/Factorio-web-game](https://github.com/BartoszOsiej/Factorio-web-game) | [docs](/projects/factorio-web-game/) |
