@@ -3,7 +3,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
 import { detectLanguage, langLabel, translateText } from '../lib/translator'
 
 interface Props {
-  src: string
+  /** Optional PDF URL. If omitted, only client-side file loading is shown. */
+  src?: string
   title?: string
   initialPage?: number
 }
@@ -45,6 +46,7 @@ export default function PdfBookViewer({ src, title = 'PDF Book', initialPage = 1
   const base = useBaseUrl('/')
   const [ready, setReady] = useState(false)
   const [error, setError] = useState('')
+  const [fileName, setFileName] = useState('')
   const [numPages, setNumPages] = useState(0)
   const [currentPage, setCurrentPage] = useState(initialPage)
   const [zoom, setZoom] = useState(1)
@@ -57,9 +59,11 @@ export default function PdfBookViewer({ src, title = 'PDF Book', initialPage = 1
   const [showOverlay, setShowOverlay] = useState(true)
   const [flipClass, setFlipClass] = useState('')
   const [stageWidth, setStageWidth] = useState(900)
+  const [dragOver, setDragOver] = useState(false)
 
   const leftCanvasRef = useRef<HTMLCanvasElement | null>(null)
   const rightCanvasRef = useRef<HTMLCanvasElement | null>(null)
+  const fileInputRef = useRef<HTMLInputElement | null>(null)
   const pdfDocRef = useRef<any>(null)
   const pdfjsRef = useRef<any>(null)
   const translationsRef = useRef<Map<number, TranslationEntry>>(new Map())
@@ -111,13 +115,17 @@ export default function PdfBookViewer({ src, title = 'PDF Book', initialPage = 1
     await Promise.allSettled(jobs)
   }
 
-  const loadPdf = async (): Promise<void> => {
+  const loadPdf = async (file?: File | null): Promise<void> => {
     try {
       const pdfjs = await import('pdfjs-dist')
       pdfjsRef.current = pdfjs
       pdfjs.GlobalWorkerOptions.workerSrc = base + 'pdfjs/pdf.worker.min.mjs'
+      // Client-side loading: pass the raw bytes (from a local file) or a URL.
+      const source = file
+        ? { data: new Uint8Array(await file.arrayBuffer()) }
+        : { url: resolveSrc(src ?? '') }
       const loadingTask = pdfjs.getDocument({
-        url: resolveSrc(src),
+        ...source,
         standardFontDataUrl: base + 'pdfjs/standard_fonts/',
         cMapUrl: base + 'pdfjs/cmaps/',
         cMapPacked: true,
@@ -132,8 +140,29 @@ export default function PdfBookViewer({ src, title = 'PDF Book', initialPage = 1
     }
   }
 
+  const onFileSelected = async (file: File | null | undefined): Promise<void> => {
+    if (!file || !/pdf$/i.test(file.name || '')) return
+    setError('')
+    setFileName(file.name)
+    setReady(false)
+    translationsRef.current = new Map()
+    detectedLangRef.current = 'auto'
+    setNumPages(0)
+    setCurrentPage(1)
+    setZoom(1)
+    setShowOverlay(true)
+    await loadPdf(file)
+  }
+
+  const onDrop = (e: React.DragEvent<HTMLDivElement>): void => {
+    e.preventDefault()
+    setDragOver(false)
+    const file = e.dataTransfer.files?.[0]
+    if (file) void onFileSelected(file)
+  }
+
   useEffect(() => {
-    void loadPdf()
+    if (src) void loadPdf()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [src])
 
@@ -285,14 +314,37 @@ export default function PdfBookViewer({ src, title = 'PDF Book', initialPage = 1
   }
 
   return (
-    <div className={`pbv${ready ? ' ready' : ''}`}>
+    <div
+      className={`pbv${ready ? ' ready' : ''}${dragOver ? ' pbv-dragging' : ''}`}
+      onDragOver={(e) => {
+        e.preventDefault()
+        setDragOver(true)
+      }}
+      onDragLeave={() => setDragOver(false)}
+      onDrop={onDrop}
+    >
       {/* toolbar */}
       <div className="pbv-toolbar">
         <div className="pbv-title">
           <span className="pbv-book-icon">📖</span>
-          <span>{title}</span>
+          <span>{fileName ? `${title} — ${fileName}` : title}</span>
         </div>
         <div className="pbv-controls">
+          <button
+            type="button"
+            className="pbv-btn pbv-ghost"
+            onClick={() => fileInputRef.current?.click()}
+            title="Open a PDF file from your computer (stays in your browser)"
+          >
+            📂 Open PDF
+          </button>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="application/pdf,.pdf"
+            className="pbv-file-input"
+            onChange={(e) => void onFileSelected(e.target.files?.[0])}
+          />
           <div className="pbv-nav">
             <button className="pbv-btn" disabled={!canPrev} aria-label="Previous page" onClick={() => turn(-1)}>
               ‹
@@ -361,7 +413,19 @@ export default function PdfBookViewer({ src, title = 'PDF Book', initialPage = 1
 
       {/* status / errors */}
       {error && <div className="pbv-error">⚠️ {error}</div>}
-      {!error && !ready && (
+      {!error && !ready && !fileName && !src && (
+        <div className="pbv-dropzone">
+          <div className="pbv-dropzone-icon">📂</div>
+          <p className="pbv-dropzone-title">Open a PDF from your computer</p>
+          <p className="pbv-dropzone-sub">
+            The file is read entirely in your browser with pdf.js — it never leaves your device.
+          </p>
+          <button type="button" className="pbv-btn pbv-primary" onClick={() => fileInputRef.current?.click()}>
+            Choose file…
+          </button>
+        </div>
+      )}
+      {!error && !ready && (fileName || src) && (
         <div className="pbv-loading">
           <span className="pbv-spinner" /> Loading PDF…
         </div>
@@ -451,7 +515,7 @@ export default function PdfBookViewer({ src, title = 'PDF Book', initialPage = 1
           </label>
           <span className="pbv-hint">
             Translation runs in your browser via keyless providers (Google · MyMemory). No key, no account, no
-            server.
+            server. PDFs opened from your computer are processed client-side only.
           </span>
         </div>
       )}

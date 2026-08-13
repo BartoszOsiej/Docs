@@ -744,6 +744,24 @@
   color: #94a3b8; font-size: 0.88rem;
 }
 .pbv-error { color: #f87171; }
+.pbv-file-input { display: none; }
+.pbv-dropzone {
+  margin: 1.2rem auto;
+  max-width: 560px;
+  padding: 2.6rem 2rem;
+  text-align: center;
+  border: 2px dashed rgba(129, 140, 248, 0.4);
+  border-radius: 18px;
+  background: rgba(99, 102, 241, 0.06);
+}
+.pbv-dropzone-icon { font-size: 2.4rem; margin-bottom: 0.7rem; }
+.pbv-dropzone-title { font-size: 1.02rem; font-weight: 700; color: #e2e8f0; margin-bottom: 0.35rem; }
+.pbv-dropzone-sub { font-size: 0.82rem; color: #94a3b8; margin-bottom: 1.1rem; }
+.pbv-dragging {
+  outline: 2px dashed rgba(129, 140, 248, 0.7);
+  outline-offset: -6px;
+  border-radius: 14px;
+}
 .pbv-spinner {
   width: 18px; height: 18px; border-radius: 50%;
   border: 2px solid rgba(129, 140, 248, 0.3);

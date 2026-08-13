@@ -8,6 +8,10 @@ This page is a live demo of the translator module built into this docs hub.
 Pick a sample below and press **Translate page** (or **Translate all**) to
 watch a page get converted to Polish — rendered right on the book page.
 
+You can also **open any PDF from your computer** with the 📂 *Open PDF*
+button (or by dragging & dropping a file onto the viewer) — it is read
+entirely in your browser, never uploaded.
+
 <PdfBookViewer
   src="/pdfs/sample-english.pdf"
   title="Sample — English Manual"
@@ -17,6 +21,8 @@ watch a page get converted to Polish — rendered right on the book page.
   src="/pdfs/sample-polish.pdf"
   title="Przykład — Polski Dokument"
 />
+
+<PdfBookViewer title="Your PDF here — drop a file to start" />
 
 ---
 
@@ -31,6 +37,7 @@ watch a page get converted to Polish — rendered right on the book page.
 | 📑 **Per-page or whole book** | *Translate page* handles the current page; *Translate all* queues every page with a progress bar |
 | 🖼️ **On-page overlay** | Translated text can be shown over the page itself, or read in the panel below the book |
 | ⌨️ **Keyboard friendly** | `←` / `→` arrow keys turn the pages |
+| 📂 **Open your own PDFs** | Load any PDF from your computer (file picker or drag & drop) — processed 100% client-side |
 
 ## 🧪 Try it
 
@@ -38,7 +45,9 @@ watch a page get converted to Polish — rendered right on the book page.
 2. Set the target language (default: **Polski**).
 3. Press **Translate page** — the translation appears in the panel and on the page.
 4. Press **Translate all** to translate the whole book.
-5. Load your own PDF by embedding the component with a different `src`.
+5. **Open your own PDF** — click 📂 *Open PDF* and pick a file, or just drag &
+   drop it onto the viewer. The file is processed entirely in your browser.
+6. Embed the component with a different `src` to show a static PDF instead.
 
 ## 🔌 Embedding it in your docs
 
@@ -48,9 +57,17 @@ The component is registered globally, so any Markdown page can embed it:
 <PdfBookViewer src="/pdfs/sample-english.pdf" title="My Book" />
 ```
 
+To let readers open their own PDF (no `src`), embed it without a source:
+
+```md
+<PdfBookViewer title="Upload your PDF" />
+```
+
+In both cases the 📂 *Open PDF* button and drag & drop are available.
+
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `src` | string | — | PDF URL. Absolute paths are resolved against the site base; http(s) URLs load directly |
+| `src` | string | — | Optional PDF URL. Absolute paths are resolved against the site base; http(s) URLs load directly. Omit it to get a file-picker / drag-and-drop viewer |
 | `title` | string | `PDF Book` | Book title (shown in the toolbar and on the cover) |
 | `initialPage` | number | `1` | Page the book opens on |
 
@@ -73,6 +90,9 @@ PDF (URL) ──► pdf.js ──► canvas pages ──► book layout (spread 
 - **Rendering:** [pdf.js](https://mozilla.github.io/pdf.js/) renders every page
   to a `&lt;canvas&gt;`. The worker and the standard-14 font data are vendored in
   `public/pdfjs/` so the viewer works offline — no CDN.
+- **Local files:** picking a file (or dropping it) reads it with
+  `File.arrayBuffer()` and hands the raw bytes to `pdf.js`
+  (`getDocument({ data })`) — the PDF never leaves the browser.
 - **Text extraction:** `page.getTextContent()` returns positioned text spans;
   they are joined into paragraphs and chunked (Google: ~4 500 chars,
   MyMemory: ~450 chars) to stay inside each API's limits.

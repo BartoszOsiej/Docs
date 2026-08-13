@@ -13,6 +13,10 @@ dokumentacji. Wybierz próbkę poniżej i naciśnij **Tłumacz stronę** (albo
 **Tłumacz wszystko**), aby zobaczyć, jak strona zostaje przetłumaczona na
 polski — renderowana bezpośrednio na stronie książki.
 
+Możesz też **otworzyć dowolny PDF ze swojego komputera** przyciskiem
+📂 *Open PDF* (albo przeciągając i upuszczając plik na czytnik) — plik jest
+czytany w całości w przeglądarce i nigdy nie jest wysyłany nigdzie.
+
 <PdfBookViewer
   src="/pdfs/sample-english.pdf"
   title="Sample — English Manual"
@@ -22,6 +26,8 @@ polski — renderowana bezpośrednio na stronie książki.
   src="/pdfs/sample-polish.pdf"
   title="Przykład — Polski Dokument"
 />
+
+<PdfBookViewer title="Twój PDF tutaj — upuść plik, aby zacząć" />
 
 ---
 
@@ -36,6 +42,7 @@ polski — renderowana bezpośrednio na stronie książki.
 | 📑 **Strona lub cała książka** | *Tłumacz stronę* obsługuje bieżącą stronę; *Tłumacz wszystko* kolejno tłumaczy wszystkie strony z paskiem postępu |
 | 🖼️ **Nakładka na stronie** | Przetłumaczony tekst można pokazać na samej stronie albo czytać w panelu pod książką |
 | ⌨️ **Przyjazny klawiaturze** | Strzałki `←` / `→` przewracają strony |
+| 📂 **Otwieraj własne PDF-y** | Wczytaj dowolny PDF z komputera (wybór pliku lub drag & drop) — przetwarzany w 100% po stronie klienta |
 
 ## 🧪 Wypróbuj
 
@@ -43,7 +50,10 @@ polski — renderowana bezpośrednio na stronie książki.
 2. Ustaw język docelowy (domyślnie: **Polski**).
 3. Naciśnij **Tłumacz stronę** — tłumaczenie pojawia się w panelu i na stronie.
 4. Naciśnij **Tłumacz wszystko**, aby przetłumaczyć całą książkę.
-5. Wczytaj własny PDF, osadzając komponent z innym `src`.
+5. **Otwórz własny PDF** — kliknij 📂 *Open PDF* i wybierz plik albo po
+   prostu przeciągnij i upuść go na czytnik. Plik jest przetwarzany w
+   całości w przeglądarce.
+6. Aby pokazać statyczny PDF, osadź komponent z innym `src`.
 
 ## 🔌 Osadzanie w dokumentacji
 
@@ -54,9 +64,18 @@ osadzić:
 <PdfBookViewer src="/pdfs/sample-english.pdf" title="Moja Książka" />
 ```
 
+Aby umożliwić czytelnikom otwarcie własnego PDF-a (bez `src`), osadź go bez
+źródła:
+
+```md
+<PdfBookViewer title="Wgraj swój PDF" />
+```
+
+W obu przypadkach dostępne są przycisk 📂 *Open PDF* oraz drag & drop.
+
 | Prop | Typ | Domyślnie | Opis |
 |---|---|---|---|
-| `src` | string | — | URL PDF-a. Ścieżki absolutne są rozwiązywane względem bazy witryny; URL-e http(s) ładują się bezpośrednio |
+| `src` | string | — | Opcjonalny URL PDF-a. Ścieżki absolutne są rozwiązywane względem bazy witryny; URL-e http(s) ładują się bezpośrednio. Pomiń go, aby otrzymać czytnik z wyborem pliku / drag & drop |
 | `title` | string | `PDF Book` | Tytuł książki (pokazywany w pasku narzędzi i na okładce) |
 | `initialPage` | number | `1` | Strona, na której książka się otwiera |
 
@@ -79,6 +98,9 @@ PDF (URL) ──► pdf.js ──► strony canvas ──► układ książki (r
 - **Renderowanie:** [pdf.js](https://mozilla.github.io/pdf.js/) renderuje
   każdą stronę do `&lt;canvas&gt;`. Worker i dane fontów standardowych są
   wgranе w `public/pdfjs/`, więc czytnik działa offline — bez CDN.
+- **Lokalne pliki:** wybranie pliku (lub upuszczenie go) czyta go przez
+  `File.arrayBuffer()` i przekazuje surowe bajty do `pdf.js`
+  (`getDocument({ data })`) — PDF nigdy nie opuszcza przeglądarki.
 - **Ekstrakcja tekstu:** `page.getTextContent()` zwraca pozycjonowane spany
   tekstu; są one składane w akapity i chunkowane (Google: ~4 500 znaków,
   MyMemory: ~450 znaków), aby zmieścić się w limitach każdego API.
