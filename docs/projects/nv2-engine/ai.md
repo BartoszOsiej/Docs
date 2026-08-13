@@ -185,7 +185,7 @@ full numbers in `TEST_REPORT.md`.
 
 ## Testing
 
-22 AI tests across `world::ai_generator` (9), `world::memplp` (7),
+26 AI/ML tests across `world::ai_generator` (10), `world::memplp` (10),
 `world::online_trainer` (2), `world::vegetation` (3) and `world::biomes` (1):
 
 - Forward pass produces a valid probability distribution
@@ -195,6 +195,15 @@ full numbers in `TEST_REPORT.md`.
 - Procedural textures are deterministic per seed
 - Player-feedback buffer stays bounded
 - Heuristic targets stay in range
+- **Training survives extreme inputs** — gradient clipping + bounded
+  updates mean weights can never explode into NaN
+- **NaN inputs are rejected** without touching the weights
+- **Poisoned checkpoints still load** — `null` (NaN) weights read back as
+  `0.0` instead of failing the whole load
+
+> Robustness: `Mlp::train` clips gradients (±5) and bounds per-parameter
+> updates (±1), `save_checkpoint` sanitises NaN/Inf before writing, and
+> `load_checkpoint` tolerates NaN weights serialised as JSON `null`.
 
 ## Roadmap (Phase 2)
 
