@@ -83,8 +83,9 @@ Odtworzenie: `npm test`
 
 ## Novactorio — gra Factorio Web (`Factorio-web-game`)
 
-✅ Typecheck — teraz **0 błędów** · ✅ build produkcyjny OK · lint: 0 błędów
-nieużywanych zmiennych (pozostały 28 stylistycznych `no-explicit-any`).
+✅ Typecheck — **0 błędów** · ✅ build produkcyjny OK · ✅ **lint 0 błędów**
+(usunięto wszystkie 28 `no-explicit-any`; zostało 7 stylistycznych ostrzeżeń
+react-hooks).
 
 Poprawki w trakcie przeglądu:
 - Przejścia pogody wywalały się (brak `lerped config.color`) — naprawione
@@ -92,25 +93,35 @@ Poprawki w trakcie przeglądu:
 - Animacja chodu gracza zamrożona na stałe (`PlayerState.prevX/prevY` nigdy
   nie istniały) — teraz śledzona przez renderer
 - Brakujący import `removeBuilding`, usunięte martwe cache'e pogody/glow
+- **Zapis gry typowany** — krotki `SaveData` mają typy; wcześniej ładowane,
+  ale nigdy niezapisywane `totalPollutionGenerated` / `worldSeed` są teraz
+  utrwalane
 
 Odtworzenie: `npm run typecheck && npm run build && npm run lint`
 
 ## LinkShort — skracacz URL FastAPI (`FastAPI-url`)
 
-✅ **3/3 testy API przechodzą** — `tests/test_api.py`: health,
-rejestracja/logowanie, skracanie + statystyki + przekierowanie (`302`).
-Wszystkie 11 modułów Pythona kompiluje się czysto. Uruchomiono na
-**Pythonie 3.9** (domyślny 3.14 w środowisku QA nie ma gotowych wheeli dla
-przypiętych z 2024 `pydantic-core`/`bcrypt`; obraz Dockera używa 3.12, gdzie
-przypięcia instalują się czysto).
+✅ **11/11 testów API przechodzi** — `tests/test_api.py`: health,
+rejestracja/logowanie, `/auth/me`, odrzucanie duplikatu e-maila,
+skracanie wymagające autha, izolacja `/urls/my` per użytkownik, liczenie
+kliknięć, 404, usuwanie + egzekwowanie własności. Wszystkie 11 modułów
+Pythona kompiluje się czysto. Uruchomiono na **Pythonie 3.9** (domyślny
+3.14 w środowisku QA nie ma gotowych wheeli dla przypiętych z 2024
+`pydantic-core`/`bcrypt`; obraz Dockera używa 3.12, gdzie przypięcia
+instalują się czysto).
 
 Odtworzenie: `python3.9 -m venv venv && venv/bin/pip install -r requirements.txt && venv/bin/pytest tests/ -v`
 
 ## N2 Mesh (`n2-mesh`)
 
-✅ Kontrola składni JavaScript przechodzi (`node --check` na wszystkich
-skryptach). Czysta statyczna aplikacja P2P — bez kroku builda, bez
-zdefiniowanego harnessu testów.
+✅ **19/19 testów jednostkowych przechodzi** (`npm test`, `node:test` na
+`core.js`) · kontrola składni czysta. Czysta logika (bajty, id, dedup,
+parsowanie pokoi, warstwa pakietów MQTT 3.1.1) została wydzielona do
+`core.js` do testów headless.
+
+Testy złapały prawdziwy błąd: `mqttParsePublish` sprawdzał flagę **DUP**
+(`0x08`) zamiast poziomu **QoS** (`0x06`) przy pomijaniu identyfikatora
+pakietu, przez co payloady PUBLISH QoS-1 były źle parsowane — naprawione.
 
 ## Docs — ta witryna
 
