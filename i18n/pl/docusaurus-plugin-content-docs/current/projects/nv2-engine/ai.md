@@ -188,7 +188,7 @@ pełne liczby w `TEST_REPORT.md`.
 
 ## Testowanie
 
-22 testy AI w `world::ai_generator` (9), `world::memplp` (7),
+26 testów AI/ML w `world::ai_generator` (10), `world::memplp` (10),
 `world::online_trainer` (2), `world::vegetation` (3) i `world::biomes` (1):
 
 - Przejście wprzód daje poprawny rozkład prawdopodobieństwa
@@ -198,6 +198,15 @@ pełne liczby w `TEST_REPORT.md`.
 - Tekstury proceduralne są deterministyczne względem seedu
 - Bufor feedbacku gracza pozostaje ograniczony
 - Heurystyczne cele pozostają w zakresie
+- **Trening przetrwa ekstremalne wejścia** — klipowanie gradientu +
+  ograniczone aktualizacje sprawiają, że wagi nigdy nie eksplodują do NaN
+- **Wejścia NaN są odrzucane** bez ruszania wag
+- **Zatrute checkpointy nadal się ładują** — wagi `null` (NaN) wczytywane
+  jako `0.0` zamiast unieważniać cały plik
+
+> Solidność: `Mlp::train` klipuje gradienty (±5) i ogranicza aktualizacje
+> parametrów (±1), `save_checkpoint` sanityzuje NaN/Inf przed zapisem,
+> a `load_checkpoint` toleruje wagi NaN zapisane jako JSON `null`.
 
 ## Plan (Faza 2)
 

@@ -9,20 +9,29 @@ Legenda: ✅ zaliczony · ⚠️ częściowo (patrz uwagi) · ❌ niezaliczony
 
 ## NV2 Engine (`NV2_ENGINE`)
 
-**84 testy** (83 zaliczone, 1 zignorowany = benchmark release) · pełny
+**88 testów** (87 zaliczonych, 1 zignorowany = benchmark release) · pełny
 raport: [`TEST_REPORT.md`](https://github.com/BartoszOsiej/NV2_ENGINE/blob/main/TEST_REPORT.md)
 
 | Zestaw | Wynik |
 |---|---|
-| Cały projekt | ✅ 83 zaliczone, 0 błędów |
-| Moduły AI/ML (ai_generator, memplp, online_trainer, vegetation, biomes) | ✅ 22 testy |
+| Cały projekt | ✅ 87 zaliczone, 0 błędów |
+| Moduły AI/ML (ai_generator, memplp, online_trainer, vegetation, biomes) | ✅ 26 testów |
 | Świat i teren (block, world) | ✅ 13 testów |
-| Rozgrywka (interaction, crafting, inventory) | ✅ 39 testów |
+| Rozgrywka (interaction, crafting, inventory) | ✅ 38 testów |
 | Renderer (camera, mesh, texture_registry) | ✅ 6 testów |
 | Powłoka / inne (commands, assets) | ✅ 4 testy |
-| Benchmark wydajności (release) | ✅ głowa roślinności 3,41 M pred/s · trening do 1,16 M próbek/s |
+| Benchmark wydajności (release) | ✅ głowa roślinności ~1,44 M pred/s · trening do ~0,96 M próbek/s (ta maszyna) |
 | Bezpieczeństwo: bloki `unsafe` | ✅ 0 w całym kodzie |
-| Clippy (`--all-targets`) | ⚠️ 46 ostrzeżeń, 0 błędów (stylistyczne, istniejące wcześniej) |
+| Clippy (`--all-targets`) | ⚠️ 43 ostrzeżenia, 0 błędów (stylistyczne, istniejące wcześniej) |
+
+**Bug znaleziony i naprawiony podczas tego przeglądu — uszkodzenie
+checkpointu przez NaN:** trening w tle mógł wysadzić wagi do NaN
+(nieograniczone aktualizacje gradientu), a serde_json zapisuje NaN jako JSON
+`null`, przez co cały checkpoint przestawał się ładować. Naprawa w trzech
+warstwach: klipowanie gradientu + ograniczone aktualizacje w `Mlp::train`,
+sanityzacja NaN/Inf przy zapisie oraz tolerancyjne ładowanie (wagi `null`
+wczytywane jako `0.0`). Dodano 4 testy regresji — patrz `Src/world/memplp.rs`
+i `Src/world/ai_generator.rs`.
 
 Odtworzenie: `cd Core && cargo test && cargo test --release qa_benchmark_report -- --ignored --nocapture`
 

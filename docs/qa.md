@@ -9,20 +9,28 @@ Legend: ✅ pass · ⚠️ partial (see notes) · ❌ fail
 
 ## NV2 Engine (`NV2_ENGINE`)
 
-**84 tests** (83 passed, 1 ignored = release benchmark) · full report:
+**88 tests** (87 passed, 1 ignored = release benchmark) · full report:
 [`TEST_REPORT.md`](https://github.com/BartoszOsiej/NV2_ENGINE/blob/main/TEST_REPORT.md)
 
 | Suite | Result |
 |---|---|
-| Whole project | ✅ 83 passed, 0 failed |
-| AI / ML modules (ai_generator, memplp, online_trainer, vegetation, biomes) | ✅ 22 tests |
+| Whole project | ✅ 87 passed, 0 failed |
+| AI / ML modules (ai_generator, memplp, online_trainer, vegetation, biomes) | ✅ 26 tests |
 | World & terrain (block, world) | ✅ 13 tests |
-| Gameplay (interaction, crafting, inventory) | ✅ 39 tests |
+| Gameplay (interaction, crafting, inventory) | ✅ 38 tests |
 | Renderer (camera, mesh, texture_registry) | ✅ 6 tests |
 | Shell / misc (commands, assets) | ✅ 4 tests |
-| Performance benchmark (release) | ✅ vegetation head 3.41 M pred/s · training up to 1.16 M samples/s |
+| Performance benchmark (release) | ✅ vegetation head ~1.44 M pred/s · training up to ~0.96 M samples/s (this machine) |
 | Security: `unsafe` blocks | ✅ 0 in the whole codebase |
-| Clippy (`--all-targets`) | ⚠️ 46 warnings, 0 errors (pre-existing style nits) |
+| Clippy (`--all-targets`) | ⚠️ 43 warnings, 0 errors (pre-existing style nits) |
+
+**Bug found & fixed during this sweep — NaN checkpoint corruption:**
+background training could explode weights into NaN (unbounded gradient
+updates), and serde_json serialises NaN as JSON `null`, which made the whole
+checkpoint unloadable. Fixed with three layers of defence: gradient clipping
++ bounded updates in `Mlp::train`, NaN/Inf sanitisation on save, and
+tolerant loading (`null` weights read back as `0.0`). 4 new regression
+tests added — see `Src/world/memplp.rs` and `Src/world/ai_generator.rs`.
 
 Reproduce: `cd Core && cargo test && cargo test --release qa_benchmark_report -- --ignored --nocapture`
 
