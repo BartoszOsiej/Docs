@@ -144,6 +144,38 @@
   background: rgba(13, 18, 36, 0.75);
 }
 
+/* ---------- language switcher (EN | PL) ---------- */
+.locale-switcher {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-right: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+.locale-btn {
+  padding: 0.22rem 0.55rem;
+  border-radius: 7px;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  color: var(--ifm-color-content-secondary);
+  transition: all 0.15s ease;
+}
+.locale-btn:hover {
+  color: var(--ifm-color-primary);
+  border-color: rgba(129, 140, 248, 0.5);
+  text-decoration: none;
+}
+.locale-btn.active {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.25), rgba(168, 85, 247, 0.2));
+  border-color: rgba(129, 140, 248, 0.55);
+  color: var(--ifm-color-primary-lightest, #a5b4fc);
+}
+.locale-switcher--mobile {
+  padding: 0.6rem 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.locale-sep { opacity: 0.5; }
+
 /* ---------- navbar ---------- */
 .navbar__title {
   font-weight: 700;
