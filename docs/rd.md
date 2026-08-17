@@ -1,7 +1,7 @@
 ---
 sidebar_label: R&D
 title: R&D
-description: Research & Development — two preprints published under my own name on Zenodo with persistent DOIs: Quantum Flash Tomograph (MRI) and Synaptic Continuity Protocol (consciousness transfer).
+description: "Research & Development — two preprints published under my own name on Zenodo with persistent DOIs: Quantum Flash Tomograph (MRI) and Synaptic Continuity Protocol (consciousness transfer)."
 ---
 
 # 🔬 R&D — Research & Development
