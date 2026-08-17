@@ -112,6 +112,25 @@ on this site, and maintained in the working copy at `~/`.
 
 ---
 
+## ⚡ Energy Research (not a repo)
+
+Open-access paper series on the world-scale energy transition, written
+by Bartosz Osiej, hosted on this site, licensed CC-BY-4.0. Full text
+(readable in the browser) lives on the **Energy Research** docs page:
+https://bartoszosiej.github.io/Docs/energy/
+
+- **Atomic Batteries** — *Betavoltaic Nuclear Batteries for Mobile
+  Devices: A Comprehensive Technical Review and Feasibility Analysis*
+  (honest verdict: µW niches, not smartphones)
+- **Iron Age of Grid Storage** — *Iron–Air Batteries as a World-Scale
+  Solution for Multi-Day Energy Storage* (100 MW / 100 h model, LCOS)
+- **Digging for the Sun** — *Superhot Rock Geothermal as the World-Scale
+  Source of Clean Baseload Power* (100 MWe model, honest $66–90/MWh)
+
+Support the series: https://ko-fi.com/bartoszosiej1
+
+---
+
 ## 🔬 R&D — Research Hub (not a repo)
 
 Open-access research published under my own name, hosted on Zenodo with a

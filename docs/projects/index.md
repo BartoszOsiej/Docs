@@ -16,6 +16,14 @@
     link="/"
   />
   <ProjectCard
+    icon="⚡"
+    title="Energy Research"
+    description="Three open-access papers on the world-scale energy transition — atomic (betavoltaic) batteries, iron–air grid storage, and superhot rock geothermal. Real physics, honest arithmetic, full PDFs readable in the browser, CC-BY-4.0."
+    tags={['Research', 'Energy', 'Open Access', 'PDF', 'CC-BY-4.0']}
+    tint="#fbbf24"
+    link="/energy/"
+  />
+  <ProjectCard
     icon="🔬"
     title="R&D — Research Hub"
     description="Two open-access preprints with persistent DOIs: Quantum Flash Tomograph (single-shot volumetric MRI) and Synaptic Continuity Protocol (consciousness transfer via high-density microelectrode arrays). Full text, metadata, citation audits, CC-BY-4.0."

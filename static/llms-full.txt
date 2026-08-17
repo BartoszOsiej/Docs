@@ -271,10 +271,18 @@ Source: https://bartoszosiej.github.io/Docs/projects/
     link="/"
   />
   <ProjectCard
+    icon="⚡"
+    title="Energy Research"
+    description="Three open-access papers on the world-scale energy transition — atomic (betavoltaic) batteries, iron–air grid storage, and superhot rock geothermal. Real physics, honest arithmetic, full PDFs readable in the browser, CC-BY-4.0."
+    tags={['Research', 'Energy', 'Open Access', 'PDF', 'CC-BY-4.0']}
+    tint="#fbbf24"
+    link="/energy/"
+  />
+  <ProjectCard
     icon="🔬"
     title="R&D — Research Hub"
-    description="Open-access research published under my own name on Zenodo with a persistent DOI. Hosts the Quantum Flash Tomograph preprint — full text, metadata and a web-wide citation audit, licensed CC-BY-4.0."
-    tags={['Research', 'Preprint', 'DOI', 'Open Access']}
+    description="Two open-access preprints with persistent DOIs: Quantum Flash Tomograph (single-shot volumetric MRI) and Synaptic Continuity Protocol (consciousness transfer via high-density microelectrode arrays). Full text, metadata, citation audits, CC-BY-4.0."
+    tags={['Research', 'Preprint', 'DOI', 'Open Access', 'Zenodo', 'OpenAlex']}
     tint="#2dd4bf"
     link="/rd/"
   />
@@ -304,9 +312,9 @@ Source: https://bartoszosiej.github.io/Docs/projects/
   />
   <ProjectCard
     icon="⛏️"
-    title="NV2 Engine"
-    description="Native Rust voxel engine with AI-driven procedural worlds. wgpu rendering, 97 block types, 9 biomes, water simulation, neural vegetation learning."
-    tags={['Rust', 'wgpu', 'Vulkan', 'MLP']}
+    title="VIVIA: Beyond the Known"
+    description="Complete voxel survival sandbox in Rust — procedural worlds, AI-driven terrain, GLB mesh rendering, multiplayer networking, Epic Games Store launch August 2026. $9.99."
+    tags={['Rust', 'wgpu', 'Epic Games Store', 'Multiplayer', 'GLB']}
     tint="#818cf8"
     link="/projects/nv2-engine/"
   />
@@ -1236,25 +1244,26 @@ deployments with per-function secrets.
 ## projects/nv2-engine/
 Source: https://bartoszosiej.github.io/Docs/projects/nv2-engine/
 ------------------------------------------------------------------------
-# NV2 Engine
+# VIVIA: Beyond the Known (formerly NV2 Engine)
 
-<a class="tests-cta" href="./tests">🧪 View animated test results — 98 passed / 99 total →</a>
+<a class="tests-cta" href="./tests">🧪 View animated test results — 224 passed / 225 total →</a>
 
-> **A native Rust voxel engine with AI-driven procedural worlds — a full desktop voxel game built on wgpu, featuring an embedded neural network that learns vegetation placement while you play.**
+> **A complete voxel survival sandbox with AI-powered terrain, multiplayer networking, and a custom neural network — built from scratch in Rust. Premiering on Epic Games Store, August 2026.**
 
-NV2 Engine (repository: `NV2_ENGINE`) is not a terrain prototype — it is a
-**complete, playable voxel game and engine** written in Rust (15,800+ lines of
-source across 30+ modules). It combines procedural terrain generation,
-realistic climate-driven biomes, a neural-network vegetation system that
-trains in the background with &lt;1% CPU overhead, animated water simulation, a
-full block breaking/placing interaction layer with tool tiers and durability,
-inventory and hotbar management, recipe-driven crafting (2×2 and 3×3),
-save/load persistence, an in-game command system, and a complete GUI stack —
-all rendered with GPU-efficient techniques.
+VIVIA: Beyond the Known (internally `NV_ENGINE`, repository: `NV2_ENGINE`) is a
+**shipped commercial voxel game** written in Rust (47 source files, 15,800+
+lines). It features procedural terrain generation with real-world NASA climate
+data, an embedded neural network (MeMLP) that learns vegetation placement
+while you play, a full mob system with AI-generated 3D models, multiplayer
+TCP networking, procedural audio, and a survival gameplay loop — all rendered
+on GPU via wgpu.
+
+**Developer:** Terra Nova Gameworks · **Version:** 1.0.0 · **Price:** $9.99 (launch $7.49)
+**Platforms:** Linux, Windows · **Stores:** Epic Games Store, itch.io
 
 **Stack:** Rust 2021 · wgpu 0.20 · winit 0.30 · cgmath 0.18 · OpenSimplex2 ·
-rayon · ndarray · serde/serde_json · fontdue · image 0.25 · bytemuck ·
-env_logger · C#/.NET 8 (content tools) · Python/Pillow (texture tools)
+rayon · tokio · ndarray · meshopt · bincode · rodio · fontdue · bytemuck ·
+Epic Online Services · C#/.NET 8 (content tools) · Python (AI/texture tools)
 
 ---
 
@@ -1305,8 +1314,29 @@ env_logger · C#/.NET 8 (content tools) · Python/Pillow (texture tools)
 | **Crafting** | 2×2 player grid + 3×3 NVCrafter station, shaped & shapeless recipes |
 | **Recipes** | 18 recipes: planks, sticks, NVCrafter, wooden pickaxe/axe/shovel/hoe, torches, chest, door, trapdoor, ladder, fence, fence gate, workbench upgrade, flint/stone/iron pickaxes |
 | **Movement** | Walk, sprint (FOV kick), jump, flight, water gravity/sinking, AABB collision, foliage movement modifiers |
-| **Commands** | `/locate &lt;biome&gt; [--tp]`, `/tp &lt;x&gt; &lt;y&gt; &lt;z&gt;` |
+| **Commands** | `/locate <biome> [--tp]`, `/tp <x> <y> <z>`, `/attack` |
 | **Persistence** | JSON world saves (seed, chunk blocks, water metadata, NVCrafter states) |
+| **Left-click attack** | `attack_nearest()` with 0.4s cooldown — default mouse button when cursor locked |
+
+### Mob system
+| Feature | Detail |
+|---|---|
+| **Enemies** | 36 hostile mobs across 11 families: Frost Hound, Sand Reaper, Bone Colossus, Void Wraith, Ash Crawler, Lava Brute, Swamp Toxin, Plague Mother, Wretched Flyer, Shadow Stalker, World Serpent, Iron Golem, Night Wisp, Deep Maw, Sand Hydra |
+| **Animals** | 41 passive mobs: Deer, Rabbit, Wolf, Bear, Eagle, Chicken, Horse, Pig, Cow, Sheep, Cat, Dog, Turtle, Frog, Snake, Bat, Mouse, Fox, Boar, Bee |
+| **AI** | Melee/ranged/hunter/guardian behavior per family, 15-attack damage spread, `attack_nearest()`, `attack_closest_enemy()`, `attack_weakest()` |
+| **3D models** | 11 GLB mesh files (ARACHNID, BOSS, BRUTE, CANID, CRAWLER, FLYER, GOLEM, HUMANOID, WISP, WORM, WRAITH) with meshopt optimization, tint + scale in shader |
+| **Families** | 11 base shapes cover 77/100 mobs; 23 small animals use voxel fallback |
+
+### Multiplayer
+| Feature | Detail |
+|---|---|
+| **Networking** | TCP (tokio async), length-prefixed bincode serialization, 20Hz tick rate |
+| **Protocol** | 18 packet types: Join, Leave, GameState, Input, Chat, Ping, etc. |
+| **Server** | Headless TCP server (`--server --port 26400 --seed 42`), server authoritative |
+| **Client** | `--connect <addr> --name <nick>`, crossbeam channels (sync ↔ async) |
+| **NAT traversal** | playit.gg — zero cost, 4-100 players |
+| **Remote players** | Rendered as humanoid cubes with blue tint |
+| **Shared seed** | Server and client use identical world generation seed |
 
 ### Special gameplay logic
 | Feature | Detail |
@@ -1341,10 +1371,36 @@ The game opens a window with the main menu:
 > **Note:** `cargo run` in dev mode already builds third-party crates at
 > `opt-level 3`, so even a debug build plays smoothly.
 
+**CLI flags:**
+
+| Flag | Action |
+|---|---|
+| `--server` | Run headless multiplayer server (no GPU/okna) |
+| `--port <N>` | Server port (default: 26400) |
+| `--seed <N>` | World generation seed |
+| `--connect <addr>` | Connect to multiplayer server |
+| `--name <nick>` | Set player nickname |
+| `--autostart` | Skip main menu, start new game immediately |
+| `--night` | Start at night (for testing) |
+
 **First minutes in-game:** spawn near a forest → punch trees with your bare
 hands → gather wood → open the 2×2 crafting grid (`E`) → craft wooden
 planks → sticks → a wooden pickaxe → mine stone → craft a stone pickaxe →
 mine iron → eventually craft an NVCrafter for 3×3 recipes.
+
+**Multiplayer (local):**
+```bash
+# Terminal 1 — server
+cargo run --release -- --server --seed 42
+
+# Terminal 2 — player 1
+cargo run --release -- --connect 127.0.0.1:26400 --name Alice
+
+# Terminal 3 — player 2
+cargo run --release -- --connect 127.0.0.1:26400 --name Bob
+```
+
+**Multiplayer (internet via playit.gg):** see [MULTIPLAYER.md](https://github.com/BartoszOsiej/VIVIA-Beyond-the-Known/blob/main/MULTIPLAYER.md)
 
 ---
 
@@ -1361,6 +1417,34 @@ mine iron → eventually craft an NVCrafter for 3×3 recipes.
 | [Performance](/projects/nv2-engine/performance) | GPU bandwidth, culling, meshing budgets, profiles |
 | [Development](/projects/nv2-engine/development) | Build, module map, testing, extending the engine |
 | [Roadmap & Changelog](/projects/nv2-engine/roadmap) | History, Phase 2 plans, known limitations |
+
+---
+
+## 🚀 VIVIA: Beyond the Known — Epic Games Store Launch
+
+**Premiere:** August 2026 (Monday) · **Price:** $9.99 (launch promo $7.49)
+**Publisher:** Terra Nova Gameworks · **Stores:** Epic Games Store + itch.io
+
+The project was renamed from **NV2 Engine** to **VIVIA: Beyond the Known** for
+the commercial release. The internal engine code retains the `NV_ENGINE` prefix;
+the game title on all store pages and marketing material is **VIVIA**.
+
+### Build pipeline
+- Linux + Windows builds via `build.sh`
+- GitHub Actions CI (`.github/workflows/windows-build.yml`)
+- Epic Games Store submission kit: `EGS/` directory with manifest, build, store assets
+- Store assets: capsule art (5 sizes) + gameplay screenshots in `store_assets/`
+
+### Engine stats at launch
+| Metric | Value |
+|---|---|
+| Source files | 47 `.rs` files + 10 `.wgsl` shaders |
+| Test cases | 224 passed / 225 total (3 ignored) |
+| GLB models | 11 AI mesh families, ~45 MB total |
+| Block types | 97 |
+| Biomes | 9 climate-driven |
+| Mob families | 11 base shapes, 77/100 mobs covered |
+| Multiplayer | TCP, 20Hz tick, headless server mode |
 
 
 ## projects/nv2-engine/architecture
@@ -4752,6 +4836,209 @@ discovery: presence on 'n2mesh/room' ──► dial() ──► SDP/ICE via rela
 [Live](https://bartoszosiej.github.io/n2-mesh/)
 
 
+## energy
+Source: https://bartoszosiej.github.io/Docs/energy
+------------------------------------------------------------------------
+---
+sidebar_label: Energy Research
+title: Energy Research
+description: "Three open-access energy papers: Atomic (Betavoltaic) Batteries for Mobile Devices, The Iron Age of Grid Storage (iron–air batteries), and Digging for the Sun (superhot rock geothermal). Full text, quantitative models, honest assessments."
+---
+
+# ⚡ Energy Research — World-Scale Energy Transition Papers
+
+> **A three-paper series on the energy transition**, written by Bartosz
+> Osiej. Each paper follows the same discipline: real physics first,
+> honest arithmetic, hype last. Together they answer the transition's
+> three problems — micro-power where autonomy matters, multi-day storage
+> for the lull, and firm baseload for the backbone.
+>
+> All papers are open-access (CC-BY-4.0), readable in the browser below,
+> and downloadable as PDF. Source `.tex` files are available in the
+> repository.
+
+---
+
+## 🔋 1. Atomic Batteries (Betavoltaics)
+
+**Betavoltaic Nuclear Batteries for Mobile Devices: A Comprehensive
+Technical Review and Feasibility Analysis**
+
+*Bartosz Osiej — August 2026 · Review paper · CC-BY-4.0*
+
+<ScrollReveal>
+
+| Property | Value |
+|---|---|
+| **Title** | Betavoltaic Nuclear Batteries for Mobile Devices: A Comprehensive Technical Review and Feasibility Analysis |
+| **Author** | Bartosz Osiej |
+| **Published** | 2026-08 |
+| **Type** | Technical review + quantitative feasibility model |
+| **License** | CC-BY-4.0 |
+| **Keywords** | betavoltaics · nuclear battery · Ni-63 · tritium · diamond semiconductors · mobile power |
+| **Language** | English |
+| **File** | [`atomic_battery.pdf`](/papers/atomic_battery.pdf) (350 kB) |
+
+</ScrollReveal>
+
+### 📖 Full text (read in the browser)
+
+<GlowCard>
+  <PdfBookViewer
+    src="/papers/atomic_battery.pdf"
+    title="Atomic Batteries — atomic_battery.pdf"
+  />
+</GlowCard>
+
+**Direct links:** [⬇ Download PDF](/papers/atomic_battery.pdf)
+
+### 📋 Abstract
+
+> We review the physics, materials, and economics of betavoltaic nuclear
+> batteries and test them honestly against the demands of a smartphone.
+> The physics is real: beta decay (³H, ⁶³Ni, ¹⁴⁷Pm, ¹⁴C) delivers
+> megajoules per gram, an energy density 30,000–50,000× that of
+> lithium-ion, and Betavolt's BV100 (2024) proved a commercial 100 µW
+> cell. The arithmetic is unforgiving: a full smartphone replacement
+> needs 7.2×10¹⁵ Bq of ⁶³Ni — 3.4 kg of nickel-63, ~97 kCi per watt,
+> and 320–970 kCi at realistic 1–3% conversion efficiency, a
+> radiologically and economically impossible device. The hybrid case
+> (a betavoltaic trickle charger for standby) is feasible but marginal:
+> 1 mW covers only ~2% of standby demand; full standby coverage needs
+> 6.7 kCi ≈ 120 g of Ni. The verdict is honest: betavoltaics are a real
+> product for µW niches (pacemakers, IoT, sensors, space) — not a
+> smartphone technology. The paper includes full dosimetry, regulatory
+> analysis (exempt concentrations, ADR transport), a 2024–2050 roadmap,
+> and a comparison against competing micro-power technologies.
+
+---
+
+## 🔩 2. The Iron Age of Grid Storage
+
+**The Iron Age of Grid Storage: Iron–Air Batteries as a World-Scale
+Solution for Multi-Day Energy Storage**
+
+*Bartosz Osiej — August 2026 · Review paper · CC-BY-4.0*
+
+<ScrollReveal>
+
+| Property | Value |
+|---|---|
+| **Title** | The Iron Age of Grid Storage: Iron–Air Batteries as a World-Scale Solution for Multi-Day Energy Storage |
+| **Author** | Bartosz Osiej |
+| **Published** | 2026-08 |
+| **Type** | Technical review + quantitative techno-economic model |
+| **License** | CC-BY-4.0 |
+| **Keywords** | iron–air battery · long-duration storage · grid storage · LCOS · Form Energy · dunkelflaute |
+| **Language** | English |
+| **File** | [`iron_air.pdf`](/papers/iron_air.pdf) (283 kB) |
+
+</ScrollReveal>
+
+### 📖 Full text (read in the browser)
+
+<GlowCard>
+  <PdfBookViewer
+    src="/papers/iron_air.pdf"
+    title="Iron–Air Batteries — iron_air.pdf"
+  />
+</GlowCard>
+
+**Direct links:** [⬇ Download PDF](/papers/iron_air.pdf)
+
+### 📋 Abstract
+
+> Iron–air batteries convert iron to rust and back — an electrochemistry
+> with a theoretical 1.28 V, 960 mAh/g, and ~1,200 Wh/kg of iron: the
+> energy of a kilogram of lithium-ion cells for the price of a few cents
+> of metal. This paper builds the complete case: the cell chemistry and
+> its four engineering killers (round-trip efficiency, parasitic hydrogen
+> evolution, the bifunctional air electrode, CO₂ and water management);
+> a transparent model of a 100 MW / 100 h = 10 GWh plant (17,000 t of
+> iron at under 1% of system cost, $200–400M capital versus $2.9B for the
+> equivalent lithium-ion stack); an LCOS analysis (~$32/MWh for 100-hour
+> firmness versus $58–78/MWh for 4-hour Li-ion); the world-scale numbers
+> (8 TW / $4 trillion market to 2040, 1.5–2.3 Gt CO₂/yr avoided); a
+> week-long dunkelflaute operating simulation; regional case studies
+> (Texas, California, Germany, Poland); manufacturing and supply-chain
+> economics; safety, standards, and end-of-life; and an honest risk
+> section with hard due-diligence data (36–50% round-trip efficiency,
+> 40–100 cycles/year). The conclusion: iron–air is the most credible
+> path to terawatt-scale multi-day storage — the engineering companion
+> to the firm baseload analyzed in the companion paper on superhot rock
+> geothermal.
+
+---
+
+## 🌋 3. Digging for the Sun — Superhot Rock Geothermal
+
+**Digging for the Sun: Superhot Rock Geothermal as the World-Scale
+Source of Clean Baseload Power**
+
+*Bartosz Osiej — August 2026 · Review paper · CC-BY-4.0*
+
+<ScrollReveal>
+
+| Property | Value |
+|---|---|
+| **Title** | Digging for the Sun: Superhot Rock Geothermal as the World-Scale Source of Clean Baseload Power |
+| **Author** | Bartosz Osiej |
+| **Published** | 2026-08 |
+| **Type** | Technical review + quantitative techno-economic model |
+| **License** | CC-BY-4.0 |
+| **Keywords** | superhot rock · supercritical geothermal · EGS · gyrotron drilling · firm power · baseload · LCOE |
+| **Language** | English |
+| **File** | [`superhot_geothermal.pdf`](/papers/superhot_geothermal.pdf) (277 kB) |
+
+</ScrollReveal>
+
+### 📖 Full text (read in the browser)
+
+<GlowCard>
+  <PdfBookViewer
+    src="/papers/superhot_geothermal.pdf"
+    title="Superhot Rock Geothermal — superhot_geothermal.pdf"
+  />
+</GlowCard>
+
+**Direct links:** [⬇ Download PDF](/papers/superhot_geothermal.pdf)
+
+### 📋 Abstract
+
+> Wind and solar solved the cost problem; iron–air storage is solving
+> the multi-day problem; what remains is firm baseload for weeks-long
+> lulls, industrial heat, and energy security. Superhot rock (SHR)
+> geothermal extracts heat from rock at 374 °C and above — beyond the
+> supercritical point of water — reached by drilling 5–20 km. At those
+> conditions supercritical water carries 3–5× the enthalpy per kilogram,
+> so a single well delivers an order of magnitude more power than a
+> conventional well. The resource is effectively unlimited: 1% of the US
+> superhot resource is 4.3 TW. The honest bottleneck is drilling cost.
+> This paper reviews the physics (with real steam-table data), a century
+> of drilling history (Kola 12.3 km, Fenton Hill, Soultz, IDDP-1/2,
+> Fervo), the gyrotron drilling program, subsurface engineering,
+> regulation, and environmental footprint — and builds a transparent
+> 100 MWe techno-economic model. The honest central estimate is
+> $66–90/MWh at today's drilling costs (competitive with gas with carbon
+> cost); it falls to ~$45/MWh only if the DOE Enhanced Geothermal Shot's
+> 90% drilling-cost reduction is delivered. The case in one sentence:
+> the geology is ready, the drilling is the bet, and the prize is
+> terawatt-scale anywhere-on-Earth clean baseload.
+
+---
+
+## 💚 Support
+
+These papers are written in the open, with no funding and no paywall. If
+they are useful to you — in school, at work, or in a grid planning
+meeting — you can support the work here:
+
+[☕ Buy me a coffee on Ko-fi](https://ko-fi.com/bartoszosiej1)
+
+Every contribution keeps the series (and the next papers) free for
+everyone.
+
+
 ## qa
 Source: https://bartoszosiej.github.io/Docs/qa
 ------------------------------------------------------------------------
@@ -5011,15 +5298,15 @@ Source: https://bartoszosiej.github.io/Docs/rd
 ---
 sidebar_label: R&D
 title: R&D
-description: Research & Development — the Quantum Flash Tomograph preprint, its full text, metadata and every place it appears online.
+description: "Research & Development — two preprints published under my own name on Zenodo with persistent DOIs: Quantum Flash Tomograph (MRI) and Synaptic Continuity Protocol (consciousness transfer)."
 ---
 
 # 🔬 R&D — Research & Development
 
 > **Research & Development hub.** Open-access work published under my own
-> name, hosted on Zenodo with a persistent DOI, licensed **CC-BY-4.0**.
-> This page presents the full text of the preprint, its canonical metadata
-> and the complete results of a web-wide citation & presence audit.
+> name, hosted on Zenodo with persistent DOIs, licensed **CC-BY-4.0**.
+> Two preprints spanning quantum MRI imaging and theoretical neuroscience —
+> both carrying persistent DOIs and present in international citation indexes.
 
 ---
 
@@ -5097,7 +5384,7 @@ All four versions of the concept record
 > All versions share the same concept DOI, so citing
 > `10.5281/zenodo.21700268` always resolves to the latest version.
 
-### 📊 Publication metrics (Zenodo, v4, as of 2026-08-13)
+### 📊 Publication metrics (Zenodo, v4, as of 2026-08-17)
 
 | Metric | Value |
 |---|---|
@@ -5107,40 +5394,106 @@ All four versions of the concept record
 
 ---
 
-## 🌐 Where this work appears online — full audit
+## 🧠 Synaptic Continuity Protocol
+
+**Preserving Personhood: A Framework for Consciousness Transfer via High-Density Microelectrode Arrays**
+
+*Bartosz Osiej — August 14, 2026 · Preprint (v2) · CC-BY-4.0*
+
+<ScrollReveal>
+
+| Property | Value |
+|---|---|
+| **Title** | Synaptic Continuity Protocol: Preserving Personhood — A Framework for Consciousness Transfer via High-Density Microelectrode Arrays |
+| **Author** | Bartosz Osiej |
+| **Published** | 2026-08-14 (v2, latest) |
+| **Type** | Preprint |
+| **License** | [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/) |
+| **DOI (v2)** | [`10.5281/zenodo.21930640`](https://doi.org/10.5281/zenodo.21930640) |
+| **Concept DOI** | [`10.5281/zenodo.21930639`](https://doi.org/10.5281/zenodo.21930639) |
+| **Keywords** | consciousness transfer · neural prosthesis · connectome mapping · substrate independence · identity preservation |
+| **Language** | English |
+| **Zenodo record** | [zenodo.org/records/21930640](https://zenodo.org/records/21930640) |
+
+</ScrollReveal>
+
+### 📋 Abstract
+
+> We present a theoretical framework for consciousness transfer between
+> biological and artificial substrates. The protocol addresses three
+> fundamental barriers: (i) connectome-scale neural mapping at synaptic
+> resolution (~100 trillion synapses for a human brain), (ii) functional
+> substrate replacement maintaining causal continuity of subjective
+> experience, and (iii) identity verification across the transfer boundary.
+> We propose a staged approach: partial prosthetic augmentation (10% cortical
+> volume), hemispheric sequential replacement, and full substrate migration —
+> each stage validated against a consciousness continuity metric (CCM)
+> derived from integrated information theory (IIT) and global workspace
+> theory (GWT). The estimated timeline for full implementation is 40–80
+> years; the first partial augmentation (10% volume, focused on memory
+> consolidation circuits) is plausible within 15–25 years given current
+> progress in high-density microelectrode arrays and neural interface
+> technology.
+
+### 🧬 Version history (Zenodo)
+
+All versions of the concept record
+[`10.5281/zenodo.21930639`](https://doi.org/10.5281/zenodo.21930639):
+
+| Version | DOI | Record |
+|---|---|---|
+| v2 (latest) | `10.5281/zenodo.21930640` | [21930640](https://zenodo.org/records/21930640) |
+| v1 | `10.5281/zenodo.21930639` | [21930639](https://zenodo.org/records/21930639) |
+
+> Citing `10.5281/zenodo.21930639` always resolves to the latest version.
+
+### 📊 Publication metrics (Zenodo, v2, as of 2026-08-17)
+
+| Metric | Value |
+|---|---|
+| Access | Open (public) |
+
+---
+
+## 🌐 Where these works appear online — full audit
 
 A web-wide search (Google, OpenAlex, DataCite, Crossref, Semantic Scholar,
-Zenodo API + targeted site checks) conducted on **2026-08-13** found the
-following places where the preprint is present or indexed.
+Zenodo API + targeted site checks) conducted on **2026-08-17** found the
+following places where the preprints are present or indexed.
 
 ### ✅ Confirmed presences
 
 #### 1. Central publication point (CERN / primary host)
 
-The main open-access repository, safeguarded by CERN infrastructure — this is
-where it all started:
+Both preprints on the open-access repository, safeguarded by CERN infrastructure:
 
-| # | Where | What exactly | Link |
+| # | Work | Where | Link |
 |---|---|---|---|
-| 1.1 | **Zenodo — main record page** | The original PDF file, the view/download counter and the official publisher metadata | [zenodo.org/records/21701871](https://zenodo.org/records/21701871) |
-| 1.2 | **Zenodo — record registry (API)** | Direct system view of the database record on CERN servers | [api.zenodo.org/records/21701871](https://zenodo.org/api/records/21701871) |
-| 1.3 | **Official DOI system link** | Immutable world-wide redirect — always leads researchers to the work, no matter how servers change | [doi.org/10.5281/zenodo.21701871](https://doi.org/10.5281/zenodo.21701871) |
+| 1.1 | QFT | **Zenodo — main record** (PDF, view/download counter, publisher metadata) | [zenodo.org/records/21701871](https://zenodo.org/records/21701871) |
+| 1.2 | QFT | **Zenodo API** — direct system record | [api.zenodo.org/records/21701871](https://api.zenodo.org/records/21701871) |
+| 1.3 | QFT | **Official DOI** — immutable redirect | [doi.org/10.5281/zenodo.21701871](https://doi.org/10.5281/zenodo.21701871) |
+| 1.4 | SCP | **Zenodo — main record** (PDF, metadata) | [zenodo.org/records/21930640](https://zenodo.org/records/21930640) |
+| 1.5 | SCP | **Zenodo API** — direct system record | [api.zenodo.org/records/21930640](https://api.zenodo.org/records/21930640) |
+| 1.6 | SCP | **Official DOI** — immutable redirect | [doi.org/10.5281/zenodo.21930640](https://doi.org/10.5281/zenodo.21930640) |
 
 #### 2. Global knowledge graphs & world-science catalogs
 
-Automatic DOI-harvesting systems pulled the work into international citation
+Automatic DOI-harvesting systems pulled both works into international citation
 registries:
 
-| # | Where | What exactly | Link |
-|---|---|---|---|
-| 2.1 | **OpenAlex — work card W7171828005** | Official record in the global open catalog of the academic world — a must for AI systems analysing scientific literature | [openalex.org/W7171828005](https://openalex.org/W7171828005) |
-| 2.2 | **OpenAIRE EXPLORE — EU Commission registry** | European open-science infrastructure — the document is permanently mapped and visible to EU funds and R&D labs | [explore.openaire.eu — search the DOI](https://explore.openaire.eu/search/publication?pid=10.5281%2Fzenodo.21701871) |
-| 2.3 | **DataCite** | DOI registration & metadata (publisher: Bartosz Osiej) | [doi.org/10.5281/zenodo.21701871](https://doi.org/10.5281/zenodo.21701871) |
+| # | Work | Where | What | Link |
+|---|---|---|---|---|
+| 2.1 | QFT | **OpenAlex — W7171828005** | Official record in global open catalog | [openalex.org/W7171828005](https://openalex.org/W7171828005) |
+| 2.2 | SCP | **OpenAlex — W7203446031** (v2) | Official record, open catalog | [openalex.org/W7203446031](https://openalex.org/W7203446031) |
+| 2.3 | SCP | **OpenAlex — W7203440092** (v1) | Previous version record | [openalex.org/W7203440092](https://openalex.org/W7203440092) |
+| 2.4 | QFT | **OpenAIRE EXPLORE** | EU Commission registry | [explore.openaire.eu](https://explore.openaire.eu/search/publication?pid=10.5281%2Fzenodo.21701871) |
+| 2.5 | QFT | **DataCite** | DOI registration & metadata | [doi.org/10.5281/zenodo.21701871](https://doi.org/10.5281/zenodo.21701871) |
+| 2.6 | SCP | **DataCite** | DOI registration & metadata | [doi.org/10.5281/zenodo.21930640](https://doi.org/10.5281/zenodo.21930640) |
 
 #### 3. TGRS clusters & radars (The Global Research Space)
 
 The big one — TGRS analytical algorithms detected the interdisciplinary nature
-of the work and placed it in **three** different thematic regions/radars:
+of QFT and placed it in **three** different thematic regions/radars:
 
 | # | Region | Position | Link |
 |---|---|---|---|
@@ -5150,42 +5503,52 @@ of the work and placed it in **three** different thematic regions/radars:
 
 ### 🔍 Checked but not found (no presence)
 
-| Index / site | Status |
-|---|---|
-| Crossref (works) | ❌ not registered (Zenodo preprints aren't Crossref-registered) |
-| Semantic Scholar | ❌ not indexed |
-| Google Scholar | ❌ not indexed (no profile/citation record found) |
-| arXiv | ❌ not posted |
-| ResearchGate | ❌ no profile/publication found |
-| Scilit / Paperity | ❌ no results |
-| News, blogs, Reddit, X/Twitter | ❌ no mentions found |
+| Index / site | QFT | SCP |
+|---|---|---|
+| Crossref (works) | ❌ not registered | ❌ not registered |
+| Semantic Scholar | ❌ not indexed | ❌ not indexed |
+| Google Scholar | ❌ not indexed | ❌ not indexed |
+| arXiv | ❌ not posted | ❌ not posted |
+| ResearchGate | ❌ no profile | ❌ no profile |
+| Scilit / Paperity | ❌ no results | ❌ no results |
+| News, blogs, Reddit, X/Twitter | ❌ no mentions | ❌ no mentions |
 
 ### 📈 Citations
 
-**0 citations** across all checked indexes (OpenAlex reports `cited_by_count:
-0` for every version). The preprint was published **2026-07-30** — barely two
-weeks before this audit — so the citation count is expected to be zero for
-now. The **Google Scholar**, **Semantic Scholar** and **Crossref** citation
-graphs have no record of the work yet.
+**0 citations** across all checked indexes for both preprints. QFT was
+published **2026-07-30** and SCP on **2026-08-14** — both very recent,
+so the citation count is expected to be zero for now.
 
 ### 💡 How to cite
 
+**Quantum Flash Tomograph:**
 ```text
 Osiej, Bartosz. (2026). Quantum Flash Tomograph: Single-Shot Volumetric
 Human Body Imaging at Cellular Resolution via Squeezed-State Compressed
 Sensing MRI (Version 4). Zenodo. https://doi.org/10.5281/zenodo.21701871
 ```
 
+**Synaptic Continuity Protocol:**
+```text
+Osiej, Bartosz. (2026). Synaptic Continuity Protocol: Preserving
+Personhood — A Framework for Consciousness Transfer via High-Density
+Microelectrode Arrays (Version 2). Zenodo. https://doi.org/10.5281/zenodo.21930640
+```
+
 ---
 
 ## 🔭 What's next in R&D
 
-- **v5 of the preprint** — expanded derivation of the compressed-sensing
-  reconstruction bounds and the Josephson parametric amplifier scaling path
-- **Companion simulation** — open-source numerical model of the 10¹⁰-parameter
-  CS reconstruction pipeline (this repo's ecosystem)
-- **Broader dissemination** — submit to arXiv (quant-ph) for Google Scholar
-  indexing and set up an OpenAlex author profile
+- **QFT v5** — expanded derivation of the compressed-sensing reconstruction
+  bounds and the Josephson parametric amplifier scaling path
+- **QFT companion simulation** — open-source numerical model of the
+  10¹⁰-parameter CS reconstruction pipeline
+- **SCP v3** — expanded consciousness continuity metric (CCM) derivation,
+  detailed prosthetic augmentation staging timeline, and ethical framework
+- **Broader dissemination** — submit both preprints to arXiv (quant-ph for
+  QFT, q-bio.NC for SCP) for Google Scholar indexing
+- **OpenAlex author profile** — set up and link both works under one
+  unified author identity
 
 ---
 
@@ -5426,6 +5789,209 @@ cargo test --release qa_benchmark_report -- --ignored --nocapture
 ```
 
 
+## energy
+Source: https://bartoszosiej.github.io/Docs/energy
+------------------------------------------------------------------------
+---
+sidebar_label: Energy Research
+title: Energy Research
+description: "Three open-access energy papers: Atomic (Betavoltaic) Batteries for Mobile Devices, The Iron Age of Grid Storage (iron–air batteries), and Digging for the Sun (superhot rock geothermal). Full text, quantitative models, honest assessments."
+---
+
+# ⚡ Energy Research — World-Scale Energy Transition Papers
+
+> **A three-paper series on the energy transition**, written by Bartosz
+> Osiej. Each paper follows the same discipline: real physics first,
+> honest arithmetic, hype last. Together they answer the transition's
+> three problems — micro-power where autonomy matters, multi-day storage
+> for the lull, and firm baseload for the backbone.
+>
+> All papers are open-access (CC-BY-4.0), readable in the browser below,
+> and downloadable as PDF. Source `.tex` files are available in the
+> repository.
+
+---
+
+## 🔋 1. Atomic Batteries (Betavoltaics)
+
+**Betavoltaic Nuclear Batteries for Mobile Devices: A Comprehensive
+Technical Review and Feasibility Analysis**
+
+*Bartosz Osiej — August 2026 · Review paper · CC-BY-4.0*
+
+<ScrollReveal>
+
+| Property | Value |
+|---|---|
+| **Title** | Betavoltaic Nuclear Batteries for Mobile Devices: A Comprehensive Technical Review and Feasibility Analysis |
+| **Author** | Bartosz Osiej |
+| **Published** | 2026-08 |
+| **Type** | Technical review + quantitative feasibility model |
+| **License** | CC-BY-4.0 |
+| **Keywords** | betavoltaics · nuclear battery · Ni-63 · tritium · diamond semiconductors · mobile power |
+| **Language** | English |
+| **File** | [`atomic_battery.pdf`](/papers/atomic_battery.pdf) (350 kB) |
+
+</ScrollReveal>
+
+### 📖 Full text (read in the browser)
+
+<GlowCard>
+  <PdfBookViewer
+    src="/papers/atomic_battery.pdf"
+    title="Atomic Batteries — atomic_battery.pdf"
+  />
+</GlowCard>
+
+**Direct links:** [⬇ Download PDF](/papers/atomic_battery.pdf)
+
+### 📋 Abstract
+
+> We review the physics, materials, and economics of betavoltaic nuclear
+> batteries and test them honestly against the demands of a smartphone.
+> The physics is real: beta decay (³H, ⁶³Ni, ¹⁴⁷Pm, ¹⁴C) delivers
+> megajoules per gram, an energy density 30,000–50,000× that of
+> lithium-ion, and Betavolt's BV100 (2024) proved a commercial 100 µW
+> cell. The arithmetic is unforgiving: a full smartphone replacement
+> needs 7.2×10¹⁵ Bq of ⁶³Ni — 3.4 kg of nickel-63, ~97 kCi per watt,
+> and 320–970 kCi at realistic 1–3% conversion efficiency, a
+> radiologically and economically impossible device. The hybrid case
+> (a betavoltaic trickle charger for standby) is feasible but marginal:
+> 1 mW covers only ~2% of standby demand; full standby coverage needs
+> 6.7 kCi ≈ 120 g of Ni. The verdict is honest: betavoltaics are a real
+> product for µW niches (pacemakers, IoT, sensors, space) — not a
+> smartphone technology. The paper includes full dosimetry, regulatory
+> analysis (exempt concentrations, ADR transport), a 2024–2050 roadmap,
+> and a comparison against competing micro-power technologies.
+
+---
+
+## 🔩 2. The Iron Age of Grid Storage
+
+**The Iron Age of Grid Storage: Iron–Air Batteries as a World-Scale
+Solution for Multi-Day Energy Storage**
+
+*Bartosz Osiej — August 2026 · Review paper · CC-BY-4.0*
+
+<ScrollReveal>
+
+| Property | Value |
+|---|---|
+| **Title** | The Iron Age of Grid Storage: Iron–Air Batteries as a World-Scale Solution for Multi-Day Energy Storage |
+| **Author** | Bartosz Osiej |
+| **Published** | 2026-08 |
+| **Type** | Technical review + quantitative techno-economic model |
+| **License** | CC-BY-4.0 |
+| **Keywords** | iron–air battery · long-duration storage · grid storage · LCOS · Form Energy · dunkelflaute |
+| **Language** | English |
+| **File** | [`iron_air.pdf`](/papers/iron_air.pdf) (283 kB) |
+
+</ScrollReveal>
+
+### 📖 Full text (read in the browser)
+
+<GlowCard>
+  <PdfBookViewer
+    src="/papers/iron_air.pdf"
+    title="Iron–Air Batteries — iron_air.pdf"
+  />
+</GlowCard>
+
+**Direct links:** [⬇ Download PDF](/papers/iron_air.pdf)
+
+### 📋 Abstract
+
+> Iron–air batteries convert iron to rust and back — an electrochemistry
+> with a theoretical 1.28 V, 960 mAh/g, and ~1,200 Wh/kg of iron: the
+> energy of a kilogram of lithium-ion cells for the price of a few cents
+> of metal. This paper builds the complete case: the cell chemistry and
+> its four engineering killers (round-trip efficiency, parasitic hydrogen
+> evolution, the bifunctional air electrode, CO₂ and water management);
+> a transparent model of a 100 MW / 100 h = 10 GWh plant (17,000 t of
+> iron at under 1% of system cost, $200–400M capital versus $2.9B for the
+> equivalent lithium-ion stack); an LCOS analysis (~$32/MWh for 100-hour
+> firmness versus $58–78/MWh for 4-hour Li-ion); the world-scale numbers
+> (8 TW / $4 trillion market to 2040, 1.5–2.3 Gt CO₂/yr avoided); a
+> week-long dunkelflaute operating simulation; regional case studies
+> (Texas, California, Germany, Poland); manufacturing and supply-chain
+> economics; safety, standards, and end-of-life; and an honest risk
+> section with hard due-diligence data (36–50% round-trip efficiency,
+> 40–100 cycles/year). The conclusion: iron–air is the most credible
+> path to terawatt-scale multi-day storage — the engineering companion
+> to the firm baseload analyzed in the companion paper on superhot rock
+> geothermal.
+
+---
+
+## 🌋 3. Digging for the Sun — Superhot Rock Geothermal
+
+**Digging for the Sun: Superhot Rock Geothermal as the World-Scale
+Source of Clean Baseload Power**
+
+*Bartosz Osiej — August 2026 · Review paper · CC-BY-4.0*
+
+<ScrollReveal>
+
+| Property | Value |
+|---|---|
+| **Title** | Digging for the Sun: Superhot Rock Geothermal as the World-Scale Source of Clean Baseload Power |
+| **Author** | Bartosz Osiej |
+| **Published** | 2026-08 |
+| **Type** | Technical review + quantitative techno-economic model |
+| **License** | CC-BY-4.0 |
+| **Keywords** | superhot rock · supercritical geothermal · EGS · gyrotron drilling · firm power · baseload · LCOE |
+| **Language** | English |
+| **File** | [`superhot_geothermal.pdf`](/papers/superhot_geothermal.pdf) (277 kB) |
+
+</ScrollReveal>
+
+### 📖 Full text (read in the browser)
+
+<GlowCard>
+  <PdfBookViewer
+    src="/papers/superhot_geothermal.pdf"
+    title="Superhot Rock Geothermal — superhot_geothermal.pdf"
+  />
+</GlowCard>
+
+**Direct links:** [⬇ Download PDF](/papers/superhot_geothermal.pdf)
+
+### 📋 Abstract
+
+> Wind and solar solved the cost problem; iron–air storage is solving
+> the multi-day problem; what remains is firm baseload for weeks-long
+> lulls, industrial heat, and energy security. Superhot rock (SHR)
+> geothermal extracts heat from rock at 374 °C and above — beyond the
+> supercritical point of water — reached by drilling 5–20 km. At those
+> conditions supercritical water carries 3–5× the enthalpy per kilogram,
+> so a single well delivers an order of magnitude more power than a
+> conventional well. The resource is effectively unlimited: 1% of the US
+> superhot resource is 4.3 TW. The honest bottleneck is drilling cost.
+> This paper reviews the physics (with real steam-table data), a century
+> of drilling history (Kola 12.3 km, Fenton Hill, Soultz, IDDP-1/2,
+> Fervo), the gyrotron drilling program, subsurface engineering,
+> regulation, and environmental footprint — and builds a transparent
+> 100 MWe techno-economic model. The honest central estimate is
+> $66–90/MWh at today's drilling costs (competitive with gas with carbon
+> cost); it falls to ~$45/MWh only if the DOE Enhanced Geothermal Shot's
+> 90% drilling-cost reduction is delivered. The case in one sentence:
+> the geology is ready, the drilling is the bet, and the prize is
+> terawatt-scale anywhere-on-Earth clean baseload.
+
+---
+
+## 💚 Support
+
+These papers are written in the open, with no funding and no paywall. If
+they are useful to you — in school, at work, or in a grid planning
+meeting — you can support the work here:
+
+[☕ Buy me a coffee on Ko-fi](https://ko-fi.com/bartoszosiej1)
+
+Every contribution keeps the series (and the next papers) free for
+everyone.
+
+
 ## qa
 Source: https://bartoszosiej.github.io/Docs/qa
 ------------------------------------------------------------------------
@@ -5685,15 +6251,15 @@ Source: https://bartoszosiej.github.io/Docs/rd
 ---
 sidebar_label: R&D
 title: R&D
-description: Research & Development — the Quantum Flash Tomograph preprint, its full text, metadata and every place it appears online.
+description: "Research & Development — two preprints published under my own name on Zenodo with persistent DOIs: Quantum Flash Tomograph (MRI) and Synaptic Continuity Protocol (consciousness transfer)."
 ---
 
 # 🔬 R&D — Research & Development
 
 > **Research & Development hub.** Open-access work published under my own
-> name, hosted on Zenodo with a persistent DOI, licensed **CC-BY-4.0**.
-> This page presents the full text of the preprint, its canonical metadata
-> and the complete results of a web-wide citation & presence audit.
+> name, hosted on Zenodo with persistent DOIs, licensed **CC-BY-4.0**.
+> Two preprints spanning quantum MRI imaging and theoretical neuroscience —
+> both carrying persistent DOIs and present in international citation indexes.
 
 ---
 
@@ -5771,7 +6337,7 @@ All four versions of the concept record
 > All versions share the same concept DOI, so citing
 > `10.5281/zenodo.21700268` always resolves to the latest version.
 
-### 📊 Publication metrics (Zenodo, v4, as of 2026-08-13)
+### 📊 Publication metrics (Zenodo, v4, as of 2026-08-17)
 
 | Metric | Value |
 |---|---|
@@ -5781,40 +6347,106 @@ All four versions of the concept record
 
 ---
 
-## 🌐 Where this work appears online — full audit
+## 🧠 Synaptic Continuity Protocol
+
+**Preserving Personhood: A Framework for Consciousness Transfer via High-Density Microelectrode Arrays**
+
+*Bartosz Osiej — August 14, 2026 · Preprint (v2) · CC-BY-4.0*
+
+<ScrollReveal>
+
+| Property | Value |
+|---|---|
+| **Title** | Synaptic Continuity Protocol: Preserving Personhood — A Framework for Consciousness Transfer via High-Density Microelectrode Arrays |
+| **Author** | Bartosz Osiej |
+| **Published** | 2026-08-14 (v2, latest) |
+| **Type** | Preprint |
+| **License** | [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/) |
+| **DOI (v2)** | [`10.5281/zenodo.21930640`](https://doi.org/10.5281/zenodo.21930640) |
+| **Concept DOI** | [`10.5281/zenodo.21930639`](https://doi.org/10.5281/zenodo.21930639) |
+| **Keywords** | consciousness transfer · neural prosthesis · connectome mapping · substrate independence · identity preservation |
+| **Language** | English |
+| **Zenodo record** | [zenodo.org/records/21930640](https://zenodo.org/records/21930640) |
+
+</ScrollReveal>
+
+### 📋 Abstract
+
+> We present a theoretical framework for consciousness transfer between
+> biological and artificial substrates. The protocol addresses three
+> fundamental barriers: (i) connectome-scale neural mapping at synaptic
+> resolution (~100 trillion synapses for a human brain), (ii) functional
+> substrate replacement maintaining causal continuity of subjective
+> experience, and (iii) identity verification across the transfer boundary.
+> We propose a staged approach: partial prosthetic augmentation (10% cortical
+> volume), hemispheric sequential replacement, and full substrate migration —
+> each stage validated against a consciousness continuity metric (CCM)
+> derived from integrated information theory (IIT) and global workspace
+> theory (GWT). The estimated timeline for full implementation is 40–80
+> years; the first partial augmentation (10% volume, focused on memory
+> consolidation circuits) is plausible within 15–25 years given current
+> progress in high-density microelectrode arrays and neural interface
+> technology.
+
+### 🧬 Version history (Zenodo)
+
+All versions of the concept record
+[`10.5281/zenodo.21930639`](https://doi.org/10.5281/zenodo.21930639):
+
+| Version | DOI | Record |
+|---|---|---|
+| v2 (latest) | `10.5281/zenodo.21930640` | [21930640](https://zenodo.org/records/21930640) |
+| v1 | `10.5281/zenodo.21930639` | [21930639](https://zenodo.org/records/21930639) |
+
+> Citing `10.5281/zenodo.21930639` always resolves to the latest version.
+
+### 📊 Publication metrics (Zenodo, v2, as of 2026-08-17)
+
+| Metric | Value |
+|---|---|
+| Access | Open (public) |
+
+---
+
+## 🌐 Where these works appear online — full audit
 
 A web-wide search (Google, OpenAlex, DataCite, Crossref, Semantic Scholar,
-Zenodo API + targeted site checks) conducted on **2026-08-13** found the
-following places where the preprint is present or indexed.
+Zenodo API + targeted site checks) conducted on **2026-08-17** found the
+following places where the preprints are present or indexed.
 
 ### ✅ Confirmed presences
 
 #### 1. Central publication point (CERN / primary host)
 
-The main open-access repository, safeguarded by CERN infrastructure — this is
-where it all started:
+Both preprints on the open-access repository, safeguarded by CERN infrastructure:
 
-| # | Where | What exactly | Link |
+| # | Work | Where | Link |
 |---|---|---|---|
-| 1.1 | **Zenodo — main record page** | The original PDF file, the view/download counter and the official publisher metadata | [zenodo.org/records/21701871](https://zenodo.org/records/21701871) |
-| 1.2 | **Zenodo — record registry (API)** | Direct system view of the database record on CERN servers | [api.zenodo.org/records/21701871](https://zenodo.org/api/records/21701871) |
-| 1.3 | **Official DOI system link** | Immutable world-wide redirect — always leads researchers to the work, no matter how servers change | [doi.org/10.5281/zenodo.21701871](https://doi.org/10.5281/zenodo.21701871) |
+| 1.1 | QFT | **Zenodo — main record** (PDF, view/download counter, publisher metadata) | [zenodo.org/records/21701871](https://zenodo.org/records/21701871) |
+| 1.2 | QFT | **Zenodo API** — direct system record | [api.zenodo.org/records/21701871](https://api.zenodo.org/records/21701871) |
+| 1.3 | QFT | **Official DOI** — immutable redirect | [doi.org/10.5281/zenodo.21701871](https://doi.org/10.5281/zenodo.21701871) |
+| 1.4 | SCP | **Zenodo — main record** (PDF, metadata) | [zenodo.org/records/21930640](https://zenodo.org/records/21930640) |
+| 1.5 | SCP | **Zenodo API** — direct system record | [api.zenodo.org/records/21930640](https://api.zenodo.org/records/21930640) |
+| 1.6 | SCP | **Official DOI** — immutable redirect | [doi.org/10.5281/zenodo.21930640](https://doi.org/10.5281/zenodo.21930640) |
 
 #### 2. Global knowledge graphs & world-science catalogs
 
-Automatic DOI-harvesting systems pulled the work into international citation
+Automatic DOI-harvesting systems pulled both works into international citation
 registries:
 
-| # | Where | What exactly | Link |
-|---|---|---|---|
-| 2.1 | **OpenAlex — work card W7171828005** | Official record in the global open catalog of the academic world — a must for AI systems analysing scientific literature | [openalex.org/W7171828005](https://openalex.org/W7171828005) |
-| 2.2 | **OpenAIRE EXPLORE — EU Commission registry** | European open-science infrastructure — the document is permanently mapped and visible to EU funds and R&D labs | [explore.openaire.eu — search the DOI](https://explore.openaire.eu/search/publication?pid=10.5281%2Fzenodo.21701871) |
-| 2.3 | **DataCite** | DOI registration & metadata (publisher: Bartosz Osiej) | [doi.org/10.5281/zenodo.21701871](https://doi.org/10.5281/zenodo.21701871) |
+| # | Work | Where | What | Link |
+|---|---|---|---|---|
+| 2.1 | QFT | **OpenAlex — W7171828005** | Official record in global open catalog | [openalex.org/W7171828005](https://openalex.org/W7171828005) |
+| 2.2 | SCP | **OpenAlex — W7203446031** (v2) | Official record, open catalog | [openalex.org/W7203446031](https://openalex.org/W7203446031) |
+| 2.3 | SCP | **OpenAlex — W7203440092** (v1) | Previous version record | [openalex.org/W7203440092](https://openalex.org/W7203440092) |
+| 2.4 | QFT | **OpenAIRE EXPLORE** | EU Commission registry | [explore.openaire.eu](https://explore.openaire.eu/search/publication?pid=10.5281%2Fzenodo.21701871) |
+| 2.5 | QFT | **DataCite** | DOI registration & metadata | [doi.org/10.5281/zenodo.21701871](https://doi.org/10.5281/zenodo.21701871) |
+| 2.6 | SCP | **DataCite** | DOI registration & metadata | [doi.org/10.5281/zenodo.21930640](https://doi.org/10.5281/zenodo.21930640) |
 
 #### 3. TGRS clusters & radars (The Global Research Space)
 
 The big one — TGRS analytical algorithms detected the interdisciplinary nature
-of the work and placed it in **three** different thematic regions/radars:
+of QFT and placed it in **three** different thematic regions/radars:
 
 | # | Region | Position | Link |
 |---|---|---|---|
@@ -5824,42 +6456,52 @@ of the work and placed it in **three** different thematic regions/radars:
 
 ### 🔍 Checked but not found (no presence)
 
-| Index / site | Status |
-|---|---|
-| Crossref (works) | ❌ not registered (Zenodo preprints aren't Crossref-registered) |
-| Semantic Scholar | ❌ not indexed |
-| Google Scholar | ❌ not indexed (no profile/citation record found) |
-| arXiv | ❌ not posted |
-| ResearchGate | ❌ no profile/publication found |
-| Scilit / Paperity | ❌ no results |
-| News, blogs, Reddit, X/Twitter | ❌ no mentions found |
+| Index / site | QFT | SCP |
+|---|---|---|
+| Crossref (works) | ❌ not registered | ❌ not registered |
+| Semantic Scholar | ❌ not indexed | ❌ not indexed |
+| Google Scholar | ❌ not indexed | ❌ not indexed |
+| arXiv | ❌ not posted | ❌ not posted |
+| ResearchGate | ❌ no profile | ❌ no profile |
+| Scilit / Paperity | ❌ no results | ❌ no results |
+| News, blogs, Reddit, X/Twitter | ❌ no mentions | ❌ no mentions |
 
 ### 📈 Citations
 
-**0 citations** across all checked indexes (OpenAlex reports `cited_by_count:
-0` for every version). The preprint was published **2026-07-30** — barely two
-weeks before this audit — so the citation count is expected to be zero for
-now. The **Google Scholar**, **Semantic Scholar** and **Crossref** citation
-graphs have no record of the work yet.
+**0 citations** across all checked indexes for both preprints. QFT was
+published **2026-07-30** and SCP on **2026-08-14** — both very recent,
+so the citation count is expected to be zero for now.
 
 ### 💡 How to cite
 
+**Quantum Flash Tomograph:**
 ```text
 Osiej, Bartosz. (2026). Quantum Flash Tomograph: Single-Shot Volumetric
 Human Body Imaging at Cellular Resolution via Squeezed-State Compressed
 Sensing MRI (Version 4). Zenodo. https://doi.org/10.5281/zenodo.21701871
 ```
 
+**Synaptic Continuity Protocol:**
+```text
+Osiej, Bartosz. (2026). Synaptic Continuity Protocol: Preserving
+Personhood — A Framework for Consciousness Transfer via High-Density
+Microelectrode Arrays (Version 2). Zenodo. https://doi.org/10.5281/zenodo.21930640
+```
+
 ---
 
 ## 🔭 What's next in R&D
 
-- **v5 of the preprint** — expanded derivation of the compressed-sensing
-  reconstruction bounds and the Josephson parametric amplifier scaling path
-- **Companion simulation** — open-source numerical model of the 10¹⁰-parameter
-  CS reconstruction pipeline (this repo's ecosystem)
-- **Broader dissemination** — submit to arXiv (quant-ph) for Google Scholar
-  indexing and set up an OpenAlex author profile
+- **QFT v5** — expanded derivation of the compressed-sensing reconstruction
+  bounds and the Josephson parametric amplifier scaling path
+- **QFT companion simulation** — open-source numerical model of the
+  10¹⁰-parameter CS reconstruction pipeline
+- **SCP v3** — expanded consciousness continuity metric (CCM) derivation,
+  detailed prosthetic augmentation staging timeline, and ethical framework
+- **Broader dissemination** — submit both preprints to arXiv (quant-ph for
+  QFT, q-bio.NC for SCP) for Google Scholar indexing
+- **OpenAlex author profile** — set up and link both works under one
+  unified author identity
 
 ---
 

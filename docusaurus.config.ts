@@ -90,6 +90,7 @@ const config: Config = {
           ],
         },
         { to: 'rd', position: 'left', label: 'R&D' },
+        { to: 'energy', position: 'left', label: '⚡ Energy' },
         { to: 'translator', position: 'left', label: 'PDF Translator' },
         {
           href: 'https://bartoszosiej.github.io/prompt-inbox/',
@@ -105,6 +106,12 @@ const config: Config = {
           position: 'right',
           className: 'header-github-link',
           'aria-label': 'GitHub',
+        },
+        {
+          href: 'https://ko-fi.com/bartoszosiej1',
+          position: 'right',
+          className: 'header-kofi-link',
+          label: '☕ Ko-fi',
         },
       ],
     },
@@ -135,6 +142,7 @@ const config: Config = {
           items: [
             { label: 'GitHub', href: 'https://github.com/BartoszOsiej' },
             { label: 'Halcyon Process Monitor', to: '/projects/halcyon-process-monitor/' },
+            { label: '☕ Support on Ko-fi', href: 'https://ko-fi.com/bartoszosiej1' },
           ],
         },
       ],
