@@ -1,22 +1,23 @@
-# NV2 Engine
+# VIVIA: Beyond the Known (formerly NV2 Engine)
 
-<a class="tests-cta" href="./tests">🧪 View animated test results — 98 passed / 99 total →</a>
+<a class="tests-cta" href="./tests">🧪 View animated test results — 224 passed / 225 total →</a>
 
-> **A native Rust voxel engine with AI-driven procedural worlds — a full desktop voxel game built on wgpu, featuring an embedded neural network that learns vegetation placement while you play.**
+> **A complete voxel survival sandbox with AI-powered terrain, multiplayer networking, and a custom neural network — built from scratch in Rust. Premiering on Epic Games Store, August 2026.**
 
-NV2 Engine (repository: `NV2_ENGINE`) is not a terrain prototype — it is a
-**complete, playable voxel game and engine** written in Rust (15,800+ lines of
-source across 30+ modules). It combines procedural terrain generation,
-realistic climate-driven biomes, a neural-network vegetation system that
-trains in the background with &lt;1% CPU overhead, animated water simulation, a
-full block breaking/placing interaction layer with tool tiers and durability,
-inventory and hotbar management, recipe-driven crafting (2×2 and 3×3),
-save/load persistence, an in-game command system, and a complete GUI stack —
-all rendered with GPU-efficient techniques.
+VIVIA: Beyond the Known (internally `NV_ENGINE`, repository: `NV2_ENGINE`) is a
+**shipped commercial voxel game** written in Rust (47 source files, 15,800+
+lines). It features procedural terrain generation with real-world NASA climate
+data, an embedded neural network (MeMLP) that learns vegetation placement
+while you play, a full mob system with AI-generated 3D models, multiplayer
+TCP networking, procedural audio, and a survival gameplay loop — all rendered
+on GPU via wgpu.
+
+**Developer:** Terra Nova Gameworks · **Version:** 1.0.0 · **Price:** $9.99 (launch $7.49)
+**Platforms:** Linux, Windows · **Stores:** Epic Games Store, itch.io
 
 **Stack:** Rust 2021 · wgpu 0.20 · winit 0.30 · cgmath 0.18 · OpenSimplex2 ·
-rayon · ndarray · serde/serde_json · fontdue · image 0.25 · bytemuck ·
-env_logger · C#/.NET 8 (content tools) · Python/Pillow (texture tools)
+rayon · tokio · ndarray · meshopt · bincode · rodio · fontdue · bytemuck ·
+Epic Online Services · C#/.NET 8 (content tools) · Python (AI/texture tools)
 
 ---
 
@@ -67,8 +68,29 @@ env_logger · C#/.NET 8 (content tools) · Python/Pillow (texture tools)
 | **Crafting** | 2×2 player grid + 3×3 NVCrafter station, shaped & shapeless recipes |
 | **Recipes** | 18 recipes: planks, sticks, NVCrafter, wooden pickaxe/axe/shovel/hoe, torches, chest, door, trapdoor, ladder, fence, fence gate, workbench upgrade, flint/stone/iron pickaxes |
 | **Movement** | Walk, sprint (FOV kick), jump, flight, water gravity/sinking, AABB collision, foliage movement modifiers |
-| **Commands** | `/locate &lt;biome&gt; [--tp]`, `/tp &lt;x&gt; &lt;y&gt; &lt;z&gt;` |
+| **Commands** | `/locate <biome> [--tp]`, `/tp <x> <y> <z>`, `/attack` |
 | **Persistence** | JSON world saves (seed, chunk blocks, water metadata, NVCrafter states) |
+| **Left-click attack** | `attack_nearest()` with 0.4s cooldown — default mouse button when cursor locked |
+
+### Mob system
+| Feature | Detail |
+|---|---|
+| **Enemies** | 36 hostile mobs across 11 families: Frost Hound, Sand Reaper, Bone Colossus, Void Wraith, Ash Crawler, Lava Brute, Swamp Toxin, Plague Mother, Wretched Flyer, Shadow Stalker, World Serpent, Iron Golem, Night Wisp, Deep Maw, Sand Hydra |
+| **Animals** | 41 passive mobs: Deer, Rabbit, Wolf, Bear, Eagle, Chicken, Horse, Pig, Cow, Sheep, Cat, Dog, Turtle, Frog, Snake, Bat, Mouse, Fox, Boar, Bee |
+| **AI** | Melee/ranged/hunter/guardian behavior per family, 15-attack damage spread, `attack_nearest()`, `attack_closest_enemy()`, `attack_weakest()` |
+| **3D models** | 11 GLB mesh files (ARACHNID, BOSS, BRUTE, CANID, CRAWLER, FLYER, GOLEM, HUMANOID, WISP, WORM, WRAITH) with meshopt optimization, tint + scale in shader |
+| **Families** | 11 base shapes cover 77/100 mobs; 23 small animals use voxel fallback |
+
+### Multiplayer
+| Feature | Detail |
+|---|---|
+| **Networking** | TCP (tokio async), length-prefixed bincode serialization, 20Hz tick rate |
+| **Protocol** | 18 packet types: Join, Leave, GameState, Input, Chat, Ping, etc. |
+| **Server** | Headless TCP server (`--server --port 26400 --seed 42`), server authoritative |
+| **Client** | `--connect <addr> --name <nick>`, crossbeam channels (sync ↔ async) |
+| **NAT traversal** | playit.gg — zero cost, 4-100 players |
+| **Remote players** | Rendered as humanoid cubes with blue tint |
+| **Shared seed** | Server and client use identical world generation seed |
 
 ### Special gameplay logic
 | Feature | Detail |
@@ -103,10 +125,36 @@ The game opens a window with the main menu:
 > **Note:** `cargo run` in dev mode already builds third-party crates at
 > `opt-level 3`, so even a debug build plays smoothly.
 
+**CLI flags:**
+
+| Flag | Action |
+|---|---|
+| `--server` | Run headless multiplayer server (no GPU/okna) |
+| `--port <N>` | Server port (default: 26400) |
+| `--seed <N>` | World generation seed |
+| `--connect <addr>` | Connect to multiplayer server |
+| `--name <nick>` | Set player nickname |
+| `--autostart` | Skip main menu, start new game immediately |
+| `--night` | Start at night (for testing) |
+
 **First minutes in-game:** spawn near a forest → punch trees with your bare
 hands → gather wood → open the 2×2 crafting grid (`E`) → craft wooden
 planks → sticks → a wooden pickaxe → mine stone → craft a stone pickaxe →
 mine iron → eventually craft an NVCrafter for 3×3 recipes.
+
+**Multiplayer (local):**
+```bash
+# Terminal 1 — server
+cargo run --release -- --server --seed 42
+
+# Terminal 2 — player 1
+cargo run --release -- --connect 127.0.0.1:26400 --name Alice
+
+# Terminal 3 — player 2
+cargo run --release -- --connect 127.0.0.1:26400 --name Bob
+```
+
+**Multiplayer (internet via playit.gg):** see [MULTIPLAYER.md](https://github.com/BartoszOsiej/VIVIA-Beyond-the-Known/blob/main/MULTIPLAYER.md)
 
 ---
 
@@ -123,3 +171,31 @@ mine iron → eventually craft an NVCrafter for 3×3 recipes.
 | [Performance](/projects/nv2-engine/performance) | GPU bandwidth, culling, meshing budgets, profiles |
 | [Development](/projects/nv2-engine/development) | Build, module map, testing, extending the engine |
 | [Roadmap & Changelog](/projects/nv2-engine/roadmap) | History, Phase 2 plans, known limitations |
+
+---
+
+## 🚀 VIVIA: Beyond the Known — Epic Games Store Launch
+
+**Premiere:** August 2026 (Monday) · **Price:** $9.99 (launch promo $7.49)
+**Publisher:** Terra Nova Gameworks · **Stores:** Epic Games Store + itch.io
+
+The project was renamed from **NV2 Engine** to **VIVIA: Beyond the Known** for
+the commercial release. The internal engine code retains the `NV_ENGINE` prefix;
+the game title on all store pages and marketing material is **VIVIA**.
+
+### Build pipeline
+- Linux + Windows builds via `build.sh`
+- GitHub Actions CI (`.github/workflows/windows-build.yml`)
+- Epic Games Store submission kit: `EGS/` directory with manifest, build, store assets
+- Store assets: capsule art (5 sizes) + gameplay screenshots in `store_assets/`
+
+### Engine stats at launch
+| Metric | Value |
+|---|---|
+| Source files | 47 `.rs` files + 10 `.wgsl` shaders |
+| Test cases | 224 passed / 225 total (3 ignored) |
+| GLB models | 11 AI mesh families, ~45 MB total |
+| Block types | 97 |
+| Biomes | 9 climate-driven |
+| Mob families | 11 base shapes, 77/100 mobs covered |
+| Multiplayer | TCP, 20Hz tick, headless server mode |

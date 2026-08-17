@@ -18,8 +18,8 @@
   <ProjectCard
     icon="🔬"
     title="R&D — Research Hub"
-    description="Open-access research published under my own name on Zenodo with a persistent DOI. Hosts the Quantum Flash Tomograph preprint — full text, metadata and a web-wide citation audit, licensed CC-BY-4.0."
-    tags={['Research', 'Preprint', 'DOI', 'Open Access']}
+    description="Two open-access preprints with persistent DOIs: Quantum Flash Tomograph (single-shot volumetric MRI) and Synaptic Continuity Protocol (consciousness transfer via high-density microelectrode arrays). Full text, metadata, citation audits, CC-BY-4.0."
+    tags={['Research', 'Preprint', 'DOI', 'Open Access', 'Zenodo', 'OpenAlex']}
     tint="#2dd4bf"
     link="/rd/"
   />
@@ -49,9 +49,9 @@
   />
   <ProjectCard
     icon="⛏️"
-    title="NV2 Engine"
-    description="Native Rust voxel engine with AI-driven procedural worlds. wgpu rendering, 97 block types, 9 biomes, water simulation, neural vegetation learning."
-    tags={['Rust', 'wgpu', 'Vulkan', 'MLP']}
+    title="VIVIA: Beyond the Known"
+    description="Complete voxel survival sandbox in Rust — procedural worlds, AI-driven terrain, GLB mesh rendering, multiplayer networking, Epic Games Store launch August 2026. $9.99."
+    tags={['Rust', 'wgpu', 'Epic Games Store', 'Multiplayer', 'GLB']}
     tint="#818cf8"
     link="/projects/nv2-engine/"
   />
