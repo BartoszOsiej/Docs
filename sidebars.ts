@@ -111,6 +111,11 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
+      id: 'energy',
+      label: '⚡ Energy Research',
+    },
+    {
+      type: 'doc',
       id: 'rd',
       label: 'R&D',
     },

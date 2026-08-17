@@ -31,6 +31,8 @@ interface Copy {
   cta3Body: string
   cta4Title: string
   cta4Body: string
+  cta5Title: string
+  cta5Body: string
   stackTitle: string
   stackRows: Array<[string, string]>
   tip: string
@@ -69,6 +71,8 @@ const EN: Copy = {
   cta3Body: 'Which repositories publish here, and how the pipeline works.',
   cta4Title: 'R&D — published research',
   cta4Body: 'The Quantum Flash Tomograph preprint — full text, DOI and citation audit.',
+  cta5Title: '⚡ Energy Research',
+  cta5Body: 'Three open-access papers: atomic batteries, iron–air grid storage, superhot rock geothermal.',
   stackTitle: 'The stack behind this hub',
   stackRows: [
     ['Static site', 'Docusaurus, hosted on GitHub Pages'],
@@ -113,6 +117,8 @@ const PL: Copy = {
   cta3Body: 'Które repozytoria publikują tu zmiany i jak działa pipeline.',
   cta4Title: 'R&D — opublikowane badania',
   cta4Body: 'Preprint Quantum Flash Tomograph — pełny tekst, DOI i audyt cytowań.',
+  cta5Title: '⚡ Badania Energetyczne',
+  cta5Body: 'Trzy artykuły w otwartym dostępie: baterie atomowe, magazyny żelazo–powietrze, geotermia superhot.',
   stackTitle: 'Stos technologiczny tego centrum',
   stackRows: [
     ['Statyczna witryna', 'Docusaurus, hostowana na GitHub Pages'],
@@ -134,6 +140,7 @@ export default function Home(): React.JSX.Element {
   const chatUrl = useBaseUrl('/projects/n2-mesh/')
   const updateUrl = useBaseUrl('/update-flow')
   const rdUrl = useBaseUrl('/rd/')
+  const energyUrl = useBaseUrl('/energy/')
 
   return (
     <Layout
@@ -154,6 +161,14 @@ export default function Home(): React.JSX.Element {
             </a>
             <a className="btn-alt" href={chatUrl}>
               💬 {copy.chatCta}
+            </a>
+            <a
+              className="btn-kofi"
+              href="https://ko-fi.com/bartoszosiej1"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              ☕ Ko-fi
             </a>
           </div>
         </section>
@@ -217,6 +232,13 @@ export default function Home(): React.JSX.Element {
                 <span>
                   <strong>{copy.cta4Title}</strong>
                   <em>{copy.cta4Body}</em>
+                </span>
+              </a>
+              <a className="cta-card" href={energyUrl}>
+                <span className="cta-icon">⚡</span>
+                <span>
+                  <strong>{copy.cta5Title}</strong>
+                  <em>{copy.cta5Body}</em>
                 </span>
               </a>
             </div>

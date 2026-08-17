@@ -10,6 +10,16 @@ content, fetch `/Docs/llms-full.txt`.
 The site is bilingual: every page below has a Polish version under
 `/Docs/pl/…` (e.g. `/Docs/pl/projects/fastapi-url/`).
 
+## Research
+
+- [Energy Research](https://bartoszosiej.github.io/Docs/energy/): Three open-access energy papers — atomic (betavoltaic) batteries, iron–air grid storage, superhot rock geothermal. Full PDFs readable in the browser.
+  - [Atomic Batteries](https://bartoszosiej.github.io/Docs/energy/#1-atomic-batteries-betavoltaics)
+  - [Iron–Air Grid Storage](https://bartoszosiej.github.io/Docs/energy/#2-the-iron-age-of-grid-storage)
+  - [Superhot Rock Geothermal](https://bartoszosiej.github.io/Docs/energy/#3-digging-for-the-sun--superhot-rock-geothermal)
+  - [Polish](https://bartoszosiej.github.io/Docs/pl/energy)
+- [R&D](https://bartoszosiej.github.io/Docs/rd): Two open-access preprints with persistent DOIs — Quantum Flash Tomograph (MRI) and Synaptic Continuity Protocol (consciousness transfer).
+  - [Polish](https://bartoszosiej.github.io/Docs/pl/rd)
+
 ## Tools
 
 - [PDF Book & Translator](https://bartoszosiej.github.io/Docs/translator): read PDFs as visual books and translate pages in the browser — keyless (Google · MyMemory), no account.
