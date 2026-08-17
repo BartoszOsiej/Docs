@@ -69,7 +69,7 @@ on this site, and maintained in the working copy at `~/`.
 |---|---|
 | **What** | Native Rust voxel engine with AI-driven procedural worlds: wgpu rendering, 97 block types, 9 biomes, water simulation, and a neural network that learns vegetation placement while you play. |
 | **Stack** | Rust (nightly), wgpu, OpenSimplex2, MLP, Vulkan |
-| **Local path** | `~/NV2_ENGINE` |
+| **Local path** | `~/VIVIA-Beyond-the-Known` |
 | **Docs** | [/projects/nv2-engine/](/projects/nv2-engine/) |
 
 ## 6. AURORA OS — `BartoszOsiej/AURORA-OS`

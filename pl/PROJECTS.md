@@ -69,7 +69,7 @@ udokumentowany na tej stronie i utrzymywany w kopii roboczej w `~/`.
 |---|---|
 | **Co** | Natywny silnik wokselowy w Rust z proceduralnymi światami sterowanymi przez AI: renderowanie wgpu, 97 typów bloków, 9 biomów, symulacja wody i sieć neuronowa, która uczy się rozmieszczania roślinności podczas gry. |
 | **Stos** | Rust (nightly), wgpu, OpenSimplex2, MLP, Vulkan |
-| **Ścieżka lokalna** | `~/NV2_ENGINE` |
+| **Ścieżka lokalna** | `~/VIVIA-Beyond-the-Known` |
 | **Dokumentacja** | [/projects/nv2-engine/](/projects/nv2-engine/) |
 
 ## 6. AURORA OS — `BartoszOsiej/AURORA-OS`
