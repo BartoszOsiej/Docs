@@ -1,7 +1,6 @@
 {
   "name": "bartosz-osiej-docs",
   "version": "3.0.0",
-  "private": true,
   "scripts": {
     "gen:pdfs": "node scripts/gen-sample-pdfs.mjs",
     "copy:pdfjs": "node scripts/copy-pdfjs.mjs",
@@ -47,5 +46,9 @@
   },
   "engines": {
     "node": ">=18.0"
-  }
+  },
+  "repository": {
+    "url": "https://github.com/BartoszOsiej/Docs"
+  },
+  "license": "MIT"
 }
