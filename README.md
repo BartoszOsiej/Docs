@@ -1,50 +1,55 @@
-# Bartosz Osiej — Docs
+<img src="https://capsule-render.vercel.app/api?type=venom&color=0:0d1117,50:0969da,100:a371f7&height=140&section=header&text=Bartosz%20Osiej%20%C2%B7%20Docs&fontSize=34&fontColor=fff&desc=central%20documentation%20hub%20%C2%B7%20bilingual%20EN%2FPL%20%C2%B7%20PDF%20book%20viewer%20with%20keyless%20translation&descSize=14&descAlignY=72" width="100%" />
 
-Central documentation hub for all projects — [FastAPI-url](https://github.com/BartoszOsiej/FastAPI-url)
-(LinkShort), [Factorio-web-game](https://github.com/BartoszOsiej/Factorio-web-game)
-(Novactorio), [NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE),
-[AURORA-OS](https://github.com/BartoszOsiej/AURORA-OS),
-[cybersec-tools](https://github.com/BartoszOsiej/cybersec-tools),
-[halcyon-process-monitor](https://github.com/BartoszOsiej/halcyon-process-monitor),
-[Externum](https://github.com/BartoszOsiej/externum) and
-[N2-Mesh](https://github.com/BartoszOsiej/n2-mesh) —
-published as a static site on GitHub Pages.
+<div align="center">
 
-**Live site:** <https://bartoszosiej.github.io/Docs/>
+[![npm](https://img.shields.io/npm/v/bartosz-osiej-docs?style=for-the-badge&logo=nodedotjs)](https://www.npmjs.com/package/bartosz-osiej-docs)
+[![GHCR](https://img.shields.io/badge/GHCR-image-2496ED?style=for-the-badge&logo=docker)](https://github.com/BartoszOsiej/Docs/pkgs/container/docs)
+[![Live](https://img.shields.io/badge/live-GitHub_Pages-2ea043?style=for-the-badge&logo=githubpages)](https://bartoszosiej.github.io/Docs/)
+![Docusaurus](https://img.shields.io/badge/Docusaurus-3-FF6B35?style=for-the-badge&logo=docusaurus)
+[![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](LICENSE)
 
-> 🇵🇱 Ten dokument ma też wersję polską: [README.pl.md](README.pl.md)
+**Central documentation hub for every project — published as a bilingual
+static site with a built-in PDF book viewer and keyless in-browser translation.**
+
+**→ [bartoszosiej.github.io/Docs](https://bartoszosiej.github.io/Docs/)**
+
+</div>
+
+## 📖 Covered projects
+
+| Project | Docs pages |
+|---|---|
+| [FastAPI-url](https://github.com/BartoszOsiej/FastAPI-url) (LinkShort) | 4 |
+| [Factorio-web-game](https://github.com/BartoszOsiej/Factorio-web-game) (Novactorio) | 4 |
+| [NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE) | 10 |
+| [cybersec-tools](https://github.com/BartoszOsiej/cybersec-tools) | 5 |
+| [AURORA-OS](https://github.com/BartoszOsiej/AURORA-OS) | 3 |
+| [halcyon-process-monitor](https://github.com/BartoszOsiej/halcyon-process-monitor) | 2 |
+| [externum](https://github.com/BartoszOsiej/externum) | 5 |
+| [n2-mesh](https://github.com/BartoszOsiej/n2-mesh) | 2 |
 
 ## 🌍 Bilingual
 
-The site is fully bilingual:
+- **English** is the default locale (root paths, e.g. `/Docs/projects/`)
+- **Polish** lives under `/Docs/pl/…`
+- A language switcher in the navbar toggles between them; every page has a matching translation
 
-- **English** is the default locale (root paths, e.g. `/Docs/projects/`).
-- **Polish** lives under `/Docs/pl/…` (e.g. `/Docs/pl/projects/`).
-- A language switcher in the navbar toggles between them; every page has a
-  matching translation.
+> 🇵🇱 Ten dokument ma też wersję polską: [README.pl.md](README.pl.md)
 
-## 📖 PDF Book & Translator
+<details>
+<summary><b>📕 PDF Book & Translator — the cool part</b></summary>
 
 A built-in module reads PDFs as **visual books** (two-page spreads, spine,
 3D page-flip) and translates pages **in the browser without any API key**:
 
-- pdf.js renders pages; the worker + standard fonts are vendored in
-  `static/pdfjs/` (no CDN).
-- Translation uses keyless, CORS-enabled providers — Google's public
-  endpoint first, MyMemory as fallback. A Microsoft Translator (Azure)
-  provider is included behind the same interface if you ever want to plug
-  in a key.
-- Live demo: <https://bartoszosiej.github.io/Docs/translator>
+- pdf.js renders pages; worker + standard fonts are vendored in `static/pdfjs/` (no CDN)
+- Translation uses keyless, CORS-enabled providers — Google's public endpoint first, MyMemory as fallback; an Azure Translator provider is included behind the same interface
+- **Live demo:** <https://bartoszosiej.github.io/Docs/translator>
 
-## Tech
+</details>
 
-- [Docusaurus](https://docusaurus.dev/) — Vue-powered static site generator
-  (i18n via `locales` in `.docusaurus/docusaurus.config.ts`)
-- [pdf.js](https://mozilla.github.io/pdf.js/) — PDF rendering for the book viewer
-- WebRTC + MQTT — power [N2 Mesh](https://bartoszosiej.github.io/n2-mesh/), the P2P chat (its own repo: `BartoszOsiej/n2-mesh`)
-- Deployed via GitHub Actions → GitHub Pages
-
-## Local development
+<details>
+<summary><b>🛠️ Tech & local development</b></summary>
 
 ```bash
 npm install
@@ -53,54 +58,42 @@ npm run build           # production build to build/
 npm run serve           # preview the production build
 ```
 
-`prebuild` automatically regenerates the sample PDFs
-(`scripts/gen-sample-pdfs.mjs`), copies the pdf.js worker/fonts/cmaps into
-`static/pdfjs/` (`scripts/copy-pdfjs.mjs`), and refreshes `llms-full.txt`
-(`scripts/gen-llms-full.py`).
+`prebuild` automatically regenerates sample PDFs, copies pdf.js assets, and refreshes `llms-full.txt`.
 
-## Regenerating derived files
+- [Docusaurus](https://docusaurus.dev/) static site generator
+- [pdf.js](https://mozilla.github.io/pdf.js/) for the book viewer
+- Deployed via GitHub Actions → GitHub Pages
 
-- `sitemap.xml` — generated automatically by the Docusaurus sitemap plugin
-- `static/llms-full.txt` — run `scripts/gen-llms-full.py`
-- `static/pdfs/sample-*.pdf` — run `scripts/gen-sample-pdfs.mjs`
+</details>
 
-## Project structure
+<details>
+<summary><b>📁 Project structure</b></summary>
 
 ```
 Docs/
-├── src/pages/index.tsx           # Landing page (EN + PL, locale-aware)
-├── i18n/pl/                      # Polish locale — every page mirrored
-│   └── docusaurus-plugin-content-docs/current/
-│       ├── projects/…
-│       └── translator.md
 ├── docs/
 │   ├── translator.md             # PDF Book & Translator demo (EN)
-├── update-flow.md                # Which repos publish updates here
-├── projects/
-│   ├── fastapi-url/              # LinkShort docs (4 pages)
-│   ├── factorio-web-game/        # Novactorio docs (4 pages)
-│   ├── nv2-engine/               # NV2 Engine docs (10 pages)
-│   ├── cybersec-tools/           # Cybersec Toolkit docs (5 pages)
-│   ├── aurora-os/                # AURORA OS docs (3 pages)
-│   ├── halcyon-process-monitor/  # Halcyon docs (2 pages)
-│   ├── externum/                 # Externum language docs (5 pages)
-│   └── n2-mesh/                  # N2 Mesh P2P chat docs (2 pages)
+│   └── projects/                 # per-project documentation
+├── i18n/pl/                      # Polish locale — every page mirrored
 ├── static/
 │   ├── pdfs/                     # Sample PDFs for the translator demo
 │   ├── pdfjs/                    # Vendored pdf.js worker, fonts, cmaps
 │   └── llms.txt / llms-full.txt  # AI-readable content index + snapshot
 ├── scripts/                      # llms-full / sample-PDF generators
 └── src/
-    ├── components/               # React components (PdfBookViewer, ProjectCard…)
+    ├── components/               # PdfBookViewer, ProjectCard…
     ├── lib/translator.ts         # Keyless translation providers
-    ├── pages/index.tsx           # Bilingual landing page
-    ├── theme/MDXComponents.tsx   # Global MDX component registration
-    └── css/custom.css            # Aurora theme, glassmorphism, typography
+    └── css/custom.css            # Aurora theme, glassmorphism
 ```
 
-## Publishing
+</details>
 
-Push to `main` — GitHub Actions builds the site and deploys it automatically.
+---
 
-See [Update Flow](https://bartoszosiej.github.io/Docs/update-flow) for
-the full update map between source repositories and this site.
+<div align="center">
+
+**Part of [BartoszOsiej](https://github.com/BartoszOsiej)'s portfolio**
+
+MIT © 2026 Bartosz Osiej
+
+</div>
