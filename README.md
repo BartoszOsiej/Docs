@@ -7,6 +7,7 @@
 [![Live](https://img.shields.io/badge/live-GitHub_Pages-2ea043?style=for-the-badge&logo=githubpages)](https://bartoszosiej.github.io/Docs/)
 ![Docusaurus](https://img.shields.io/badge/Docusaurus-3-FF6B35?style=for-the-badge&logo=docusaurus)
 [![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](LICENSE)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/BartoszOsiej/Docs/badge)](https://scorecard.dev/viewer/?uri=github.com/BartoszOsiej/Docs)
 
 **Central documentation hub for every project — published as a bilingual
 static site with a built-in PDF book viewer and keyless in-browser translation.**
