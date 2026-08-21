@@ -657,13 +657,20 @@ body {
   transform: translateY(24px);
   transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
               transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  /* disaster insurance: even if ALL JS dies (crashed hydration, broken IO,
+     ancient browser), content force-reveals after 7 s via pure CSS */
+  animation: sr-autoreveal 0.8s ease-out 7s forwards;
 }
 .scroll-reveal.visible {
   opacity: 1;
   transform: none;
+  animation: none;
+}
+@keyframes sr-autoreveal {
+  to { opacity: 1; transform: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .scroll-reveal { opacity: 1; transform: none; transition: none; }
+  .scroll-reveal { opacity: 1; transform: none; transition: none; animation: none; }
 }
 
 /* ---------- animated title ---------- */
