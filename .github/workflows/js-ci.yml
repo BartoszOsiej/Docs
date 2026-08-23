@@ -1,4 +1,4 @@
-name: JavaScript/TypeScript CI
+name: CI
 
 on:
   push:
@@ -6,16 +6,52 @@ on:
   pull_request:
     branches: [main, master]
 
+permissions:
+  contents: read
+
 jobs:
   build:
-    name: Build & Test
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
           cache: "npm"
-      - run: npm ci || npm install || true
-      - run: npm run build 2>/dev/null || true
-      - run: npm test 2>/dev/null || true
+      - name: Install dependencies
+        run: npm ci || npm install
+      - name: Build site
+        run: npm run build
+      - name: Verify build output
+        run: |
+          if [ -d "build" ]; then
+            echo "✓ build/ exists"
+          else
+            echo "✗ No build/ found"
+            exit 1
+          fi
+
+  gen:
+    name: Generate Assets
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: npm ci || npm install
+      - name: Generate PDFs
+        run: npm run gen:pdfs
+      - name: Copy PDF.js
+        run: npm run copy:pdfjs
+      - name: Generate LLMs
+        run: npm run gen:llms
