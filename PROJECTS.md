@@ -22,6 +22,9 @@ on this site, and maintained in the working copy at `~/`.
 | 7 | **Cybersec Toolkit** | [BartoszOsiej/cybersec-tools](https://github.com/BartoszOsiej/cybersec-tools) | Rust, pcap, openssl | [docs](/projects/cybersec-tools/) |
 | 8 | **Halcyon Process Monitor** | [BartoszOsiej/halcyon-process-monitor](https://github.com/BartoszOsiej/halcyon-process-monitor) | Rust, eBPF, Aya, ratatui | [docs](/projects/halcyon-process-monitor/) |
 | 9 | **Externum** (programming language) | [BartoszOsiej/externum](https://github.com/BartoszOsiej/externum) | Python, own lexer/parser/compiler | [docs](/projects/externum/) |
+| 10 | **pqguard** (post-quantum encryption) | [BartoszOsiej/pqguard](https://github.com/BartoszOsiej/pqguard) | Rust, ML-KEM-768, AES-256-GCM | [docs](/projects/pqguard/) |
+| 11 | **Solana Validator** | [BartoszOsiej/solana-validator](https://github.com/BartoszOsiej/solana-validator) | Rust, PoH, Tower BFT, Turbine | [docs](/projects/solana-validator/) |
+| 12 | **Prompt Inbox** | [BartoszOsiej/prompt-inbox](https://github.com/BartoszOsiej/prompt-inbox) | HTML, GitHub Issues, Agent Workflow | [docs](/projects/prompt-inbox/) |
 
 ---
 
@@ -109,6 +112,36 @@ on this site, and maintained in the working copy at `~/`.
 | **Local path** | `~/Externum` |
 | **Docs** | [/projects/externum/](/projects/externum/) — Overview, Syntax, Examples, Compiler & CLI, Architecture |
 | **Tests** | 118 unit tests, all green |
+
+## 10. pqguard — `BartoszOsiej/pqguard`
+
+| | |
+|---|---|
+| **What** | Post-quantum file encryption CLI — ML-KEM-768 key exchange + AES-256-GCM + HKDF. NIST FIPS 203 compliant, fuzz-tested. Protects against "harvest now, decrypt later" quantum threats. |
+| **Stack** | Rust, ML-KEM-768 (Kyber768), AES-256-GCM, HKDF-SHA256 |
+| **Local path** | `~/pqguard` |
+| **Docs** | [/projects/pqguard/](/projects/pqguard/) — Overview + Tests |
+| **Published** | [crates.io](https://crates.io/crates/pqguard) |
+
+## 11. Solana Validator — `BartoszOsiej/solana-validator`
+
+| | |
+|---|---|
+| **What** | Custom Solana-like validator built from scratch in Rust — PoH clock, Tower BFT consensus, Sealevel parallel execution, Turbine block propagation with Reed-Solomon erasure coding, CRDS gossip protocol, and SBF-inspired program executor. Educational/research implementation. |
+| **Stack** | Rust, SHA-256, Reed-Solomon, DashMap, Tokio |
+| **Local path** | `~/solana-validator` |
+| **Docs** | [/projects/solana-validator/](/projects/solana-validator/) — Overview + Tests |
+| **Tests** | 110 unit tests, all green |
+
+## 12. Prompt Inbox — `BartoszOsiej/prompt-inbox`
+
+| | |
+|---|---|
+| **What** | Remote prompt inbox for the coding agent — send a prompt from anywhere, it lands as a GitHub issue, the agent handles it. Zero backend, mobile-first, static HTML. |
+| **Stack** | HTML5, GitHub Issues API, zero dependencies |
+| **Local path** | `~/prompt-inbox` |
+| **Docs** | [/projects/prompt-inbox/](/projects/prompt-inbox/) — Overview + Tests |
+| **Published** | [npm](https://www.npmjs.com/package/prompt-inbox), [GHCR](https://github.com/BartoszOsiej/prompt-inbox/pkgs/container/prompt-inbox) |
 
 ---
 

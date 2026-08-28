@@ -95,6 +95,30 @@
     tint="#f59e0b"
     link="/projects/externum/"
   />
+  <ProjectCard
+    icon="🔒"
+    title="pqguard"
+    description="Post-quantum file encryption CLI — ML-KEM-768 key exchange + AES-256-GCM + HKDF. NIST FIPS 203 compliant, fuzz-tested."
+    tags={['Rust', 'Cryptography', 'NIST', 'Post-Quantum']}
+    tint="#a78bfa"
+    link="/projects/pqguard/"
+  />
+  <ProjectCard
+    icon="⛓️"
+    title="Solana Validator"
+    description="Custom Solana-like validator built from scratch in Rust — PoH clock, Tower BFT, Sealevel parallel execution, Turbine erasure coding, CRDS gossip, SBF program executor. 110 tests, all green."
+    tags={['Rust', 'Blockchain', 'Consensus', 'eBPF']}
+    tint="#14b8a6"
+    link="/projects/solana-validator/"
+  />
+  <ProjectCard
+    icon="🎯"
+    title="Prompt Inbox"
+    description="Remote prompt inbox for the coding agent — send a prompt from anywhere, it lands as a GitHub issue, the agent handles it. Zero backend, mobile-first."
+    tags={['HTML', 'GitHub Issues', 'Agent Workflow', 'Zero Backend']}
+    tint="#f472b6"
+    link="/projects/prompt-inbox/"
+  />
 </div>
 
 ## 🗺️ Repo map

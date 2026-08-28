@@ -105,6 +105,33 @@ const sidebars: SidebarsConfig = {
       ],
     },
     {
+      type: 'category',
+      label: 'pqguard',
+      collapsed: true,
+      items: [
+        'projects/pqguard/index',
+        'projects/pqguard/tests',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Solana Validator',
+      collapsed: true,
+      items: [
+        'projects/solana-validator/index',
+        'projects/solana-validator/tests',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Prompt Inbox',
+      collapsed: true,
+      items: [
+        'projects/prompt-inbox/index',
+        'projects/prompt-inbox/tests',
+      ],
+    },
+    {
       type: 'doc',
       id: 'translator',
       label: 'PDF Book & Translator',
