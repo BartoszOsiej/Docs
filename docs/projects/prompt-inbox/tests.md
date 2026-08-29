@@ -1,4 +1,4 @@
-# 🧪 Prompt Inbox — Test Results
+# 🧪 Promptbox — Test Results
 
 > **All tests passing** ✅
 

@@ -1,4 +1,4 @@
-# ⛓️ Solana Validator
+# ⛓️ TrustNode
 
 <a class="tests-cta" href="./tests">🧪 View test results — 110/110 →</a>
 

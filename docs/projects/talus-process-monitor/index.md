@@ -1,4 +1,4 @@
-# 🛰️ Talus Process Monitor
+# 🛰️ Talus
 
 <a class="tests-cta" href="./tests">🧪 View animated test results — 9/9 →</a>
 

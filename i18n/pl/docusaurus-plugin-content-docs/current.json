@@ -7,9 +7,9 @@
     "message": "Projects",
     "description": "The label for category 'Projects' in sidebar 'docs'"
   },
-  "sidebar.docs.category.N2 Mesh (P2P Chat)": {
-    "message": "N2 Mesh (P2P Chat)",
-    "description": "The label for category 'N2 Mesh (P2P Chat)' in sidebar 'docs'"
+  "sidebar.docs.category.Meshcore (P2P Chat)": {
+    "message": "Meshcore (P2P Chat)",
+    "description": "The label for category 'Meshcore (P2P Chat)' in sidebar 'docs'"
   },
   "sidebar.docs.category.LinkShort": {
     "message": "LinkShort",
@@ -23,17 +23,17 @@
     "message": "NV2 Engine",
     "description": "The label for category 'NV2 Engine' in sidebar 'docs'"
   },
-  "sidebar.docs.category.Cybersec Toolkit": {
-    "message": "Cybersec Toolkit",
-    "description": "The label for category 'Cybersec Toolkit' in sidebar 'docs'"
+  "sidebar.docs.category.CyberForge": {
+    "message": "CyberForge",
+    "description": "The label for category 'CyberForge' in sidebar 'docs'"
   },
-  "sidebar.docs.category.AURORA OS": {
-    "message": "AURORA OS",
-    "description": "The label for category 'AURORA OS' in sidebar 'docs'"
+  "sidebar.docs.category.Aurora": {
+    "message": "Aurora",
+    "description": "The label for category 'Aurora' in sidebar 'docs'"
   },
-  "sidebar.docs.category.Talus Process Monitor": {
+  "sidebar.docs.category.Talus": {
     "message": "Talus — Monitor Procesów",
-    "description": "The label for category 'Talus Process Monitor' in sidebar 'docs'"
+    "description": "The label for category 'Talus' in sidebar 'docs'"
   },
   "sidebar.docs.category.Externum": {
     "message": "Externum",

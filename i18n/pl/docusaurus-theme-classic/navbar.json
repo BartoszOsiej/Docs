@@ -31,9 +31,9 @@
     "message": "NV2 Engine",
     "description": "Navbar item with label NV2 Engine"
   },
-  "item.label.Cybersec Toolkit": {
-    "message": "Cybersec Toolkit",
-    "description": "Navbar item with label Cybersec Toolkit"
+  "item.label.CyberForge": {
+    "message": "CyberForge",
+    "description": "Navbar item with label CyberForge"
   },
   "item.label.Aurora": {
     "message": "Aurora",
@@ -47,8 +47,8 @@
     "message": "Monitor Talus",
     "description": "Navbar item with label Talus Monitor"
   },
-  "item.label.N2 Mesh": {
-    "message": "N2 Mesh",
-    "description": "Navbar item with label N2 Mesh"
+  "item.label.Meshcore": {
+    "message": "Meshcore",
+    "description": "Navbar item with label Meshcore"
   }
 }

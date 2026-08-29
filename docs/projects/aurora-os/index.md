@@ -76,4 +76,4 @@ npm run serve      # http://localhost:8080
 
 ---
 
-*Related documentation: [NV2 Engine](/projects/nv2-engine/) · [Cybersec Toolkit](/projects/cybersec-tools/) · [LinkShort](/projects/fastapi-url/) · [Novactorio](/projects/factorio-web-game/)*
+*Related documentation: [NV2 Engine](/projects/nv2-engine/) · [CyberForge](/projects/cybersec-tools/) · [LinkShort](/projects/fastapi-url/) · [Novactorio](/projects/factorio-web-game/)*

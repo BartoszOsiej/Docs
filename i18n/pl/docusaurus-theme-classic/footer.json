@@ -36,7 +36,7 @@
     "description": "The label of footer link with label=Externum linking to /projects/externum/"
   },
   "link.item.label.Meshcore (P2P Chat)": {
-    "message": "N2 Mesh (czat P2P)",
+    "message": "Meshcore (czat P2P)",
     "description": "The label of footer link with label=Meshcore (P2P Chat) linking to /projects/n2-mesh/"
   },
   "link.item.label.PDF Book & Translator": {
@@ -47,9 +47,9 @@
     "message": "GitHub",
     "description": "The label of footer link with label=GitHub linking to https://github.com/BartoszOsiej"
   },
-  "link.item.label.Talus Process Monitor": {
+  "link.item.label.Talus": {
     "message": "Talus — Monitor Procesów",
-    "description": "The label of footer link with label=Talus Process Monitor linking to /projects/talus-process-monitor/"
+    "description": "The label of footer link with label=Talus linking to /projects/talus-process-monitor/"
   },
   "copyright": {
     "message": "© 2026 Bartosz Osiej · Zbudowano z Docusaurus",

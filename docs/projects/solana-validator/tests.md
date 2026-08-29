@@ -1,4 +1,4 @@
-# 🧪 Solana Validator — Test Results
+# 🧪 TrustNode — Test Results
 
 > **110/110 tests passing** ✅
 

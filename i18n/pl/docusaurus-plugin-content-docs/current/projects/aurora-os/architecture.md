@@ -1,6 +1,6 @@
-# AURORA OS — Architektura
+# Aurora — Architektura
 
-Dogłębne spojrzenie na każdy podsystem ~4 500-liniowej bazy AURORA OS
+Dogłębne spojrzenie na każdy podsystem ~4 500-liniowej bazy Aurora
 (3 118 linii TypeScript w 16 modułach + 1 376 linii CSS).
 
 ## Przegląd systemu

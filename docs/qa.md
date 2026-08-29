@@ -12,13 +12,13 @@ Legend: ✅ pass · ⚠️ partial (see notes) · ❌ fail
 | # | Project | Suite | Total | Passed | Failed | Ignored | Status | Animated page |
 |---|---------|-------|-------|--------|--------|---------|--------|---------------|
 | 1 | [NV2 Engine](#nv2-engine-nv2_engine) | `cargo test` | 99 | 98 | 0 | 1 (release bench) | ✅ | [tests](/projects/nv2-engine/tests/) |
-| 2 | [Cybersec Toolkit](#cybersec-toolkit-cybersec-tools) | `cargo test --workspace` | 29 | 29 | 0 | 0 | ✅ | [tests](/projects/cybersec-tools/tests/) |
-| 3 | [Talus Process Monitor](#talus-process-monitor-talus-process-monitor) | `cargo test` | 9 | 9 | 0 | 0 | ✅ | [tests](/projects/talus-process-monitor/tests/) |
+| 2 | [CyberForge](#cybersec-toolkit-cybersec-tools) | `cargo test --workspace` | 29 | 29 | 0 | 0 | ✅ | [tests](/projects/cybersec-tools/tests/) |
+| 3 | [Talus](#talus-process-monitor-talus-process-monitor) | `cargo test` | 9 | 9 | 0 | 0 | ✅ | [tests](/projects/talus-process-monitor/tests/) |
 | 4 | [Externum](#externum-externum) | `unittest discover` | 120 | 120 | 0 | 0 | ✅ | [tests](/projects/externum/tests/) |
-| 5 | [AURORA OS](#aurora-os-aurora-os) | `npm test` + `tsc` | 56 | 56 | 0 | 0 | ✅ | [tests](/projects/aurora-os/tests/) |
+| 5 | [Aurora](#aurora-os-aurora-os) | `npm test` + `tsc` | 56 | 56 | 0 | 0 | ✅ | [tests](/projects/aurora-os/tests/) |
 | 6 | [Novactorio](#novactorio--factorio-web-game-factorio-web-game) | typecheck + build + lint | — | — | — | — | ✅ | [tests](/projects/factorio-web-game/tests/) |
 | 7 | [LinkShort](#linkshort--fastapi-url-shortener-fastapi-url) | `pytest tests/` | 15 | 15 | 0 | 0 | ✅ | [tests](/projects/fastapi-url/tests/) |
-| 8 | [N2 Mesh](#n2-mesh-n2-mesh) | `npm test` | 22 | 22 | 0 | 0 | ✅ | [tests](/projects/n2-mesh/tests/) |
+| 8 | [Meshcore](#n2-mesh-n2-mesh) | `npm test` | 22 | 22 | 0 | 0 | ✅ | [tests](/projects/n2-mesh/tests/) |
 | 9 | [Docs — this site](#docs--this-site) | `npm run build` | — | — | — | — | ✅ | [tests](/tests/) |
 
 **Σ 350 automated tests · 349 passed · 0 failed** (+ build/lint/typecheck
@@ -87,7 +87,7 @@ Reproduce: `cd Core && cargo test && cargo test --release qa_benchmark_report --
 
 ---
 
-## Cybersec Toolkit (`cybersec-tools`)
+## CyberForge (`cybersec-tools`)
 
 **29 tests** across the 4 crates — all passing. [Animated page](/projects/cybersec-tools/tests/)
 
@@ -105,7 +105,7 @@ Reproduce: `cargo test --workspace`
 
 ---
 
-## Talus Process Monitor (`talus-process-monitor`)
+## Talus (`talus-process-monitor`)
 
 **9 tests** (userspace `process-monitor` crate). [Animated page](/projects/talus-process-monitor/tests/)
 
@@ -141,7 +141,7 @@ Reproduce: `python3 -m unittest discover -s tests`
 
 ---
 
-## AURORA OS (`AURORA-OS`)
+## Aurora (`AURORA-OS`)
 
 **56/56 core assertions** (31 test cases: EventBus, FileSystem, shell
 interpreter) · TypeScript typecheck clean. [Animated page](/projects/aurora-os/tests/)
@@ -212,7 +212,7 @@ Reproduce: `python3.9 -m venv venv && venv/bin/pip install -r requirements.txt &
 
 ---
 
-## N2 Mesh (`n2-mesh`)
+## Meshcore (`n2-mesh`)
 
 **22/22 unit tests pass** (`npm test`, `node:test` on `core.js`) — pure
 [Animated page](/projects/n2-mesh/tests/) · 

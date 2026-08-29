@@ -10,11 +10,11 @@ how this documentation site stays in sync with the source projects.
 | [BartoszOsiej/Shortlink](https://github.com/BartoszOsiej/Shortlink) | BartoszOsiej (fork of ghost0development) | Source: LinkShort URL shortener |
 | [BartoszOsiej/Factorio-web-game](https://github.com/BartoszOsiej/Factorio-web-game) | BartoszOsiej | Source: Novactorio browser game |
 | [BartoszOsiej/NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE) | BartoszOsiej | Source: NV2 Engine — native Rust voxel game |
-| [BartoszOsiej/Aurora](https://github.com/BartoszOsiej/Aurora) | BartoszOsiej | Source: AURORA OS — browser operating system in TypeScript |
-| [BartoszOsiej/CyberForge](https://github.com/BartoszOsiej/CyberForge) | BartoszOsiej | Source: Cybersec Toolkit — 4 Rust security tools |
-| [BartoszOsiej/talus-process-monitor](https://github.com/BartoszOsiej/talus-process-monitor) | BartoszOsiej | Source: Talus Process Monitor — eBPF endpoint security |
+| [BartoszOsiej/Aurora](https://github.com/BartoszOsiej/Aurora) | BartoszOsiej | Source: Aurora — browser operating system in TypeScript |
+| [BartoszOsiej/CyberForge](https://github.com/BartoszOsiej/CyberForge) | BartoszOsiej | Source: CyberForge — 4 Rust security tools |
+| [BartoszOsiej/talus-process-monitor](https://github.com/BartoszOsiej/talus-process-monitor) | BartoszOsiej | Source: Talus — eBPF endpoint security |
 | [BartoszOsiej/externum](https://github.com/BartoszOsiej/externum) | BartoszOsiej | Source: Externum language |
-| [BartoszOsiej/Meshcore](https://github.com/BartoszOsiej/Meshcore) | BartoszOsiej | Source: N2 Mesh — P2P chat (own GitHub Pages site) |
+| [BartoszOsiej/Meshcore](https://github.com/BartoszOsiej/Meshcore) | BartoszOsiej | Source: Meshcore — P2P chat (own GitHub Pages site) |
 | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | BartoszOsiej | **This site** — GitHub Pages docs hub |
 
 ## Update flow diagram
@@ -57,8 +57,8 @@ how this documentation site stays in sync with the source projects.
    - `projects/fastapi-url/` — LinkShort
    - `projects/factorio-web-game/` — Novactorio
    - `projects/nv2-engine/` — NV2 Engine
-   - `projects/cybersec-tools/` — Cybersec Toolkit
-   - `projects/talus-process-monitor/` — Talus Process Monitor
+   - `projects/cybersec-tools/` — CyberForge
+   - `projects/talus-process-monitor/` — Talus
    - `projects/externum/` — Externum (5 pages)
 2. Commit to the `Docs` repository and push to `main`.
 3. GitHub Actions builds the Docusaurus site and deploys it to GitHub Pages

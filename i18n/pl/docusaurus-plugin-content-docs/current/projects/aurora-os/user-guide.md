@@ -1,4 +1,4 @@
-# AURORA OS — Podręcznik użytkownika
+# Aurora — Podręcznik użytkownika
 
 Wszystko, czego potrzebujesz, aby żyć wewnątrz OS: nawigacja po pulpicie,
 skróty, osiem aplikacji i kompletna referencja komend shella.
@@ -112,7 +112,7 @@ aby zobaczyć tę samą listę, lub `man &lt;command&gt;` dla wpisu manuala.
 | `clear` | `clear` | Wyczyść ekran |
 | `exit` | `exit` | Zamknij terminal |
 | `sudo` | `sudo &lt;command&gt;` | Wykonaj jako root — już nim jesteś |
-| `shutdown` | `shutdown` | Zrestartuj AURORA OS |
+| `shutdown` | `shutdown` | Zrestartuj Aurora |
 | `fortune` | `fortune` | Losowy cytat |
 
 ## Wskazówki

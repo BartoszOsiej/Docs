@@ -1,6 +1,6 @@
-# AURORA OS — Architecture
+# Aurora — Architecture
 
-An in-depth look at every subsystem of the ~4,500-line AURORA OS codebase
+An in-depth look at every subsystem of the ~4,500-line Aurora codebase
 (3,118 lines of TypeScript across 16 modules + 1,376 lines of CSS).
 
 ## System overview

@@ -1,4 +1,4 @@
-# AURORA OS — User Guide
+# Aurora — User Guide
 
 Everything you need to live inside the OS: desktop navigation, shortcuts,
 the eight applications, and the complete shell command reference.
@@ -112,7 +112,7 @@ terminal for the same list, or `man &lt;command&gt;` for the manual entry.
 | `clear` | `clear` | Clear the screen |
 | `exit` | `exit` | Close the terminal |
 | `sudo` | `sudo &lt;command&gt;` | Execute as root — you already are root |
-| `shutdown` | `shutdown` | Reboot AURORA OS |
+| `shutdown` | `shutdown` | Reboot Aurora |
 | `fortune` | `fortune` | Random quote |
 
 ## Tips

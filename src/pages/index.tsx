@@ -46,7 +46,7 @@ const EN: Copy = {
   tagline:
     'One home for everything I build — real documentation written from the actual source code: a production URL shortener, browser games, a native Rust voxel engine, a cybersecurity toolkit, a browser OS, an eBPF security monitor, a programming language of our own and a serverless P2P chat.',
   browseCta: 'Browse the Catalog',
-  chatCta: 'N2 Mesh (P2P chat)',
+  chatCta: 'Meshcore (P2P chat)',
   whatTitle: 'What is this site?',
   whatIntro:
     'This is the living documentation hub for every project I build and maintain. It is not a résumé and not a portfolio of screenshots — every page here is written from the actual source: real endpoints, real modules, real architecture decisions, real numbers.',
@@ -65,7 +65,7 @@ const EN: Copy = {
   startTitle: 'Where to start',
   cta1Title: 'Browse the full catalog',
   cta1Body: 'Every project, every repo, every doc — in one place.',
-  cta2Title: 'N2 Mesh — the P2P chat',
+  cta2Title: 'Meshcore — the P2P chat',
   cta2Body: 'A serverless WebRTC messenger that runs on static hosting.',
   cta3Title: 'How this site updates',
   cta3Body: 'Which repositories publish here, and how the pipeline works.',
@@ -79,7 +79,7 @@ const EN: Copy = {
     ['Deployment', 'GitHub Actions — auto-rebuild on every push to main'],
     ['AI access', 'llms.txt + llms-full.txt for agents'],
     ['Content', 'One PROJECTS.md registry as the single source of truth'],
-    ['Live demos', 'N2 Mesh chat and the Externum playground run right in the docs'],
+    ['Live demos', 'Meshcore chat and the Externum playground run right in the docs'],
   ],
   tip: 'Looking for something specific? Head straight to the',
   tipLinkText: 'project catalog',
@@ -92,7 +92,7 @@ const PL: Copy = {
   tagline:
     'Jedno miejsce dla wszystkiego, co buduję — prawdziwa dokumentacja pisana na podstawie kodu źródłowego: produkcyjny skracacz URL, gry przeglądarkowe, natywny silnik wokselowy w Rust, zestaw narzędzi cyberbezpieczeństwa, system operacyjny w przeglądarce, monitor bezpieczeństwa eBPF, własny język programowania oraz serwerless czat P2P.',
   browseCta: 'Przeglądaj katalog',
-  chatCta: 'N2 Mesh (czat P2P)',
+  chatCta: 'Meshcore (czat P2P)',
   whatTitle: 'Co to za witryna?',
   whatIntro:
     'To żywe centrum dokumentacji każdego projektu, który buduję i utrzymuję. To nie CV i nie portfolio zrzutów ekranu — każda strona jest napisana na podstawie prawdziwego kodu: prawdziwe endpointy, prawdziwe moduły, prawdziwe decyzje architektoniczne, prawdziwe liczby.',
@@ -111,7 +111,7 @@ const PL: Copy = {
   startTitle: 'Od czego zacząć',
   cta1Title: 'Przeglądaj pełny katalog',
   cta1Body: 'Każdy projekt, każde repo, każda dokumentacja — w jednym miejscu.',
-  cta2Title: 'N2 Mesh — czat P2P',
+  cta2Title: 'Meshcore — czat P2P',
   cta2Body: 'Bezserwerowy komunikator WebRTC działający na statycznym hostingu.',
   cta3Title: 'Jak ta witryna się aktualizuje',
   cta3Body: 'Które repozytoria publikują tu zmiany i jak działa pipeline.',
@@ -125,7 +125,7 @@ const PL: Copy = {
     ['Wdrożenie', 'GitHub Actions — automatyczna przebudowa przy każdym pushu na main'],
     ['Dostęp dla AI', 'llms.txt + llms-full.txt dla agentów'],
     ['Treść', 'Jeden rejestr PROJECTS.md jako źródło prawdy'],
-    ['Demo na żywo', 'Czat N2 Mesh i playground Externum działają bezpośrednio w dokumentacji'],
+    ['Demo na żywo', 'Czat Meshcore i playground Externum działają bezpośrednio w dokumentacji'],
   ],
   tip: 'Szukasz czegoś konkretnego? Przejdź od razu do',
   tipLinkText: 'katalogu projektów',

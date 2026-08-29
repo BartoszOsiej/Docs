@@ -159,11 +159,11 @@ how this documentation site stays in sync with the source projects.
 | [BartoszOsiej/Shortlink](https://github.com/BartoszOsiej/Shortlink) | BartoszOsiej (fork of ghost0development) | Source: LinkShort URL shortener |
 | [BartoszOsiej/Factorio-web-game](https://github.com/BartoszOsiej/Factorio-web-game) | BartoszOsiej | Source: Novactorio browser game |
 | [BartoszOsiej/NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE) | BartoszOsiej | Source: NV2 Engine — native Rust voxel game |
-| [BartoszOsiej/Aurora](https://github.com/BartoszOsiej/Aurora) | BartoszOsiej | Source: AURORA OS — browser operating system in TypeScript |
-| [BartoszOsiej/CyberForge](https://github.com/BartoszOsiej/CyberForge) | BartoszOsiej | Source: Cybersec Toolkit — 4 Rust security tools |
-| [BartoszOsiej/talus-process-monitor](https://github.com/BartoszOsiej/talus-process-monitor) | BartoszOsiej | Source: Talus Process Monitor — eBPF endpoint security |
+| [BartoszOsiej/Aurora](https://github.com/BartoszOsiej/Aurora) | BartoszOsiej | Source: Aurora — browser operating system in TypeScript |
+| [BartoszOsiej/CyberForge](https://github.com/BartoszOsiej/CyberForge) | BartoszOsiej | Source: CyberForge — 4 Rust security tools |
+| [BartoszOsiej/talus-process-monitor](https://github.com/BartoszOsiej/talus-process-monitor) | BartoszOsiej | Source: Talus — eBPF endpoint security |
 | [BartoszOsiej/externum](https://github.com/BartoszOsiej/externum) | BartoszOsiej | Source: Externum language |
-| [BartoszOsiej/Meshcore](https://github.com/BartoszOsiej/Meshcore) | BartoszOsiej | Source: N2 Mesh — P2P chat (own GitHub Pages site) |
+| [BartoszOsiej/Meshcore](https://github.com/BartoszOsiej/Meshcore) | BartoszOsiej | Source: Meshcore — P2P chat (own GitHub Pages site) |
 | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | BartoszOsiej | **This site** — GitHub Pages docs hub |
 
 ## Update flow diagram
@@ -206,8 +206,8 @@ how this documentation site stays in sync with the source projects.
    - `projects/fastapi-url/` — LinkShort
    - `projects/factorio-web-game/` — Novactorio
    - `projects/nv2-engine/` — NV2 Engine
-   - `projects/cybersec-tools/` — Cybersec Toolkit
-   - `projects/talus-process-monitor/` — Talus Process Monitor
+   - `projects/cybersec-tools/` — CyberForge
+   - `projects/talus-process-monitor/` — Talus
    - `projects/externum/` — Externum (5 pages)
 2. Commit to the `Docs` repository and push to `main`.
 3. GitHub Actions builds the Docusaurus site and deploys it to GitHub Pages
@@ -3475,15 +3475,15 @@ npm run serve      # http://localhost:8080
 
 ---
 
-*Related documentation: [NV2 Engine](/projects/nv2-engine/) · [Cybersec Toolkit](/projects/cybersec-tools/) · [LinkShort](/projects/fastapi-url/) · [Novactorio](/projects/factorio-web-game/)*
+*Related documentation: [NV2 Engine](/projects/nv2-engine/) · [CyberForge](/projects/cybersec-tools/) · [LinkShort](/projects/fastapi-url/) · [Novactorio](/projects/factorio-web-game/)*
 
 
 ## projects/aurora-os/architecture
 Source: https://bartoszosiej.github.io/Docs/projects/aurora-os/architecture
 ------------------------------------------------------------------------
-# AURORA OS — Architecture
+# Aurora — Architecture
 
-An in-depth look at every subsystem of the ~4,500-line AURORA OS codebase
+An in-depth look at every subsystem of the ~4,500-line Aurora codebase
 (3,118 lines of TypeScript across 16 modules + 1,376 lines of CSS).
 
 ## System overview
@@ -3633,7 +3633,7 @@ wc, unknown-command handling).
 ## projects/aurora-os/user-guide
 Source: https://bartoszosiej.github.io/Docs/projects/aurora-os/user-guide
 ------------------------------------------------------------------------
-# AURORA OS — User Guide
+# Aurora — User Guide
 
 Everything you need to live inside the OS: desktop navigation, shortcuts,
 the eight applications, and the complete shell command reference.
@@ -3747,7 +3747,7 @@ terminal for the same list, or `man &lt;command&gt;` for the manual entry.
 | `clear` | `clear` | Clear the screen |
 | `exit` | `exit` | Close the terminal |
 | `sudo` | `sudo &lt;command&gt;` | Execute as root — you already are root |
-| `shutdown` | `shutdown` | Reboot AURORA OS |
+| `shutdown` | `shutdown` | Reboot Aurora |
 | `fortune` | `fortune` | Random quote |
 
 ## Tips
@@ -3778,7 +3778,7 @@ terminal for the same list, or `man &lt;command&gt;` for the manual entry.
 ## projects/talus-process-monitor/
 Source: https://bartoszosiej.github.io/Docs/projects/talus-process-monitor/
 ------------------------------------------------------------------------
-# 🛰️ Talus Process Monitor
+# 🛰️ Talus
 
 <a class="tests-cta" href="./tests">🧪 View animated test results — 9/9 →</a>
 
@@ -3889,9 +3889,9 @@ talus-process-monitor/
 ## projects/talus-process-monitor/architecture
 Source: https://bartoszosiej.github.io/Docs/projects/talus-process-monitor/architecture
 ------------------------------------------------------------------------
-# Talus Process Monitor — Architecture
+# Talus — Architecture
 
-Internal architecture of Talus Process Monitor: the kernel-side eBPF
+Internal architecture of Talus: the kernel-side eBPF
 programs, the userspace event pipeline, the sliding-window alerting heuristic,
 and the output layer.
 
@@ -5081,13 +5081,13 @@ Legend: ✅ pass · ⚠️ partial (see notes) · ❌ fail
 | # | Project | Suite | Total | Passed | Failed | Ignored | Status | Animated page |
 |---|---------|-------|-------|--------|--------|---------|--------|---------------|
 | 1 | [NV2 Engine](#nv2-engine-nv2_engine) | `cargo test` | 99 | 98 | 0 | 1 (release bench) | ✅ | [tests](/projects/nv2-engine/tests/) |
-| 2 | [Cybersec Toolkit](#cybersec-toolkit-cybersec-tools) | `cargo test --workspace` | 29 | 29 | 0 | 0 | ✅ | [tests](/projects/cybersec-tools/tests/) |
-| 3 | [Talus Process Monitor](#talus-process-monitor-talus-process-monitor) | `cargo test` | 9 | 9 | 0 | 0 | ✅ | [tests](/projects/talus-process-monitor/tests/) |
+| 2 | [CyberForge](#cybersec-toolkit-cybersec-tools) | `cargo test --workspace` | 29 | 29 | 0 | 0 | ✅ | [tests](/projects/cybersec-tools/tests/) |
+| 3 | [Talus](#talus-process-monitor-talus-process-monitor) | `cargo test` | 9 | 9 | 0 | 0 | ✅ | [tests](/projects/talus-process-monitor/tests/) |
 | 4 | [Externum](#externum-externum) | `unittest discover` | 120 | 120 | 0 | 0 | ✅ | [tests](/projects/externum/tests/) |
-| 5 | [AURORA OS](#aurora-os-aurora-os) | `npm test` + `tsc` | 56 | 56 | 0 | 0 | ✅ | [tests](/projects/aurora-os/tests/) |
+| 5 | [Aurora](#aurora-os-aurora-os) | `npm test` + `tsc` | 56 | 56 | 0 | 0 | ✅ | [tests](/projects/aurora-os/tests/) |
 | 6 | [Novactorio](#novactorio--factorio-web-game-factorio-web-game) | typecheck + build + lint | — | — | — | — | ✅ | [tests](/projects/factorio-web-game/tests/) |
 | 7 | [LinkShort](#linkshort--fastapi-url-shortener-fastapi-url) | `pytest tests/` | 15 | 15 | 0 | 0 | ✅ | [tests](/projects/fastapi-url/tests/) |
-| 8 | [N2 Mesh](#n2-mesh-n2-mesh) | `npm test` | 22 | 22 | 0 | 0 | ✅ | [tests](/projects/n2-mesh/tests/) |
+| 8 | [Meshcore](#n2-mesh-n2-mesh) | `npm test` | 22 | 22 | 0 | 0 | ✅ | [tests](/projects/n2-mesh/tests/) |
 | 9 | [Docs — this site](#docs--this-site) | `npm run build` | — | — | — | — | ✅ | [tests](/tests/) |
 
 **Σ 350 automated tests · 349 passed · 0 failed** (+ build/lint/typecheck
@@ -5156,7 +5156,7 @@ Reproduce: `cd Core && cargo test && cargo test --release qa_benchmark_report --
 
 ---
 
-## Cybersec Toolkit (`cybersec-tools`)
+## CyberForge (`cybersec-tools`)
 
 **29 tests** across the 4 crates — all passing. [Animated page](/projects/cybersec-tools/tests/)
 
@@ -5174,7 +5174,7 @@ Reproduce: `cargo test --workspace`
 
 ---
 
-## Talus Process Monitor (`talus-process-monitor`)
+## Talus (`talus-process-monitor`)
 
 **9 tests** (userspace `process-monitor` crate). [Animated page](/projects/talus-process-monitor/tests/)
 
@@ -5210,7 +5210,7 @@ Reproduce: `python3 -m unittest discover -s tests`
 
 ---
 
-## AURORA OS (`AURORA-OS`)
+## Aurora (`AURORA-OS`)
 
 **56/56 core assertions** (31 test cases: EventBus, FileSystem, shell
 interpreter) · TypeScript typecheck clean. [Animated page](/projects/aurora-os/tests/)
@@ -5281,7 +5281,7 @@ Reproduce: `python3.9 -m venv venv && venv/bin/pip install -r requirements.txt &
 
 ---
 
-## N2 Mesh (`n2-mesh`)
+## Meshcore (`n2-mesh`)
 
 **22/22 unit tests pass** (`npm test`, `node:test` on `core.js`) — pure
 [Animated page](/projects/n2-mesh/tests/) · 
@@ -5613,12 +5613,12 @@ Source: https://bartoszosiej.github.io/Docs/projects/aurora-os/tests
 ---
 sidebar_label: Tests
 title: Tests
-description: Full animated test results for AURORA OS.
+description: Full animated test results for Aurora.
 ---
 
-# Tests — AURORA OS
+# Tests — Aurora
 
-Full automated test results for **AURORA OS**, collected during the QA sweep
+Full automated test results for **Aurora**, collected during the QA sweep
 on 2026-08-13 (Linux, Rust 1.97, Node 22, Python 3). Scroll down — the
 counters count up, the bars fill in and every row animates as it enters the
 viewport. Use **▶ Replay animation** to run it again.
@@ -5639,12 +5639,12 @@ Source: https://bartoszosiej.github.io/Docs/projects/cybersec-tools/tests
 ---
 sidebar_label: Tests
 title: Tests
-description: Full animated test results for Cybersec Toolkit.
+description: Full animated test results for CyberForge.
 ---
 
-# Tests — Cybersec Toolkit
+# Tests — CyberForge
 
-Full automated test results for **Cybersec Toolkit**, collected during the QA sweep
+Full automated test results for **CyberForge**, collected during the QA sweep
 on 2026-08-13 (Linux, Rust 1.97, Node 22, Python 3). Scroll down — the
 counters count up, the bars fill in and every row animates as it enters the
 viewport. Use **▶ Replay animation** to run it again.
@@ -5742,12 +5742,12 @@ Source: https://bartoszosiej.github.io/Docs/projects/n2-mesh/tests
 ---
 sidebar_label: Tests
 title: Tests
-description: Full animated test results for N2 Mesh.
+description: Full animated test results for Meshcore.
 ---
 
-# Tests — N2 Mesh
+# Tests — Meshcore
 
-Full automated test results for **N2 Mesh**, collected during the QA sweep
+Full automated test results for **Meshcore**, collected during the QA sweep
 on 2026-08-13 (Linux, Rust 1.97, Node 22, Python 3). Scroll down — the
 counters count up, the bars fill in and every row animates as it enters the
 viewport. Use **▶ Replay animation** to run it again.
@@ -5795,12 +5795,12 @@ Source: https://bartoszosiej.github.io/Docs/projects/talus-process-monitor/tests
 ---
 sidebar_label: Tests
 title: Tests
-description: Full animated test results for Talus Process Monitor.
+description: Full animated test results for Talus.
 ---
 
-# Tests — Talus Process Monitor
+# Tests — Talus
 
-Full automated test results for **Talus Process Monitor**, collected during the QA sweep
+Full automated test results for **Talus**, collected during the QA sweep
 on 2026-08-13 (Linux, Rust 1.97, Node 22, Python 3). Scroll down — the
 counters count up, the bars fill in and every row animates as it enters the
 viewport. Use **▶ Replay animation** to run it again.
@@ -6034,13 +6034,13 @@ Legend: ✅ pass · ⚠️ partial (see notes) · ❌ fail
 | # | Project | Suite | Total | Passed | Failed | Ignored | Status | Animated page |
 |---|---------|-------|-------|--------|--------|---------|--------|---------------|
 | 1 | [NV2 Engine](#nv2-engine-nv2_engine) | `cargo test` | 99 | 98 | 0 | 1 (release bench) | ✅ | [tests](/projects/nv2-engine/tests/) |
-| 2 | [Cybersec Toolkit](#cybersec-toolkit-cybersec-tools) | `cargo test --workspace` | 29 | 29 | 0 | 0 | ✅ | [tests](/projects/cybersec-tools/tests/) |
-| 3 | [Talus Process Monitor](#talus-process-monitor-talus-process-monitor) | `cargo test` | 9 | 9 | 0 | 0 | ✅ | [tests](/projects/talus-process-monitor/tests/) |
+| 2 | [CyberForge](#cybersec-toolkit-cybersec-tools) | `cargo test --workspace` | 29 | 29 | 0 | 0 | ✅ | [tests](/projects/cybersec-tools/tests/) |
+| 3 | [Talus](#talus-process-monitor-talus-process-monitor) | `cargo test` | 9 | 9 | 0 | 0 | ✅ | [tests](/projects/talus-process-monitor/tests/) |
 | 4 | [Externum](#externum-externum) | `unittest discover` | 120 | 120 | 0 | 0 | ✅ | [tests](/projects/externum/tests/) |
-| 5 | [AURORA OS](#aurora-os-aurora-os) | `npm test` + `tsc` | 56 | 56 | 0 | 0 | ✅ | [tests](/projects/aurora-os/tests/) |
+| 5 | [Aurora](#aurora-os-aurora-os) | `npm test` + `tsc` | 56 | 56 | 0 | 0 | ✅ | [tests](/projects/aurora-os/tests/) |
 | 6 | [Novactorio](#novactorio--factorio-web-game-factorio-web-game) | typecheck + build + lint | — | — | — | — | ✅ | [tests](/projects/factorio-web-game/tests/) |
 | 7 | [LinkShort](#linkshort--fastapi-url-shortener-fastapi-url) | `pytest tests/` | 15 | 15 | 0 | 0 | ✅ | [tests](/projects/fastapi-url/tests/) |
-| 8 | [N2 Mesh](#n2-mesh-n2-mesh) | `npm test` | 22 | 22 | 0 | 0 | ✅ | [tests](/projects/n2-mesh/tests/) |
+| 8 | [Meshcore](#n2-mesh-n2-mesh) | `npm test` | 22 | 22 | 0 | 0 | ✅ | [tests](/projects/n2-mesh/tests/) |
 | 9 | [Docs — this site](#docs--this-site) | `npm run build` | — | — | — | — | ✅ | [tests](/tests/) |
 
 **Σ 350 automated tests · 349 passed · 0 failed** (+ build/lint/typecheck
@@ -6109,7 +6109,7 @@ Reproduce: `cd Core && cargo test && cargo test --release qa_benchmark_report --
 
 ---
 
-## Cybersec Toolkit (`cybersec-tools`)
+## CyberForge (`cybersec-tools`)
 
 **29 tests** across the 4 crates — all passing. [Animated page](/projects/cybersec-tools/tests/)
 
@@ -6127,7 +6127,7 @@ Reproduce: `cargo test --workspace`
 
 ---
 
-## Talus Process Monitor (`talus-process-monitor`)
+## Talus (`talus-process-monitor`)
 
 **9 tests** (userspace `process-monitor` crate). [Animated page](/projects/talus-process-monitor/tests/)
 
@@ -6163,7 +6163,7 @@ Reproduce: `python3 -m unittest discover -s tests`
 
 ---
 
-## AURORA OS (`AURORA-OS`)
+## Aurora (`AURORA-OS`)
 
 **56/56 core assertions** (31 test cases: EventBus, FileSystem, shell
 interpreter) · TypeScript typecheck clean. [Animated page](/projects/aurora-os/tests/)
@@ -6234,7 +6234,7 @@ Reproduce: `python3.9 -m venv venv && venv/bin/pip install -r requirements.txt &
 
 ---
 
-## N2 Mesh (`n2-mesh`)
+## Meshcore (`n2-mesh`)
 
 **22/22 unit tests pass** (`npm test`, `node:test` on `core.js`) — pure
 [Animated page](/projects/n2-mesh/tests/) · 
@@ -6566,12 +6566,12 @@ Source: https://bartoszosiej.github.io/Docs/projects/aurora-os/tests
 ---
 sidebar_label: Tests
 title: Tests
-description: Full animated test results for AURORA OS.
+description: Full animated test results for Aurora.
 ---
 
-# Tests — AURORA OS
+# Tests — Aurora
 
-Full automated test results for **AURORA OS**, collected during the QA sweep
+Full automated test results for **Aurora**, collected during the QA sweep
 on 2026-08-13 (Linux, Rust 1.97, Node 22, Python 3). Scroll down — the
 counters count up, the bars fill in and every row animates as it enters the
 viewport. Use **▶ Replay animation** to run it again.
@@ -6592,12 +6592,12 @@ Source: https://bartoszosiej.github.io/Docs/projects/cybersec-tools/tests
 ---
 sidebar_label: Tests
 title: Tests
-description: Full animated test results for Cybersec Toolkit.
+description: Full animated test results for CyberForge.
 ---
 
-# Tests — Cybersec Toolkit
+# Tests — CyberForge
 
-Full automated test results for **Cybersec Toolkit**, collected during the QA sweep
+Full automated test results for **CyberForge**, collected during the QA sweep
 on 2026-08-13 (Linux, Rust 1.97, Node 22, Python 3). Scroll down — the
 counters count up, the bars fill in and every row animates as it enters the
 viewport. Use **▶ Replay animation** to run it again.
@@ -6695,12 +6695,12 @@ Source: https://bartoszosiej.github.io/Docs/projects/n2-mesh/tests
 ---
 sidebar_label: Tests
 title: Tests
-description: Full animated test results for N2 Mesh.
+description: Full animated test results for Meshcore.
 ---
 
-# Tests — N2 Mesh
+# Tests — Meshcore
 
-Full automated test results for **N2 Mesh**, collected during the QA sweep
+Full automated test results for **Meshcore**, collected during the QA sweep
 on 2026-08-13 (Linux, Rust 1.97, Node 22, Python 3). Scroll down — the
 counters count up, the bars fill in and every row animates as it enters the
 viewport. Use **▶ Replay animation** to run it again.
@@ -6972,7 +6972,7 @@ When the user says "check the inbox":
 ## projects/prompt-inbox/tests
 Source: https://bartoszosiej.github.io/Docs/projects/prompt-inbox/tests
 ------------------------------------------------------------------------
-# 🧪 Prompt Inbox — Test Results
+# 🧪 Promptbox — Test Results
 
 > **All tests passing** ✅
 
@@ -6998,7 +6998,7 @@ python3 -m http.server 8080
 ## projects/solana-validator/
 Source: https://bartoszosiej.github.io/Docs/projects/solana-validator/
 ------------------------------------------------------------------------
-# ⛓️ Solana Validator
+# ⛓️ TrustNode
 
 <a class="tests-cta" href="./tests">🧪 View test results — 110/110 →</a>
 
@@ -7167,7 +7167,7 @@ the core concepts of Solana's architecture but lacks many production features
 ## projects/solana-validator/tests
 Source: https://bartoszosiej.github.io/Docs/projects/solana-validator/tests
 ------------------------------------------------------------------------
-# 🧪 Solana Validator — Test Results
+# 🧪 TrustNode — Test Results
 
 > **110/110 tests passing** ✅
 
@@ -7202,12 +7202,12 @@ Source: https://bartoszosiej.github.io/Docs/projects/talus-process-monitor/tests
 ---
 sidebar_label: Tests
 title: Tests
-description: Full animated test results for Talus Process Monitor.
+description: Full animated test results for Talus.
 ---
 
-# Tests — Talus Process Monitor
+# Tests — Talus
 
-Full automated test results for **Talus Process Monitor**, collected during the QA sweep
+Full automated test results for **Talus**, collected during the QA sweep
 on 2026-08-13 (Linux, Rust 1.97, Node 22, Python 3). Scroll down — the
 counters count up, the bars fill in and every row animates as it enters the
 viewport. Use **▶ Replay animation** to run it again.

@@ -1,6 +1,6 @@
-# Talus Process Monitor — Architecture
+# Talus — Architecture
 
-Internal architecture of Talus Process Monitor: the kernel-side eBPF
+Internal architecture of Talus: the kernel-side eBPF
 programs, the userspace event pipeline, the sliding-window alerting heuristic,
 and the output layer.
 

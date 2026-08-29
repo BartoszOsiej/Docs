@@ -141,7 +141,7 @@ const config: Config = {
           title: 'Community',
           items: [
             { label: 'GitHub', href: 'https://github.com/BartoszOsiej' },
-            { label: 'Talus Process Monitor', to: '/projects/talus-process-monitor/' },
+            { label: 'Talus', to: '/projects/talus-process-monitor/' },
             { label: '☕ Support on Ko-fi', href: 'https://ko-fi.com/bartoszosiej1' },
           ],
         },
