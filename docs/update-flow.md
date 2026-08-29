@@ -12,7 +12,7 @@ how this documentation site stays in sync with the source projects.
 | [BartoszOsiej/NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE) | BartoszOsiej | Source: NV2 Engine — native Rust voxel game |
 | [BartoszOsiej/AURORA-OS](https://github.com/BartoszOsiej/AURORA-OS) | BartoszOsiej | Source: AURORA OS — browser operating system in TypeScript |
 | [BartoszOsiej/cybersec-tools](https://github.com/BartoszOsiej/cybersec-tools) | BartoszOsiej | Source: Cybersec Toolkit — 4 Rust security tools |
-| [BartoszOsiej/halcyon-process-monitor](https://github.com/BartoszOsiej/halcyon-process-monitor) | BartoszOsiej | Source: Halcyon Process Monitor — eBPF telemetry |
+| [BartoszOsiej/talus-process-monitor](https://github.com/BartoszOsiej/talus-process-monitor) | BartoszOsiej | Source: Talus Process Monitor — eBPF endpoint security |
 | [BartoszOsiej/externum](https://github.com/BartoszOsiej/externum) | BartoszOsiej | Source: Externum language |
 | [BartoszOsiej/n2-mesh](https://github.com/BartoszOsiej/n2-mesh) | BartoszOsiej | Source: N2 Mesh — P2P chat (own GitHub Pages site) |
 | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | BartoszOsiej | **This site** — GitHub Pages docs hub |
@@ -47,7 +47,7 @@ how this documentation site stays in sync with the source projects.
 | 2 | `Factorio-web-game` | Engine/systems/backend documentation changes | When gameplay or backend changes |
 | 3 | `NV2_ENGINE` | Engine, AI, gameplay and performance documentation | When the engine changes |
 | 4 | `cybersec-tools` | Tool docs, usage, CLI reference | When a tool changes |
-| 5 | `halcyon-process-monitor` | eBPF architecture & usage docs | When the monitor changes |
+| 5 | `talus-process-monitor` | eBPF architecture & usage docs | When the monitor changes |
 | 6 | `Externum` | Language spec, syntax, compiler & runtime docs | When the language changes |
 | 7 | `Docs` (this repo) | Final rendered site | On every push to `main` |
 
@@ -58,7 +58,7 @@ how this documentation site stays in sync with the source projects.
    - `projects/factorio-web-game/` — Novactorio
    - `projects/nv2-engine/` — NV2 Engine
    - `projects/cybersec-tools/` — Cybersec Toolkit
-   - `projects/halcyon-process-monitor/` — Halcyon Process Monitor
+   - `projects/talus-process-monitor/` — Talus Process Monitor
    - `projects/externum/` — Externum (5 pages)
 2. Commit to the `Docs` repository and push to `main`.
 3. GitHub Actions builds the Docusaurus site and deploys it to GitHub Pages

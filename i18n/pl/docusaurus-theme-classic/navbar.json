@@ -43,9 +43,9 @@
     "message": "Externum",
     "description": "Navbar item with label Externum"
   },
-  "item.label.Halcyon Monitor": {
-    "message": "Monitor Halcyon",
-    "description": "Navbar item with label Halcyon Monitor"
+  "item.label.Talus Monitor": {
+    "message": "Monitor Talus",
+    "description": "Navbar item with label Talus Monitor"
   },
   "item.label.N2 Mesh": {
     "message": "N2 Mesh",

@@ -81,11 +81,11 @@
   />
   <ProjectCard
     icon="🛰️"
-    title="Halcyon Process Monitor"
-    description="Real-time eBPF process and file-op telemetry for Linux. execve/openat tracepoints, per-CPU perf buffers, sliding-window ransomware heuristic, ratatui TUI."
-    tags={['Rust', 'eBPF', 'Aya', 'ratatui']}
+    title="Talus Process Monitor"
+    description="eBPF endpoint security agent for Linux — detect ransomware behaviour, respond at the kernel edge. execve/openat/connect tracepoints, per-CPU perf buffers, sliding-window heuristic, automated SIGKILL response, FrankenTUI."
+    tags={['Rust', 'eBPF', 'Aya', 'FrankenTUI']}
     tint="#a3e635"
-    link="/projects/halcyon-process-monitor/"
+    link="/projects/talus-process-monitor/"
   />
   <ProjectCard
     icon="📜"

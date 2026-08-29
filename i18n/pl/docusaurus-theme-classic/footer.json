@@ -47,9 +47,9 @@
     "message": "GitHub",
     "description": "The label of footer link with label=GitHub linking to https://github.com/BartoszOsiej"
   },
-  "link.item.label.Halcyon Process Monitor": {
-    "message": "Monitor Procesów Halcyon",
-    "description": "The label of footer link with label=Halcyon Process Monitor linking to /projects/halcyon-process-monitor/"
+  "link.item.label.Talus Process Monitor": {
+    "message": "Talus — Monitor Procesów",
+    "description": "The label of footer link with label=Talus Process Monitor linking to /projects/talus-process-monitor/"
   },
   "copyright": {
     "message": "© 2026 Bartosz Osiej · Zbudowano z Docusaurus",

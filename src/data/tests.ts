@@ -96,8 +96,8 @@ export const projectTests: ProjectTests[] = [
     reportUrl: 'https://github.com/BartoszOsiej/cybersec-tools/blob/main/TEST_REPORT.md',
   },
   {
-    id: 'halcyon-process-monitor',
-    name: 'Halcyon Process Monitor',
+    id: 'talus-process-monitor',
+    name: 'Talus Process Monitor',
     suite: 'cargo test',
     total: 9,
     passed: 9,
@@ -105,7 +105,7 @@ export const projectTests: ProjectTests[] = [
     ignored: 0,
     duration: '~0.02 s',
     status: pass,
-    summary: 'eBPF process telemetry — 9/9 tests green on the userspace crate.',
+    summary: 'eBPF endpoint security agent — 9/9 tests green on the userspace crate.',
     groups: [
       { title: 'Monitor core', count: 6, status: pass, coverage: 'C-string decoding, exec/open stats, ransomware heuristic, window expiry, stats sorting' },
       { title: 'TUI', count: 3, status: pass, coverage: 'rendering with events/alerts, key handling, alert tracking' },
@@ -115,7 +115,7 @@ export const projectTests: ProjectTests[] = [
       { label: '`unsafe` blocks', result: '7 (syscall/interop layer — expected, reviewed)', status: warn },
     ],
     notes: ['The eBPF crate targets bpfel-unknown-none and is built via build.sh, not on the host toolchain.'],
-    reportUrl: 'https://github.com/BartoszOsiej/halcyon-process-monitor/blob/main/TEST_REPORT.md',
+    reportUrl: 'https://github.com/BartoszOsiej/talus-process-monitor/blob/main/TEST_REPORT.md',
   },
   {
     id: 'externum',

@@ -31,9 +31,9 @@
     "message": "AURORA OS",
     "description": "The label for category 'AURORA OS' in sidebar 'docs'"
   },
-  "sidebar.docs.category.Halcyon Process Monitor": {
-    "message": "Halcyon Process Monitor",
-    "description": "The label for category 'Halcyon Process Monitor' in sidebar 'docs'"
+  "sidebar.docs.category.Talus Process Monitor": {
+    "message": "Talus — Monitor Procesów",
+    "description": "The label for category 'Talus Process Monitor' in sidebar 'docs'"
   },
   "sidebar.docs.category.Externum": {
     "message": "Externum",

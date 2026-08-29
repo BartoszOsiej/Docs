@@ -6,7 +6,7 @@ Centralne centrum dokumentacji wszystkich projektów —
 (Novactorio), [NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE),
 [AURORA-OS](https://github.com/BartoszOsiej/AURORA-OS),
 [cybersec-tools](https://github.com/BartoszOsiej/cybersec-tools),
-[halcyon-process-monitor](https://github.com/BartoszOsiej/halcyon-process-monitor),
+[talus-process-monitor](https://github.com/BartoszOsiej/talus-process-monitor),
 [Externum](https://github.com/BartoszOsiej/externum) oraz
 [N2-Mesh](https://github.com/BartoszOsiej/n2-mesh) —
 publikowane jako statyczna witryna na GitHub Pages.
@@ -84,7 +84,7 @@ Docs/
 │   ├── nv2-engine/               # Dokumentacja NV2 Engine (10 stron)
 │   ├── cybersec-tools/           # Dokumentacja Cybersec Toolkit (5 stron)
 │   ├── aurora-os/                # Dokumentacja AURORA OS (3 strony)
-│   ├── halcyon-process-monitor/  # Dokumentacja Halcyon (2 strony)
+│   ├── talus-process-monitor/    # Dokumentacja Talus (2 strony)
 │   ├── externum/                 # Dokumentacja języka Externum (5 stron)
 │   └── n2-mesh/                  # Dokumentacja czatu P2P N2 Mesh (2 strony)
 ├── public/

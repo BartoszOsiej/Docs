@@ -1,6 +1,6 @@
-# Monitor Procesów Halcyon — Architektura
+# Talus — Monitor Procesów — Architektura
 
-Wewnętrzna architektura Monitora Procesów Halcyon: programy eBPF po stronie
+Wewnętrzna architektura Talus Monitora Procesów: programy eBPF po stronie
 jądra, pipeline zdarzeń w przestrzeni użytkownika, heurystyka alertów
 z ruchomym oknem i warstwa wyjścia.
 
@@ -70,7 +70,7 @@ bez kodowania o zmiennej długości w kontekście jądra).
    czytnika.
 5. **Kanał** — MPSC łączy wątek czytnika → monitor.
 
-### Wątek czytnika (`halcyon-reader`)
+### Wątek czytnika (`talus-reader`)
 
 - Wylicza aktywne CPU, otwiera jeden `PerfEventArrayBuffer` na CPU.
 - Dekoduje partie do wstępnie zaalokowanych pul `BytesMut` (zero alokacji
@@ -93,9 +93,9 @@ gdy okno przekroczy skonfigurowany próg (`--alert-threshold`, `0` wyłącza).
 ### Warstwa wyjścia
 
 `Monitor::poll` zwraca `Vec&lt;Output&gt;` per tick (`Event` | `Alert`) routowany
-przez tryb: **TUI** (`ratatui`: przewijany log zdarzeń, tabela top
-procesów, panel alertów, pasek statusu) · **JSON** (NDJSON) · **Plain** ·
-**Diagnose** (weryfikuje ID tracepointów pod
+przez tryb: **TUI** (frankentui: 7-panelowy cyberpunkowy interfejs — zdarzenia,
+drzewo procesów, sieć, top plików, rozszerzenia, alerty, heatmapa) · **JSON**
+(NDJSON) · **Plain** · **Diagnose** (weryfikuje ID tracepointów pod
 `/sys/kernel/tracing/events`, ładuje + dołącza, nasłuchuje 5 s, drukuje
 liczniki).
 

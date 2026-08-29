@@ -77,11 +77,11 @@ title: Projekty — Bartosz Osiej
   />
   <ProjectCard
     icon="🛰️"
-    title="Monitor Procesów Halcyon"
-    description="Telemetria procesów i operacji na plikach w czasie rzeczywistym dla Linuksa, oparta o eBPF. Tracepointy execve/openat, bufory perf per-CPU, heurystyka ransomware z ruchomym oknem, TUI ratatui."
-    tags={['Rust', 'eBPF', 'Aya', 'ratatui']}
+    title="Talus — Monitor Procesów"
+    description="Agent bezpieczeństwa endpointów oparty na eBPF dla Linuksa — wykrywaj zachowania ransomware, reaguj na krawędzi jądra. Tracepointy execve/openat/connect, bufory perf per-CPU, heurystyka z ruchomym oknem, automatyczny SIGKILL, FrankenTUI."
+    tags={['Rust', 'eBPF', 'Aya', 'FrankenTUI']}
     tint="#a3e635"
-    link="/projects/halcyon-process-monitor/"
+    link="/projects/talus-process-monitor/"
   />
   <ProjectCard
     icon="📜"

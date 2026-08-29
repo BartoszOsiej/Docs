@@ -1,14 +1,15 @@
-# 🛰️ Halcyon Process Monitor
+# 🛰️ Talus Process Monitor
 
 <a class="tests-cta" href="./tests">🧪 View animated test results — 9/9 →</a>
 
-**Real-time, eBPF-based process and file-operation telemetry for Linux.**
+**eBPF endpoint security agent for Linux — detect ransomware behaviour, respond at the kernel edge.**
 
-Halcyon Process Monitor traces `execve` and `openat` syscalls at the kernel
-level using eBPF tracepoints, streams the events into userspace through
-per-CPU perf buffers, and surfaces them in a live terminal TUI — while
-continuously scoring per-process file-open rates against a sliding window to
-flag ransomware-style mass file access.
+Talus traces `execve`, `openat`, `connect`, `accept`, `sendto` and `recvfrom`
+syscalls at the kernel level using eBPF tracepoints, streams events into
+userspace through per-CPU perf buffers, and surfaces them in a live terminal
+FrankenTUI — while continuously scoring per-process file-open rates against
+a sliding window to flag ransomware-style mass file access, and automatically
+`SIGKILL`-ing offending processes.
 
 > **Project status:** production-quality Rust + eBPF engineering showcase.
 
@@ -21,7 +22,7 @@ flag ransomware-style mass file access.
 | **Kernel-level tracing** | `execve` and `openat` tracepoints attached on every online CPU |
 | **Verifier-safe kernel code** | Userspace pointers read exclusively via `bpf_probe_read_user` — never dereferenced |
 | **Zero-copy event pipeline** | Fixed-size `ProcessEvent` records streamed through per-CPU `PerfEventArray` buffers |
-| **Live TUI** | Event log, per-process stats table, and alert panel rendered with `ratatui` |
+| **Live FrankenTUI** | 7-panel cyberpunk interface: events, processes, network, files, extensions, alerts, heatmap |
 | **Sliding-window heuristic** | 1-second rolling window per PID; alerts when a process exceeds the configured open rate |
 | **Multiple output modes** | Human TUI, newline-delimited JSON, plain text log, and a built-in self-diagnostic |
 | **Lost-event accounting** | Perf-buffer overruns are counted and reported, never silently dropped |
@@ -45,7 +46,7 @@ execve/openat ─► eBPF tracepoints ─► EVENTS (PerfEventArray)
               TUI / JSON / plain / diagnose
 ```
 
-See the [full architecture](/projects/halcyon-process-monitor/architecture) for the complete design.
+See the [full architecture](/projects/talus-process-monitor/architecture) for the complete design.
 
 ## 🚀 Quick start
 
@@ -84,12 +85,12 @@ sudo process-monitor --diagnose         # 5-second end-to-end self-diagnostic
 ## 📦 Project layout
 
 ```
-halcyon-process-monitor/
-├── process-monitor/          # Userspace: monitor core + TUI + output modes
+talus-process-monitor/
+├── process-monitor/          # Userspace: monitor core + TUI + web + FFI
 │   └── src/
 │       ├── main.rs           # CLI, mode selection, signal handling
 │       ├── monitor.rs        # eBPF loading, perf reader, sliding-window tracker
-│       └── tui.rs            # ratatui interface (events / stats / alerts)
+│       └── tui.rs            # 7-panel frankentui (ftui) cyberpunk interface
 ├── process-monitor-ebpf/     # Kernel side (#![no_std], aya-ebpf)
 │   └── src/main.rs           # tracepoint hooks → PerfEventArray
 ├── build.sh                  # Build script (nightly for eBPF, stable for TUI)

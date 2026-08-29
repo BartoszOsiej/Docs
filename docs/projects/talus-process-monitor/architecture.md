@@ -1,6 +1,6 @@
-# Halcyon Process Monitor — Architecture
+# Talus Process Monitor — Architecture
 
-Internal architecture of Halcyon Process Monitor: the kernel-side eBPF
+Internal architecture of Talus Process Monitor: the kernel-side eBPF
 programs, the userspace event pipeline, the sliding-window alerting heuristic,
 and the output layer.
 
@@ -67,7 +67,7 @@ variable-length encoding in kernel context).
 4. **Map hand-off** — the `EVENTS` `PerfEventArray` moves into the reader thread.
 5. **Channel** — MPSC connects reader thread → monitor.
 
-### Reader thread (`halcyon-reader`)
+### Reader thread (`talus-reader`)
 
 - Enumerates online CPUs, opens one `PerfEventArrayBuffer` per CPU.
 - Decodes batches into pre-allocated `BytesMut` pools (zero per-event
@@ -89,10 +89,10 @@ window crosses the configured threshold (`--alert-threshold`, `0` disables).
 ### Output layer
 
 `Monitor::poll` returns a `Vec&lt;Output&gt;` per tick (`Event` | `Alert`) routed by
-mode: **TUI** (`ratatui`: scrollable event log, top-processes table, alerts
-panel, status bar) · **JSON** (NDJSON) · **Plain** · **Diagnose** (verifies
-tracepoint IDs under `/sys/kernel/tracing/events`, loads + attaches, listens
-5 s, prints counters).
+mode: **TUI** (frankentui: 7-panel cyberpunk interface — events, process tree,
+network, top files, extensions, alerts, heatmap) · **JSON** (NDJSON) · **Plain**
+· **Diagnose** (verifies tracepoint IDs under `/sys/kernel/tracing/events`,
+loads + attaches, listens 5 s, prints counters).
 
 ## 4. Data flow summary
 

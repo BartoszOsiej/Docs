@@ -161,7 +161,7 @@ how this documentation site stays in sync with the source projects.
 | [BartoszOsiej/NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE) | BartoszOsiej | Source: NV2 Engine — native Rust voxel game |
 | [BartoszOsiej/AURORA-OS](https://github.com/BartoszOsiej/AURORA-OS) | BartoszOsiej | Source: AURORA OS — browser operating system in TypeScript |
 | [BartoszOsiej/cybersec-tools](https://github.com/BartoszOsiej/cybersec-tools) | BartoszOsiej | Source: Cybersec Toolkit — 4 Rust security tools |
-| [BartoszOsiej/halcyon-process-monitor](https://github.com/BartoszOsiej/halcyon-process-monitor) | BartoszOsiej | Source: Halcyon Process Monitor — eBPF telemetry |
+| [BartoszOsiej/talus-process-monitor](https://github.com/BartoszOsiej/talus-process-monitor) | BartoszOsiej | Source: Talus Process Monitor — eBPF endpoint security |
 | [BartoszOsiej/externum](https://github.com/BartoszOsiej/externum) | BartoszOsiej | Source: Externum language |
 | [BartoszOsiej/n2-mesh](https://github.com/BartoszOsiej/n2-mesh) | BartoszOsiej | Source: N2 Mesh — P2P chat (own GitHub Pages site) |
 | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | BartoszOsiej | **This site** — GitHub Pages docs hub |
@@ -196,7 +196,7 @@ how this documentation site stays in sync with the source projects.
 | 2 | `Factorio-web-game` | Engine/systems/backend documentation changes | When gameplay or backend changes |
 | 3 | `NV2_ENGINE` | Engine, AI, gameplay and performance documentation | When the engine changes |
 | 4 | `cybersec-tools` | Tool docs, usage, CLI reference | When a tool changes |
-| 5 | `halcyon-process-monitor` | eBPF architecture & usage docs | When the monitor changes |
+| 5 | `talus-process-monitor` | eBPF architecture & usage docs | When the monitor changes |
 | 6 | `Externum` | Language spec, syntax, compiler & runtime docs | When the language changes |
 | 7 | `Docs` (this repo) | Final rendered site | On every push to `main` |
 
@@ -207,7 +207,7 @@ how this documentation site stays in sync with the source projects.
    - `projects/factorio-web-game/` — Novactorio
    - `projects/nv2-engine/` — NV2 Engine
    - `projects/cybersec-tools/` — Cybersec Toolkit
-   - `projects/halcyon-process-monitor/` — Halcyon Process Monitor
+   - `projects/talus-process-monitor/` — Talus Process Monitor
    - `projects/externum/` — Externum (5 pages)
 2. Commit to the `Docs` repository and push to `main`.
 3. GitHub Actions builds the Docusaurus site and deploys it to GitHub Pages
@@ -336,11 +336,11 @@ Source: https://bartoszosiej.github.io/Docs/projects/
   />
   <ProjectCard
     icon="🛰️"
-    title="Halcyon Process Monitor"
-    description="Real-time eBPF process and file-op telemetry for Linux. execve/openat tracepoints, per-CPU perf buffers, sliding-window ransomware heuristic, ratatui TUI."
-    tags={['Rust', 'eBPF', 'Aya', 'ratatui']}
+    title="Talus Process Monitor"
+    description="eBPF endpoint security agent for Linux — detect ransomware behaviour, respond at the kernel edge. execve/openat/connect tracepoints, per-CPU perf buffers, sliding-window heuristic, automated SIGKILL response, FrankenTUI."
+    tags={['Rust', 'eBPF', 'Aya', 'FrankenTUI']}
     tint="#a3e635"
-    link="/projects/halcyon-process-monitor/"
+    link="/projects/talus-process-monitor/"
   />
   <ProjectCard
     icon="📜"
@@ -3751,20 +3751,21 @@ terminal for the same list, or `man &lt;command&gt;` for the manual entry.
 *Back to [Overview](/projects/aurora-os/) · [Architecture](./architecture.md)*
 
 
-## projects/halcyon-process-monitor/
-Source: https://bartoszosiej.github.io/Docs/projects/halcyon-process-monitor/
+## projects/talus-process-monitor/
+Source: https://bartoszosiej.github.io/Docs/projects/talus-process-monitor/
 ------------------------------------------------------------------------
-# 🛰️ Halcyon Process Monitor
+# 🛰️ Talus Process Monitor
 
 <a class="tests-cta" href="./tests">🧪 View animated test results — 9/9 →</a>
 
-**Real-time, eBPF-based process and file-operation telemetry for Linux.**
+**eBPF endpoint security agent for Linux — detect ransomware behaviour, respond at the kernel edge.**
 
-Halcyon Process Monitor traces `execve` and `openat` syscalls at the kernel
-level using eBPF tracepoints, streams the events into userspace through
-per-CPU perf buffers, and surfaces them in a live terminal TUI — while
-continuously scoring per-process file-open rates against a sliding window to
-flag ransomware-style mass file access.
+Talus traces `execve`, `openat`, `connect`, `accept`, `sendto` and `recvfrom`
+syscalls at the kernel level using eBPF tracepoints, streams events into
+userspace through per-CPU perf buffers, and surfaces them in a live terminal
+FrankenTUI — while continuously scoring per-process file-open rates against
+a sliding window to flag ransomware-style mass file access, and automatically
+`SIGKILL`-ing offending processes.
 
 > **Project status:** production-quality Rust + eBPF engineering showcase.
 
@@ -3777,7 +3778,7 @@ flag ransomware-style mass file access.
 | **Kernel-level tracing** | `execve` and `openat` tracepoints attached on every online CPU |
 | **Verifier-safe kernel code** | Userspace pointers read exclusively via `bpf_probe_read_user` — never dereferenced |
 | **Zero-copy event pipeline** | Fixed-size `ProcessEvent` records streamed through per-CPU `PerfEventArray` buffers |
-| **Live TUI** | Event log, per-process stats table, and alert panel rendered with `ratatui` |
+| **Live FrankenTUI** | 7-panel cyberpunk interface: events, processes, network, files, extensions, alerts, heatmap |
 | **Sliding-window heuristic** | 1-second rolling window per PID; alerts when a process exceeds the configured open rate |
 | **Multiple output modes** | Human TUI, newline-delimited JSON, plain text log, and a built-in self-diagnostic |
 | **Lost-event accounting** | Perf-buffer overruns are counted and reported, never silently dropped |
@@ -3801,7 +3802,7 @@ execve/openat ─► eBPF tracepoints ─► EVENTS (PerfEventArray)
               TUI / JSON / plain / diagnose
 ```
 
-See the [full architecture](/projects/halcyon-process-monitor/architecture) for the complete design.
+See the [full architecture](/projects/talus-process-monitor/architecture) for the complete design.
 
 ## 🚀 Quick start
 
@@ -3840,12 +3841,12 @@ sudo process-monitor --diagnose         # 5-second end-to-end self-diagnostic
 ## 📦 Project layout
 
 ```
-halcyon-process-monitor/
-├── process-monitor/          # Userspace: monitor core + TUI + output modes
+talus-process-monitor/
+├── process-monitor/          # Userspace: monitor core + TUI + web + FFI
 │   └── src/
 │       ├── main.rs           # CLI, mode selection, signal handling
 │       ├── monitor.rs        # eBPF loading, perf reader, sliding-window tracker
-│       └── tui.rs            # ratatui interface (events / stats / alerts)
+│       └── tui.rs            # 7-panel frankentui (ftui) cyberpunk interface
 ├── process-monitor-ebpf/     # Kernel side (#![no_std], aya-ebpf)
 │   └── src/main.rs           # tracepoint hooks → PerfEventArray
 ├── build.sh                  # Build script (nightly for eBPF, stable for TUI)
@@ -3861,12 +3862,12 @@ halcyon-process-monitor/
 - `bpf-linker`, `clang`, C compiler; BTF (`/sys/kernel/btf/vmlinux`) recommended
 
 
-## projects/halcyon-process-monitor/architecture
-Source: https://bartoszosiej.github.io/Docs/projects/halcyon-process-monitor/architecture
+## projects/talus-process-monitor/architecture
+Source: https://bartoszosiej.github.io/Docs/projects/talus-process-monitor/architecture
 ------------------------------------------------------------------------
-# Halcyon Process Monitor — Architecture
+# Talus Process Monitor — Architecture
 
-Internal architecture of Halcyon Process Monitor: the kernel-side eBPF
+Internal architecture of Talus Process Monitor: the kernel-side eBPF
 programs, the userspace event pipeline, the sliding-window alerting heuristic,
 and the output layer.
 
@@ -3933,7 +3934,7 @@ variable-length encoding in kernel context).
 4. **Map hand-off** — the `EVENTS` `PerfEventArray` moves into the reader thread.
 5. **Channel** — MPSC connects reader thread → monitor.
 
-### Reader thread (`halcyon-reader`)
+### Reader thread (`talus-reader`)
 
 - Enumerates online CPUs, opens one `PerfEventArrayBuffer` per CPU.
 - Decodes batches into pre-allocated `BytesMut` pools (zero per-event
@@ -3955,10 +3956,10 @@ window crosses the configured threshold (`--alert-threshold`, `0` disables).
 ### Output layer
 
 `Monitor::poll` returns a `Vec&lt;Output&gt;` per tick (`Event` | `Alert`) routed by
-mode: **TUI** (`ratatui`: scrollable event log, top-processes table, alerts
-panel, status bar) · **JSON** (NDJSON) · **Plain** · **Diagnose** (verifies
-tracepoint IDs under `/sys/kernel/tracing/events`, loads + attaches, listens
-5 s, prints counters).
+mode: **TUI** (frankentui: 7-panel cyberpunk interface — events, process tree,
+network, top files, extensions, alerts, heatmap) · **JSON** (NDJSON) · **Plain**
+· **Diagnose** (verifies tracepoint IDs under `/sys/kernel/tracing/events`,
+loads + attaches, listens 5 s, prints counters).
 
 ## 4. Data flow summary
 
@@ -5057,7 +5058,7 @@ Legend: ✅ pass · ⚠️ partial (see notes) · ❌ fail
 |---|---------|-------|-------|--------|--------|---------|--------|---------------|
 | 1 | [NV2 Engine](#nv2-engine-nv2_engine) | `cargo test` | 99 | 98 | 0 | 1 (release bench) | ✅ | [tests](/projects/nv2-engine/tests/) |
 | 2 | [Cybersec Toolkit](#cybersec-toolkit-cybersec-tools) | `cargo test --workspace` | 29 | 29 | 0 | 0 | ✅ | [tests](/projects/cybersec-tools/tests/) |
-| 3 | [Halcyon Process Monitor](#halcyon-process-monitor-halcyon-process-monitor) | `cargo test` | 9 | 9 | 0 | 0 | ✅ | [tests](/projects/halcyon-process-monitor/tests/) |
+| 3 | [Talus Process Monitor](#talus-process-monitor-talus-process-monitor) | `cargo test` | 9 | 9 | 0 | 0 | ✅ | [tests](/projects/talus-process-monitor/tests/) |
 | 4 | [Externum](#externum-externum) | `unittest discover` | 120 | 120 | 0 | 0 | ✅ | [tests](/projects/externum/tests/) |
 | 5 | [AURORA OS](#aurora-os-aurora-os) | `npm test` + `tsc` | 56 | 56 | 0 | 0 | ✅ | [tests](/projects/aurora-os/tests/) |
 | 6 | [Novactorio](#novactorio--factorio-web-game-factorio-web-game) | typecheck + build + lint | — | — | — | — | ✅ | [tests](/projects/factorio-web-game/tests/) |
@@ -5149,9 +5150,9 @@ Reproduce: `cargo test --workspace`
 
 ---
 
-## Halcyon Process Monitor (`halcyon-process-monitor`)
+## Talus Process Monitor (`talus-process-monitor`)
 
-**9 tests** (userspace `process-monitor` crate). [Animated page](/projects/halcyon-process-monitor/tests/)
+**9 tests** (userspace `process-monitor` crate). [Animated page](/projects/talus-process-monitor/tests/)
 
 | Check | Result |
 |---|---|
@@ -5711,31 +5712,6 @@ venv/bin/python -m pytest tests/ -v
 ```
 
 
-## projects/halcyon-process-monitor/tests
-Source: https://bartoszosiej.github.io/Docs/projects/halcyon-process-monitor/tests
-------------------------------------------------------------------------
----
-sidebar_label: Tests
-title: Tests
-description: Full animated test results for Halcyon Process Monitor.
----
-
-# Tests — Halcyon Process Monitor
-
-Full automated test results for **Halcyon Process Monitor**, collected during the QA sweep
-on 2026-08-13 (Linux, Rust 1.97, Node 22, Python 3). Scroll down — the
-counters count up, the bars fill in and every row animates as it enters the
-viewport. Use **▶ Replay animation** to run it again.
-
-<TestSuiteView project="halcyon-process-monitor" lang="en" />
-
-## Reproduce
-
-```bash
-cargo test
-```
-
-
 ## projects/n2-mesh/tests
 Source: https://bartoszosiej.github.io/Docs/projects/n2-mesh/tests
 ------------------------------------------------------------------------
@@ -5786,6 +5762,31 @@ viewport. Use **▶ Replay animation** to run it again.
 cd Core
 cargo test
 cargo test --release qa_benchmark_report -- --ignored --nocapture
+```
+
+
+## projects/talus-process-monitor/tests
+Source: https://bartoszosiej.github.io/Docs/projects/talus-process-monitor/tests
+------------------------------------------------------------------------
+---
+sidebar_label: Tests
+title: Tests
+description: Full animated test results for Talus Process Monitor.
+---
+
+# Tests — Talus Process Monitor
+
+Full automated test results for **Talus Process Monitor**, collected during the QA sweep
+on 2026-08-13 (Linux, Rust 1.97, Node 22, Python 3). Scroll down — the
+counters count up, the bars fill in and every row animates as it enters the
+viewport. Use **▶ Replay animation** to run it again.
+
+<TestSuiteView project="talus-process-monitor" lang="en" />
+
+## Reproduce
+
+```bash
+cargo test
 ```
 
 
@@ -6010,7 +6011,7 @@ Legend: ✅ pass · ⚠️ partial (see notes) · ❌ fail
 |---|---------|-------|-------|--------|--------|---------|--------|---------------|
 | 1 | [NV2 Engine](#nv2-engine-nv2_engine) | `cargo test` | 99 | 98 | 0 | 1 (release bench) | ✅ | [tests](/projects/nv2-engine/tests/) |
 | 2 | [Cybersec Toolkit](#cybersec-toolkit-cybersec-tools) | `cargo test --workspace` | 29 | 29 | 0 | 0 | ✅ | [tests](/projects/cybersec-tools/tests/) |
-| 3 | [Halcyon Process Monitor](#halcyon-process-monitor-halcyon-process-monitor) | `cargo test` | 9 | 9 | 0 | 0 | ✅ | [tests](/projects/halcyon-process-monitor/tests/) |
+| 3 | [Talus Process Monitor](#talus-process-monitor-talus-process-monitor) | `cargo test` | 9 | 9 | 0 | 0 | ✅ | [tests](/projects/talus-process-monitor/tests/) |
 | 4 | [Externum](#externum-externum) | `unittest discover` | 120 | 120 | 0 | 0 | ✅ | [tests](/projects/externum/tests/) |
 | 5 | [AURORA OS](#aurora-os-aurora-os) | `npm test` + `tsc` | 56 | 56 | 0 | 0 | ✅ | [tests](/projects/aurora-os/tests/) |
 | 6 | [Novactorio](#novactorio--factorio-web-game-factorio-web-game) | typecheck + build + lint | — | — | — | — | ✅ | [tests](/projects/factorio-web-game/tests/) |
@@ -6102,9 +6103,9 @@ Reproduce: `cargo test --workspace`
 
 ---
 
-## Halcyon Process Monitor (`halcyon-process-monitor`)
+## Talus Process Monitor (`talus-process-monitor`)
 
-**9 tests** (userspace `process-monitor` crate). [Animated page](/projects/halcyon-process-monitor/tests/)
+**9 tests** (userspace `process-monitor` crate). [Animated page](/projects/talus-process-monitor/tests/)
 
 | Check | Result |
 |---|---|
@@ -6664,31 +6665,6 @@ venv/bin/python -m pytest tests/ -v
 ```
 
 
-## projects/halcyon-process-monitor/tests
-Source: https://bartoszosiej.github.io/Docs/projects/halcyon-process-monitor/tests
-------------------------------------------------------------------------
----
-sidebar_label: Tests
-title: Tests
-description: Full animated test results for Halcyon Process Monitor.
----
-
-# Tests — Halcyon Process Monitor
-
-Full automated test results for **Halcyon Process Monitor**, collected during the QA sweep
-on 2026-08-13 (Linux, Rust 1.97, Node 22, Python 3). Scroll down — the
-counters count up, the bars fill in and every row animates as it enters the
-viewport. Use **▶ Replay animation** to run it again.
-
-<TestSuiteView project="halcyon-process-monitor" lang="en" />
-
-## Reproduce
-
-```bash
-cargo test
-```
-
-
 ## projects/n2-mesh/tests
 Source: https://bartoszosiej.github.io/Docs/projects/n2-mesh/tests
 ------------------------------------------------------------------------
@@ -6739,4 +6715,29 @@ viewport. Use **▶ Replay animation** to run it again.
 cd Core
 cargo test
 cargo test --release qa_benchmark_report -- --ignored --nocapture
+```
+
+
+## projects/talus-process-monitor/tests
+Source: https://bartoszosiej.github.io/Docs/projects/talus-process-monitor/tests
+------------------------------------------------------------------------
+---
+sidebar_label: Tests
+title: Tests
+description: Full animated test results for Talus Process Monitor.
+---
+
+# Tests — Talus Process Monitor
+
+Full automated test results for **Talus Process Monitor**, collected during the QA sweep
+on 2026-08-13 (Linux, Rust 1.97, Node 22, Python 3). Scroll down — the
+counters count up, the bars fill in and every row animates as it enters the
+viewport. Use **▶ Replay animation** to run it again.
+
+<TestSuiteView project="talus-process-monitor" lang="en" />
+
+## Reproduce
+
+```bash
+cargo test
 ```

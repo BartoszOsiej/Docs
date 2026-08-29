@@ -46,7 +46,7 @@ const EN: Copy = {
     nv2: { label: 'NV2 Engine', sub: 'Rust · wgpu · MLP' },
     aurora: { label: 'AURORA OS', sub: 'TypeScript · zero deps' },
     cyber: { label: 'Cybersec Toolkit', sub: 'Rust · pcap · OpenSSL' },
-    halcyon: { label: 'Halcyon Monitor', sub: 'Rust · eBPF · Aya' },
+    talus: { label: 'Talus Monitor', sub: 'Rust · eBPF · Aya' },
     externum: { label: 'Externum', sub: 'Python · own compiler' },
   },
   tech: {
@@ -77,7 +77,7 @@ const PL: Copy = {
     nv2: { label: 'NV2 Engine', sub: 'Rust · wgpu · MLP' },
     aurora: { label: 'AURORA OS', sub: 'TypeScript · zero zależności' },
     cyber: { label: 'Cybersec Toolkit', sub: 'Rust · pcap · OpenSSL' },
-    halcyon: { label: 'Halcyon Monitor', sub: 'Rust · eBPF · Aya' },
+    talus: { label: 'Talus Monitor', sub: 'Rust · eBPF · Aya' },
     externum: { label: 'Externum', sub: 'Python · własny kompilator' },
   },
   tech: {
@@ -94,7 +94,7 @@ const WORLD_H = 560
 const CENTER_X = WORLD_W / 2
 const CENTER_Y = WORLD_H / 2
 
-const PROJECT_IDS = ['rnd', 'n2mesh', 'link', 'nova', 'nv2', 'aurora', 'cyber', 'halcyon', 'externum']
+const PROJECT_IDS = ['rnd', 'n2mesh', 'link', 'nova', 'nv2', 'aurora', 'cyber', 'talus', 'externum']
 const TECH_IDS = ['rust', 'ts', 'py', 'web', 'sys']
 
 const PROJECT_COLORS: Record<string, string> = {
@@ -106,7 +106,7 @@ const PROJECT_COLORS: Record<string, string> = {
   nv2: '#818cf8',
   aurora: '#f472b6',
   cyber: '#fb7185',
-  halcyon: '#a3e635',
+  talus: '#a3e635',
   externum: '#f59e0b',
 }
 const TECH_COLORS: Record<string, string> = {
@@ -119,7 +119,7 @@ const TECH_COLORS: Record<string, string> = {
 const TECH_TAGS: Record<string, string[]> = {
   nv2: ['rust'],
   cyber: ['rust', 'sys'],
-  halcyon: ['rust', 'sys'],
+  talus: ['rust', 'sys'],
   externum: ['py'],
   link: ['py', 'web'],
   nova: ['ts', 'web'],

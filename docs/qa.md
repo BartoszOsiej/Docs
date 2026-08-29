@@ -13,7 +13,7 @@ Legend: ✅ pass · ⚠️ partial (see notes) · ❌ fail
 |---|---------|-------|-------|--------|--------|---------|--------|---------------|
 | 1 | [NV2 Engine](#nv2-engine-nv2_engine) | `cargo test` | 99 | 98 | 0 | 1 (release bench) | ✅ | [tests](/projects/nv2-engine/tests/) |
 | 2 | [Cybersec Toolkit](#cybersec-toolkit-cybersec-tools) | `cargo test --workspace` | 29 | 29 | 0 | 0 | ✅ | [tests](/projects/cybersec-tools/tests/) |
-| 3 | [Halcyon Process Monitor](#halcyon-process-monitor-halcyon-process-monitor) | `cargo test` | 9 | 9 | 0 | 0 | ✅ | [tests](/projects/halcyon-process-monitor/tests/) |
+| 3 | [Talus Process Monitor](#talus-process-monitor-talus-process-monitor) | `cargo test` | 9 | 9 | 0 | 0 | ✅ | [tests](/projects/talus-process-monitor/tests/) |
 | 4 | [Externum](#externum-externum) | `unittest discover` | 120 | 120 | 0 | 0 | ✅ | [tests](/projects/externum/tests/) |
 | 5 | [AURORA OS](#aurora-os-aurora-os) | `npm test` + `tsc` | 56 | 56 | 0 | 0 | ✅ | [tests](/projects/aurora-os/tests/) |
 | 6 | [Novactorio](#novactorio--factorio-web-game-factorio-web-game) | typecheck + build + lint | — | — | — | — | ✅ | [tests](/projects/factorio-web-game/tests/) |
@@ -105,9 +105,9 @@ Reproduce: `cargo test --workspace`
 
 ---
 
-## Halcyon Process Monitor (`halcyon-process-monitor`)
+## Talus Process Monitor (`talus-process-monitor`)
 
-**9 tests** (userspace `process-monitor` crate). [Animated page](/projects/halcyon-process-monitor/tests/)
+**9 tests** (userspace `process-monitor` crate). [Animated page](/projects/talus-process-monitor/tests/)
 
 | Check | Result |
 |---|---|

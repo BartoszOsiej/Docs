@@ -20,7 +20,7 @@ on this site, and maintained in the working copy at `~/`.
 | 5 | **NV2 Engine** (Rust voxel) | [BartoszOsiej/NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE) | Rust, wgpu, AI vegetation | [docs](/projects/nv2-engine/) |
 | 6 | **AURORA OS** (browser OS) | [BartoszOsiej/AURORA-OS](https://github.com/BartoszOsiej/AURORA-OS) | TypeScript, zero deps | [docs](/projects/aurora-os/) |
 | 7 | **Cybersec Toolkit** | [BartoszOsiej/cybersec-tools](https://github.com/BartoszOsiej/cybersec-tools) | Rust, pcap, openssl | [docs](/projects/cybersec-tools/) |
-| 8 | **Halcyon Process Monitor** | [BartoszOsiej/halcyon-process-monitor](https://github.com/BartoszOsiej/halcyon-process-monitor) | Rust, eBPF, Aya, ratatui | [docs](/projects/halcyon-process-monitor/) |
+| 8 | **Talus Process Monitor** | [BartoszOsiej/talus-process-monitor](https://github.com/BartoszOsiej/talus-process-monitor) | Rust, eBPF, Aya, FrankenTUI | [docs](/projects/talus-process-monitor/) |
 | 9 | **Externum** (programming language) | [BartoszOsiej/externum](https://github.com/BartoszOsiej/externum) | Python, own lexer/parser/compiler | [docs](/projects/externum/) |
 | 10 | **pqguard** (post-quantum encryption) | [BartoszOsiej/pqguard](https://github.com/BartoszOsiej/pqguard) | Rust, ML-KEM-768, AES-256-GCM | [docs](/projects/pqguard/) |
 | 11 | **Solana Validator** | [BartoszOsiej/solana-validator](https://github.com/BartoszOsiej/solana-validator) | Rust, PoH, Tower BFT, Turbine | [docs](/projects/solana-validator/) |
@@ -81,7 +81,7 @@ on this site, and maintained in the working copy at `~/`.
 |---|---|
 | **What** | A complete operating system running in the browser: TypeScript kernel, window manager, virtual filesystem, 37-command shell, 8 apps, themes and procedural audio. Zero runtime dependencies, no frameworks, no server. |
 | **Stack** | TypeScript, zero runtime dependencies, Vite |
-| **Local path** | `~/halcyon-process-monitor/aurora-os` |
+| **Local path** | `~/talus-process-monitor/aurora-os` |
 | **Docs** | [/projects/aurora-os/](/projects/aurora-os/) — Overview, Architecture, User Guide |
 
 ## 7. Cybersec Toolkit — `BartoszOsiej/cybersec-tools`
@@ -93,14 +93,14 @@ on this site, and maintained in the working copy at `~/`.
 | **Local path** | `~/cybersec-tools` |
 | **Docs** | [/projects/cybersec-tools/](/projects/cybersec-tools/) |
 
-## 8. Halcyon Process Monitor — `BartoszOsiej/halcyon-process-monitor`
+## 8. Talus Process Monitor — `BartoszOsiej/talus-process-monitor`
 
 | | |
 |---|---|
-| **What** | Real-time eBPF-based process and file-operation telemetry for Linux: `execve`/`openat` tracepoints, per-CPU perf buffers, 1-second sliding-window ransomware heuristic, live ratatui TUI, JSON/plain output, self-diagnostic. |
-| **Stack** | Rust, eBPF (Aya), ratatui, crossterm, nightly toolchain for the BPF crate |
-| **Local path** | `~/halcyon-process-monitor` |
-| **Docs** | [/projects/halcyon-process-monitor/](/projects/halcyon-process-monitor/) — Overview + Architecture |
+| **What** | eBPF endpoint security agent for Linux — detect ransomware behaviour, respond at the kernel edge: `execve`/`openat`/`connect`/`accept`/`sendto`/`recvfrom` tracepoints, per-CPU perf buffers, 1-second sliding-window heuristic, automated `SIGKILL` response, FrankenTUI, JSON/plain output, self-diagnostic. |
+| **Stack** | Rust, eBPF (Aya), FrankenTUI (ftui), crossterm, nightly toolchain for the BPF crate |
+| **Local path** | `~/talus-process-monitor` |
+| **Docs** | [/projects/talus-process-monitor/](/projects/talus-process-monitor/) — Overview + Architecture |
 
 ## 9. Externum — `BartoszOsiej/externum`
 

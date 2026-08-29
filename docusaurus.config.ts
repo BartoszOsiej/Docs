@@ -6,7 +6,7 @@ import { themes as prismThemes } from 'prism-react-renderer'
 const config: Config = {
   title: 'Bartosz Osiej — Docs',
   tagline:
-    'Central documentation hub for all Bartosz Osiej projects — LinkShort, Novactorio, NV2 Engine, AURORA OS, the Cybersec Toolkit, Halcyon Process Monitor and the Externum programming language.',
+    'Central documentation hub for all Bartosz Osiej projects — LinkShort, Novactorio, NV2 Engine, AURORA OS, the Cybersec Toolkit, Talus Process Monitor and the Externum programming language.',
   favicon: 'favicon.svg',
   url: 'https://bartoszosiej.github.io',
   baseUrl: '/Docs/',
@@ -85,7 +85,7 @@ const config: Config = {
             { type: 'doc', docId: 'projects/cybersec-tools/index', label: 'Cybersec Toolkit' },
             { type: 'doc', docId: 'projects/aurora-os/index', label: 'AURORA OS' },
             { type: 'doc', docId: 'projects/externum/index', label: 'Externum' },
-            { type: 'doc', docId: 'projects/halcyon-process-monitor/index', label: 'Halcyon Monitor' },
+            { type: 'doc', docId: 'projects/talus-process-monitor/index', label: 'Talus Monitor' },
             { type: 'doc', docId: 'projects/n2-mesh/index', label: 'N2 Mesh' },
           ],
         },
@@ -141,7 +141,7 @@ const config: Config = {
           title: 'Community',
           items: [
             { label: 'GitHub', href: 'https://github.com/BartoszOsiej' },
-            { label: 'Halcyon Process Monitor', to: '/projects/halcyon-process-monitor/' },
+            { label: 'Talus Process Monitor', to: '/projects/talus-process-monitor/' },
             { label: '☕ Support on Ko-fi', href: 'https://ko-fi.com/bartoszosiej1' },
           ],
         },

@@ -12,7 +12,7 @@ w tym jak ta witryna dokumentacyjna pozostaje w zgodzie z projektami źródłowy
 | [BartoszOsiej/NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE) | BartoszOsiej | Źródło: NV2 Engine — natywna gra wokselowa w Rust |
 | [BartoszOsiej/AURORA-OS](https://github.com/BartoszOsiej/AURORA-OS) | BartoszOsiej | Źródło: AURORA OS — system operacyjny w przeglądarce w TypeScript |
 | [BartoszOsiej/cybersec-tools](https://github.com/BartoszOsiej/cybersec-tools) | BartoszOsiej | Źródło: Cybersec Toolkit — 4 narzędzia bezpieczeństwa w Rust |
-| [BartoszOsiej/halcyon-process-monitor](https://github.com/BartoszOsiej/halcyon-process-monitor) | BartoszOsiej | Źródło: Monitor Procesów Halcyon — telemetria eBPF |
+| [BartoszOsiej/talus-process-monitor](https://github.com/BartoszOsiej/talus-process-monitor) | BartoszOsiej | Źródło: Talus — Monitor Procesów — bezpieczeństwo endpointów eBPF |
 | [BartoszOsiej/externum](https://github.com/BartoszOsiej/externum) | BartoszOsiej | Źródło: język Externum |
 | [BartoszOsiej/n2-mesh](https://github.com/BartoszOsiej/n2-mesh) | BartoszOsiej | Źródło: N2 Mesh — czat P2P (własna witryna GitHub Pages) |
 | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | BartoszOsiej | **Ta witryna** — centrum dokumentacji na GitHub Pages |
@@ -47,7 +47,7 @@ w tym jak ta witryna dokumentacyjna pozostaje w zgodzie z projektami źródłowy
 | 2 | `Factorio-web-game` | Zmiany dokumentacji silnika/systemów/backendu | Gdy zmienia się rozgrywka lub backend |
 | 3 | `NV2_ENGINE` | Dokumentacja silnika, AI, rozgrywki i wydajności | Gdy zmienia się silnik |
 | 4 | `cybersec-tools` | Dokumentacja narzędzi, użycia, referencja CLI | Gdy zmienia się narzędzie |
-| 5 | `halcyon-process-monitor` | Dokumentacja architektury eBPF i użycia | Gdy zmienia się monitor |
+| 5 | `talus-process-monitor` | Dokumentacja architektury eBPF i użycia | Gdy zmienia się monitor |
 | 6 | `Externum` | Specyfikacja języka, składnia, kompilator i runtime | Gdy zmienia się język |
 | 7 | `Docs` (to repo) | Finalnie renderowana witryna | Przy każdym pushu na `main` |
 
@@ -58,7 +58,7 @@ w tym jak ta witryna dokumentacyjna pozostaje w zgodzie z projektami źródłowy
    - `projects/factorio-web-game/` — Novactorio
    - `projects/nv2-engine/` — NV2 Engine
    - `projects/cybersec-tools/` — Cybersec Toolkit
-   - `projects/halcyon-process-monitor/` — Monitor Procesów Halcyon
+   - `projects/talus-process-monitor/` — Talus — Monitor Procesów
    - `projects/externum/` — Externum (5 stron)
 2. Zatwierdź zmiany w repozytorium `Docs` i wypchnij na `main`.
 3. GitHub Actions buduje witrynę Docusaurus i automatycznie wdraża ją na

@@ -25,7 +25,7 @@ static site with a built-in PDF book viewer and keyless in-browser translation.*
 | [NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE) | 10 |
 | [cybersec-tools](https://github.com/BartoszOsiej/cybersec-tools) | 5 |
 | [AURORA-OS](https://github.com/BartoszOsiej/AURORA-OS) | 3 |
-| [halcyon-process-monitor](https://github.com/BartoszOsiej/halcyon-process-monitor) | 2 |
+| [talus-process-monitor](https://github.com/BartoszOsiej/talus-process-monitor) | 2 |
 | [externum](https://github.com/BartoszOsiej/externum) | 5 |
 | [n2-mesh](https://github.com/BartoszOsiej/n2-mesh) | 2 |
 

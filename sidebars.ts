@@ -83,12 +83,12 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Halcyon Process Monitor',
+      label: 'Talus Process Monitor',
       collapsed: true,
       items: [
-        'projects/halcyon-process-monitor/index',
-        'projects/halcyon-process-monitor/architecture',
-        'projects/halcyon-process-monitor/tests',
+        'projects/talus-process-monitor/index',
+        'projects/talus-process-monitor/architecture',
+        'projects/talus-process-monitor/tests',
       ],
     },
     {

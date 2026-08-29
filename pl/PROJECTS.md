@@ -20,7 +20,7 @@ udokumentowany na tej stronie i utrzymywany w kopii roboczej w `~/`.
 | 5 | **NV2 Engine** (woksele w Rust) | [BartoszOsiej/NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE) | Rust, wgpu, roślinność AI | [docs](/projects/nv2-engine/) |
 | 6 | **AURORA OS** (OS w przeglądarce) | [BartoszOsiej/AURORA-OS](https://github.com/BartoszOsiej/AURORA-OS) | TypeScript, zero zależności | [docs](/projects/aurora-os/) |
 | 7 | **Cybersec Toolkit** | [BartoszOsiej/cybersec-tools](https://github.com/BartoszOsiej/cybersec-tools) | Rust, pcap, openssl | [docs](/projects/cybersec-tools/) |
-| 8 | **Monitor Procesów Halcyon** | [BartoszOsiej/halcyon-process-monitor](https://github.com/BartoszOsiej/halcyon-process-monitor) | Rust, eBPF, Aya, ratatui | [docs](/projects/halcyon-process-monitor/) |
+| 8 | **Talus — Monitor Procesów** | [BartoszOsiej/talus-process-monitor](https://github.com/BartoszOsiej/talus-process-monitor) | Rust, eBPF, Aya, FrankenTUI | [docs](/projects/talus-process-monitor/) |
 | 9 | **Externum** (język programowania) | [BartoszOsiej/externum](https://github.com/BartoszOsiej/externum) | Python, własny lexer/parser/kompilator | [docs](/projects/externum/) |
 
 ---
@@ -78,7 +78,7 @@ udokumentowany na tej stronie i utrzymywany w kopii roboczej w `~/`.
 |---|---|
 | **Co** | Kompletny system operacyjny działający w przeglądarce: jądro w TypeScript, menedżer okien, wirtualny system plików, shell z 37 komendami, 8 aplikacji, motywy i proceduralny dźwięk. Zero zależności w runtime, zero frameworków, zero serwera. |
 | **Stos** | TypeScript, zero zależności w runtime, Vite |
-| **Ścieżka lokalna** | `~/halcyon-process-monitor/aurora-os` |
+| **Ścieżka lokalna** | `~/talus-process-monitor/aurora-os` |
 | **Dokumentacja** | [/projects/aurora-os/](/projects/aurora-os/) — Przegląd, Architektura, Podręcznik użytkownika |
 
 ## 7. Cybersec Toolkit — `BartoszOsiej/cybersec-tools`
@@ -90,14 +90,14 @@ udokumentowany na tej stronie i utrzymywany w kopii roboczej w `~/`.
 | **Ścieżka lokalna** | `~/cybersec-tools` |
 | **Dokumentacja** | [/projects/cybersec-tools/](/projects/cybersec-tools/) |
 
-## 8. Monitor Procesów Halcyon — `BartoszOsiej/halcyon-process-monitor`
+## 8. Talus — Monitor Procesów — `BartoszOsiej/talus-process-monitor`
 
 | | |
 |---|---|
-| **Co** | Telemetria procesów i operacji na plikach w czasie rzeczywistym dla Linuksa, oparta o eBPF: tracepointy `execve`/`openat`, bufory perf per-CPU, heurystyka ransomware z 1-sekundowym ruchomym oknem, TUI ratatui na żywo, wyjście JSON/tekstowe, autodiagnostyka. |
-| **Stos** | Rust, eBPF (Aya), ratatui, crossterm, nightly toolchain dla crata BPF |
-| **Ścieżka lokalna** | `~/halcyon-process-monitor` |
-| **Dokumentacja** | [/projects/halcyon-process-monitor/](/projects/halcyon-process-monitor/) — Przegląd + Architektura |
+| **Co** | Agent bezpieczeństwa endpointów oparty na eBPF dla Linuksa — wykrywaj zachowania ransomware, reaguj na krawędzi jądra: tracepointy `execve`/`openat`/`connect`/`accept`/`sendto`/`recvfrom`, bufory perf per-CPU, 1-sekundowe ruchome okno, automatyczny `SIGKILL`, FrankenTUI, wyjście JSON/tekstowe, autodiagnostyka. |
+| **Stos** | Rust, eBPF (Aya), FrankenTUI (ftui), crossterm, nightly toolchain dla crata BPF |
+| **Ścieżka lokalna** | `~/talus-process-monitor` |
+| **Dokumentacja** | [/projects/talus-process-monitor/](/projects/talus-process-monitor/) — Przegląd + Architektura |
 
 ## 9. Externum — `BartoszOsiej/externum`
 

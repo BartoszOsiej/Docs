@@ -1,16 +1,16 @@
-# 🛰️ Monitor Procesów Halcyon
+# 🛰️ Talus — Monitor Procesów
 
 <a class="tests-cta" href="./testy">🧪 Zobacz animowane wyniki testów — 9/9 →</a>
 
-**Telemetria procesów i operacji na plikach w czasie rzeczywistym dla
-Linuksa, oparta o eBPF.**
+**Agent bezpieczeństwa endpointów oparty na eBPF dla Linuksa — wykrywaj zachowania ransomware, reaguj na krawędzi jądra.**
 
-Monitor Procesów Halcyon śledzi syscalle `execve` i `openat` na poziomie
-jądra przez tracepointy eBPF, strumieniuje zdarzenia do przestrzeni
-użytkownika przez bufory perf per-CPU i pokazuje je w żywym TUI
-terminala — jednocześnie ciągle oceniając wskaźniki otwarć plików per
-proces względem ruchomego okna, aby wykrywać masowy dostęp do plików
-w stylu ransomware.
+Talus śledzi syscalle `execve`, `openat`, `connect`, `accept`, `sendto`
+i `recvfrom` na poziomie jądra przez tracepointy eBPF, strumieniuje
+zdarzenia do przestrzeni użytkownika przez bufory perf per-CPU i pokazuje
+je w żywym frankentui terminala — jednocześnie ciągle oceniając wskaźniki
+otwarć plików per proces względem ruchomego okna, aby wykrywać masowy
+dostęp do plików w stylu ransomware, i automatycznie wysyłając `SIGKILL`
+do naruszających procesów.
 
 > **Status projektu:** showcase produkcyjnej inżynierii Rust + eBPF.
 
@@ -23,7 +23,7 @@ w stylu ransomware.
 | **Śledzenie na poziomie jądra** | Tracepointy `execve` i `openat` dołączane na każdym aktywnym CPU |
 | **Kod jądra bezpieczny dla weryfikatora** | Wskaźniki przestrzeni użytkownika czytane wyłącznie przez `bpf_probe_read_user` — nigdy nie dereferencjonowane |
 | **Pipeline zdarzeń zero-copy** | Rekordy `ProcessEvent` o stałym rozmiarze strumieniowane przez bufory `PerfEventArray` per-CPU |
-| **TUI na żywo** | Log zdarzeń, tabela statystyk per proces i panel alertów renderowane przez `ratatui` |
+| **FrankenTUI na żywo** | 7-panelowy cyberpunkowy interfejs: zdarzenia, procesy, sieć, pliki, rozszerzenia, alerty, heatmapa |
 | **Heurystyka ruchomego okna** | 1-sekundowe rolowane okno per PID; alerty, gdy proces przekroczy skonfigurowany wskaźnik otwarć |
 | **Wiele trybów wyjścia** | TUI dla człowieka, JSON z podziałem na linie, czysty log tekstowy i wbudowana autodiagnostyka |
 | **Liczenie utraconych zdarzeń** | Przepełnienia buforów perf są liczone i raportowane, nigdy cicho pomijane |
@@ -48,7 +48,7 @@ execve/openat ─► tracepointy eBPF ─► EVENTS (PerfEventArray)
               TUI / JSON / plain / diagnose
 ```
 
-Pełny projekt znajdziesz w [pełnej architekturze](/projects/halcyon-process-monitor/architecture).
+Pełny projekt znajdziesz w [pełnej architekturze](/projects/talus-process-monitor/architecture).
 
 ## 🚀 Szybki start
 
@@ -89,12 +89,12 @@ sudo process-monitor --diagnose         # 5-sekundowa autodiagnostyka end-to-end
 ## 📦 Struktura projektu
 
 ```
-halcyon-process-monitor/
-├── process-monitor/          # Przestrzeń użytkownika: rdzeń monitora + TUI + tryby wyjścia
+talus-process-monitor/
+├── process-monitor/          # Przestrzeń użytkownika: rdzeń monitora + TUI + web + FFI
 │   └── src/
 │       ├── main.rs           # CLI, wybór trybu, obsługa sygnałów
 │       ├── monitor.rs        # ładowanie eBPF, czytnik perf, tracker ruchomego okna
-│       └── tui.rs            # interfejs ratatui (zdarzenia / statystyki / alerty)
+│       └── tui.rs            # 7-panelowy frankentui (ftui) cyberpunkowy interfejs
 ├── process-monitor-ebpf/     # Strona jądra (#![no_std], aya-ebpf)
 │   └── src/main.rs           # hooki tracepoint → PerfEventArray
 ├── build.sh                  # Skrypt builda (nightly dla eBPF, stable dla TUI)
