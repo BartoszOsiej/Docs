@@ -20,14 +20,14 @@ static site with a built-in PDF book viewer and keyless in-browser translation.*
 
 | Project | Docs pages |
 |---|---|
-| [FastAPI-url](https://github.com/BartoszOsiej/FastAPI-url) (LinkShort) | 4 |
+| [FastAPI-url](https://github.com/BartoszOsiej/Shortlink) (LinkShort) | 4 |
 | [Factorio-web-game](https://github.com/BartoszOsiej/Factorio-web-game) (Novactorio) | 4 |
 | [NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE) | 10 |
-| [cybersec-tools](https://github.com/BartoszOsiej/cybersec-tools) | 5 |
-| [AURORA-OS](https://github.com/BartoszOsiej/AURORA-OS) | 3 |
+| [cybersec-tools](https://github.com/BartoszOsiej/CyberForge) | 5 |
+| [AURORA-OS](https://github.com/BartoszOsiej/Aurora) | 3 |
 | [talus-process-monitor](https://github.com/BartoszOsiej/talus-process-monitor) | 2 |
 | [externum](https://github.com/BartoszOsiej/externum) | 5 |
-| [n2-mesh](https://github.com/BartoszOsiej/n2-mesh) | 2 |
+| [n2-mesh](https://github.com/BartoszOsiej/Meshcore) | 2 |
 
 ## 🌍 Bilingual
 
