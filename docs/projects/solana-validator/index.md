@@ -94,8 +94,8 @@ Measured on Linux x86_64:
 | Benchmark | Result |
 |---|---|
 | **PoH throughput** | ~1M hashes/sec (SHA-256) |
-| **Accounts DB insert** | 10K accounts in <50ms |
-| **State root computation** | 1K accounts in <1ms |
+| **Accounts DB insert** | 10K accounts in &lt;50ms |
+| **State root computation** | 1K accounts in &lt;1ms |
 | **Erasure coding** | 100 encode/decode cycles |
 | **Transaction execution** | 10K txs/sec |
 | **Slot time** | ~400ms (configurable) |

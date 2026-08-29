@@ -11,7 +11,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'N2 Mesh (P2P Chat)',
+      label: 'Meshcore (P2P Chat)',
       collapsed: true,
       items: ['projects/n2-mesh/index', 'projects/n2-mesh/architecture', 'projects/n2-mesh/tests'],
     },
@@ -59,7 +59,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Cybersec Toolkit',
+      label: 'CyberForge',
       collapsed: true,
       items: [
         'projects/cybersec-tools/index',
@@ -72,7 +72,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'AURORA OS',
+      label: 'Aurora',
       collapsed: true,
       items: [
         'projects/aurora-os/index',
@@ -83,7 +83,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Talus Process Monitor',
+      label: 'Talus',
       collapsed: true,
       items: [
         'projects/talus-process-monitor/index',
@@ -106,7 +106,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'pqguard',
+      label: 'QuantumShield',
       collapsed: true,
       items: [
         'projects/pqguard/index',
@@ -115,7 +115,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Solana Validator',
+      label: 'TrustNode',
       collapsed: true,
       items: [
         'projects/solana-validator/index',
@@ -124,7 +124,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Prompt Inbox',
+      label: 'Promptbox',
       collapsed: true,
       items: [
         'projects/prompt-inbox/index',

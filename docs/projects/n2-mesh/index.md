@@ -1,11 +1,11 @@
-# 💬 N2 Mesh — P2P Chat
+# 💬 Meshcore — P2P Chat
 
 <a class="tests-cta" href="./tests">🧪 View animated test results — 22/22 →</a>
 
 **Serverless peer-to-peer chat with an automatic relay fallback.** It runs on
 static hosting (GitHub Pages) — zero servers, zero databases, zero accounts.
 
-> **Try it now:** [🚀 Open N2 Mesh](https://bartoszosiej.github.io/n2-mesh/)
+> **Try it now:** [🚀 Open Meshcore](https://bartoszosiej.github.io/n2-mesh/)
 > (opens in a new tab)
 
 ## How it works
@@ -76,7 +76,7 @@ bridge it are dead or paid (2026). That is why every message is also
 
 ## How to use it
 
-1. Open [N2 Mesh](https://bartoszosiej.github.io/n2-mesh/) on two devices
+1. Open [Meshcore](https://bartoszosiej.github.io/n2-mesh/) on two devices
    (or two tabs of one browser).
 2. Set **the same room** on both sides (default: `lobby`).
 3. Pick a nickname and send messages — on a desktop they travel P2P, on a
@@ -89,7 +89,7 @@ bridge it are dead or paid (2026). That is why every message is also
 ## Run locally
 
 ```bash
-git clone https://github.com/BartoszOsiej/n2-mesh.git
+git clone https://github.com/BartoszOsiej/Meshcore.git
 cd n2-mesh
 python3 -m http.server 8080
 # open http://localhost:8080
@@ -108,4 +108,4 @@ python3 -m http.server 8080
 ## More
 
 - [Architecture & technical details](/projects/n2-mesh/architecture)
-- [Repo: BartoszOsiej/n2-mesh](https://github.com/BartoszOsiej/n2-mesh)
+- [Repo: BartoszOsiej/Meshcore](https://github.com/BartoszOsiej/Meshcore)

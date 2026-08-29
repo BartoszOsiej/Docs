@@ -35,9 +35,9 @@
     "message": "Cybersec Toolkit",
     "description": "Navbar item with label Cybersec Toolkit"
   },
-  "item.label.AURORA OS": {
-    "message": "AURORA OS",
-    "description": "Navbar item with label AURORA OS"
+  "item.label.Aurora": {
+    "message": "Aurora",
+    "description": "Navbar item with label Aurora"
   },
   "item.label.Externum": {
     "message": "Externum",

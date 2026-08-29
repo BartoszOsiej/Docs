@@ -5,7 +5,7 @@ Run LinkShort locally in a few minutes. You need Python 3.12+ and Node.js 18+.
 ## 1. Clone and prepare the backend
 
 ```bash
-git clone https://github.com/BartoszOsiej/FastAPI-url.git
+git clone https://github.com/BartoszOsiej/Shortlink.git
 cd FastAPI-url
 
 python3 -m venv venv

@@ -6,7 +6,7 @@ i Node.js 18+.
 ## 1. Sklonuj i przygotuj backend
 
 ```bash
-git clone https://github.com/BartoszOsiej/FastAPI-url.git
+git clone https://github.com/BartoszOsiej/Shortlink.git
 cd FastAPI-url
 
 python3 -m venv venv

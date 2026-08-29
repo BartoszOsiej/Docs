@@ -7,14 +7,14 @@ how this documentation site stays in sync with the source projects.
 
 | Repository | Owner | Role |
 |---|---|---|
-| [BartoszOsiej/FastAPI-url](https://github.com/BartoszOsiej/FastAPI-url) | BartoszOsiej (fork of ghost0development) | Source: LinkShort URL shortener |
+| [BartoszOsiej/Shortlink](https://github.com/BartoszOsiej/Shortlink) | BartoszOsiej (fork of ghost0development) | Source: LinkShort URL shortener |
 | [BartoszOsiej/Factorio-web-game](https://github.com/BartoszOsiej/Factorio-web-game) | BartoszOsiej | Source: Novactorio browser game |
 | [BartoszOsiej/NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE) | BartoszOsiej | Source: NV2 Engine — native Rust voxel game |
-| [BartoszOsiej/AURORA-OS](https://github.com/BartoszOsiej/AURORA-OS) | BartoszOsiej | Source: AURORA OS — browser operating system in TypeScript |
-| [BartoszOsiej/cybersec-tools](https://github.com/BartoszOsiej/cybersec-tools) | BartoszOsiej | Source: Cybersec Toolkit — 4 Rust security tools |
+| [BartoszOsiej/Aurora](https://github.com/BartoszOsiej/Aurora) | BartoszOsiej | Source: AURORA OS — browser operating system in TypeScript |
+| [BartoszOsiej/CyberForge](https://github.com/BartoszOsiej/CyberForge) | BartoszOsiej | Source: Cybersec Toolkit — 4 Rust security tools |
 | [BartoszOsiej/talus-process-monitor](https://github.com/BartoszOsiej/talus-process-monitor) | BartoszOsiej | Source: Talus Process Monitor — eBPF endpoint security |
 | [BartoszOsiej/externum](https://github.com/BartoszOsiej/externum) | BartoszOsiej | Source: Externum language |
-| [BartoszOsiej/n2-mesh](https://github.com/BartoszOsiej/n2-mesh) | BartoszOsiej | Source: N2 Mesh — P2P chat (own GitHub Pages site) |
+| [BartoszOsiej/Meshcore](https://github.com/BartoszOsiej/Meshcore) | BartoszOsiej | Source: N2 Mesh — P2P chat (own GitHub Pages site) |
 | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | BartoszOsiej | **This site** — GitHub Pages docs hub |
 
 ## Update flow diagram

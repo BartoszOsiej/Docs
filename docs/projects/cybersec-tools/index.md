@@ -1,10 +1,10 @@
-# Cybersec Toolkit
+# CyberForge
 
 <a class="tests-cta" href="./tests">🧪 View animated test results — 29/29 →</a>
 
 > **A Rust cybersecurity toolkit — four focused offensive-security tools built as a Cargo workspace, with zero external services and clean stdlib-heavy implementations.**
 
-The Cybersec Toolkit (repository: `BartoszOsiej/cybersec-tools`) contains four
+CyberForge (repository: `BartoszOsiej/CyberForge`) contains four
 standalone CLI tools written in Rust. Each tool is deliberately focused,
 single-purpose, and built to run anywhere Rust compiles — no daemons, no
 databases, no cloud dependencies.

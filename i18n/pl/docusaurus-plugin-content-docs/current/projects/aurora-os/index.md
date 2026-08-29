@@ -1,10 +1,10 @@
-# ◈ AURORA OS
+# ◈ Aurora
 
 <a class="tests-cta" href="./testy">🧪 Zobacz animowane wyniki testów — 56/56 →</a>
 
 **Kompletny system operacyjny działający w Twojej przeglądarce.**
 
-AURORA OS to środowisko desktopowe pisane od zera — menedżer okien,
+Aurora to środowisko desktopowe pisane od zera — menedżer okien,
 wirtualny system plików, shell i osiem aplikacji — napisane w całości
 w TypeScript z **zerowymi zależnościami w runtime**. Bez frameworków, bez
 serwera, bez artefaktów builda w runtime: jądro bootuje, renderuje i
@@ -14,9 +14,9 @@ utrwala się w całości w karcie Twojej przeglądarki.
 
 ---
 
-## 🎯 Czym jest AURORA OS?
+## 🎯 Czym jest Aurora?
 
-Większość demo „web OS" to pojedyncze okno z przyciskami. AURORA OS to
+Większość demo „web OS" to pojedyncze okno z przyciskami. Aurora to
 prawdziwy system: bootuje przez animowaną sekwencję jądra, posiada tabelę
 procesów, multipleksuje okna z pełną semantyką drag/resize/minimize/
 maximize, hostuje wirtualny system plików w duchu POSIX z trwałością
@@ -43,7 +43,7 @@ zależnościami w runtime**.
 ## 🚀 Szybki start
 
 ```bash
-git clone https://github.com/BartoszOsiej/AURORA-OS.git
+git clone https://github.com/BartoszOsiej/Aurora.git
 cd AURORA-OS
 npm install
 npm run build      # buduje do dist/ (esbuild, narzędzie tylko dev)
@@ -71,10 +71,10 @@ npm run serve      # http://localhost:8080
 
 | Zasób | URL |
 |---|---|
-| Kod źródłowy | https://github.com/BartoszOsiej/AURORA-OS |
+| Kod źródłowy | https://github.com/BartoszOsiej/Aurora |
 | Architektura | [Dogłębnie o każdym podsystemie](/projects/aurora-os/architecture) |
 | Podręcznik użytkownika | [Referencja terminala, skróty, aplikacje](/projects/aurora-os/user-guide) |
 
 ---
 
-*Powiązana dokumentacja: [NV2 Engine](/projects/nv2-engine/) · [Cybersec Toolkit](/projects/cybersec-tools/) · [LinkShort](/projects/fastapi-url/) · [Novactorio](/projects/factorio-web-game/)*
+*Powiązana dokumentacja: [NV2 Engine](/projects/nv2-engine/) · [CyberForge](/projects/cybersec-tools/) · [LinkShort](/projects/fastapi-url/) · [Novactorio](/projects/factorio-web-game/)*

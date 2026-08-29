@@ -1,4 +1,4 @@
-# 🧱 N2 Mesh — Architecture
+# 🧱 Meshcore — Architecture
 
 ## Layers
 
@@ -132,5 +132,5 @@ discovery: presence on 'n2mesh/room' ──► dial() ──► SDP/ICE via rela
 
 ## Repo
 
-[BartoszOsiej/n2-mesh](https://github.com/BartoszOsiej/n2-mesh) ·
+[BartoszOsiej/Meshcore](https://github.com/BartoszOsiej/Meshcore) ·
 [Live](https://bartoszosiej.github.io/n2-mesh/)

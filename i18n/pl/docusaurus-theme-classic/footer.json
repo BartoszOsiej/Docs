@@ -23,21 +23,21 @@
     "message": "NV2 Engine",
     "description": "The label of footer link with label=NV2 Engine linking to /projects/nv2-engine/"
   },
-  "link.item.label.Cybersec Toolkit": {
-    "message": "Cybersec Toolkit",
-    "description": "The label of footer link with label=Cybersec Toolkit linking to /projects/cybersec-tools/"
+  "link.item.label.CyberForge": {
+    "message": "CyberForge",
+    "description": "The label of footer link with label=CyberForge linking to /projects/cybersec-tools/"
   },
-  "link.item.label.AURORA OS": {
-    "message": "AURORA OS",
-    "description": "The label of footer link with label=AURORA OS linking to /projects/aurora-os/"
+  "link.item.label.Aurora": {
+    "message": "Aurora",
+    "description": "The label of footer link with label=Aurora linking to /projects/aurora-os/"
   },
   "link.item.label.Externum": {
     "message": "Externum",
     "description": "The label of footer link with label=Externum linking to /projects/externum/"
   },
-  "link.item.label.N2 Mesh (P2P Chat)": {
+  "link.item.label.Meshcore (P2P Chat)": {
     "message": "N2 Mesh (czat P2P)",
-    "description": "The label of footer link with label=N2 Mesh (P2P Chat) linking to /projects/n2-mesh/"
+    "description": "The label of footer link with label=Meshcore (P2P Chat) linking to /projects/n2-mesh/"
   },
   "link.item.label.PDF Book & Translator": {
     "message": "Książka PDF i Tłumacz",

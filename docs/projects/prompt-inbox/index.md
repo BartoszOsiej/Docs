@@ -1,4 +1,4 @@
-# 🎯 Prompt Inbox
+# 🎯 Promptbox
 
 **Remote prompt inbox for the coding agent.**
 
@@ -58,7 +58,7 @@ npx prompt-inbox
 
 ### For agents
 When the user says "check the inbox":
-1. Read open issues from `https://api.github.com/repos/BartoszOsiej/prompt-inbox/issues?state=open`
+1. Read open issues from `https://api.github.com/repos/BartoszOsiej/Promptbox/issues?state=open`
 2. Each issue has: title `[Project] summary`, body with the prompt
 3. Handle the prompt in the relevant project repo
 4. Close the issue
@@ -66,7 +66,7 @@ When the user says "check the inbox":
 
 ## 🔗 Links
 
-- [GitHub](https://github.com/BartoszOsiej/prompt-inbox)
+- [GitHub](https://github.com/BartoszOsiej/Promptbox)
 - [npm](https://www.npmjs.com/package/prompt-inbox)
 - [Live](https://bartoszosiej.github.io/prompt-inbox/)
-- [GHCR](https://github.com/BartoszOsiej/prompt-inbox/pkgs/container/prompt-inbox)
+- [GHCR](https://github.com/BartoszOsiej/Promptbox/pkgs/container/prompt-inbox)

@@ -29,7 +29,7 @@ title: Projekty — Bartosz Osiej
   />
   <ProjectCard
     icon="💬"
-    title="N2 Mesh — czat P2P"
+    title="Meshcore — czat P2P"
     description="Komunikator WebRTC działający na statycznym hostingu. Peerzy ogłaszają obecność na publicznym temacie MQTT i łączą się bezpośrednio przez kanały danych WebRTC — bez serwera i bazy danych."
     tags={['WebRTC', 'P2P', 'MQTT', 'Serverless']}
     tint="#a78bfa"
@@ -61,7 +61,7 @@ title: Projekty — Bartosz Osiej
   />
   <ProjectCard
     icon="◈"
-    title="AURORA OS"
+    title="Aurora"
     description="Kompletny system operacyjny w przeglądarce — jądro w TypeScript, menedżer okien, wirtualny system plików, shell z 37 komendami, 8 aplikacji, motywy, proceduralny dźwięk. Zero zależności w runtime."
     tags={['TypeScript', 'Web OS', 'VFS', 'WASM-free']}
     tint="#38bdf8"
@@ -69,7 +69,7 @@ title: Projekty — Bartosz Osiej
   />
   <ProjectCard
     icon="🛡️"
-    title="Cybersec Toolkit"
+    title="CyberForge"
     description="Cztery skupione narzędzia bezpieczeństwa w Rust: skaner TCP NetRecon, skaner podatności webowych ShadowScan, łamacz hashy HashSleuth, analizator pcap PacketEye."
     tags={['Rust', 'Security', 'pcap', 'openssl']}
     tint="#f472b6"

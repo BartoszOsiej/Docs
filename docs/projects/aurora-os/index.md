@@ -1,10 +1,10 @@
-# ◈ AURORA OS
+# ◈ Aurora
 
 <a class="tests-cta" href="./tests">🧪 View animated test results — 56/56 →</a>
 
 **A complete operating system running in your browser.**
 
-AURORA OS is a from-scratch desktop environment — window manager, virtual
+Aurora is a from-scratch desktop environment — window manager, virtual
 file system, shell, and eight applications — written entirely in TypeScript
 with **zero runtime dependencies**. No frameworks, no server, no build
 artifacts at runtime: the kernel boots, renders, and persists entirely in
@@ -14,9 +14,9 @@ your browser tab.
 
 ---
 
-## 🎯 What is AURORA OS?
+## 🎯 What is Aurora?
 
-Most "web OS" demos are a single window with buttons. AURORA OS is an actual
+Most "web OS" demos are a single window with buttons. Aurora is an actual
 system: it boots through an animated kernel sequence, owns a process table,
 multiplexes windows with full drag/resize/minimize/maximize semantics, hosts
 a POSIX-flavored virtual filesystem with persistence, and ships an
@@ -42,7 +42,7 @@ external runtime dependencies**.
 ## 🚀 Quick start
 
 ```bash
-git clone https://github.com/BartoszOsiej/AURORA-OS.git
+git clone https://github.com/BartoszOsiej/Aurora.git
 cd AURORA-OS
 npm install
 npm run build      # bundles to dist/ (esbuild, dev-only tool)
@@ -70,7 +70,7 @@ npm run serve      # http://localhost:8080
 
 | Resource | URL |
 |---|---|
-| Source code | https://github.com/BartoszOsiej/AURORA-OS |
+| Source code | https://github.com/BartoszOsiej/Aurora |
 | Architecture | [Deep dive into every subsystem](/projects/aurora-os/architecture) |
 | User guide | [Terminal reference, shortcuts, apps](/projects/aurora-os/user-guide) |
 

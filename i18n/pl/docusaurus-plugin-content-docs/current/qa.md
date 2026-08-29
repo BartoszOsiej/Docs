@@ -12,13 +12,13 @@ Legenda: ✅ zaliczony · ⚠️ częściowo (patrz uwagi) · ❌ niezaliczony
 | # | Projekt | Zestaw | Razem | Zaliczone | Błędy | Zignorowane | Status | Strona animowana |
 |---|---------|--------|-------|-----------|-------|-------------|--------|-----------------|
 | 1 | [NV2 Engine](#nv2-engine-nv2_engine) | `cargo test` | 99 | 98 | 0 | 1 (benchmark release) | ✅ | [testy](/projects/nv2-engine/testy/) |
-| 2 | [Cybersec Toolkit](#zestaw-narzędzi-cyberbezpieczeństwa-cybersec-tools) | `cargo test --workspace` | 29 | 29 | 0 | 0 | ✅ | [testy](/projects/cybersec-tools/testy/) |
+| 2 | [CyberForge](#zestaw-narzędzi-cyberbezpieczeństwa-cybersec-tools) | `cargo test --workspace` | 29 | 29 | 0 | 0 | ✅ | [testy](/projects/cybersec-tools/testy/) |
 | 3 | [Talus Process Monitor](#talus-process-monitor-talus-process-monitor) | `cargo test` | 9 | 9 | 0 | 0 | ✅ | [testy](/projects/talus-process-monitor/testy/) |
 | 4 | [Externum](#externum-externum) | `unittest discover` | 120 | 120 | 0 | 0 | ✅ | [testy](/projects/externum/testy/) |
-| 5 | [AURORA OS](#aurora-os-aurora-os) | `npm test` + `tsc` | 56 | 56 | 0 | 0 | ✅ | [testy](/projects/aurora-os/testy/) |
+| 5 | [Aurora](#aurora-os-aurora-os) | `npm test` + `tsc` | 56 | 56 | 0 | 0 | ✅ | [testy](/projects/aurora-os/testy/) |
 | 6 | [Novactorio](#novactorio--gra-factorio-web-factorio-web-game) | typecheck + build + lint | — | — | — | — | ✅ | [testy](/projects/factorio-web-game/testy/) |
 | 7 | [LinkShort](#linkshort--skracacz-url-fastapi-fastapi-url) | `pytest tests/` | 15 | 15 | 0 | 0 | ✅ | [testy](/projects/fastapi-url/testy/) |
-| 8 | [N2 Mesh](#n2-mesh-n2-mesh) | `npm test` | 22 | 22 | 0 | 0 | ✅ | [testy](/projects/n2-mesh/testy/) |
+| 8 | [Meshcore](#n2-mesh-n2-mesh) | `npm test` | 22 | 22 | 0 | 0 | ✅ | [testy](/projects/n2-mesh/testy/) |
 | 9 | [Docs — ta witryna](#docs--ta-witryna) | `npm run build` | — | — | — | — | ✅ | [testy](/testy/) |
 
 **Σ 350 automatycznych testów · 349 zaliczonych · 0 błędów** (+ bramki
@@ -143,7 +143,7 @@ Odtworzenie: `python3 -m unittest discover -s tests`
 
 ---
 
-## AURORA OS (`AURORA-OS`)
+## Aurora (`AURORA-OS`)
 
 **56/56 asercji rdzenia** (31 przypadków: EventBus, FileSystem, interpreter
 powłoki) · typecheck TypeScript czysty. [Strona animowana](/projects/aurora-os/testy/)
@@ -214,7 +214,7 @@ Odtworzenie: `python3.9 -m venv venv && venv/bin/pip install -r requirements.txt
 
 ---
 
-## N2 Mesh (`n2-mesh`)
+## Meshcore (`n2-mesh`)
 
 **22/22 testów jednostkowych przechodzi** (`npm test`, `node:test` na
 `core.js`) — czysta logika wydzielona do `core.js` (bez przeglądarki, bez

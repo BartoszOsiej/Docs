@@ -73,7 +73,7 @@ export const projectTests: ProjectTests[] = [
   },
   {
     id: 'cybersec-tools',
-    name: 'Cybersec Toolkit',
+    name: 'CyberForge',
     suite: 'cargo test --workspace',
     total: 29,
     passed: 29,
@@ -93,11 +93,11 @@ export const projectTests: ProjectTests[] = [
       'Suite grew 13 → 29 in the latest sweep.',
       'Earlier tests exposed a real phpass-detection bug ($P$/$H$ markers) — fixed.',
     ],
-    reportUrl: 'https://github.com/BartoszOsiej/cybersec-tools/blob/main/TEST_REPORT.md',
+    reportUrl: 'https://github.com/BartoszOsiej/CyberForge/blob/main/TEST_REPORT.md',
   },
   {
     id: 'talus-process-monitor',
-    name: 'Talus Process Monitor',
+    name: 'Talus',
     suite: 'cargo test',
     total: 9,
     passed: 9,
@@ -141,7 +141,7 @@ export const projectTests: ProjectTests[] = [
   },
   {
     id: 'aurora-os',
-    name: 'AURORA OS',
+    name: 'Aurora',
     suite: 'npm test + tsc',
     total: 56,
     passed: 56,
@@ -159,7 +159,7 @@ export const projectTests: ProjectTests[] = [
       { label: 'TypeScript (tsc -p tsconfig.json)', result: '0 errors', status: pass },
     ],
     notes: ['Suite grew 34 → 56 assertions in the latest sweep (10 new shell/FS test cases).'],
-    reportUrl: 'https://github.com/BartoszOsiej/AURORA-OS/blob/main/TEST_REPORT.md',
+    reportUrl: 'https://github.com/BartoszOsiej/Aurora/blob/main/TEST_REPORT.md',
   },
   {
     id: 'factorio-web-game',
@@ -204,11 +204,11 @@ export const projectTests: ProjectTests[] = [
       'Suite grew 3 → 15 in the latest sweeps.',
       'Runs on Python 3.9 (the pinned 2024 pydantic-core/bcrypt have no 3.14 wheels).',
     ],
-    reportUrl: 'https://github.com/BartoszOsiej/FastAPI-url/blob/main/TEST_REPORT.md',
+    reportUrl: 'https://github.com/BartoszOsiej/Shortlink/blob/main/TEST_REPORT.md',
   },
   {
     id: 'n2-mesh',
-    name: 'N2 Mesh',
+    name: 'Meshcore',
     suite: 'npm test (node:test)',
     total: 22,
     passed: 22,
@@ -226,7 +226,7 @@ export const projectTests: ProjectTests[] = [
     ],
     checks: [],
     notes: ['Tests caught a real bug: mqttParsePublish checked the DUP flag (0x08) instead of QoS level (0x06) — fixed.'],
-    reportUrl: 'https://github.com/BartoszOsiej/n2-mesh/blob/main/TEST_REPORT.md',
+    reportUrl: 'https://github.com/BartoszOsiej/Meshcore/blob/main/TEST_REPORT.md',
   },
   {
     id: 'docs',

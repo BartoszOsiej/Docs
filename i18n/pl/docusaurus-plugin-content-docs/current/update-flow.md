@@ -7,14 +7,14 @@ w tym jak ta witryna dokumentacyjna pozostaje w zgodzie z projektami źródłowy
 
 | Repozytorium | Właściciel | Rola |
 |---|---|---|
-| [BartoszOsiej/FastAPI-url](https://github.com/BartoszOsiej/FastAPI-url) | BartoszOsiej (fork od ghost0development) | Źródło: skracacz URL LinkShort |
+| [BartoszOsiej/Shortlink](https://github.com/BartoszOsiej/Shortlink) | BartoszOsiej (fork od ghost0development) | Źródło: skracacz URL LinkShort |
 | [BartoszOsiej/Factorio-web-game](https://github.com/BartoszOsiej/Factorio-web-game) | BartoszOsiej | Źródło: gra przeglądarkowa Novactorio |
 | [BartoszOsiej/NV2_ENGINE](https://github.com/BartoszOsiej/NV2_ENGINE) | BartoszOsiej | Źródło: NV2 Engine — natywna gra wokselowa w Rust |
-| [BartoszOsiej/AURORA-OS](https://github.com/BartoszOsiej/AURORA-OS) | BartoszOsiej | Źródło: AURORA OS — system operacyjny w przeglądarce w TypeScript |
-| [BartoszOsiej/cybersec-tools](https://github.com/BartoszOsiej/cybersec-tools) | BartoszOsiej | Źródło: Cybersec Toolkit — 4 narzędzia bezpieczeństwa w Rust |
+| [BartoszOsiej/Aurora](https://github.com/BartoszOsiej/Aurora) | BartoszOsiej | Źródło: Aurora — system operacyjny w przeglądarce w TypeScript |
+| [BartoszOsiej/CyberForge](https://github.com/BartoszOsiej/CyberForge) | BartoszOsiej | Źródło: CyberForge — 4 narzędzia bezpieczeństwa w Rust |
 | [BartoszOsiej/talus-process-monitor](https://github.com/BartoszOsiej/talus-process-monitor) | BartoszOsiej | Źródło: Talus — Monitor Procesów — bezpieczeństwo endpointów eBPF |
 | [BartoszOsiej/externum](https://github.com/BartoszOsiej/externum) | BartoszOsiej | Źródło: język Externum |
-| [BartoszOsiej/n2-mesh](https://github.com/BartoszOsiej/n2-mesh) | BartoszOsiej | Źródło: N2 Mesh — czat P2P (własna witryna GitHub Pages) |
+| [BartoszOsiej/Meshcore](https://github.com/BartoszOsiej/Meshcore) | BartoszOsiej | Źródło: Meshcore — czat P2P (własna witryna GitHub Pages) |
 | [BartoszOsiej/Docs](https://github.com/BartoszOsiej/Docs) | BartoszOsiej | **Ta witryna** — centrum dokumentacji na GitHub Pages |
 
 ## Diagram przepływu aktualizacji
@@ -57,7 +57,7 @@ w tym jak ta witryna dokumentacyjna pozostaje w zgodzie z projektami źródłowy
    - `projects/fastapi-url/` — LinkShort
    - `projects/factorio-web-game/` — Novactorio
    - `projects/nv2-engine/` — NV2 Engine
-   - `projects/cybersec-tools/` — Cybersec Toolkit
+   - `projects/cybersec-tools/` — CyberForge
    - `projects/talus-process-monitor/` — Talus — Monitor Procesów
    - `projects/externum/` — Externum (5 stron)
 2. Zatwierdź zmiany w repozytorium `Docs` i wypchnij na `main`.

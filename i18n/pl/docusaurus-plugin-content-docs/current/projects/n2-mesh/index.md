@@ -1,4 +1,4 @@
-# 💬 N2 Mesh — czat P2P
+# 💬 Meshcore — czat P2P
 
 <a class="tests-cta" href="./testy">🧪 Zobacz animowane wyniki testów — 22/22 →</a>
 
@@ -6,7 +6,7 @@
 na statycznym hostingu (GitHub Pages) — zero własnego serwera, zero bazy
 danych, zero kont.
 
-> **Wypróbuj teraz:** [🚀 Otwórz N2 Mesh](https://bartoszosiej.github.io/n2-mesh/)
+> **Wypróbuj teraz:** [🚀 Otwórz Meshcore](https://bartoszosiej.github.io/n2-mesh/)
 > (otwiera się w nowej karcie)
 
 ## Zasada działania
@@ -82,7 +82,7 @@ prawdziwe komunikatory.
 
 ## Jak używać
 
-1. Otwórz [N2 Mesh](https://bartoszosiej.github.io/n2-mesh/) na dwóch
+1. Otwórz [Meshcore](https://bartoszosiej.github.io/n2-mesh/) na dwóch
    urządzeniach (albo w dwóch kartach jednej przeglądarki).
 2. Ustaw **ten sam pokój** po obu stronach (domyślnie `lobby`).
 3. Napisz nick i wysyłaj wiadomości — na komputerze polecą P2P, na telefonie
@@ -95,7 +95,7 @@ prawdziwe komunikatory.
 ## Uruchom lokalnie
 
 ```bash
-git clone https://github.com/BartoszOsiej/n2-mesh.git
+git clone https://github.com/BartoszOsiej/Meshcore.git
 cd n2-mesh
 python3 -m http.server 8080
 # otwórz http://localhost:8080
@@ -114,4 +114,4 @@ python3 -m http.server 8080
 ## Więcej
 
 - [Architektura i szczegóły techniczne](/projects/n2-mesh/architecture)
-- [Repo: BartoszOsiej/n2-mesh](https://github.com/BartoszOsiej/n2-mesh)
+- [Repo: BartoszOsiej/Meshcore](https://github.com/BartoszOsiej/Meshcore)
