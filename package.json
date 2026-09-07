@@ -21,7 +21,7 @@
     "@docusaurus/preset-classic": "3.10.2",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^2.0.0",
-    "pdfjs-dist": "^6.2.108",
+    "pdfjs-dist": "^6.3.289",
     "prism-react-renderer": "^2.3.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
