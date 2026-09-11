@@ -1,0 +1,39 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://bartoszosiej.github.io/#person",
+  "name": "Bartosz Osiej",
+  "givenName": "Bartosz",
+  "additionalName": "Dominik",
+  "familyName": "Osiej",
+  "alternateName": ["Bartosz Dominik Osiej", "BartoszOsiej"],
+  "birthDate": "2007-01-11",
+  "birthPlace": { "@type": "Place", "name": "Szczecin", "address": { "@type": "PostalAddress", "addressLocality": "Szczecin", "addressCountry": "PL" } },
+  "nationality": { "@type": "Country", "name": "Poland" },
+  "jobTitle": ["Software Developer", "Systems Programmer", "Author"],
+  "description": "Polish software developer and author building Rust, eBPF and kernel-level systems, and writing crime-horror fiction.",
+  "knowsAbout": ["Rust (programming language)", "eBPF", "Linux kernel", "Computer security", "Post-quantum cryptography", "Compilers", "Voxel rendering", "Crime horror fiction"],
+  "knowsLanguage": ["pl", "en"],
+  "url": "https://bartoszosiej.github.io/",
+  "mainEntityOfPage": "https://bartoszosiej.github.io/",
+  "image": "https://bartoszosiej.github.io/img/bartosz-osiej.jpg",
+  "sameAs": [
+    "https://github.com/BartoszOsiej",
+    "https://dev.to/bartoszosiej",
+    "https://bartoszosiej.github.io/thethreadcalls/",
+    "https://www.goodreads.com/author/show/{{GOODREADS_AUTHOR}}",
+    "https://www.amazon.com/author/{{AMAZON_AUTHOR}}",
+    "https://www.wikidata.org/wiki/{{WIKIDATA_QID}}",
+    "https://www.crunchbase.com/person/bartosz-osiej",
+    "https://www.linkedin.com/in/bartoszosiej2007",
+    "https://orcid.org/{{ORCID}}",
+    "https://openlibrary.org/authors/{{OL_AUTHOR}}"
+  ],
+  "worksFor": { "@type": "Organization", "name": "Independent" },
+  "hasOccupation": {
+    "@type": "Occupation",
+    "name": "Software Developer",
+    "occupationalCategory": "15-1252.00",
+    "skills": "Rust; eBPF; Linux kernel; C; Python; TypeScript; security engineering"
+  }
+}

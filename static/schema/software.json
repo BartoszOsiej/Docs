@@ -1,0 +1,36 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://bartoszosiej.github.io/externum/#software",
+      "name": "Externum",
+      "applicationCategory": "DeveloperApplication",
+      "applicationSubCategory": "Programming language / compiler",
+      "operatingSystem": "Cross-platform",
+      "programmingLanguage": ["Python"],
+      "softwareVersion": "3.0",
+      "license": "https://opensource.org/licenses/MIT",
+      "codeRepository": "https://github.com/BartoszOsiej/externum",
+      "author": { "@id": "https://bartoszosiej.github.io/#person" },
+      "creator": { "@id": "https://bartoszosiej.github.io/#person" },
+      "description": "A programming language with three compilation targets: Python, Bash and native binaries. 192 automated tests.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://bartoszosiej.github.io/talus/#software",
+      "name": "talus-process-monitor",
+      "alternateName": "Halcyon Process Monitor",
+      "applicationCategory": "SecurityApplication",
+      "applicationSubCategory": "Endpoint detection / ransomware monitor",
+      "operatingSystem": "Linux",
+      "programmingLanguage": ["Rust"],
+      "codeRepository": "https://github.com/BartoszOsiej/talus-process-monitor",
+      "author": { "@id": "https://bartoszosiej.github.io/#person" },
+      "creator": { "@id": "https://bartoszosiej.github.io/#person" },
+      "description": "eBPF-based kernel process monitor (execve/openat tracing, per-CPU perf buffers) detecting ransomware behavioural patterns in real time.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    }
+  ]
+}

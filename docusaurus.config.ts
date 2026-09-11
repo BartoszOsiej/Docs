@@ -1,6 +1,14 @@
 import type { Config } from '@docusaurus/types'
 import type * as Preset from '@docusaurus/preset-classic'
 import { themes as prismThemes } from 'prism-react-renderer'
+import { readFileSync } from 'node:fs'
+
+const ld = (f: string): object =>
+  JSON.parse(readFileSync(`./static/schema/${f}.json`, 'utf8'))
+
+const ldPerson = ld('person')
+const ldBooks = ld('books')
+const ldSoftware = ld('software')
 
 // Base path for GitHub Pages: https://BartoszOsiej.github.io/Docs/
 const config: Config = {
@@ -44,6 +52,32 @@ const config: Config = {
       },
     },
     { tagName: 'meta', attributes: { name: 'theme-color', content: '#0f172a' } },
+    { tagName: 'meta', attributes: { name: 'author', content: 'Bartosz Osiej' } },
+    { tagName: 'link', attributes: { rel: 'me', href: 'https://github.com/BartoszOsiej' } },
+    { tagName: 'link', attributes: { rel: 'me', href: 'https://dev.to/bartoszosiej' } },
+    { tagName: 'link', attributes: { rel: 'author', href: 'https://bartoszosiej.github.io/#person' } },
+    { tagName: 'link', attributes: { rel: 'canonical', href: 'https://bartoszosiej.github.io/Docs/' } },
+    { tagName: 'meta', attributes: { property: 'og:type', content: 'website' } },
+    { tagName: 'meta', attributes: { property: 'og:site_name', content: 'Bartosz Osiej' } },
+    { tagName: 'meta', attributes: { property: 'og:title', content: 'Bartosz Osiej — Docs' } },
+    { tagName: 'meta', attributes: { property: 'og:url', content: 'https://bartoszosiej.github.io/Docs/' } },
+    { tagName: 'meta', attributes: { property: 'og:image', content: 'https://bartoszosiej.github.io/img/og.png' } },
+    { tagName: 'meta', attributes: { name: 'twitter:card', content: 'summary_large_image' } },
+    {
+      tagName: 'script',
+      attributes: { type: 'application/ld+json' },
+      innerHTML: JSON.stringify(ldPerson),
+    },
+    {
+      tagName: 'script',
+      attributes: { type: 'application/ld+json' },
+      innerHTML: JSON.stringify(ldBooks),
+    },
+    {
+      tagName: 'script',
+      attributes: { type: 'application/ld+json' },
+      innerHTML: JSON.stringify(ldSoftware),
+    },
   ],
   scripts: [
     { src: 'https://bartoszosiej.github.io/js/aegis-chrome.js', defer: true },
