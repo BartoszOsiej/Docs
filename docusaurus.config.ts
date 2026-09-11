@@ -36,6 +36,13 @@ const config: Config = {
         href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap',
       },
     },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'stylesheet',
+        href: 'https://bartoszosiej.github.io/css/aegis.css',
+      },
+    },
     { tagName: 'meta', attributes: { name: 'theme-color', content: '#0f172a' } },
   ],
   scripts: [
