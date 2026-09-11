@@ -38,6 +38,9 @@ const config: Config = {
     },
     { tagName: 'meta', attributes: { name: 'theme-color', content: '#0f172a' } },
   ],
+  scripts: [
+    { src: 'https://bartoszosiej.github.io/js/aegis-chrome.js', defer: true },
+  ],
   presets: [
     [
       'classic',

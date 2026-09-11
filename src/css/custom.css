@@ -3,6 +3,29 @@
    Aurora gradients · glassmorphism · compact typography
    ============================================================ */
 
+@import url('https://bartoszosiej.github.io/css/aegis.css');
+
+/* AEGIS shared chrome integration: brutal rail above Docusaurus navbar */
+.navbar {
+  top: 48px !important;
+  border-bottom: 1px solid #22222a;
+  background: rgba(5, 5, 5, 0.92) !important;
+}
+.navbar__brand,
+.navbar__link,
+.table-of-contents__link,
+.breadcrumbs__link {
+  font-family: 'JetBrains Mono', 'Space Mono', monospace !important;
+}
+.hero {
+  padding-top: 96px !important;
+}
+.theme-doc-markdown h1,
+.theme-doc-markdown h2,
+.theme-doc-markdown h3 {
+  font-family: 'JetBrains Mono', 'Space Mono', monospace !important;
+}
+
 :root {
   --ifm-color-primary: #818cf8;
   --ifm-color-primary-dark: #6d78f0;
