@@ -2,8 +2,13 @@
 sidebar_label: Tests
 title: Tests
 description: Full animated test results for Meshcore.
+keywords:
+- Bartosz Osiej Docs
+- Python
+- Rust
+- Bash
+- documentation
 ---
-
 # Tests — Meshcore
 
 Full automated test results for **Meshcore**, collected during the QA sweep

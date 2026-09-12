@@ -1,3 +1,13 @@
+---
+description: NV2 Engine embeds a small neural network — **MeMLP** (Modular embedded Multi-layer Perceptron Model) — that decides where vegetation belongs,
+keywords:
+- Bartosz Osiej Docs
+- architecture
+- networking
+- neural renderer
+- documentation
+title: AI System — MeMLP (Modular embedded Multi-layer Perceptron Model)
+---
 # AI System — MeMLP (Modular embedded Multi-layer Perceptron Model)
 
 NV2 Engine embeds a small neural network — **MeMLP** (Modular embedded

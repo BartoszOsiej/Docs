@@ -1,3 +1,12 @@
+---
+description: Dynamic liquid behavior lives in `world/liquid.rs`, with world integration in `world/mod.rs` and a dedicated translucent render path in `renderer/mesh.rs`.
+keywords:
+- Bartosz Osiej Docs
+- rendering
+- voxel engine
+- documentation
+title: Water Simulation
+---
 # Water Simulation
 
 Dynamic liquid behavior lives in `world/liquid.rs`, with world integration in

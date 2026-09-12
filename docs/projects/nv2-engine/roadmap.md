@@ -1,3 +1,12 @@
+---
+description: Documentation for Roadmap & Changelog.
+keywords:
+- Bartosz Osiej Docs
+- benchmark
+- changelog
+- documentation
+title: Roadmap & Changelog
+---
 # Roadmap & Changelog
 
 ## Changelog

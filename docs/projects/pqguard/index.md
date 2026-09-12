@@ -1,3 +1,17 @@
+---
+description: '**Post-quantum file encryption CLI** — ML-KEM-768 (FIPS 203) + AES-256-GCM. Encrypt files using NIST-standardized post-quantum algorithms that resist both'
+keywords:
+- Bartosz Osiej Docs
+- post-quantum cryptography
+- cryptography
+- architecture
+- encryption
+- AES-256-GCM
+- ML-KEM-768
+- Rust
+- documentation
+title: 🔒 pqguard
+---
 # 🔒 pqguard
 
 <a class="tests-cta" href="./tests">🧪 View test results →</a>

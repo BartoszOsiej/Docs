@@ -1,3 +1,14 @@
+---
+description: '**A custom Solana-like validator built from scratch in Rust** — PoH clock, Tower BFT consensus, Sealevel parallel execution, Turbine block propagation'
+keywords:
+- Bartosz Osiej Docs
+- architecture
+- SHA-256
+- Rust
+- eBPF
+- documentation
+title: ⛓️ TrustNode
+---
 # ⛓️ TrustNode
 
 <a class="tests-cta" href="./tests">🧪 View test results — 110/110 →</a>

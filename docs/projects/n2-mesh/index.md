@@ -1,3 +1,12 @@
+---
+description: '**Serverless peer-to-peer chat with an automatic relay fallback.** It runs on static hosting (GitHub Pages) — zero servers, zero databases, zero accounts.'
+keywords:
+- Bartosz Osiej Docs
+- networking
+- browser
+- documentation
+title: 💬 Meshcore — P2P Chat
+---
 # 💬 Meshcore — P2P Chat
 
 <a class="tests-cta" href="./tests">🧪 View animated test results — 22/22 →</a>

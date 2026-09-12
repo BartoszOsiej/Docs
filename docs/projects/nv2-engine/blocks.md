@@ -1,3 +1,10 @@
+---
+description: The complete block registry and biome model, extracted from `world/block.rs` and `world/biomes.rs`.
+keywords:
+- Bartosz Osiej Docs
+- documentation
+title: Blocks & Biomes
+---
 # Blocks & Biomes
 
 The complete block registry and biome model, extracted from

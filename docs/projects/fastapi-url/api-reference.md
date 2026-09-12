@@ -1,3 +1,13 @@
+---
+description: All endpoints are JSON. Authentication uses a JWT bearer token returned by `/auth/register` and `/auth/login`. Interactive docs are available at
+keywords:
+- Bartosz Osiej Docs
+- API reference
+- Bash
+- AST
+- documentation
+title: API Reference
+---
 # API Reference
 
 All endpoints are JSON. Authentication uses a JWT bearer token returned by

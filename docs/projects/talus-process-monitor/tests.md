@@ -2,8 +2,13 @@
 sidebar_label: Tests
 title: Tests
 description: Full animated test results for Talus.
+keywords:
+- Bartosz Osiej Docs
+- Python
+- Rust
+- Bash
+- documentation
 ---
-
 # Tests — Talus
 
 Full automated test results for **Talus**, collected during the QA sweep

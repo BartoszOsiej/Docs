@@ -1,3 +1,11 @@
+---
+description: 'Everything you need to live inside the OS: desktop navigation, shortcuts, the eight applications, and the complete shell command reference.'
+keywords:
+- Bartosz Osiej Docs
+- networking
+- documentation
+title: Aurora — User Guide
+---
 # Aurora — User Guide
 
 Everything you need to live inside the OS: desktop navigation, shortcuts,

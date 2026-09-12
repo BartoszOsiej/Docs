@@ -1,3 +1,17 @@
+---
+description: 'Novactorio (repository: `Factorio-web-game`) is a complete browser game: an original 2D engine, chunk-based infinite world generation, supply chains,'
+keywords:
+- Bartosz Osiej Docs
+- multiplayer
+- TypeScript
+- deployment
+- networking
+- browser
+- rendering
+- AST
+- documentation
+title: Novactorio
+---
 # Novactorio
 
 <a class="tests-cta" href="./tests">🧪 View animated quality gates — typecheck · build · lint →</a>

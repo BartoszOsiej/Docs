@@ -1,3 +1,12 @@
+---
+description: 'NV2 Engine is a survival-sandbox loop: generate a procedural world, break and place blocks with tool-gated harvesting, gather resources, craft tools and'
+keywords:
+- Bartosz Osiej Docs
+- voxel engine
+- AST
+- documentation
+title: Gameplay
+---
 # Gameplay
 
 NV2 Engine is a survival-sandbox loop: generate a procedural world, break and

@@ -1,3 +1,11 @@
+---
+description: Externum's syntax is indentation-based (like Python). A program is a sequence of statements; comments start with `#`. Blank lines and
+keywords:
+- Bartosz Osiej Docs
+- Python
+- documentation
+title: Syntax Reference
+---
 # Syntax Reference
 
 Externum's syntax is indentation-based (like Python). A program is a

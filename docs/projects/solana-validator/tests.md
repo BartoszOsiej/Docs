@@ -1,3 +1,12 @@
+---
+description: Documentation for 🧪 TrustNode — Test Results.
+keywords:
+- Bartosz Osiej Docs
+- Rust
+- Bash
+- documentation
+title: 🧪 TrustNode — Test Results
+---
 # 🧪 TrustNode — Test Results
 
 > **110/110 tests passing** ✅

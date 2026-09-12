@@ -1,3 +1,17 @@
+---
+description: '**eBPF endpoint security agent for Linux — detect ransomware behaviour, respond at the kernel edge.** Talus traces `execve`, `openat`, `connect`, `accept`,...'
+keywords:
+- Bartosz Osiej Docs
+- architecture
+- ransomware
+- security
+- networking
+- kernel
+- Rust
+- eBPF
+- documentation
+title: 🛰️ Talus
+---
 # 🛰️ Talus
 
 <a class="tests-cta" href="./tests">🧪 View animated test results — 9/9 →</a>

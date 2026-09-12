@@ -2,8 +2,11 @@
 sidebar_label: Tests
 title: Tests
 description: Animated build and QA checks for the Docs site itself.
+keywords:
+- Bartosz Osiej Docs
+- Bash
+- documentation
 ---
-
 # Tests — Docs site
 
 Build and QA checks for **this documentation site**, verified during the

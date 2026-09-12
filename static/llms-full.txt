@@ -7,6 +7,15 @@ Generated for AI agents and crawlers. All content below is the complete document
 ## translator
 Source: https://bartoszosiej.github.io/Docs/translator
 ------------------------------------------------------------------------
+---
+description: This page is a live demo of the translator module built into this docs hub. Pick a sample below and press **Translate page** (or **Translate all**) to
+keywords:
+- Bartosz Osiej Docs
+- browser
+- rendering
+- documentation
+title: 📖 PDF Book Viewer & Translator
+---
 # 📖 PDF Book Viewer & Translator
 
 > **Read any PDF like a real book — page by page, with a visual page-flip —
@@ -147,6 +156,21 @@ The two demo PDFs are generated from
 ## update-flow
 Source: https://bartoszosiej.github.io/Docs/update-flow
 ------------------------------------------------------------------------
+---
+description: This page documents **which repositories publish updates to which**, including how this documentation site stays in sync with the source projects.
+keywords:
+- Bartosz Osiej Docs
+- operating system
+- TypeScript
+- security
+- browser
+- voxel engine
+- Rust
+- eBPF
+- AST
+- documentation
+title: Update Flow
+---
 # Update Flow
 
 This page documents **which repositories publish updates to which**, including
@@ -253,6 +277,15 @@ with this site as the rendered output.
 ## projects/
 Source: https://bartoszosiej.github.io/Docs/projects/
 ------------------------------------------------------------------------
+---
+description: Documentation for 📁 Projects.
+keywords:
+- Bartosz Osiej Docs
+- browser
+- AST
+- documentation
+title: 📁 Projects
+---
 # 📁 Projects
 
 > **The complete registry of every project we build and maintain.**
@@ -392,6 +425,15 @@ sites) are deliberately **not** part of this registry.
 ## projects/fastapi-url/
 Source: https://bartoszosiej.github.io/Docs/projects/fastapi-url/
 ------------------------------------------------------------------------
+---
+description: 'LinkShort (repository: `FastAPI-url`) is a complete URL-shortening service with a Python/FastAPI API, JWT-based authentication, per-user link'
+keywords:
+- Bartosz Osiej Docs
+- Python
+- AST
+- documentation
+title: LinkShort
+---
 # LinkShort
 
 <a class="tests-cta" href="./tests">🧪 View animated test results — 15/15 →</a>
@@ -487,6 +529,17 @@ are checked and retried against the database.
 ## projects/fastapi-url/getting-started
 Source: https://bartoszosiej.github.io/Docs/projects/fastapi-url/getting-started
 ------------------------------------------------------------------------
+---
+description: Run LinkShort locally in a few minutes. You need Python 3.12+ and Node.js 18+.
+keywords:
+- Bartosz Osiej Docs
+- getting started
+- Python
+- Bash
+- AST
+- documentation
+title: Getting Started
+---
 # Getting Started
 
 Run LinkShort locally in a few minutes. You need Python 3.12+ and Node.js 18+.
@@ -609,6 +662,16 @@ backend/static/        # compiled React SPA
 ## projects/fastapi-url/api-reference
 Source: https://bartoszosiej.github.io/Docs/projects/fastapi-url/api-reference
 ------------------------------------------------------------------------
+---
+description: All endpoints are JSON. Authentication uses a JWT bearer token returned by `/auth/register` and `/auth/login`. Interactive docs are available at
+keywords:
+- Bartosz Osiej Docs
+- API reference
+- Bash
+- AST
+- documentation
+title: API Reference
+---
 # API Reference
 
 All endpoints are JSON. Authentication uses a JWT bearer token returned by
@@ -795,6 +858,18 @@ FastAPI errors follow the standard shape:
 ## projects/fastapi-url/deployment
 Source: https://bartoszosiej.github.io/Docs/projects/fastapi-url/deployment
 ------------------------------------------------------------------------
+---
+description: 'LinkShort ships with three deployment options: Docker, Docker Compose, and Fly.io.'
+keywords:
+- Bartosz Osiej Docs
+- architecture
+- deployment
+- browser
+- Bash
+- AST
+- documentation
+title: Deployment
+---
 # Deployment
 
 LinkShort ships with three deployment options: Docker, Docker Compose, and
@@ -871,6 +946,20 @@ SQLite (volume-mounted /app/data)
 ## projects/factorio-web-game/
 Source: https://bartoszosiej.github.io/Docs/projects/factorio-web-game/
 ------------------------------------------------------------------------
+---
+description: 'Novactorio (repository: `Factorio-web-game`) is a complete browser game: an original 2D engine, chunk-based infinite world generation, supply chains,'
+keywords:
+- Bartosz Osiej Docs
+- multiplayer
+- TypeScript
+- deployment
+- networking
+- browser
+- rendering
+- AST
+- documentation
+title: Novactorio
+---
 # Novactorio
 
 <a class="tests-cta" href="./tests">🧪 View animated quality gates — typecheck · build · lint →</a>
@@ -945,6 +1034,17 @@ Factorio-web-game/
 ## projects/factorio-web-game/architecture
 Source: https://bartoszosiej.github.io/Docs/projects/factorio-web-game/architecture
 ------------------------------------------------------------------------
+---
+description: Novactorio is deliberately framework-free on the rendering side. The game loop, simulation, and drawing are hand-written on the Canvas 2D API; React is
+keywords:
+- Bartosz Osiej Docs
+- configuration
+- architecture
+- TypeScript
+- rendering
+- documentation
+title: Architecture
+---
 # Architecture
 
 Novactorio is deliberately framework-free on the rendering side. The game
@@ -1066,6 +1166,17 @@ The game builds with Vite and deploys to **Cloudflare** via Wrangler
 ## projects/factorio-web-game/gameplay
 Source: https://bartoszosiej.github.io/Docs/projects/factorio-web-game/gameplay
 ------------------------------------------------------------------------
+---
+description: 'Novactorio recreates the factory-automation loop in the browser: gather resources, build machines, route materials, research, and survive.'
+keywords:
+- Bartosz Osiej Docs
+- networking
+- browser
+- rendering
+- AST
+- documentation
+title: Gameplay Systems
+---
 # Gameplay Systems
 
 Novactorio recreates the factory-automation loop in the browser: gather
@@ -1160,6 +1271,15 @@ A premium tier (Stripe) unlocks additional content. See
 ## projects/factorio-web-game/backend
 Source: https://bartoszosiej.github.io/Docs/projects/factorio-web-game/backend
 ------------------------------------------------------------------------
+---
+description: Novactorio's backend is **Supabase** (auth, realtime, Postgres, storage) with **Stripe** payments handled by four **Deno Edge Functions**.
+keywords:
+- Bartosz Osiej Docs
+- multiplayer
+- AST
+- documentation
+title: Backend & Monetization
+---
 # Backend & Monetization
 
 Novactorio's backend is **Supabase** (auth, realtime, Postgres, storage)
@@ -1268,6 +1388,21 @@ deployments with per-function secrets.
 ## projects/nv2-engine/
 Source: https://bartoszosiej.github.io/Docs/projects/nv2-engine/
 ------------------------------------------------------------------------
+---
+description: 'VIVIA: Beyond the Known (internally `NV_ENGINE`, repository: `NV2_ENGINE`) is a **shipped commercial voxel game** written in Rust (47 source files, 15,800+'
+keywords:
+- Bartosz Osiej Docs
+- multiplayer
+- networking
+- Python
+- neural renderer
+- rendering
+- voxel engine
+- Rust
+- wgpu
+- documentation
+title: 'VIVIA: Beyond the Known (formerly NV2 Engine)'
+---
 # VIVIA: Beyond the Known (formerly NV2 Engine)
 
 <a class="tests-cta" href="./tests">🧪 View animated test results — 224 passed / 225 total →</a>
@@ -1474,6 +1609,21 @@ the game title on all store pages and marketing material is **VIVIA**.
 ## projects/nv2-engine/architecture
 Source: https://bartoszosiej.github.io/Docs/projects/nv2-engine/architecture
 ------------------------------------------------------------------------
+---
+description: 'NV2 Engine is a layered Rust application: a `winit` event-driven shell, a `wgpu` renderer, a procedural world simulation, and a GUI stack — plus'
+keywords:
+- Bartosz Osiej Docs
+- architecture
+- networking
+- Python
+- neural renderer
+- rendering
+- Rust
+- wgpu
+- AST
+- documentation
+title: Architecture
+---
 # Architecture
 
 NV2 Engine is a layered Rust application: a `winit` event-driven shell, a
@@ -1722,6 +1872,15 @@ inputs, player crafting output, NVCrafter inputs, NVCrafter output.
 ## projects/nv2-engine/gameplay
 Source: https://bartoszosiej.github.io/Docs/projects/nv2-engine/gameplay
 ------------------------------------------------------------------------
+---
+description: 'NV2 Engine is a survival-sandbox loop: generate a procedural world, break and place blocks with tool-gated harvesting, gather resources, craft tools and'
+keywords:
+- Bartosz Osiej Docs
+- voxel engine
+- AST
+- documentation
+title: Gameplay
+---
 # Gameplay
 
 NV2 Engine is a survival-sandbox loop: generate a procedural world, break and
@@ -1880,6 +2039,13 @@ dark forest `[0.38, 0.72, 0.34]`).
 ## projects/nv2-engine/blocks
 Source: https://bartoszosiej.github.io/Docs/projects/nv2-engine/blocks
 ------------------------------------------------------------------------
+---
+description: The complete block registry and biome model, extracted from `world/block.rs` and `world/biomes.rs`.
+keywords:
+- Bartosz Osiej Docs
+- documentation
+title: Blocks & Biomes
+---
 # Blocks & Biomes
 
 The complete block registry and biome model, extracted from
@@ -2069,6 +2235,13 @@ lushness.
 ## projects/nv2-engine/crafting
 Source: https://bartoszosiej.github.io/Docs/projects/nv2-engine/crafting
 ------------------------------------------------------------------------
+---
+description: Every recipe registered in `crafting.rs`, with the **exact patterns from the source code**. The engine supports **shaped recipes** (fixed patterns with
+keywords:
+- Bartosz Osiej Docs
+- documentation
+title: Crafting Reference
+---
 # Crafting Reference
 
 Every recipe registered in `crafting.rs`, with the **exact patterns from the
@@ -2237,6 +2410,15 @@ shaped/shapeless recipe parsing alongside block-model loading.
 ## projects/nv2-engine/water
 Source: https://bartoszosiej.github.io/Docs/projects/nv2-engine/water
 ------------------------------------------------------------------------
+---
+description: Dynamic liquid behavior lives in `world/liquid.rs`, with world integration in `world/mod.rs` and a dedicated translucent render path in `renderer/mesh.rs`.
+keywords:
+- Bartosz Osiej Docs
+- rendering
+- voxel engine
+- documentation
+title: Water Simulation
+---
 # Water Simulation
 
 Dynamic liquid behavior lives in `world/liquid.rs`, with world integration in
@@ -2311,6 +2493,16 @@ Key details:
 ## projects/nv2-engine/ai
 Source: https://bartoszosiej.github.io/Docs/projects/nv2-engine/ai
 ------------------------------------------------------------------------
+---
+description: NV2 Engine embeds a small neural network — **MeMLP** (Modular embedded Multi-layer Perceptron Model) — that decides where vegetation belongs,
+keywords:
+- Bartosz Osiej Docs
+- architecture
+- networking
+- neural renderer
+- documentation
+title: AI System — MeMLP (Modular embedded Multi-layer Perceptron Model)
+---
 # AI System — MeMLP (Modular embedded Multi-layer Perceptron Model)
 
 NV2 Engine embeds a small neural network — **MeMLP** (Modular embedded
@@ -2560,6 +2752,18 @@ multi-biome coordination, and GPU-accelerated training.
 ## projects/nv2-engine/performance
 Source: https://bartoszosiej.github.io/Docs/projects/nv2-engine/performance
 ------------------------------------------------------------------------
+---
+description: NV2 Engine is engineered so that GPU bandwidth, draw calls, and CPU meshing stay proportional to what actually changed — not the whole world.
+keywords:
+- Bartosz Osiej Docs
+- performance
+- networking
+- neural renderer
+- rendering
+- Rust
+- documentation
+title: Performance
+---
 # Performance
 
 NV2 Engine is engineered so that GPU bandwidth, draw calls, and CPU meshing
@@ -2653,6 +2857,20 @@ fallbacks on parse/read errors, and exposed through `SharedSettings`
 ## projects/nv2-engine/development
 Source: https://bartoszosiej.github.io/Docs/projects/nv2-engine/development
 ------------------------------------------------------------------------
+---
+description: How to build, test, and extend NV2 Engine.
+keywords:
+- Bartosz Osiej Docs
+- configuration
+- testing
+- Python
+- Rust
+- Bash
+- wgpu
+- AST
+- documentation
+title: Development
+---
 # Development
 
 How to build, test, and extend NV2 Engine.
@@ -2776,6 +2994,15 @@ Settings persist to `settings.json` (pretty JSON via serde).
 ## projects/nv2-engine/roadmap
 Source: https://bartoszosiej.github.io/Docs/projects/nv2-engine/roadmap
 ------------------------------------------------------------------------
+---
+description: Documentation for Roadmap & Changelog.
+keywords:
+- Bartosz Osiej Docs
+- benchmark
+- changelog
+- documentation
+title: Roadmap & Changelog
+---
 # Roadmap & Changelog
 
 ## Changelog
@@ -2878,6 +3105,16 @@ Suite: **96 passed / 0 failed** (97 total incl. ignored release benchmark).
 ## projects/cybersec-tools/
 Source: https://bartoszosiej.github.io/Docs/projects/cybersec-tools/
 ------------------------------------------------------------------------
+---
+description: 'CyberForge (repository: `BartoszOsiej/CyberForge`) contains four standalone CLI tools written in Rust. Each tool is deliberately focused,'
+keywords:
+- Bartosz Osiej Docs
+- security
+- Rust
+- Bash
+- documentation
+title: CyberForge
+---
 # CyberForge
 
 <a class="tests-cta" href="./tests">🧪 View animated test results — 29/29 →</a>
@@ -2955,6 +3192,15 @@ cybersec-tools/
 ## projects/cybersec-tools/netrecon
 Source: https://bartoszosiej.github.io/Docs/projects/cybersec-tools/netrecon
 ------------------------------------------------------------------------
+---
+description: Concurrent TCP port scanner with banner grabbing — the network discovery workhorse of the toolkit.
+keywords:
+- Bartosz Osiej Docs
+- networking
+- Bash
+- documentation
+title: NetRecon
+---
 # NetRecon
 
 Concurrent TCP port scanner with banner grabbing — the network discovery
@@ -3068,6 +3314,16 @@ After a successful connect, NetRecon:
 ## projects/cybersec-tools/shadowscan
 Source: https://bartoszosiej.github.io/Docs/projects/cybersec-tools/shadowscan
 ------------------------------------------------------------------------
+---
+description: Lightweight web vulnerability scanner — a four-phase assessment of a single target.
+keywords:
+- Bartosz Osiej Docs
+- security
+- Rust
+- ECS
+- documentation
+title: ShadowScan
+---
 # ShadowScan
 
 Lightweight web vulnerability scanner — a four-phase assessment of a single
@@ -3179,6 +3435,13 @@ responses are flagged as *exists, protected*.
 ## projects/cybersec-tools/hashsleuth
 Source: https://bartoszosiej.github.io/Docs/projects/cybersec-tools/hashsleuth
 ------------------------------------------------------------------------
+---
+description: Hash identification + password cracking toolkit with three modes.
+keywords:
+- Bartosz Osiej Docs
+- documentation
+title: HashSleuth
+---
 # HashSleuth
 
 Hash identification + password cracking toolkit with three modes.
@@ -3303,6 +3566,14 @@ When `--algo` is omitted, the hash length selects the algorithm:
 ## projects/cybersec-tools/packeteye
 Source: https://bartoszosiej.github.io/Docs/projects/cybersec-tools/packeteye
 ------------------------------------------------------------------------
+---
+description: pcap-based traffic analyzer — live capture or offline parsing with per-IP/per-port statistics.
+keywords:
+- Bartosz Osiej Docs
+- Bash
+- documentation
+title: PacketEye
+---
 # PacketEye
 
 pcap-based traffic analyzer — live capture or offline parsing with
@@ -3397,6 +3668,19 @@ packeteye file capture.pcap
 ## projects/aurora-os/
 Source: https://bartoszosiej.github.io/Docs/projects/aurora-os/
 ------------------------------------------------------------------------
+---
+description: '**A complete operating system running in your browser.** Aurora is a from-scratch desktop environment — window manager, virtual'
+keywords:
+- Bartosz Osiej Docs
+- operating system
+- TypeScript
+- filesystem
+- browser
+- kernel
+- rendering
+- documentation
+title: ◈ Aurora
+---
 # ◈ Aurora
 
 <a class="tests-cta" href="./tests">🧪 View animated test results — 56/56 →</a>
@@ -3481,6 +3765,18 @@ npm run serve      # http://localhost:8080
 ## projects/aurora-os/architecture
 Source: https://bartoszosiej.github.io/Docs/projects/aurora-os/architecture
 ------------------------------------------------------------------------
+---
+description: An in-depth look at every subsystem of the ~4,500-line Aurora codebase (3,118 lines of TypeScript across 16 modules + 1,376 lines of CSS).
+keywords:
+- Bartosz Osiej Docs
+- architecture
+- TypeScript
+- filesystem
+- browser
+- kernel
+- documentation
+title: Aurora — Architecture
+---
 # Aurora — Architecture
 
 An in-depth look at every subsystem of the ~4,500-line Aurora codebase
@@ -3633,6 +3929,14 @@ wc, unknown-command handling).
 ## projects/aurora-os/user-guide
 Source: https://bartoszosiej.github.io/Docs/projects/aurora-os/user-guide
 ------------------------------------------------------------------------
+---
+description: 'Everything you need to live inside the OS: desktop navigation, shortcuts, the eight applications, and the complete shell command reference.'
+keywords:
+- Bartosz Osiej Docs
+- networking
+- documentation
+title: Aurora — User Guide
+---
 # Aurora — User Guide
 
 Everything you need to live inside the OS: desktop navigation, shortcuts,
@@ -3778,6 +4082,20 @@ terminal for the same list, or `man &lt;command&gt;` for the manual entry.
 ## projects/talus-process-monitor/
 Source: https://bartoszosiej.github.io/Docs/projects/talus-process-monitor/
 ------------------------------------------------------------------------
+---
+description: '**eBPF endpoint security agent for Linux — detect ransomware behaviour, respond at the kernel edge.** Talus traces `execve`, `openat`, `connect`, `accept`,...'
+keywords:
+- Bartosz Osiej Docs
+- architecture
+- ransomware
+- security
+- networking
+- kernel
+- Rust
+- eBPF
+- documentation
+title: 🛰️ Talus
+---
 # 🛰️ Talus
 
 <a class="tests-cta" href="./tests">🧪 View animated test results — 9/9 →</a>
@@ -3889,6 +4207,17 @@ talus-process-monitor/
 ## projects/talus-process-monitor/architecture
 Source: https://bartoszosiej.github.io/Docs/projects/talus-process-monitor/architecture
 ------------------------------------------------------------------------
+---
+description: 'Internal architecture of Talus: the kernel-side eBPF programs, the userspace event pipeline, the sliding-window alerting heuristic,'
+keywords:
+- Bartosz Osiej Docs
+- architecture
+- kernel
+- Rust
+- eBPF
+- documentation
+title: Talus — Architecture
+---
 # Talus — Architecture
 
 Internal architecture of Talus: the kernel-side eBPF
@@ -4011,6 +4340,17 @@ openat entry ──► EVENTS map ──► perf buffer ──► Msg::Event ─
 ## projects/externum/
 Source: https://bartoszosiej.github.io/Docs/projects/externum/
 ------------------------------------------------------------------------
+---
+description: '**Externum v3.0 ''Sentient''** — a fully functional programming language of our own that fuses Python''s readability, binary performance and Bash''s'
+keywords:
+- Bartosz Osiej Docs
+- performance
+- browser
+- Python
+- Bash
+- documentation
+title: 📜 Externum
+---
 # 📜 Externum
 
 <a class="tests-cta" href="./tests">🧪 View animated test results — 120/120 →</a>
@@ -4083,6 +4423,14 @@ server at all. Click **▶ Run** and watch the program execute:
 ## projects/externum/syntax
 Source: https://bartoszosiej.github.io/Docs/projects/externum/syntax
 ------------------------------------------------------------------------
+---
+description: Externum's syntax is indentation-based (like Python). A program is a sequence of statements; comments start with `#`. Blank lines and
+keywords:
+- Bartosz Osiej Docs
+- Python
+- documentation
+title: Syntax Reference
+---
 # Syntax Reference
 
 Externum's syntax is indentation-based (like Python). A program is a
@@ -4291,6 +4639,15 @@ done
 ## projects/externum/examples
 Source: https://bartoszosiej.github.io/Docs/projects/externum/examples
 ------------------------------------------------------------------------
+---
+description: All examples run on the current version — covered by 118 tests (`python3 -m unittest discover -s tests`).
+keywords:
+- Bartosz Osiej Docs
+- Python
+- Bash
+- documentation
+title: Examples
+---
 # Examples
 
 All examples run on the current version — covered by 118 tests
@@ -4444,6 +4801,16 @@ python3 hello.py
 ## projects/externum/compiler
 Source: https://bartoszosiej.github.io/Docs/projects/externum/compiler
 ------------------------------------------------------------------------
+---
+description: Documentation for Compiler & CLI.
+keywords:
+- Bartosz Osiej Docs
+- compiler
+- Python
+- Bash
+- documentation
+title: Compiler & CLI
+---
 # Compiler & CLI
 
 ## Commands
@@ -4522,6 +4889,19 @@ externum repl
 ## projects/externum/architecture
 Source: https://bartoszosiej.github.io/Docs/projects/externum/architecture
 ------------------------------------------------------------------------
+---
+description: Documentation for Architecture.
+keywords:
+- Bartosz Osiej Docs
+- architecture
+- compiler
+- Python
+- parser
+- Bash
+- AST
+- documentation
+title: Architecture
+---
 # Architecture
 
 ## Pipeline
@@ -4607,6 +4987,15 @@ are guarded — the package works without these modules.
 ## projects/n2-mesh/
 Source: https://bartoszosiej.github.io/Docs/projects/n2-mesh/
 ------------------------------------------------------------------------
+---
+description: '**Serverless peer-to-peer chat with an automatic relay fallback.** It runs on static hosting (GitHub Pages) — zero servers, zero databases, zero accounts.'
+keywords:
+- Bartosz Osiej Docs
+- networking
+- browser
+- documentation
+title: 💬 Meshcore — P2P Chat
+---
 # 💬 Meshcore — P2P Chat
 
 <a class="tests-cta" href="./tests">🧪 View animated test results — 22/22 →</a>
@@ -4723,6 +5112,17 @@ python3 -m http.server 8080
 ## projects/n2-mesh/architecture
 Source: https://bartoszosiej.github.io/Docs/projects/n2-mesh/architecture
 ------------------------------------------------------------------------
+---
+description: Documentation for 🧱 Meshcore — Architecture.
+keywords:
+- Bartosz Osiej Docs
+- architecture
+- networking
+- browser
+- AST
+- documentation
+title: 🧱 Meshcore — Architecture
+---
 # 🧱 Meshcore — Architecture
 
 ## Layers
@@ -4867,9 +5267,14 @@ Source: https://bartoszosiej.github.io/Docs/energy
 ---
 sidebar_label: Energy Research
 title: Energy Research
-description: "Three open-access energy papers: Atomic (Betavoltaic) Batteries for Mobile Devices, The Iron Age of Grid Storage (iron–air batteries), and Digging for the Sun (superhot rock geothermal). Full text, quantitative models, honest assessments."
+description: 'Three open-access energy papers: Atomic (Betavoltaic) Batteries for Mobile Devices, The Iron Age of Grid Storage (iron–air batteries), and Digging for the Sun (superhot rock geothermal). Full text, quantitative models, honest assessments.'
+keywords:
+- Bartosz Osiej Docs
+- browser
+- license
+- AST
+- documentation
 ---
-
 # ⚡ Energy Research — World-Scale Energy Transition Papers
 
 > **A three-paper series on the energy transition**, written by Bartosz
@@ -5067,6 +5472,19 @@ everyone.
 ## qa
 Source: https://bartoszosiej.github.io/Docs/qa
 ------------------------------------------------------------------------
+---
+description: Automated test sweep across every project in the registry — whole-project suites, per-module breakdowns, performance benchmarks and
+keywords:
+- Bartosz Osiej Docs
+- performance
+- benchmark
+- security
+- Python
+- Rust
+- AST
+- documentation
+title: QA & Test Reports
+---
 # QA & Test Reports
 
 Automated test sweep across every project in the registry — whole-project
@@ -5323,9 +5741,13 @@ Source: https://bartoszosiej.github.io/Docs/rd
 ---
 sidebar_label: R&D
 title: R&D
-description: "Research & Development — two preprints published under my own name on Zenodo with persistent DOIs: Quantum Flash Tomograph (MRI) and Synaptic Continuity Protocol (consciousness transfer)."
+description: 'Research & Development — two preprints published under my own name on Zenodo with persistent DOIs: Quantum Flash Tomograph (MRI) and Synaptic Continuity Protocol (consciousness transfer).'
+keywords:
+- Bartosz Osiej Docs
+- browser
+- license
+- documentation
 ---
-
 # 🔬 R&D — Research & Development
 
 > **Research & Development hub.** Open-access work published under my own
@@ -5591,8 +6013,11 @@ Source: https://bartoszosiej.github.io/Docs/tests
 sidebar_label: Tests
 title: Tests
 description: Animated build and QA checks for the Docs site itself.
+keywords:
+- Bartosz Osiej Docs
+- Bash
+- documentation
 ---
-
 # Tests — Docs site
 
 Build and QA checks for **this documentation site**, verified during the
@@ -5614,8 +6039,13 @@ Source: https://bartoszosiej.github.io/Docs/projects/aurora-os/tests
 sidebar_label: Tests
 title: Tests
 description: Full animated test results for Aurora.
+keywords:
+- Bartosz Osiej Docs
+- Python
+- Rust
+- Bash
+- documentation
 ---
-
 # Tests — Aurora
 
 Full automated test results for **Aurora**, collected during the QA sweep
@@ -5640,8 +6070,13 @@ Source: https://bartoszosiej.github.io/Docs/projects/cybersec-tools/tests
 sidebar_label: Tests
 title: Tests
 description: Full animated test results for CyberForge.
+keywords:
+- Bartosz Osiej Docs
+- Python
+- Rust
+- Bash
+- documentation
 ---
-
 # Tests — CyberForge
 
 Full automated test results for **CyberForge**, collected during the QA sweep
@@ -5665,8 +6100,13 @@ Source: https://bartoszosiej.github.io/Docs/projects/externum/tests
 sidebar_label: Tests
 title: Tests
 description: Full animated test results for Externum.
+keywords:
+- Bartosz Osiej Docs
+- Python
+- Rust
+- Bash
+- documentation
 ---
-
 # Tests — Externum
 
 Full automated test results for **Externum**, collected during the QA sweep
@@ -5690,8 +6130,13 @@ Source: https://bartoszosiej.github.io/Docs/projects/factorio-web-game/tests
 sidebar_label: Tests
 title: Tests
 description: Full animated test results for Novactorio.
+keywords:
+- Bartosz Osiej Docs
+- Python
+- Rust
+- Bash
+- documentation
 ---
-
 # Tests — Novactorio
 
 Full automated test results for **Novactorio**, collected during the QA sweep
@@ -5717,8 +6162,14 @@ Source: https://bartoszosiej.github.io/Docs/projects/fastapi-url/tests
 sidebar_label: Tests
 title: Tests
 description: Full animated test results for LinkShort.
+keywords:
+- Bartosz Osiej Docs
+- Python
+- Rust
+- Bash
+- AST
+- documentation
 ---
-
 # Tests — LinkShort
 
 Full automated test results for **LinkShort**, collected during the QA sweep
@@ -5743,8 +6194,13 @@ Source: https://bartoszosiej.github.io/Docs/projects/n2-mesh/tests
 sidebar_label: Tests
 title: Tests
 description: Full animated test results for Meshcore.
+keywords:
+- Bartosz Osiej Docs
+- Python
+- Rust
+- Bash
+- documentation
 ---
-
 # Tests — Meshcore
 
 Full automated test results for **Meshcore**, collected during the QA sweep
@@ -5769,8 +6225,14 @@ Source: https://bartoszosiej.github.io/Docs/projects/nv2-engine/tests
 sidebar_label: Tests
 title: Tests
 description: Full animated test results for NV2 Engine.
+keywords:
+- Bartosz Osiej Docs
+- benchmark
+- Python
+- Rust
+- Bash
+- documentation
 ---
-
 # Tests — NV2 Engine
 
 Full automated test results for **NV2 Engine**, collected during the QA sweep
@@ -5796,8 +6258,13 @@ Source: https://bartoszosiej.github.io/Docs/projects/talus-process-monitor/tests
 sidebar_label: Tests
 title: Tests
 description: Full animated test results for Talus.
+keywords:
+- Bartosz Osiej Docs
+- Python
+- Rust
+- Bash
+- documentation
 ---
-
 # Tests — Talus
 
 Full automated test results for **Talus**, collected during the QA sweep
@@ -5820,9 +6287,14 @@ Source: https://bartoszosiej.github.io/Docs/energy
 ---
 sidebar_label: Energy Research
 title: Energy Research
-description: "Three open-access energy papers: Atomic (Betavoltaic) Batteries for Mobile Devices, The Iron Age of Grid Storage (iron–air batteries), and Digging for the Sun (superhot rock geothermal). Full text, quantitative models, honest assessments."
+description: 'Three open-access energy papers: Atomic (Betavoltaic) Batteries for Mobile Devices, The Iron Age of Grid Storage (iron–air batteries), and Digging for the Sun (superhot rock geothermal). Full text, quantitative models, honest assessments.'
+keywords:
+- Bartosz Osiej Docs
+- browser
+- license
+- AST
+- documentation
 ---
-
 # ⚡ Energy Research — World-Scale Energy Transition Papers
 
 > **A three-paper series on the energy transition**, written by Bartosz
@@ -6020,6 +6492,19 @@ everyone.
 ## qa
 Source: https://bartoszosiej.github.io/Docs/qa
 ------------------------------------------------------------------------
+---
+description: Automated test sweep across every project in the registry — whole-project suites, per-module breakdowns, performance benchmarks and
+keywords:
+- Bartosz Osiej Docs
+- performance
+- benchmark
+- security
+- Python
+- Rust
+- AST
+- documentation
+title: QA & Test Reports
+---
 # QA & Test Reports
 
 Automated test sweep across every project in the registry — whole-project
@@ -6276,9 +6761,13 @@ Source: https://bartoszosiej.github.io/Docs/rd
 ---
 sidebar_label: R&D
 title: R&D
-description: "Research & Development — two preprints published under my own name on Zenodo with persistent DOIs: Quantum Flash Tomograph (MRI) and Synaptic Continuity Protocol (consciousness transfer)."
+description: 'Research & Development — two preprints published under my own name on Zenodo with persistent DOIs: Quantum Flash Tomograph (MRI) and Synaptic Continuity Protocol (consciousness transfer).'
+keywords:
+- Bartosz Osiej Docs
+- browser
+- license
+- documentation
 ---
-
 # 🔬 R&D — Research & Development
 
 > **Research & Development hub.** Open-access work published under my own
@@ -6544,8 +7033,11 @@ Source: https://bartoszosiej.github.io/Docs/tests
 sidebar_label: Tests
 title: Tests
 description: Animated build and QA checks for the Docs site itself.
+keywords:
+- Bartosz Osiej Docs
+- Bash
+- documentation
 ---
-
 # Tests — Docs site
 
 Build and QA checks for **this documentation site**, verified during the
@@ -6567,8 +7059,13 @@ Source: https://bartoszosiej.github.io/Docs/projects/aurora-os/tests
 sidebar_label: Tests
 title: Tests
 description: Full animated test results for Aurora.
+keywords:
+- Bartosz Osiej Docs
+- Python
+- Rust
+- Bash
+- documentation
 ---
-
 # Tests — Aurora
 
 Full automated test results for **Aurora**, collected during the QA sweep
@@ -6593,8 +7090,13 @@ Source: https://bartoszosiej.github.io/Docs/projects/cybersec-tools/tests
 sidebar_label: Tests
 title: Tests
 description: Full animated test results for CyberForge.
+keywords:
+- Bartosz Osiej Docs
+- Python
+- Rust
+- Bash
+- documentation
 ---
-
 # Tests — CyberForge
 
 Full automated test results for **CyberForge**, collected during the QA sweep
@@ -6618,8 +7120,13 @@ Source: https://bartoszosiej.github.io/Docs/projects/externum/tests
 sidebar_label: Tests
 title: Tests
 description: Full animated test results for Externum.
+keywords:
+- Bartosz Osiej Docs
+- Python
+- Rust
+- Bash
+- documentation
 ---
-
 # Tests — Externum
 
 Full automated test results for **Externum**, collected during the QA sweep
@@ -6643,8 +7150,13 @@ Source: https://bartoszosiej.github.io/Docs/projects/factorio-web-game/tests
 sidebar_label: Tests
 title: Tests
 description: Full animated test results for Novactorio.
+keywords:
+- Bartosz Osiej Docs
+- Python
+- Rust
+- Bash
+- documentation
 ---
-
 # Tests — Novactorio
 
 Full automated test results for **Novactorio**, collected during the QA sweep
@@ -6670,8 +7182,14 @@ Source: https://bartoszosiej.github.io/Docs/projects/fastapi-url/tests
 sidebar_label: Tests
 title: Tests
 description: Full animated test results for LinkShort.
+keywords:
+- Bartosz Osiej Docs
+- Python
+- Rust
+- Bash
+- AST
+- documentation
 ---
-
 # Tests — LinkShort
 
 Full automated test results for **LinkShort**, collected during the QA sweep
@@ -6696,8 +7214,13 @@ Source: https://bartoszosiej.github.io/Docs/projects/n2-mesh/tests
 sidebar_label: Tests
 title: Tests
 description: Full animated test results for Meshcore.
+keywords:
+- Bartosz Osiej Docs
+- Python
+- Rust
+- Bash
+- documentation
 ---
-
 # Tests — Meshcore
 
 Full automated test results for **Meshcore**, collected during the QA sweep
@@ -6722,8 +7245,14 @@ Source: https://bartoszosiej.github.io/Docs/projects/nv2-engine/tests
 sidebar_label: Tests
 title: Tests
 description: Full animated test results for NV2 Engine.
+keywords:
+- Bartosz Osiej Docs
+- benchmark
+- Python
+- Rust
+- Bash
+- documentation
 ---
-
 # Tests — NV2 Engine
 
 Full automated test results for **NV2 Engine**, collected during the QA sweep
@@ -6745,6 +7274,20 @@ cargo test --release qa_benchmark_report -- --ignored --nocapture
 ## projects/pqguard/
 Source: https://bartoszosiej.github.io/Docs/projects/pqguard/
 ------------------------------------------------------------------------
+---
+description: '**Post-quantum file encryption CLI** — ML-KEM-768 (FIPS 203) + AES-256-GCM. Encrypt files using NIST-standardized post-quantum algorithms that resist both'
+keywords:
+- Bartosz Osiej Docs
+- post-quantum cryptography
+- cryptography
+- architecture
+- encryption
+- AES-256-GCM
+- ML-KEM-768
+- Rust
+- documentation
+title: 🔒 pqguard
+---
 # 🔒 pqguard
 
 <a class="tests-cta" href="./tests">🧪 View test results →</a>
@@ -6860,6 +7403,15 @@ algorithms can be decrypted by future quantum computers. **pqguard** protects ag
 ## projects/pqguard/tests
 Source: https://bartoszosiej.github.io/Docs/projects/pqguard/tests
 ------------------------------------------------------------------------
+---
+description: Documentation for 🧪 pqguard — Test Results.
+keywords:
+- Bartosz Osiej Docs
+- ML-KEM-768
+- Bash
+- documentation
+title: 🧪 pqguard — Test Results
+---
 # 🧪 pqguard — Test Results
 
 > **12/12 tests passing** ✅
@@ -6895,6 +7447,16 @@ Tests run on every push via GitHub Actions across Linux, macOS, and Windows.
 ## projects/prompt-inbox/
 Source: https://bartoszosiej.github.io/Docs/projects/prompt-inbox/
 ------------------------------------------------------------------------
+---
+description: '**Remote prompt inbox for the coding agent.** Send a prompt from anywhere — it lands as a GitHub issue — the agent handles it.'
+keywords:
+- Bartosz Osiej Docs
+- browser
+- Python
+- Bash
+- documentation
+title: 🎯 Promptbox
+---
 # 🎯 Promptbox
 
 **Remote prompt inbox for the coding agent.**
@@ -6972,6 +7534,15 @@ When the user says "check the inbox":
 ## projects/prompt-inbox/tests
 Source: https://bartoszosiej.github.io/Docs/projects/prompt-inbox/tests
 ------------------------------------------------------------------------
+---
+description: Documentation for 🧪 Promptbox — Test Results.
+keywords:
+- Bartosz Osiej Docs
+- Python
+- Bash
+- documentation
+title: 🧪 Promptbox — Test Results
+---
 # 🧪 Promptbox — Test Results
 
 > **All tests passing** ✅
@@ -6998,6 +7569,17 @@ python3 -m http.server 8080
 ## projects/solana-validator/
 Source: https://bartoszosiej.github.io/Docs/projects/solana-validator/
 ------------------------------------------------------------------------
+---
+description: '**A custom Solana-like validator built from scratch in Rust** — PoH clock, Tower BFT consensus, Sealevel parallel execution, Turbine block propagation'
+keywords:
+- Bartosz Osiej Docs
+- architecture
+- SHA-256
+- Rust
+- eBPF
+- documentation
+title: ⛓️ TrustNode
+---
 # ⛓️ TrustNode
 
 <a class="tests-cta" href="./tests">🧪 View test results — 110/110 →</a>
@@ -7167,6 +7749,15 @@ the core concepts of Solana's architecture but lacks many production features
 ## projects/solana-validator/tests
 Source: https://bartoszosiej.github.io/Docs/projects/solana-validator/tests
 ------------------------------------------------------------------------
+---
+description: Documentation for 🧪 TrustNode — Test Results.
+keywords:
+- Bartosz Osiej Docs
+- Rust
+- Bash
+- documentation
+title: 🧪 TrustNode — Test Results
+---
 # 🧪 TrustNode — Test Results
 
 > **110/110 tests passing** ✅
@@ -7203,8 +7794,13 @@ Source: https://bartoszosiej.github.io/Docs/projects/talus-process-monitor/tests
 sidebar_label: Tests
 title: Tests
 description: Full animated test results for Talus.
+keywords:
+- Bartosz Osiej Docs
+- Python
+- Rust
+- Bash
+- documentation
 ---
-
 # Tests — Talus
 
 Full automated test results for **Talus**, collected during the QA sweep

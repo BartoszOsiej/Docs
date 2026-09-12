@@ -1,3 +1,12 @@
+---
+description: Novactorio's backend is **Supabase** (auth, realtime, Postgres, storage) with **Stripe** payments handled by four **Deno Edge Functions**.
+keywords:
+- Bartosz Osiej Docs
+- multiplayer
+- AST
+- documentation
+title: Backend & Monetization
+---
 # Backend & Monetization
 
 Novactorio's backend is **Supabase** (auth, realtime, Postgres, storage)

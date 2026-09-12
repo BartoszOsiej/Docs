@@ -2,8 +2,14 @@
 sidebar_label: Tests
 title: Tests
 description: Full animated test results for LinkShort.
+keywords:
+- Bartosz Osiej Docs
+- Python
+- Rust
+- Bash
+- AST
+- documentation
 ---
-
 # Tests — LinkShort
 
 Full automated test results for **LinkShort**, collected during the QA sweep

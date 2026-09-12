@@ -1,3 +1,16 @@
+---
+description: '**A complete operating system running in your browser.** Aurora is a from-scratch desktop environment — window manager, virtual'
+keywords:
+- Bartosz Osiej Docs
+- operating system
+- TypeScript
+- filesystem
+- browser
+- kernel
+- rendering
+- documentation
+title: ◈ Aurora
+---
 # ◈ Aurora
 
 <a class="tests-cta" href="./tests">🧪 View animated test results — 56/56 →</a>

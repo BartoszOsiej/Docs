@@ -1,3 +1,15 @@
+---
+description: 'LinkShort ships with three deployment options: Docker, Docker Compose, and Fly.io.'
+keywords:
+- Bartosz Osiej Docs
+- architecture
+- deployment
+- browser
+- Bash
+- AST
+- documentation
+title: Deployment
+---
 # Deployment
 
 LinkShort ships with three deployment options: Docker, Docker Compose, and

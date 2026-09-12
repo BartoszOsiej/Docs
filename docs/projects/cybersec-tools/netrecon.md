@@ -1,3 +1,12 @@
+---
+description: Concurrent TCP port scanner with banner grabbing — the network discovery workhorse of the toolkit.
+keywords:
+- Bartosz Osiej Docs
+- networking
+- Bash
+- documentation
+title: NetRecon
+---
 # NetRecon
 
 Concurrent TCP port scanner with banner grabbing — the network discovery

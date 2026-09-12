@@ -1,3 +1,12 @@
+---
+description: 'LinkShort (repository: `FastAPI-url`) is a complete URL-shortening service with a Python/FastAPI API, JWT-based authentication, per-user link'
+keywords:
+- Bartosz Osiej Docs
+- Python
+- AST
+- documentation
+title: LinkShort
+---
 # LinkShort
 
 <a class="tests-cta" href="./tests">🧪 View animated test results — 15/15 →</a>

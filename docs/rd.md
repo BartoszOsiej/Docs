@@ -1,9 +1,13 @@
 ---
 sidebar_label: R&D
 title: R&D
-description: "Research & Development — two preprints published under my own name on Zenodo with persistent DOIs: Quantum Flash Tomograph (MRI) and Synaptic Continuity Protocol (consciousness transfer)."
+description: 'Research & Development — two preprints published under my own name on Zenodo with persistent DOIs: Quantum Flash Tomograph (MRI) and Synaptic Continuity Protocol (consciousness transfer).'
+keywords:
+- Bartosz Osiej Docs
+- browser
+- license
+- documentation
 ---
-
 # 🔬 R&D — Research & Development
 
 > **Research & Development hub.** Open-access work published under my own

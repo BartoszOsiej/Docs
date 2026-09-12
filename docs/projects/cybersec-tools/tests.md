@@ -2,8 +2,13 @@
 sidebar_label: Tests
 title: Tests
 description: Full animated test results for CyberForge.
+keywords:
+- Bartosz Osiej Docs
+- Python
+- Rust
+- Bash
+- documentation
 ---
-
 # Tests — CyberForge
 
 Full automated test results for **CyberForge**, collected during the QA sweep

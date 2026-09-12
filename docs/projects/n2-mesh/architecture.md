@@ -1,3 +1,14 @@
+---
+description: Documentation for 🧱 Meshcore — Architecture.
+keywords:
+- Bartosz Osiej Docs
+- architecture
+- networking
+- browser
+- AST
+- documentation
+title: 🧱 Meshcore — Architecture
+---
 # 🧱 Meshcore — Architecture
 
 ## Layers

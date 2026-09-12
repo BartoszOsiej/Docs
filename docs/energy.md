@@ -1,9 +1,14 @@
 ---
 sidebar_label: Energy Research
 title: Energy Research
-description: "Three open-access energy papers: Atomic (Betavoltaic) Batteries for Mobile Devices, The Iron Age of Grid Storage (iron–air batteries), and Digging for the Sun (superhot rock geothermal). Full text, quantitative models, honest assessments."
+description: 'Three open-access energy papers: Atomic (Betavoltaic) Batteries for Mobile Devices, The Iron Age of Grid Storage (iron–air batteries), and Digging for the Sun (superhot rock geothermal). Full text, quantitative models, honest assessments.'
+keywords:
+- Bartosz Osiej Docs
+- browser
+- license
+- AST
+- documentation
 ---
-
 # ⚡ Energy Research — World-Scale Energy Transition Papers
 
 > **A three-paper series on the energy transition**, written by Bartosz

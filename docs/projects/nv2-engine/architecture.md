@@ -1,3 +1,18 @@
+---
+description: 'NV2 Engine is a layered Rust application: a `winit` event-driven shell, a `wgpu` renderer, a procedural world simulation, and a GUI stack — plus'
+keywords:
+- Bartosz Osiej Docs
+- architecture
+- networking
+- Python
+- neural renderer
+- rendering
+- Rust
+- wgpu
+- AST
+- documentation
+title: Architecture
+---
 # Architecture
 
 NV2 Engine is a layered Rust application: a `winit` event-driven shell, a

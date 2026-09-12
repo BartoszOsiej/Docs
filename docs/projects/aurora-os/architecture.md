@@ -1,3 +1,15 @@
+---
+description: An in-depth look at every subsystem of the ~4,500-line Aurora codebase (3,118 lines of TypeScript across 16 modules + 1,376 lines of CSS).
+keywords:
+- Bartosz Osiej Docs
+- architecture
+- TypeScript
+- filesystem
+- browser
+- kernel
+- documentation
+title: Aurora — Architecture
+---
 # Aurora — Architecture
 
 An in-depth look at every subsystem of the ~4,500-line Aurora codebase

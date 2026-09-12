@@ -1,3 +1,13 @@
+---
+description: Lightweight web vulnerability scanner — a four-phase assessment of a single target.
+keywords:
+- Bartosz Osiej Docs
+- security
+- Rust
+- ECS
+- documentation
+title: ShadowScan
+---
 # ShadowScan
 
 Lightweight web vulnerability scanner — a four-phase assessment of a single

@@ -1,3 +1,11 @@
+---
+description: pcap-based traffic analyzer — live capture or offline parsing with per-IP/per-port statistics.
+keywords:
+- Bartosz Osiej Docs
+- Bash
+- documentation
+title: PacketEye
+---
 # PacketEye
 
 pcap-based traffic analyzer — live capture or offline parsing with

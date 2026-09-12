@@ -1,3 +1,12 @@
+---
+description: Documentation for 🧪 Promptbox — Test Results.
+keywords:
+- Bartosz Osiej Docs
+- Python
+- Bash
+- documentation
+title: 🧪 Promptbox — Test Results
+---
 # 🧪 Promptbox — Test Results
 
 > **All tests passing** ✅

@@ -1,3 +1,16 @@
+---
+description: Automated test sweep across every project in the registry — whole-project suites, per-module breakdowns, performance benchmarks and
+keywords:
+- Bartosz Osiej Docs
+- performance
+- benchmark
+- security
+- Python
+- Rust
+- AST
+- documentation
+title: QA & Test Reports
+---
 # QA & Test Reports
 
 Automated test sweep across every project in the registry — whole-project

@@ -1,3 +1,15 @@
+---
+description: NV2 Engine is engineered so that GPU bandwidth, draw calls, and CPU meshing stay proportional to what actually changed — not the whole world.
+keywords:
+- Bartosz Osiej Docs
+- performance
+- networking
+- neural renderer
+- rendering
+- Rust
+- documentation
+title: Performance
+---
 # Performance
 
 NV2 Engine is engineered so that GPU bandwidth, draw calls, and CPU meshing

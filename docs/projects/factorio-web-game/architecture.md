@@ -1,3 +1,14 @@
+---
+description: Novactorio is deliberately framework-free on the rendering side. The game loop, simulation, and drawing are hand-written on the Canvas 2D API; React is
+keywords:
+- Bartosz Osiej Docs
+- configuration
+- architecture
+- TypeScript
+- rendering
+- documentation
+title: Architecture
+---
 # Architecture
 
 Novactorio is deliberately framework-free on the rendering side. The game

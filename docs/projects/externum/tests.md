@@ -2,8 +2,13 @@
 sidebar_label: Tests
 title: Tests
 description: Full animated test results for Externum.
+keywords:
+- Bartosz Osiej Docs
+- Python
+- Rust
+- Bash
+- documentation
 ---
-
 # Tests — Externum
 
 Full automated test results for **Externum**, collected during the QA sweep

@@ -2,8 +2,13 @@
 sidebar_label: Tests
 title: Tests
 description: Full animated test results for Aurora.
+keywords:
+- Bartosz Osiej Docs
+- Python
+- Rust
+- Bash
+- documentation
 ---
-
 # Tests — Aurora
 
 Full automated test results for **Aurora**, collected during the QA sweep

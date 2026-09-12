@@ -1,3 +1,14 @@
+---
+description: 'Internal architecture of Talus: the kernel-side eBPF programs, the userspace event pipeline, the sliding-window alerting heuristic,'
+keywords:
+- Bartosz Osiej Docs
+- architecture
+- kernel
+- Rust
+- eBPF
+- documentation
+title: Talus — Architecture
+---
 # Talus — Architecture
 
 Internal architecture of Talus: the kernel-side eBPF

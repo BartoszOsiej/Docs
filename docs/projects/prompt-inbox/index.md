@@ -1,3 +1,13 @@
+---
+description: '**Remote prompt inbox for the coding agent.** Send a prompt from anywhere — it lands as a GitHub issue — the agent handles it.'
+keywords:
+- Bartosz Osiej Docs
+- browser
+- Python
+- Bash
+- documentation
+title: 🎯 Promptbox
+---
 # 🎯 Promptbox
 
 **Remote prompt inbox for the coding agent.**

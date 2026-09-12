@@ -1,3 +1,10 @@
+---
+description: Hash identification + password cracking toolkit with three modes.
+keywords:
+- Bartosz Osiej Docs
+- documentation
+title: HashSleuth
+---
 # HashSleuth
 
 Hash identification + password cracking toolkit with three modes.

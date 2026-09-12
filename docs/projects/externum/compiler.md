@@ -1,3 +1,13 @@
+---
+description: Documentation for Compiler & CLI.
+keywords:
+- Bartosz Osiej Docs
+- compiler
+- Python
+- Bash
+- documentation
+title: Compiler & CLI
+---
 # Compiler & CLI
 
 ## Commands

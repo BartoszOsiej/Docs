@@ -1,3 +1,10 @@
+---
+description: Every recipe registered in `crafting.rs`, with the **exact patterns from the source code**. The engine supports **shaped recipes** (fixed patterns with
+keywords:
+- Bartosz Osiej Docs
+- documentation
+title: Crafting Reference
+---
 # Crafting Reference
 
 Every recipe registered in `crafting.rs`, with the **exact patterns from the

@@ -1,3 +1,14 @@
+---
+description: '**Externum v3.0 ''Sentient''** — a fully functional programming language of our own that fuses Python''s readability, binary performance and Bash''s'
+keywords:
+- Bartosz Osiej Docs
+- performance
+- browser
+- Python
+- Bash
+- documentation
+title: 📜 Externum
+---
 # 📜 Externum
 
 <a class="tests-cta" href="./tests">🧪 View animated test results — 120/120 →</a>

@@ -1,3 +1,16 @@
+---
+description: Documentation for Architecture.
+keywords:
+- Bartosz Osiej Docs
+- architecture
+- compiler
+- Python
+- parser
+- Bash
+- AST
+- documentation
+title: Architecture
+---
 # Architecture
 
 ## Pipeline

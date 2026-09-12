@@ -1,3 +1,18 @@
+---
+description: 'VIVIA: Beyond the Known (internally `NV_ENGINE`, repository: `NV2_ENGINE`) is a **shipped commercial voxel game** written in Rust (47 source files, 15,800+'
+keywords:
+- Bartosz Osiej Docs
+- multiplayer
+- networking
+- Python
+- neural renderer
+- rendering
+- voxel engine
+- Rust
+- wgpu
+- documentation
+title: 'VIVIA: Beyond the Known (formerly NV2 Engine)'
+---
 # VIVIA: Beyond the Known (formerly NV2 Engine)
 
 <a class="tests-cta" href="./tests">🧪 View animated test results — 224 passed / 225 total →</a>

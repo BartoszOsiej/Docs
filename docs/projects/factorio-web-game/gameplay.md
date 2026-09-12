@@ -1,3 +1,14 @@
+---
+description: 'Novactorio recreates the factory-automation loop in the browser: gather resources, build machines, route materials, research, and survive.'
+keywords:
+- Bartosz Osiej Docs
+- networking
+- browser
+- rendering
+- AST
+- documentation
+title: Gameplay Systems
+---
 # Gameplay Systems
 
 Novactorio recreates the factory-automation loop in the browser: gather

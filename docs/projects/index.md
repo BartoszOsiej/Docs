@@ -1,3 +1,12 @@
+---
+description: Documentation for 📁 Projects.
+keywords:
+- Bartosz Osiej Docs
+- browser
+- AST
+- documentation
+title: 📁 Projects
+---
 # 📁 Projects
 
 > **The complete registry of every project we build and maintain.**

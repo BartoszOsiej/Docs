@@ -1,3 +1,12 @@
+---
+description: This page is a live demo of the translator module built into this docs hub. Pick a sample below and press **Translate page** (or **Translate all**) to
+keywords:
+- Bartosz Osiej Docs
+- browser
+- rendering
+- documentation
+title: 📖 PDF Book Viewer & Translator
+---
 # 📖 PDF Book Viewer & Translator
 
 > **Read any PDF like a real book — page by page, with a visual page-flip —

@@ -1,3 +1,18 @@
+---
+description: This page documents **which repositories publish updates to which**, including how this documentation site stays in sync with the source projects.
+keywords:
+- Bartosz Osiej Docs
+- operating system
+- TypeScript
+- security
+- browser
+- voxel engine
+- Rust
+- eBPF
+- AST
+- documentation
+title: Update Flow
+---
 # Update Flow
 
 This page documents **which repositories publish updates to which**, including

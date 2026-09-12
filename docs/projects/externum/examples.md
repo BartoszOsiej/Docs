@@ -1,3 +1,12 @@
+---
+description: All examples run on the current version — covered by 118 tests (`python3 -m unittest discover -s tests`).
+keywords:
+- Bartosz Osiej Docs
+- Python
+- Bash
+- documentation
+title: Examples
+---
 # Examples
 
 All examples run on the current version — covered by 118 tests

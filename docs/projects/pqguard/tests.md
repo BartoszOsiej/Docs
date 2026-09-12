@@ -1,3 +1,12 @@
+---
+description: Documentation for 🧪 pqguard — Test Results.
+keywords:
+- Bartosz Osiej Docs
+- ML-KEM-768
+- Bash
+- documentation
+title: 🧪 pqguard — Test Results
+---
 # 🧪 pqguard — Test Results
 
 > **12/12 tests passing** ✅

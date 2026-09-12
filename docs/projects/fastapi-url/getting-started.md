@@ -1,3 +1,14 @@
+---
+description: Run LinkShort locally in a few minutes. You need Python 3.12+ and Node.js 18+.
+keywords:
+- Bartosz Osiej Docs
+- getting started
+- Python
+- Bash
+- AST
+- documentation
+title: Getting Started
+---
 # Getting Started
 
 Run LinkShort locally in a few minutes. You need Python 3.12+ and Node.js 18+.

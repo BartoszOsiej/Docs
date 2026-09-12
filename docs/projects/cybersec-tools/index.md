@@ -1,3 +1,13 @@
+---
+description: 'CyberForge (repository: `BartoszOsiej/CyberForge`) contains four standalone CLI tools written in Rust. Each tool is deliberately focused,'
+keywords:
+- Bartosz Osiej Docs
+- security
+- Rust
+- Bash
+- documentation
+title: CyberForge
+---
 # CyberForge
 
 <a class="tests-cta" href="./tests">🧪 View animated test results — 29/29 →</a>
