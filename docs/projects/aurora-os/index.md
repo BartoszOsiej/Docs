@@ -33,7 +33,7 @@ Most "web OS" demos are a single window with buttons. Aurora is an actual
 system: it boots through an animated kernel sequence, owns a process table,
 multiplexes windows with full drag/resize/minimize/maximize semantics, hosts
 a POSIX-flavored virtual filesystem with persistence, and ships an
-interactive shell with **35+ commands** — all implemented from scratch.
+interactive shell with **36+ commands** — all implemented from scratch.
 
 The entire project is **~4,500 lines** of hand-written TypeScript + CSS
 (3,118 lines of TS across 16 modules, 1,376 lines of CSS), with **no
@@ -46,7 +46,7 @@ external runtime dependencies**.
 | 🧠 **Kernel** | Animated boot sequence with progress ring · typed EventBus (pub/sub, once, history, error isolation) · PID process table with telemetry · settings subsystem · localStorage persistence |
 | 🪟 **Window manager** | Drag by titlebar · 8-direction resize handles · minimize / maximize / focus · cascading placement · z-order management · glassmorphism chrome · open/close animations · taskbar integration |
 | 📂 **Virtual filesystem** | POSIX-inspired tree · absolute + relative paths with `.` / `..` resolution · `mkdir -p`, recursive `rm -r`, `cp`, `mv` · proper error codes (`ENOENT`, `EISDIR`, `EEXIST`, `EPERM`, `ENOTDIR`) · human-readable sizes · localStorage persistence |
-| ⌨️ **Terminal & shell** | 35+ commands · command history (↑/↓) · Tab path completion · output redirection (`>` / `>>`) · ANSI color rendering · `neofetch`, `fortune`, `sudo` (you are root) · pure interpreter, fully unit-tested |
+| ⌨️ **Terminal & shell** | 36+ commands (incl. `find`) · command history (↑/↓) · Tab path completion · output redirection (`>` / `>>`) · ANSI color rendering · `neofetch`, `fortune`, `sudo` (you are root) · pure interpreter, fully unit-tested |
 | 📱 **Applications** | Files · Terminal · Editor (Ctrl+S) · Calculator · Paint (PNG export) · System Monitor (live CPU/memory graphs) · Settings · About |
 | 🎨 **Theming** | 5 themes: Aurora, Midnight, Ember, Forest, Daylight · 5 animated wallpapers: Aurora, Grid, Mountains, Waves, Dots |
 | 🔊 **Audio** | Fully procedural WebAudio — boot chime, UI clicks, window swooshes, error buzzes, unlock notification. Zero audio files |

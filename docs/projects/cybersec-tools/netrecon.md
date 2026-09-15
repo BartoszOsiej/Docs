@@ -40,8 +40,13 @@ ARGUMENTS:
 OPTIONS:
   --threads N   worker threads (default 128)
   --timeout MS  connect timeout ms (default 1000)
-  --json        JSON-lines output
+  --top N       scan the N most common ports (nmap-style preset)
+  --json        JSON-lines output (includes detected product)
 ```
+
+Banner-based product detection is built in: HTTP `Server:` headers,
+SSH-2.0 implementation strings, and SMTP/FTP greetings are parsed and
+reported for every open port (plain table and `--json`).
 
 ### Examples
 
@@ -51,6 +56,9 @@ netrecon 127.0.0.1 22,80,443
 
 # Scan a /24 subnet's top ports with 64 threads
 netrecon 192.168.1.0/24 1-1024 --threads 64
+
+# Quick sweep: the 50 most common ports with product detection
+netrecon 10.0.0.7 --top 50
 
 # Hostname resolution
 netrecon example.com 80,443

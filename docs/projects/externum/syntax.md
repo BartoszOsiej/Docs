@@ -184,6 +184,20 @@ print("ab" * 3)
 print(s.strip().replace("a", "x").split(","))   # method chaining
 ```
 
+## Interpolated strings ($"...")
+
+Native string interpolation — expressions inside `{...}` are evaluated
+and concatenated at runtime. Works in both execution targets (Python
+transpiler and bytecode VM) with identical semantics, and `{{` / `}}`
+render as literal braces, exactly like Python f-strings:
+
+```python
+name = "world"
+print($"Hello {name}!")            # Hello world!
+print($"{a} + {b} = {a + b}")      # expressions are evaluated
+print($"literal braces: {{x}}")    # literal braces: {x}
+```
+
 ## Bash integration
 
 ### Inline bash (backticks)

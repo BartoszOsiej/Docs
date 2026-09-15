@@ -74,6 +74,9 @@ pqguard keygen
 # Encrypt a file
 pqguard encrypt secret.txt --recipient public_key.pqg.pub
 
+# Multi-recipient — any listed private key can decrypt
+pqguard encrypt secret.txt -r alice.pqg.pub -r bob.pqg.pub
+
 # Decrypt
 pqguard decrypt secret.pqg --private-key private_key.pqg.key
 ```
@@ -83,7 +86,8 @@ pqguard decrypt secret.pqg --private-key private_key.pqg.key
 | Command | Description |
 |---|---|
 | `pqguard keygen` | Generate ML-KEM-768 keypair |
-| `pqguard encrypt <file> -r <pubkey>` | Encrypt file for recipient |
+| `pqguard encrypt <file> -r <pubkey>` | Encrypt file for one recipient |
+| `pqguard encrypt <file> -r <a> -r <b>` | Multi-recipient (v2 envelope) |
 | `pqguard decrypt <file> -k <privkey>` | Decrypt file with private key |
 | `pqguard verify <file>` | Verify pqguard file integrity |
 | `pqguard info <keyfile>` | Show key information |

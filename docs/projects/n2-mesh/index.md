@@ -91,9 +91,9 @@ bridge it are dead or paid (2026). That is why every message is also
 3. Pick a nickname and send messages — on a desktop they travel P2P, on a
    phone automatically via the relay. Both cases work from the same link.
 
-> ⚠️ This is a demo-grade mesh: there is no history — when you leave, the
-> room is gone. Messages sent while the other side is offline are lost
-> (no broker-side queueing).
+> ⚠️ This is a demo-grade mesh: scrollback is cached per room in your
+> browser (last 100 messages), but there is no server-side history —
+> messages sent while you are offline are lost (no broker-side queueing).
 
 ## Run locally
 

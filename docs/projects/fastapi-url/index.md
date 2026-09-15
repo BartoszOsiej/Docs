@@ -27,6 +27,8 @@ React 19 SPA (static files served by FastAPI) · pytest
 - **6-character short codes** — cryptographically random (`secrets`), with
   collision retry
 - **Click tracking** — every redirect increments the click counter
+- **Link expiration** — optional `expires_in_seconds` per link; expired
+  links answer `410 Gone` while stats stay viewable
 - **Per-user URLs** — `/urls/my` lists your links; deletes are owner-scoped
 - **302 redirects** — `/urls/r/{code}` redirects to the target with a click
   recorded
