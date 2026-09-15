@@ -125,4 +125,4 @@ algorithms can be decrypted by future quantum computers. **pqguard** protects ag
 
 - [GitHub](https://github.com/BartoszOsiej/pqguard)
 - [crates.io](https://crates.io/crates/pqguard)
-- [Landing page](https://bartoszosiej.github.io/pqguard/)
+- [Landing page](https://bartoszosiej.github.io/quantum-shield/)

@@ -14,7 +14,7 @@ title: 💬 Meshcore — P2P Chat
 **Serverless peer-to-peer chat with an automatic relay fallback.** It runs on
 static hosting (GitHub Pages) — zero servers, zero databases, zero accounts.
 
-> **Try it now:** [🚀 Open Meshcore](https://bartoszosiej.github.io/n2-mesh/)
+> **Try it now:** [🚀 Open Meshcore](https://bartoszosiej.github.io/Meshcore/)
 > (opens in a new tab)
 
 ## How it works
@@ -85,7 +85,7 @@ bridge it are dead or paid (2026). That is why every message is also
 
 ## How to use it
 
-1. Open [Meshcore](https://bartoszosiej.github.io/n2-mesh/) on two devices
+1. Open [Meshcore](https://bartoszosiej.github.io/Meshcore/) on two devices
    (or two tabs of one browser).
 2. Set **the same room** on both sides (default: `lobby`).
 3. Pick a nickname and send messages — on a desktop they travel P2P, on a
