@@ -26,7 +26,7 @@ Legend: ✅ pass · ⚠️ partial (see notes) · ❌ fail
 |---|---------|-------|-------|--------|--------|---------|--------|---------------|
 | 1 | [NV2 Engine](#nv2-engine-nv2_engine) | `cargo test` | 99 | 98 | 0 | 1 (release bench) | ✅ | [tests](/projects/nv2-engine/tests/) |
 | 2 | [CyberForge](#cybersec-toolkit-cybersec-tools) | `cargo test --workspace` | 29 | 29 | 0 | 0 | ✅ | [tests](/projects/cybersec-tools/tests/) |
-| 3 | [Talus](#talus-process-monitor-talus-process-monitor) | `cargo test` | 9 | 9 | 0 | 0 | ✅ | [tests](/projects/talus-process-monitor/tests/) |
+| 3 | [Talus](#talus-process-monitor-talus-process-monitor) | `cargo test` | 95 | 95 | 0 | 0 | ✅ | [tests](/projects/talus-process-monitor/tests/) |
 | 4 | [Externum](#externum-externum) | `unittest discover` | 120 | 120 | 0 | 0 | ✅ | [tests](/projects/externum/tests/) |
 | 5 | [Aurora](#aurora-os-aurora-os) | `npm test` + `tsc` | 56 | 56 | 0 | 0 | ✅ | [tests](/projects/aurora-os/tests/) |
 | 6 | [Novactorio](#novactorio--factorio-web-game-factorio-web-game) | typecheck + build + lint | — | — | — | — | ✅ | [tests](/projects/factorio-web-game/tests/) |
@@ -120,13 +120,16 @@ Reproduce: `cargo test --workspace`
 
 ## Talus (`talus-process-monitor`)
 
-**9 tests** (userspace `process-monitor` crate). [Animated page](/projects/talus-process-monitor/tests/)
+**95 tests** (userspace `process-monitor` crate; last sweep 2026-09-17).
+[Animated page](/projects/talus-process-monitor/tests/)
 
 | Check | Result |
 |---|---|
-| Unit tests (`cargo test`) | ✅ 3 passed, 0 failed |
-| Clippy | ✅ 0 warnings |
-| `unsafe` blocks | ⚠️ 7 (syscall/interop layer — expected and reviewed) |
+| Unit tests (`cargo test`) | ✅ 95 passed, 0 failed — monitor core (36), licensing (30), MeMLP (17), audit (6), sandbox (6) |
+| Clippy | ✅ 0 warnings with `-D warnings` |
+| `cargo fmt --check` | ✅ clean |
+| Licensing E2E | ✅ 18/18 HTTP scenarios green against the production activation server (see [TEST_REPORT_SECURE_LICENSING.md](https://github.com/BartoszOsiej/talus-process-monitor/blob/master/TEST_REPORT_SECURE_LICENSING.md)) |
+| `unsafe` blocks | ⚠️ 52 (eBPF syscall/interop layer — expected and reviewed) |
 
 > The `process-monitor-ebpf` crate targets `bpfel-unknown-none` and cannot be
 > built/tested on the host toolchain; `build.sh` handles it explicitly.

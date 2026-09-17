@@ -91,8 +91,8 @@ title: 📁 Projects
   <ProjectCard
     icon="🛰️"
     title="Talus"
-    description="eBPF endpoint security agent for Linux — detect ransomware behaviour, respond at the kernel edge. execve/openat/connect tracepoints, per-CPU perf buffers, sliding-window heuristic, automated SIGKILL response, FrankenTUI."
-    tags={['Rust', 'eBPF', 'Aya', 'FrankenTUI']}
+    description="eBPF endpoint security agent for Linux — detect ransomware behaviour, respond at the kernel edge. execve/openat/connect tracepoints, per-CPU perf buffers, sliding-window heuristic, automated SIGKILL response, FrankenTUI. Commercial edition: Ed25519-signed licenses with a live activation backend."
+    tags={['Rust', 'eBPF', 'Aya', 'FrankenTUI', 'Licensing']}
     tint="#a3e635"
     link="/projects/talus-process-monitor/"
   />

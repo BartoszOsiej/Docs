@@ -1,6 +1,6 @@
 # 🛰️ Talus — Monitor Procesów
 
-<a class="tests-cta" href="./testy">🧪 Zobacz animowane wyniki testów — 9/9 →</a>
+<a class="tests-cta" href="./testy">🧪 Zobacz animowane wyniki testów — 95/95 →</a>
 
 **Agent bezpieczeństwa endpointów oparty na eBPF dla Linuksa — wykrywaj zachowania ransomware, reaguj na krawędzi jądra.**
 
@@ -12,7 +12,9 @@ otwarć plików per proces względem ruchomego okna, aby wykrywać masowy
 dostęp do plików w stylu ransomware, i automatycznie wysyłając `SIGKILL`
 do naruszających procesów.
 
-> **Status projektu:** showcase produkcyjnej inżynierii Rust + eBPF.
+> **Status projektu:** showcase produkcyjnej inżynierii Rust + eBPF,
+> z komercyjnym systemem licencjonowania — klucze podpisane Ed25519 i
+> działający backend aktywacyjny na Cloudflare Workers + D1 (darmowy tier).
 
 ---
 
@@ -86,20 +88,48 @@ sudo process-monitor --diagnose         # 5-sekundowa autodiagnostyka end-to-end
 - Izolacja per proces — brak fałszywych pozytywów między procesami
 - `--alert-threshold 0` całkowicie wyłącza heurystykę
 
+## ◆ Licencjonowanie i edycje
+
+Talus występuje w dwóch edycjach. **Community** jest darmowa (MIT);
+funkcje **Enterprise** (auto-kill, dashboard webowy, Kafka, ClickHouse,
+MemGraph, biblioteka C FFI) odblokowuje płatny klucz licencyjny.
+
+| Warstwa | Implementacja |
+|---|---|
+| **Podpisane klucze** | `base64(payload).base64(podpis Ed25519)` — binarka osadza wyłącznie klucz *publiczny*; klucz prywatny nigdy nie opuszcza maszyny właściciela |
+| **Serwer aktywacyjny** | Cloudflare Worker + D1 (darmowy tier) — weryfikuje podpisy po stronie serwera, egzekwuje wygasanie, cofnięcia i limity stanowisk, rate-limit 5 prób / 5 min per maszyna |
+| **Kontrola stanowisk** | Autorytatywna w D1 (`max_seats`); przenosiny maszyny to `deactivate` → `activate`; ponowna aktywacja tej samej maszyny jest idempotentna |
+| **Utwardzenie klienta** | Lokalny cache weryfikowany względem podpisanego klucza przy każdym uruchomieniu (fail-closed), znacznik trialu z SHA-256, ochrona przed downgrade, 30-dniowa praca offline |
+| **Trial** | 30-dniowy trial Enterprise przy pierwszym uruchomieniu |
+
+```bash
+talus license activate <KLUCZ>   # aktywacja online (1 klucz = 1 maszyna)
+talus license show               # tier, wygasanie, stanowiska, funkcje
+```
+
+**Kwoty** cen ustala właściciel przy sprzedaży i nie publikuje ich w repo —
+strukturę opisuje [`docs/pricing-tiers.md`](https://github.com/BartoszOsiej/talus-process-monitor/blob/master/docs/pricing-tiers.md),
+a warunki licencji [`docs/EULA.txt`](https://github.com/BartoszOsiej/talus-process-monitor/blob/master/docs/EULA.txt).
+
 ## 📦 Struktura projektu
 
 ```
 talus-process-monitor/
-├── process-monitor/          # Przestrzeń użytkownika: rdzeń monitora + TUI + web + FFI
+├── process-monitor/          # Przestrzeń użytkownika: rdzeń monitora + TUI + web + FFI + licencje
 │   └── src/
 │       ├── main.rs           # CLI, wybór trybu, obsługa sygnałów
 │       ├── monitor.rs        # ładowanie eBPF, czytnik perf, tracker ruchomego okna
+│       ├── license.rs        # weryfikacja licencji Ed25519, aktywacja, feature gating
+│       ├── audit.rs          # odporny na manipulację dziennik audytu (łańcuch hashy)
 │       └── tui.rs            # 7-panelowy frankentui (ftui) cyberpunkowy interfejs
 ├── process-monitor-ebpf/     # Strona jądra (#![no_std], aya-ebpf)
 │   └── src/main.rs           # hooki tracepoint → PerfEventArray
+├── license-keygen/           # keygen CLI (tylko właściciel; klucze poza repo)
+├── license-server/           # backend aktywacyjny Cloudflare Worker + D1
+├── scripts/                  # issue / revoke / list-activations / health-check
 ├── build.sh                  # Skrypt builda (nightly dla eBPF, stable dla TUI)
 ├── install.sh                # Instalator / deinstalator świadomy dystrybucji
-└── ARCHITECTURE.md           # Pełny dokument projektowy
+└── ARCHITECTURE.md           # Pełny dokument projektowy (w tym podsystem licencji)
 ```
 
 ## 🔧 Wymagania

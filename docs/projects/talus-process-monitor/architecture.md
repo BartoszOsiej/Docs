@@ -126,3 +126,30 @@ openat entry ──► EVENTS map ──► perf buffer ──► Msg::Event ─
 | Idle CPU | Reader sleeps 1 ms when no buffers have data |
 | Memory | Sliding window evicts every poll; maps bounded by live PIDs |
 | Binary | Full LTO + `strip = "symbols"` + `panic = "abort"` release profile |
+
+## 6. Licensing subsystem
+
+The commercial licensing layer spans four components (full details in the
+repo's [`ARCHITECTURE.md`](https://github.com/BartoszOsiej/talus-process-monitor/blob/master/ARCHITECTURE.md)
+§8 and [`SECURITY.md`](https://github.com/BartoszOsiej/talus-process-monitor/blob/master/SECURITY.md)):
+
+```
+talus-keygen issue ──► signed key (Ed25519) ──► customer
+                                                │
+                                      talus license activate <KEY>
+                                                ▼
+            Cloudflare Worker + D1 (free tier) ── signature check,
+            expiry, revocation, seat limits ──► activation token
+```
+
+| Component | Trust anchor |
+|---|---|
+| `talus-keygen` (owner machine) | Private key at `~/.secrets/talus/license-keys/` — never inside any repository |
+| Talus binary (`license.rs`) | Embedded Ed25519 **public** key; compile-time XOR checksum detects binary tampering |
+| Activation server (`license-server/`) | Public key only; signature, expiry, revocation and seat checks in D1; rate limiting 5/5min per machine |
+| Local cache | XOR-obfuscated (0600), re-verified against the signed key on every load — local edits to tier/expiry/features fail closed |
+
+**Documented limit:** an attacker who fully controls the binary can patch
+out license checks — signed keys protect the vendor's distribution channel,
+not a modified client (see the repo SECURITY.md for the full trust model
+and the key-rotation runbook).

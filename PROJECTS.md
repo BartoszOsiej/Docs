@@ -97,10 +97,10 @@ on this site, and maintained in the working copy at `~/`.
 
 | | |
 |---|---|
-| **What** | eBPF endpoint security agent for Linux — detect ransomware behaviour, respond at the kernel edge: `execve`/`openat`/`connect`/`accept`/`sendto`/`recvfrom` tracepoints, per-CPU perf buffers, 1-second sliding-window heuristic, automated `SIGKILL` response, FrankenTUI, JSON/plain output, self-diagnostic. |
-| **Stack** | Rust, eBPF (Aya), FrankenTUI (ftui), crossterm, nightly toolchain for the BPF crate |
+| **What** | eBPF endpoint security agent for Linux — detect ransomware behaviour, respond at the kernel edge: `execve`/`openat`/`connect`/`accept`/`sendto`/`recvfrom` tracepoints, per-CPU perf buffers, 1-second sliding-window heuristic, automated `SIGKILL` response, FrankenTUI, JSON/plain output, self-diagnostic. Commercial edition: Ed25519-signed license keys with online activation (Cloudflare Worker + D1, free tier), seat enforcement and revocation. |
+| **Stack** | Rust, eBPF (Aya), FrankenTUI (ftui), crossterm, ed25519-dalek, Cloudflare Workers + D1, nightly toolchain for the BPF crate |
 | **Local path** | `~/talus-process-monitor` |
-| **Docs** | [/projects/talus-process-monitor/](/projects/talus-process-monitor/) — Overview + Architecture |
+| **Docs** | [/projects/talus-process-monitor/](/projects/talus-process-monitor/) — Overview + Architecture (incl. licensing subsystem) |
 
 ## 9. Externum — `BartoszOsiej/externum`
 

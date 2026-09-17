@@ -2,7 +2,7 @@
 
 Automatyczny przegląd testów każdego projektu w rejestrze — komplety testów
 całego projektu, podziały na moduły, benchmarki wydajności oraz kontrola
-bezpieczeństwa/analiza statyczna. Wykonano: 2026-08-13 (Linux, Rust 1.97,
+bezpieczeństwa/analiza statyczna. Wykonano: 2026-09-17 (Linux, Rust 1.97,
 Node 22, Python 3).
 
 Legenda: ✅ zaliczony · ⚠️ częściowo (patrz uwagi) · ❌ niezaliczony
@@ -13,7 +13,7 @@ Legenda: ✅ zaliczony · ⚠️ częściowo (patrz uwagi) · ❌ niezaliczony
 |---|---------|--------|-------|-----------|-------|-------------|--------|-----------------|
 | 1 | [NV2 Engine](#nv2-engine-nv2_engine) | `cargo test` | 99 | 98 | 0 | 1 (benchmark release) | ✅ | [testy](/projects/nv2-engine/testy/) |
 | 2 | [CyberForge](#zestaw-narzędzi-cyberbezpieczeństwa-cybersec-tools) | `cargo test --workspace` | 29 | 29 | 0 | 0 | ✅ | [testy](/projects/cybersec-tools/testy/) |
-| 3 | [Talus](#talus-process-monitor-talus-process-monitor) | `cargo test` | 9 | 9 | 0 | 0 | ✅ | [testy](/projects/talus-process-monitor/testy/) |
+| 3 | [Talus](#talus-process-monitor-talus-process-monitor) | `cargo test` | 95 | 95 | 0 | 0 | ✅ | [testy](/projects/talus-process-monitor/testy/) |
 | 4 | [Externum](#externum-externum) | `unittest discover` | 120 | 120 | 0 | 0 | ✅ | [testy](/projects/externum/testy/) |
 | 5 | [Aurora](#aurora-os-aurora-os) | `npm test` + `tsc` | 56 | 56 | 0 | 0 | ✅ | [testy](/projects/aurora-os/testy/) |
 | 6 | [Novactorio](#novactorio--gra-factorio-web-factorio-web-game) | typecheck + build + lint | — | — | — | — | ✅ | [testy](/projects/factorio-web-game/testy/) |
@@ -109,13 +109,16 @@ Odtworzenie: `cargo test --workspace`
 
 ## Talus (`talus-process-monitor`)
 
-**9 testów** (crate userspace `process-monitor`). [Strona animowana](/projects/talus-process-monitor/testy/)
+**95 testów** (crate userspace `process-monitor`; ostatni przegląd 2026-09-17).
+[Strona animowana](/projects/talus-process-monitor/testy/)
 
 | Kontrola | Wynik |
 |---|---|
-| Testy jednostkowe (`cargo test`) | ✅ 3 zaliczone, 0 błędów |
-| Clippy | ✅ 0 ostrzeżeń |
-| Bloki `unsafe` | ⚠️ 7 (warstwa syscall/interop — oczekiwana i sprawdzona) |
+| Testy jednostkowe (`cargo test`) | ✅ 95 zaliczonych, 0 błędów — rdzeń monitora (36), licencje (30), MeMLP (17), audyt (6), sandbox (6) |
+| Clippy | ✅ 0 ostrzeżeń z `-D warnings` |
+| `cargo fmt --check` | ✅ czysto |
+| E2E licencjonowania | ✅ 18/18 scenariuszy HTTP zielonych na produkcyjnym serwerze aktywacyjnym (patrz [TEST_REPORT_SECURE_LICENSING.md](https://github.com/BartoszOsiej/talus-process-monitor/blob/master/TEST_REPORT_SECURE_LICENSING.md)) |
+| Bloki `unsafe` | ⚠️ 52 (warstwa eBPF syscall/interop — oczekiwana i sprawdzona) |
 
 > Crate `process-monitor-ebpf` celuje w `bpfel-unknown-none` i nie da się go
 > zbudować/przetestować na toolchainie hosta; `build.sh` obsługuje to jawnie.

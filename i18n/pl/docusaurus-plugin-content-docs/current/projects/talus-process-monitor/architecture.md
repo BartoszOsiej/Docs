@@ -120,3 +120,31 @@ openat entry ──► mapa EVENTS ──► bufor perf ──► Msg::Event ─
 | Bezczynny CPU | Czytnik śpi 1 ms, gdy żadne bufory nie mają danych |
 | Pamięć | Ruchome okno usuwa wpisy przy każdym poll; mapy ograniczone przez żywe PID-y |
 | Binarium | Pełne LTO + `strip = "symbols"` + `panic = "abort"` profil release |
+
+## 6. Podsystem licencjonowania
+
+Komercyjna warstwa licencjonowania obejmuje cztery komponenty (pełne szczegóły
+w [`ARCHITECTURE.md`](https://github.com/BartoszOsiej/talus-process-monitor/blob/master/ARCHITECTURE.md)
+§8 oraz [`SECURITY.md`](https://github.com/BartoszOsiej/talus-process-monitor/blob/master/SECURITY.md)
+w repo):
+
+```
+talus-keygen issue ──► podpisany klucz (Ed25519) ──► klient
+                                                     │
+                                           talus license activate <KEY>
+                                                     ▼
+             Cloudflare Worker + D1 (darmowy tier) ── weryfikacja podpisu,
+             wygasanie, cofnięcia, limity stanowisk ──► token aktywacji
+```
+
+| Komponent | Kotwica zaufania |
+|---|---|
+| `talus-keygen` (maszyna właściciela) | Klucz prywatny w `~/.secrets/talus/license-keys/` — nigdy w żadnym repo |
+| Binarka Talus (`license.rs`) | Osadzony **publiczny** klucz Ed25519; compile-time checksum XOR wykrywa manipulację binarki |
+| Serwer aktywacyjny (`license-server/`) | Wyłącznie klucz publiczny; sprawdzenia podpisu, wygasania, cofnięć i stanowisk w D1; rate limiting 5/5min per maszyna |
+| Lokalny cache | XOR-obfuskowany (0600), weryfikowany względem podpisanego klucza przy każdym uruchomieniu — lokalne edycje tier/expiry/features kończą się fail-closed |
+
+**Udokumentowany limit:** atakujący z pełną kontrolą nad binarką może
+wyciąć sprawdzanie licencji — podpisane klucze chronią kanał dystrybucji
+sprzedawcy, nie zmodyfikowanego klienta (pełny model zaufania i runbook
+rotacji kluczy w SECURITY.md repo).
