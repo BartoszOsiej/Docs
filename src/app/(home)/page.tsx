@@ -149,7 +149,7 @@ export default function HomePage() {
             </p>
           </div>
           <a
-            href="https://buy.polar.sh/f8fee751-6cde-4a3b-b3cd-6e302ce8f5a8"
+            href="https://buy.polar.sh/polar_cl_E577BTilme4dnUFsfbG0aE4qo7QILaugmEjsA0oajKK"
             className="rounded-md bg-[#F15A24] px-8 py-4 text-lg font-bold text-[#050505] transition-colors hover:bg-[#ff6a35]"
           >
             BUY — $50 →
