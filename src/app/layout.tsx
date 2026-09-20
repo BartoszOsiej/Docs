@@ -2,6 +2,11 @@ import { JetBrains_Mono } from 'next/font/google';
 import { Provider } from '@/components/provider';
 import './global.css';
 
+export const metadata = {
+  title: 'Hartwell Labs — Docs',
+  description: 'Engineering docs written from the actual source code — Rust, eBPF, compilers, PQC, browser OS.',
+};
+
 const mono = JetBrains_Mono({
   subsets: ['latin'],
 });
