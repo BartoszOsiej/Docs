@@ -1,18 +1,5 @@
-# platform
-.DS_Store
-*.log
-
-# Dependencies
 node_modules/
-
-# Docusaurus build output
-build/
+.next/
+out/
 .docusaurus/
-
-# Cache
-.npm/
-.cache/
-
-# Misc
-*.local
-.DS_Store
+build/
