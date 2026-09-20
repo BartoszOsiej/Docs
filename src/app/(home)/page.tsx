@@ -157,6 +157,29 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* PRO PACK */}
+      <section className="mt-6 border border-[#F15A24]/60 bg-[#0a0a0c] p-8">
+        <p className="text-[12px] tracking-[0.15em] text-[#8B93A3]">
+          <span className="text-[#F15A24]">[$]</span> // PAID_FIELD_GUIDE
+        </p>
+        <div className="mt-3 flex flex-wrap items-center justify-between gap-6">
+          <div>
+            <h2 className="text-2xl font-bold tracking-tight">
+              Externum <span className="text-[#F15A24]">PRO_PACK</span>
+            </h2>
+            <p className="mt-2 max-w-xl text-[12px] text-[#8B93A3]">
+              Externum in Production — the paid field guide: 3 targets, ownership in practice, Hartwell CI workflow, troubleshooting.
+            </p>
+          </div>
+          <a
+            href="https://buy.polar.sh/polar_cl_qR2GOfEhXRqlTlPICwyo8XVqKkXjv4mj15cq926Dh1F"
+            className="rounded-md border border-[#F15A24] px-8 py-4 text-lg font-bold text-[#F15A24] transition-colors hover:bg-[#F15A24] hover:text-[#050505]"
+          >
+            BUY — $29 →
+          </a>
+        </div>
+      </section>
+
       <footer className="mt-16 border-t border-[#22222a] pt-6 pb-4 text-center text-[11px] tracking-widest text-[#8B93A3]">
         © 2026 HARTWELL_LABS · BARTOSZ_OSIEJ, FOUNDER · BUILT_IN_THE_OPEN
       </footer>
