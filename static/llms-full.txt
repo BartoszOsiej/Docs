@@ -348,7 +348,7 @@ title: 📁 Projects
     title="VIVIA: Beyond the Known"
     description="Complete voxel survival sandbox in Rust — procedural worlds, AI-driven terrain, GLB mesh rendering, multiplayer networking, Epic Games Store launch August 2026. $9.99."
     tags={['Rust', 'wgpu', 'Epic Games Store', 'Multiplayer', 'GLB']}
-    tint="#818cf8"
+    tint="#F15A24"
     link="/projects/nv2-engine/"
   />
   <ProjectCard

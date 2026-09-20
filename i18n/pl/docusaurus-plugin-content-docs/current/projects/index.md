@@ -56,7 +56,7 @@ title: Projekty — Bartosz Osiej
     title="NV2 Engine"
     description="Natywny silnik wokselowy w Rust ze światami proceduralnymi sterowanymi przez AI. Renderowanie wgpu, 97 typów bloków, 9 biomów, symulacja wody, sieć neuronowa ucząca się roślinności."
     tags={['Rust', 'wgpu', 'Vulkan', 'MLP']}
-    tint="#818cf8"
+    tint="#F15A24"
     link="/projects/nv2-engine/"
   />
   <ProjectCard
