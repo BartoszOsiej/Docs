@@ -33,7 +33,7 @@ const EN: Copy = {
   legend: [
     { label: 'Docs Hub', color: '#38bdf8' },
     { label: 'R&D', color: '#2dd4bf' },
-    { label: 'Projects', color: '#818cf8' },
+    { label: 'Projects', color: '#F15A24' },
     { label: 'Technologies', color: '#ffd166' },
   ],
   open: 'Open docs →',
@@ -64,7 +64,7 @@ const PL: Copy = {
   legend: [
     { label: 'Docs Hub', color: '#38bdf8' },
     { label: 'R&D', color: '#2dd4bf' },
-    { label: 'Projekty', color: '#818cf8' },
+    { label: 'Projekty', color: '#F15A24' },
     { label: 'Technologie', color: '#ffd166' },
   ],
   open: 'Otwórz dokumentację →',
@@ -103,7 +103,7 @@ const PROJECT_COLORS: Record<string, string> = {
   n2mesh: '#a78bfa',
   link: '#34d399',
   nova: '#fbbf24',
-  nv2: '#818cf8',
+  nv2: '#F15A24',
   aurora: '#f472b6',
   cyber: '#fb7185',
   talus: '#a3e635',

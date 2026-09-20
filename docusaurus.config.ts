@@ -41,7 +41,7 @@ const config: Config = {
       tagName: 'link',
       attributes: {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap',
+        href: 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap',
       },
     },
     {
@@ -51,7 +51,7 @@ const config: Config = {
         href: 'https://bartoszosiej.github.io/css/aegis.css',
       },
     },
-    { tagName: 'meta', attributes: { name: 'theme-color', content: '#0f172a' } },
+    { tagName: 'meta', attributes: { name: 'theme-color', content: '#050505' } },
     { tagName: 'meta', attributes: { name: 'author', content: 'Bartosz Osiej' } },
     { tagName: 'link', attributes: { rel: 'me', href: 'https://github.com/BartoszOsiej' } },
     { tagName: 'link', attributes: { rel: 'me', href: 'https://dev.to/bartoszosiej' } },

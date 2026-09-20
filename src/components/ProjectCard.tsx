@@ -17,7 +17,7 @@ export default function ProjectCard({
   title,
   description,
   tags = [],
-  tint = '#818cf8',
+  tint = '#F15A24',
 }: Props): React.JSX.Element {
   const href = useBaseUrl(link)
 
