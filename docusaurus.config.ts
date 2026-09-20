@@ -12,7 +12,7 @@ const ldSoftware = ld('software')
 
 // Base path for GitHub Pages: https://BartoszOsiej.github.io/Docs/
 const config: Config = {
-  title: 'Bartosz Osiej — Docs',
+  title: 'Hartwell Labs — Docs',
   tagline:
     'Central documentation hub for all Bartosz Osiej projects — LinkShort, Novactorio, NV2 Engine, Aurora, CyberForge, Talus and the Externum programming language.',
   favicon: 'favicon.svg',
