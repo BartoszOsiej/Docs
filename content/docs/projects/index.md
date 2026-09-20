@@ -105,6 +105,14 @@ title: 📁 Projects
     link="/projects/externum/"
   />
   <ProjectCard
+    icon="🟠"
+    title="pqbit"
+    description="Post-quantum Bitcoin — quantum-resistant from genesis (ML-DSA-44/SLH-DSA, FIPS 204/205), lightweight nodes, fair-launch constitution: zero premine, founder stash ≤100 coins never moved. Phase 2 live: testnet node, 9/9 tests, GENESIS draft open for review."
+    tags={['Rust', 'Blockchain', 'Post-Quantum', 'BIP-360']}
+    tint="#F15A24"
+    link="/projects/pqbit/"
+  />
+  <ProjectCard
     icon="🔒"
     title="QuantumShield"
     description="Post-quantum file encryption CLI — ML-KEM-768 key exchange + AES-256-GCM + HKDF. NIST FIPS 203 compliant, fuzz-tested."
